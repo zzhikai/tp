@@ -5,7 +5,7 @@ title: John Doe's Project Portfolio Page
 
 ### Project: LinkedOUT
 
-LinkedOUT is the only application that any experienced recruiter needs. LinkedOUT allows recruiters to keep track of many applicants, and the job they applied for. You can store their contact details, skills and the stage of their application, all in one place. 
+LinkedOUT is the only application that any experienced recruiter needs. LinkedOUT allows recruiters to keep track of many applicants, and the job they applied for. You can store their contact details, skills and the stage of their application, all in one place.
 
 Given below are my contributions to the project.
 
