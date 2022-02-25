@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Zhang Zhikai
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zzhikai.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/zzhikai)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Code quality + Integration
 
 ### Ryan Cheung
 
