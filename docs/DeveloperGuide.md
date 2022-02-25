@@ -312,16 +312,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  Technical: The application should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2.  Performance: The application should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3.  Performance: The system should take at most 2 seconds to return an output.
+4.  Disaster Recovery: In case of system failure, the application should still contain data saved up to the last command executed.
+5.  Persistency: The system should save after a command to ensure no data loss.
+6.  Testing: There should be at least one test case for each major component.
+7.  Fault Tolerance: The system should not crash due to an invalid input but instead show an error message.
+8.  Portability: The application should run on an imported _JSON_ file as long as it adheres to the format used when saving to files.
+9.  Efficiency: A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+10. Usability: The user interface should be clean and intuitive for users who have basic IT knowledge.
+11. Process: The project is expected to adhere to a schedule based off our milestones from the different versions ranging from v1.1 to v1.4.
+12. Documentation: User Guide should be able to be understood by readers who have basic IT knowledge.
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **OOP**: Object Oriented Programming: A programming paradigm that models real life objects.
+* **AB3**: Address Book 3
+* **JSON**: JavaScript Object Notation: An open standard file format which we use to read and write data from.
+* **GUI**: Graphical User Interface: Refers to the user interface that the user interacts with.
+* **CLI**: Command Line Interface: Refers to a computer program that accepts text inputs.
+
+*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 
