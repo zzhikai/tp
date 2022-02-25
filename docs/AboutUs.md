@@ -38,15 +38,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Documentation + Scheduling
 
-### Jean Doe
+### Chen Kai Yi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kaiyichen.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/kaiyichen)]
+[[portfolio](team/kaiyichen.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Documentation + Deliverables and deadlines 
 
 ### James Doe
 
