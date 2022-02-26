@@ -4,9 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.linkedout.model.applicant.Address;
+import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.Email;
 import seedu.linkedout.model.applicant.Name;
-import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.Phone;
 import seedu.linkedout.model.tag.Tag;
 import seedu.linkedout.model.util.SampleDataUtil;

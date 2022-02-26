@@ -12,6 +12,7 @@ import static seedu.linkedout.testutil.TypicalApplicants.ALICE;
 import static seedu.linkedout.testutil.TypicalApplicants.BOB;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.linkedout.testutil.ApplicantBuilder;
 
 public class ApplicantTest {

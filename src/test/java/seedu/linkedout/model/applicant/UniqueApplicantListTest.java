@@ -1,20 +1,24 @@
 package seedu.linkedout.model.applicant;
 
-import org.junit.jupiter.api.Test;
-import seedu.linkedout.model.applicant.exceptions.DuplicateApplicantException;
-import seedu.linkedout.model.applicant.exceptions.ApplicantNotFoundException;
-import seedu.linkedout.testutil.ApplicantBuilder;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.linkedout.testutil.Assert.assertThrows;
 import static seedu.linkedout.testutil.TypicalApplicants.ALICE;
 import static seedu.linkedout.testutil.TypicalApplicants.BOB;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.linkedout.model.applicant.exceptions.ApplicantNotFoundException;
+import seedu.linkedout.model.applicant.exceptions.DuplicateApplicantException;
+import seedu.linkedout.testutil.ApplicantBuilder;
+
 
 public class UniqueApplicantListTest {
 
@@ -156,7 +160,8 @@ public class UniqueApplicantListTest {
     @Test
     public void setApplicants_listWithDuplicateApplicants_throwsDuplicateApplicantException() {
         List<Applicant> listWithDuplicateApplicants = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateApplicantException.class, () -> uniqueApplicantList.setApplicants(listWithDuplicateApplicants));
+        assertThrows(DuplicateApplicantException.class, ()
+            -> uniqueApplicantList.setApplicants(listWithDuplicateApplicants));
     }
 
     @Test

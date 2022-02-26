@@ -1,14 +1,15 @@
 package seedu.linkedout.model.applicant;
 
-import org.junit.jupiter.api.Test;
-import seedu.linkedout.testutil.ApplicantBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import seedu.linkedout.testutil.ApplicantBuilder;
 
 public class NameContainsKeywordsPredicateTest {
 
@@ -17,14 +18,17 @@ public class NameContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        seedu.linkedout.model.applicant.NameContainsKeywordsPredicate firstPredicate = new seedu.linkedout.model.applicant.NameContainsKeywordsPredicate(firstPredicateKeywordList);
-        seedu.linkedout.model.applicant.NameContainsKeywordsPredicate secondPredicate = new seedu.linkedout.model.applicant.NameContainsKeywordsPredicate(secondPredicateKeywordList);
+        seedu.linkedout.model.applicant.NameContainsKeywordsPredicate firstPredicate =
+                new seedu.linkedout.model.applicant.NameContainsKeywordsPredicate(firstPredicateKeywordList);
+        seedu.linkedout.model.applicant.NameContainsKeywordsPredicate secondPredicate =
+                new seedu.linkedout.model.applicant.NameContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        seedu.linkedout.model.applicant.NameContainsKeywordsPredicate firstPredicateCopy = new seedu.linkedout.model.applicant.NameContainsKeywordsPredicate(firstPredicateKeywordList);
+        seedu.linkedout.model.applicant.NameContainsKeywordsPredicate firstPredicateCopy =
+                new seedu.linkedout.model.applicant.NameContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -40,7 +44,8 @@ public class NameContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        seedu.linkedout.model.applicant.NameContainsKeywordsPredicate predicate = new seedu.linkedout.model.applicant.NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        seedu.linkedout.model.applicant.NameContainsKeywordsPredicate predicate =
+                new seedu.linkedout.model.applicant.NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
         assertTrue(predicate.test(new ApplicantBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
@@ -59,7 +64,8 @@ public class NameContainsKeywordsPredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        seedu.linkedout.model.applicant.NameContainsKeywordsPredicate predicate = new seedu.linkedout.model.applicant.NameContainsKeywordsPredicate(Collections.emptyList());
+        seedu.linkedout.model.applicant.NameContainsKeywordsPredicate predicate =
+                new seedu.linkedout.model.applicant.NameContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new ApplicantBuilder().withName("Alice").build()));
 
         // Non-matching keyword
