@@ -11,7 +11,7 @@ LinkedOUT allows recruiters to keep track of many applicants, and the job they a
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
+* **New Feature**:
     * to be added soon
 
 * **New Feature**: to be added soon
