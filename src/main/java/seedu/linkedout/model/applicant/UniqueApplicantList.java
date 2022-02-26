@@ -14,10 +14,11 @@ import seedu.linkedout.model.applicant.exceptions.DuplicateApplicantException;
 
 /**
  * A list of applicants that enforces uniqueness between its elements and does not allow nulls.
- * A applicant is considered unique by comparing using {@code Applicant#isSameApplicant(applicant)}. As such, adding and updating of
- * applicants uses Applicant#isSameApplicant(Applicant) for equality so as to ensure that the applicant being added or updated is
- * unique in terms of identity in the UniqueApplicantList. However, the removal of a applicant uses Applicant#equals(Object) so
- * as to ensure that the applicant with exactly the same fields will be removed.
+ * A applicant is considered unique by comparing using {@code Applicant#isSameApplicant(applicant)}. As such, adding
+ * and updating of applicants uses Applicant#isSameApplicant(Applicant) for equality so as to ensure that the applicant
+ * being added or updated is unique in terms of identity in the UniqueApplicantList.
+ * However, the removal of a applicant uses Applicant#equals(Object) so as to ensure that the applicant with exactly
+ * the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
