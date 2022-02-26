@@ -257,29 +257,53 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
+* is a recruiter looking to hire for multiple jobs in a tech firm
 * is reasonably comfortable using CLI apps
+* Work pattern : works alone and does not share his/her computer
+* Job scope : Many applications to sieve through on a daily basis
+* Interaction level : Interacts with the applicants
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**: Simple and easy-to-use tool for recruiter to LinkedOUT to applicants and manage the applicant's information efficiently.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                           | I want to …​                                                                                                       | So that I can…​                                                   |
+|----------|---------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|
+| `* * *`  | Recruiter (new user)                              | add an applicant's name, contact details and job applied                                                           | track all the applicant for the job                               |
+| `* * *`  | Recruiter (new user)                              | view an individual applicant                                                                                       | see the details of a particular applicant                         |
+| `* * *`  | Recruiter (new user)                              | view the list of all applicants                                                                                    | have an overview of all applicants                                |
+| `* * *`  | Recruiter (new user)                              | delete an applicant                                                                                                | remove an applicant when he is rejected/withdraws application     |
+| `* * *`  | Recruiter                                         | edit applicant's info                                                                                              | update their personal particulars                                 |
+| `* * *`  | Recruiter                                         | add the applicant’s number of years of work experience in the related field                                        | make hiring decisions                                             |
+| `* * *`  | Recruiter                                         | add the job that the applicant applied to                                                                          | know which applicant is interested in which job.                  |
+| `* * *`  | Recruiter                                         | add the applicant’s highest education level                                                                        | I can make hiring decisions.                                      |
+| `* * *`  | Recruiter                                         | undo my latest actions                                                                                             | Rectify any mistakes made                                         |
+| `* * *`  | Busy recruiter                                    | search an applicant in the system by name.                                                                         |                                                                   |
+| `* * *`  | Familiar user and recruiter                       | to be able to see the list of applicants with their contact, applied job and their respective stages of interview. |                                                                   |
+| `* * *`  | Recruiter that deals with large amounts of data   | get rid of unwanted data                                                                                           | I don’t get confused by them.                                     |
+| `* *`    | Recruiter(New user)                               | view a useful user guide                                                                                           | I know how to use the application properly                        |
+| `* *`    | Recruiter                                         | view a summary of any applicants skill set                                                                         | I do not have to keep referencing their resume                    |
+| `* *`    | Busy recruiter                                    | see what stage of the job application a particular applicant is at                                                 | I can keep track of their progress                                |
+| `* *`    | Recruiter with heavy workload                     | see a list of job vacancies I’m looking to fill                                                                    | see a list of job vacancies I’m looking to fill                   |
+| `* *`    | Familiar user and busy recruiter                  | I want to be able to filter applicants by skill                                                                    | see who has the relevant skills                                   |
+| `* *`    | Familiar user and busy recruiter                  | want to be able to filter an applicant by number of years of work experience                                       | view who fits my job needs                                        |
+| `* *`    | Familiar user and busy recruiter                  | to be able to filter the applicants by job applied                                                                 | view who is interviewing for the job and what stages they are at. |
+| `* *`    | As a long time user                               | to archive data                                                                                                    | can reference it if needed in the future                          |
+| `* *`    | Experienced recruiter                             | label applicants based on priority/ urgency                                                                        | I can tend to those applicants first                              |
+| `* *`    | Frequent user                                     | I want the app to filter out errors in the user’s data                                                             | I don’t have to look for errors                                   |
+| `* *`    | Recruiter                                         | check if there are duplicated data of an applicant                                                                 | check on the total number of applicants accurately                |
+| `* *`    | Efficient recruiter                               | import from files                                                                                                  | not have to key in everything manually                            |
+| `* *`    | Experienced recruiter                             | have shortcuts                                                                                                     | not have to type in the same commands                             |
+| `* *`    | Recruiter who uses on a daily basis               | save the most used command                                                                                         | my work is more streamlined                                       |
+| `*`      | Experienced recruiter                             | flag an applicant                                                                                                  | quickly refer to their info in the future                         |
+| `*`      | Recruiter for a large firm                        | I want to export the data                                                                                          | pass it to another department/hiring manager if needed.           |
+| `*`      | Lazy recruiter                                    | automate commands                                                                                                  | do everything in one click                                        |
+| `*`      | Efficient recruiter                               | work on the app smoothly                                                                                           | handle large amount of tasks at one time                          |
 
-*{More to be added}*
 
 ### Use cases
 
