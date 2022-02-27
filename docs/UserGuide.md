@@ -5,7 +5,7 @@ title: User Guide
 
 LinkedOUT is the only application that any experienced recruiter needs. LinkedOUT allows recruiters to keep track of many applicants, and the job they applied for. You can store their contact details, skills and the stage of their application, all in one place.
 
-* Table of Contents
+* TOC
   {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -156,7 +156,7 @@ Format:
 * Delete is case-insensitive. e.g `hans` will delete `Hans`
 * Only exact matches are deleted. e.g `Hans` will not delete `Hans Gruber`
 
-* Example:
+Example:
 
     delete n/Elon Musk
 
