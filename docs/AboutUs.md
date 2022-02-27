@@ -46,7 +46,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/kaiyichen.md)]
 
 * Role: Developer
-* Responsibilities: Documentation + Deliverables and deadlines 
+* Responsibilities: Documentation + Deliverables and deadlines
 
 ### James Doe
 
