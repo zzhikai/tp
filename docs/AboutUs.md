@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/zzhikai.png" width="200px">
 
 [[github](http://github.com/zzhikai)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/zzhikai.md)]
 
 * Role: Team Lead
 * Responsibilities: Code quality + Integration
