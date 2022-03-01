@@ -1,9 +1,10 @@
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
 
 ![Ui](docs/images/Ui.png)
+**LinkedOUT** is the only application that any **experienced recruiter needs.** 
 
-**LinkedOUT** is the only application that any **experienced recruiter needs.** \
-It allows recruiters to **keep track of many applicants, and the job they applied for.** \
+It allows recruiters to **keep track of many applicants, and the job they applied for.** 
+
 You can **store** their contact details, skills and the stage of their application, **all in one place**.
 
 For the detailed documentation of this project, see the **[LinkedOUT Product Website](https://ay2122s2-cs2103t-t09-2.github.io/tp/)**. 
