@@ -58,4 +58,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Documentation + Deliverables and deadlines
 
+### Ryan Tan Li En
+
+<img src="images/ryantanlien.png" width="200px">
+
+[[github](http://github.com/ryantanlien)] [[portfolio](team/ryantanlien.md)]
+
+* Role: Developer
+* Responsibilities: Testing + Integration
+
 
