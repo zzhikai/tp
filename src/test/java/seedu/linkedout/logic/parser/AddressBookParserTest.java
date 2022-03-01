@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.linkedout.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.linkedout.testutil.Assert.assertThrows;
 import static seedu.linkedout.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -22,9 +23,11 @@ import seedu.linkedout.logic.commands.ExitCommand;
 import seedu.linkedout.logic.commands.FindCommand;
 import seedu.linkedout.logic.commands.HelpCommand;
 import seedu.linkedout.logic.commands.ListCommand;
+import seedu.linkedout.logic.commands.RemarkCommand;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
 import seedu.linkedout.model.person.NameContainsKeywordsPredicate;
 import seedu.linkedout.model.person.Person;
+import seedu.linkedout.model.person.Remark;
 import seedu.linkedout.testutil.EditPersonDescriptorBuilder;
 import seedu.linkedout.testutil.PersonBuilder;
 import seedu.linkedout.testutil.PersonUtil;
@@ -98,4 +101,13 @@ public class AddressBookParserTest {
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
+
+    @Test
+    public void parseCommand_remark() throws Exception {
+        final String remark = "Some remark.";
+        RemarkCommand command = (RemarkCommand) parser.parseCommand(RemarkCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_REMARK + remark);
+        assertEquals(new RemarkCommand(INDEX_FIRST_PERSON, new Remark(remark)), command);
+    }
+
 }
