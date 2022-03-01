@@ -335,19 +335,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1c. Email address is invalid
 
-    * 1b1. LinkedOUT shows an error message
+    * 1c1. LinkedOUT shows an error message
 
       Use case resumes at step 1.
 
-* 1c. Address is invalid
+* 1d. Address is invalid
 
-    * 1b1. LinkedOUT shows an error message
+    * 1d1. LinkedOUT shows an error message
 
       Use case resumes at step 1.
     
-* 1d. Job applied for is invalid
+* 1e. Job applied for is invalid
 
-    * 1d1. LinkedOUT shows an error message.
+    * 1e1. LinkedOUT shows an error message.
     
       Use case resumes at step 1.
 
