@@ -72,98 +72,88 @@ Format: `help`
 Adds a new applicant to be tracked, by adding their name, phone number, the job they have applied for, along with a variable number of skills.
 
 Format:
-
-    add n/NAME p/PHONE_NUMBER j/JOB [s/SKILLS]...
-
+```
+add n/NAME p/PHONE_NUMBER j/JOB [s/SKILLS]...
+```
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of skills (including 0)
 </div>
 
 Example:
-
-    add n/Bob p/99999999 j/Data Analyst s/Pandas s/Python s/Java
-
+```
+add n/Bob p/99999999 j/Data Analyst s/Pandas s/Python s/Java
+```
 Sample Output:
-
-    Applicant Bob has been successfully added for job Data Analyst
-
+```
+Applicant Bob has been successfully added for job Data Analyst
+```
 ### Listing all applicants : `list`
 
 Show a list of all job applicants, along with an overview of each applicant.
 
 Format:
-
-    list
-
+```
+list
+```
 Example:
-
-    list
-
+```
+list
+```
 Sample Output:
+```
+List of applicants:
+1. Steve Jobs
+Job Applied: Product Designer
+Skills: Product Design
+Phone Number: 99999999
 
-    List of applicants:
-    
-    1. Steve Jobs
-    
-    Job Applied: Product Designer
-    
-    Skills: Product Design
-    
-    Phone Number: 99999999
-    
-    2. Elon Musk
-    
-    Job Applied: Software Developer
-    
-    Skills: Pandas, Python
-    
-    Phone Number: 88888888
-
+2. Elon Musk
+Job Applied: Software Developer
+Skills: Pandas, Python
+Phone Number: 88888888
+```
 ### Viewing a specific applicant : `view`
 
 Allows the user to view an overview of a specific applicant, specified by applicant name
 
 Format:
-
-    view n/NAME
-
+```
+view n/NAME
+```
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 
 Example:
-
-    view n/Steve Jobs
-
+```
+view n/Steve Jobs
+```
 Sample Output:
-
-    Here’s an overview of Steve Jobs:
-    
-    Phone Number: 99999999
-    
-    Job Applied: CEO of Apple
-    
-    Skills: Product Design  
-
+```
+Here’s an overview of Steve Jobs:
+Phone Number: 99999999
+Job Applied: CEO of Apple
+Skills: Product Design  
+```
 ### Deleting an applicant : `delete`
 
 Deletes a specific job applicant, specified by applicant name.
 
 Format:
-
-    delete n/NAME
-
+```
+delete n/NAME
+```
 * Delete is case-insensitive. e.g `hans` will delete `Hans`
 * Only exact matches are deleted. e.g `Hans` will not delete `Hans Gruber`
 
 Example:
-
-    delete n/Elon Musk
-
+```
+delete n/Elon Musk
+```
 Sample Output:
-
-    Applicant Elon Musk has been deleted
-
+```
+Applicant Elon Musk has been deleted
+```
 ### Exiting the program : `exit`
 
 Exits the program.
