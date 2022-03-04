@@ -32,14 +32,14 @@ public interface LinkedoutStorage {
 
     /**
      * Saves the given {@link ReadOnlyLinkedout} to the storage.
-     * @param addressBook cannot be null.
+     * @param linkedout cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveLinkedout(ReadOnlyLinkedout addressBook) throws IOException;
+    void saveLinkedout(ReadOnlyLinkedout linkedout) throws IOException;
 
     /**
      * @see #saveLinkedout(ReadOnlyLinkedout)
      */
-    void saveLinkedout(ReadOnlyLinkedout addressBook, Path filePath) throws IOException;
+    void saveLinkedout(ReadOnlyLinkedout linkedout, Path filePath) throws IOException;
 
 }
