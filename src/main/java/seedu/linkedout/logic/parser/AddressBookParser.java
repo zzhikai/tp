@@ -12,9 +12,9 @@ import seedu.linkedout.logic.commands.Command;
 import seedu.linkedout.logic.commands.DeleteCommand;
 import seedu.linkedout.logic.commands.EditCommand;
 import seedu.linkedout.logic.commands.ExitCommand;
-import seedu.linkedout.logic.commands.ViewCommand;
 import seedu.linkedout.logic.commands.HelpCommand;
 import seedu.linkedout.logic.commands.ListCommand;
+import seedu.linkedout.logic.commands.ViewCommand;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
 
 /**

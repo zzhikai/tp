@@ -1,18 +1,24 @@
 package seedu.linkedout.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.linkedout.model.Model;
-import seedu.linkedout.model.ModelManager;
-import seedu.linkedout.model.UserPrefs;
-import seedu.linkedout.model.person.NameContainsKeywordsPredicate;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.linkedout.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.linkedout.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.linkedout.testutil.TypicalPersons.CARL;
+import static seedu.linkedout.testutil.TypicalPersons.ELLE;
+import static seedu.linkedout.testutil.TypicalPersons.FIONA;
+import static seedu.linkedout.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.linkedout.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
-import static seedu.linkedout.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.linkedout.testutil.TypicalPersons.*;
+import org.junit.jupiter.api.Test;
+
+import seedu.linkedout.model.Model;
+import seedu.linkedout.model.ModelManager;
+import seedu.linkedout.model.UserPrefs;
+import seedu.linkedout.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code ViewCommand}.
