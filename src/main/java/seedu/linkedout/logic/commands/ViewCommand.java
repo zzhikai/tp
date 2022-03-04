@@ -1,10 +1,10 @@
 package seedu.linkedout.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.linkedout.commons.core.Messages;
 import seedu.linkedout.model.Model;
 import seedu.linkedout.model.person.NameContainsKeywordsPredicate;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * view on applicant(s) in linkedout book whose name contains any of the argument keywords.

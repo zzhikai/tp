@@ -1,12 +1,12 @@
 package seedu.linkedout.logic.parser;
 
-import seedu.linkedout.logic.commands.ViewCommand;
-import seedu.linkedout.logic.parser.exceptions.ParseException;
-import seedu.linkedout.model.person.NameContainsKeywordsPredicate;
+import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
-import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import seedu.linkedout.logic.commands.ViewCommand;
+import seedu.linkedout.logic.parser.exceptions.ParseException;
+import seedu.linkedout.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new ViewCommand object
