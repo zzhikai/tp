@@ -321,36 +321,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. Applicant name is invalid
-    
+* 1a. User inputs invalid applicant details 
+
     * 1a1. LinkedOUT shows an error message
         
       Use case resumes at step 1.
     
-* 1b. Phone number is invalid
-
-    * 1b1. LinkedOUT shows an error message
-
-      Use case resumes at step 1.
-
-* 1c. Email address is invalid
-
-    * 1c1. LinkedOUT shows an error message
-
-      Use case resumes at step 1.
-
-* 1d. Address is invalid
-
-    * 1d1. LinkedOUT shows an error message
-
-      Use case resumes at step 1.
-    
-* 1e. Job applied for is invalid
-
-    * 1e1. LinkedOUT shows an error message.
-    
-      Use case resumes at step 1.
-
 * 2a. User rejects applicant details
 
     * 2a1. LinkedOUT does not add the applicant
@@ -373,6 +349,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
     * 1a1. LinkedOUT shows an error message
       
+      Use case resumes at step 1.
+    
+* 1b. User provides an invalid input to view Applicant
+
+    * 1b1. LinkedOUT shows an error message
+        
       Use case resumes at step 1.
       
 
