@@ -9,16 +9,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
 ### Zhang Zhikai
 
 <img src="images/zzhikai.png" width="200px">
@@ -43,7 +33,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/ryancheungjf.png" width="200px">
 
-[[github](http://github.com/RyanCheungJF)] [[portfolio](team/ryancheungjf.md)]
+[[github](http://github.com/RyanCheungJF)]
+[[portfolio](team/ryancheungjf.md)]
 
 * Role: Developer
 * Responsibilities: Documentation + Scheduling
@@ -62,9 +53,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/ryantanlien.png" width="200px">
 
-[[github](http://github.com/ryantanlien)] [[portfolio](team/ryantanlien.md)]
+[[github](http://github.com/ryantanlien)]
+[[portfolio](team/ryantanlien.md)]
 
 * Role: Developer
 * Responsibilities: Testing + Integration
-
-
