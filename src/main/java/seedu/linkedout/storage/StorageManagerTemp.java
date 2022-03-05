@@ -12,7 +12,7 @@ import seedu.linkedout.model.ReadOnlyUserPrefs;
 import seedu.linkedout.model.UserPrefs;
 
 /**
- * Manages storage of Linkedout data in local storage.
+ * Manages storage of Linkedout book data in local storage.
  */
 public class StorageManagerTemp implements StorageTemp {
 

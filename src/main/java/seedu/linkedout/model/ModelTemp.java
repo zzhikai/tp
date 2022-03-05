@@ -35,45 +35,45 @@ public interface ModelTemp {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' linkedout file path.
+     * Returns the user prefs' linkedout book file path.
      */
     Path getLinkedoutFilePath();
 
     /**
-     * Sets the user prefs' linkedout file path.
+     * Sets the user prefs' linkedout book file path.
      */
     void setLinkedoutFilePath(Path linkedoutFilePath);
 
     /**
-     * Replaces linkedout data with the data in {@code linkedout}.
+     * Replaces linkedout book data with the data in {@code linkedout}.
      */
     void setLinkedout(ReadOnlyLinkedout linkedout);
 
-    /** Returns the Linkedout */
+    /** Returns the Linkedout book */
     ReadOnlyLinkedout getLinkedout();
 
     /**
-     * Returns true if a applicant with the same identity as {@code applicant} exists in the linkedout.
+     * Returns true if a applicant with the same identity as {@code applicant} exists in the linkedout book.
      */
     boolean hasApplicant(Applicant applicant);
 
     /**
      * Deletes the given applicant.
-     * The applicant must exist in the linkedout.
+     * The applicant must exist in the linkedout book.
      */
     void deleteApplicant(Applicant applicant);
 
     /**
      * Adds the given applicant.
-     * {@code applicant} must not already exist in the linkedout.
+     * {@code applicant} must not already exist in the linkedout book.
      */
     void addApplicant(Applicant applicant);
 
     /**
      * Replaces the given applicant {@code target} with {@code editedApplicant}.
-     * {@code target} must exist in the linkedout.
+     * {@code target} must exist in the linkedout book.
      * The applicant identity of {@code editedApplicant} must not
-     * be the same as another existing applicant in the linkedout.
+     * be the same as another existing applicant in the linkedout book.
      */
     void setApplicant(Applicant target, Applicant editedApplicant);
 

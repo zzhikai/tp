@@ -15,7 +15,7 @@ import seedu.linkedout.commons.util.JsonUtil;
 import seedu.linkedout.model.ReadOnlyLinkedout;
 
 /**
- * A class to access Linkedout data stored as a json file on the hard disk.
+ * A class to access Linkedout book data stored as a json file on the hard disk.
  */
 public class JsonLinkedoutStorage implements LinkedoutStorage {
 

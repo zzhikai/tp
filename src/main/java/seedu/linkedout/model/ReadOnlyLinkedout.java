@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.linkedout.model.applicant.Applicant;
 
 /**
- * Unmodifiable view of a linkedout
+ * Unmodifiable view of a linkedout book
  */
 public interface ReadOnlyLinkedout {
 

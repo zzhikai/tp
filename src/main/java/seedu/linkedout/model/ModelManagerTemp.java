@@ -14,7 +14,7 @@ import seedu.linkedout.commons.core.LogsCenter;
 import seedu.linkedout.model.applicant.Applicant;
 
 /**
- * Represents the in-memory model of the linkedout data.
+ * Represents the in-memory model of the linkedout book data.
  */
 public class ModelManagerTemp implements ModelTemp {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -24,7 +24,7 @@ public class ModelManagerTemp implements ModelTemp {
     private final FilteredList<Applicant> filteredApplicants;
 
     /**
-     * Initializes a ModelManager with the given linkedout and userPrefs.
+     * Initializes a ModelManager with the given linkedout book and userPrefs.
      */
     public ModelManagerTemp(ReadOnlyLinkedout linkedout, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(linkedout, userPrefs);

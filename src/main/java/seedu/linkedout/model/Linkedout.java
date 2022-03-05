@@ -9,7 +9,7 @@ import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.UniqueApplicantList;
 
 /**
- * Wraps all data at the linkedout level
+ * Wraps all data at the linkedout book level
  * Duplicates are not allowed (by .isSameApplicant comparison)
  */
 public class Linkedout implements ReadOnlyLinkedout {
@@ -30,7 +30,7 @@ public class Linkedout implements ReadOnlyLinkedout {
     public Linkedout() {}
 
     /**
-     * Creates a Linkedout using the Applicants in the {@code toBeCopied}
+     * Creates a Linkedout book using the Applicants in the {@code toBeCopied}
      */
     public Linkedout(ReadOnlyLinkedout toBeCopied) {
         this();
@@ -59,7 +59,7 @@ public class Linkedout implements ReadOnlyLinkedout {
     //// applicant-level operations
 
     /**
-     * Returns true if a applicant with the same identity as {@code applicant} exists in the linkedout.
+     * Returns true if a applicant with the same identity as {@code applicant} exists in the linkedout book.
      */
     public boolean hasApplicant(Applicant applicant) {
         requireNonNull(applicant);
@@ -67,8 +67,8 @@ public class Linkedout implements ReadOnlyLinkedout {
     }
 
     /**
-     * Adds a applicant to the Linkedout.
-     * The applicant must not already exist in the linkedout.
+     * Adds a applicant to the Linkedout book.
+     * The applicant must not already exist in the linkedout book.
      */
     public void addApplicant(Applicant a) {
         applicants.add(a);
@@ -76,9 +76,9 @@ public class Linkedout implements ReadOnlyLinkedout {
 
     /**
      * Replaces the given applicant {@code target} in the list with {@code editedApplicant}.
-     * {@code target} must exist in the linkedout.
+     * {@code target} must exist in the linkedout book.
      * The applicant identity of {@code editedApplicant} must not
-     * be the same as another existing applicant in the linkedout.
+     * be the same as another existing applicant in the linkedout book.
      */
     public void setApplicant(Applicant target, Applicant editedApplicant) {
         requireNonNull(editedApplicant);
@@ -88,7 +88,7 @@ public class Linkedout implements ReadOnlyLinkedout {
 
     /**
      * Removes {@code key} from this {@code Linkedout}.
-     * {@code key} must exist in the linkedout.
+     * {@code key} must exist in the linkedout book.
      */
     public void removeApplicant(Applicant key) {
         applicants.remove(key);
