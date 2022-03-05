@@ -33,7 +33,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/ryancheungjf.png" width="200px">
 
-[[github](http://github.com/RyanCheungJF)] [[portfolio](team/ryancheungjf.md)]
+[[github](http://github.com/RyanCheungJF)]
+[[portfolio](team/ryancheungjf.md)]
 
 * Role: Developer
 * Responsibilities: Documentation + Scheduling
@@ -52,9 +53,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/ryantanlien.png" width="200px">
 
-[[github](http://github.com/ryantanlien)] [[portfolio](team/ryantanlien.md)]
+[[github](http://github.com/ryantanlien)]
+[[portfolio](team/ryantanlien.md)]
 
 * Role: Developer
 * Responsibilities: Testing + Integration
-
-
