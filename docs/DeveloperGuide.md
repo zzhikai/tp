@@ -374,6 +374,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. LinkedOUT shows an error message
       
       Use case resumes at step 1.
+    
+* 1b. User inputs invalid parameters to view Applicant
+
+    * 1b1. LinkedOUT shows an error message
+        
+      Use case resumes at step 1.
       
 
 
