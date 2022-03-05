@@ -307,16 +307,82 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `LinkedOUT` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add an applicant**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a new applicant
+2. LinkedOUT confirms the applicant details with user
+3. LinkedOUT shows the updated list of applicants
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Applicant name is invalid
+    
+    * 1a1. LinkedOUT shows an error message
+        
+      Use case resumes at step 1.
+    
+* 1b. Phone number is invalid
+
+    * 1b1. LinkedOUT shows an error message
+
+      Use case resumes at step 1.
+
+* 1c. Email address is invalid
+
+    * 1c1. LinkedOUT shows an error message
+
+      Use case resumes at step 1.
+
+* 1d. Address is invalid
+
+    * 1d1. LinkedOUT shows an error message
+
+      Use case resumes at step 1.
+    
+* 1e. Job applied for is invalid
+
+    * 1e1. LinkedOUT shows an error message.
+    
+      Use case resumes at step 1.
+
+* 2a. User rejects applicant details
+
+    * 2a1. LinkedOUT does not add the applicant
+    * 2a2. LinkedOUT shows original list of applicants
+        
+      Use case resumes at step 1.
+    
+**Use case: View an individual applicant**
+
+**MSS**
+
+1. User requests to view an individual applicant
+2. LinkedOUT shows the individual applicant
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Applicant does not exist
+  
+    * 1a1. LinkedOUT shows an error message
+      
+      Use case resumes at step 1.
+      
+
+
+**Use case: View list of all applicants**
+
+**MSS**
+
+1.  User requests to list applicants
+2.  LinkedOUT shows a list of applicants
 
     Use case ends.
 
@@ -326,9 +392,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+**Use case: Delete an applicant**
+
+**MSS**
+
+1.  User requests to list applicants
+2.  LinkedOUT shows a list of applicants
+3.  User requests to delete a specific applicant in the list
+4.  LinkedOUT deletes the applicant
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given name is invalid.
+
+    * 3a1. LinkedOUT shows an error message.
 
       Use case resumes at step 2.
 

@@ -24,10 +24,20 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/zzhikai.png" width="200px">
 
 [[github](http://github.com/zzhikai)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/zzhikai.md)]
 
 * Role: Team Lead
 * Responsibilities: Code quality + Integration
+
+### Goel Akshit
+
+<img src="images/goel-a.png" width="200px">
+
+[[github](https://github.com/goel-a)]
+[[portfolio](team/goel-a.md)]
+
+* Role: Developer
+* Responsibilities: Code Quality + Deliverables & Deadlines
 
 ### Ryan Cheung
 
@@ -48,12 +58,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Documentation + Deliverables and deadlines
 
-### James Doe
+### Ryan Tan Li En
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ryantanlien.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/ryantanlien)] [[portfolio](team/ryantanlien.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Testing + Integration
+
+

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Ryan Tan's Project Portfolio Page
+title: Goel Akshit's Project Portfolio Page
 ---
 
 ### Project: LinkedOUT
@@ -11,16 +11,16 @@ Given below are my contributions to the project.
 
 ## Contributions to Project
 * **Code Contributions**
-  * To be added.
+    * To be added.
 * **Enchancements Implemented**
-  * To be added.
+    * To be added.
 * **Contribution to the UG**
-  * To be added.
+    * To be added.
 * **Contributions to the DG**
-  * To be added.
+    * To be added.
 * **Contributions to team-based tasks**
-  * To be added.
+    * To be added.
 * **Review/mentoring contributions**
-  * To be added.
+    * To be added.
 * **Contributions beyond the project team**
-  * To be added.
+    * To be added.
