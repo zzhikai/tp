@@ -13,8 +13,8 @@ import seedu.linkedout.logic.commands.exceptions.CommandException;
 import seedu.linkedout.logic.parser.AddressBookParser;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
 import seedu.linkedout.model.Model;
-import seedu.linkedout.model.ReadOnlyAddressBook;
-import seedu.linkedout.model.person.Person;
+import seedu.linkedout.model.ReadOnlyLinkedout;
+import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.storage.Storage;
 
 /**
@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveLinkedout(model.getLinkedout());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,18 +55,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyLinkedout getAddressBook() {
+        return model.getLinkedout();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Applicant> getFilteredApplicantList() {
+        return model.getFilteredApplicantList();
     }
 
     @Override
     public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getLinkedoutFilePath();
     }
 
     @Override

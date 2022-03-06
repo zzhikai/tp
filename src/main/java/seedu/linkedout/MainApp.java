@@ -15,19 +15,9 @@ import seedu.linkedout.commons.util.ConfigUtil;
 import seedu.linkedout.commons.util.StringUtil;
 import seedu.linkedout.logic.Logic;
 import seedu.linkedout.logic.LogicManager;
-import seedu.linkedout.model.AddressBook;
-import seedu.linkedout.model.Model;
-import seedu.linkedout.model.ModelManager;
-import seedu.linkedout.model.ReadOnlyAddressBook;
-import seedu.linkedout.model.ReadOnlyUserPrefs;
-import seedu.linkedout.model.UserPrefs;
+import seedu.linkedout.model.*;
 import seedu.linkedout.model.util.SampleDataUtil;
-import seedu.linkedout.storage.AddressBookStorage;
-import seedu.linkedout.storage.JsonAddressBookStorage;
-import seedu.linkedout.storage.JsonUserPrefsStorage;
-import seedu.linkedout.storage.Storage;
-import seedu.linkedout.storage.StorageManager;
-import seedu.linkedout.storage.UserPrefsStorage;
+import seedu.linkedout.storage.*;
 import seedu.linkedout.ui.Ui;
 import seedu.linkedout.ui.UiManager;
 
@@ -56,7 +46,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
+        LinkedoutStorage addressBookStorage = new JsonLinkedoutStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
         initLogging(config);
@@ -74,20 +64,20 @@ public class MainApp extends Application {
      * or an empty linkedout book will be used instead if errors occur when reading {@code storage}'s linkedout book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyLinkedout> addressBookOptional;
+        ReadOnlyLinkedout initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.readLinkedout();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleLinkedout);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialData = new Linkedout();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialData = new Linkedout();
         }
 
         return new ModelManager(initialData, userPrefs);

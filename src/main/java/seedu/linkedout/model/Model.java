@@ -5,14 +5,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.linkedout.commons.core.GuiSettings;
-import seedu.linkedout.model.person.Person;
+import seedu.linkedout.model.applicant.Applicant;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Applicant> PREDICATE_SHOW_ALL_APPLICANTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -37,52 +37,52 @@ public interface Model {
     /**
      * Returns the user prefs' linkedout book file path.
      */
-    Path getAddressBookFilePath();
+    Path getLinkedoutFilePath();
 
     /**
      * Sets the user prefs' linkedout book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setLinkedoutFilePath(Path linkedoutFilePath);
 
     /**
-     * Replaces linkedout book data with the data in {@code addressBook}.
+     * Replaces linkedout book data with the data in {@code linkedout}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setLinkedout(ReadOnlyLinkedout linkedout);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the Linkedout book */
+    ReadOnlyLinkedout getLinkedout();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the linkedout book.
+     * Returns true if a applicant with the same identity as {@code applicant} exists in the linkedout book.
      */
-    boolean hasPerson(Person person);
+    boolean hasApplicant(Applicant applicant);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the linkedout book.
+     * Deletes the given applicant.
+     * The applicant must exist in the linkedout book.
      */
-    void deletePerson(Person target);
+    void deleteApplicant(Applicant applicant);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the linkedout book.
+     * Adds the given applicant.
+     * {@code applicant} must not already exist in the linkedout book.
      */
-    void addPerson(Person person);
+    void addApplicant(Applicant applicant);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given applicant {@code target} with {@code editedApplicant}.
      * {@code target} must exist in the linkedout book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the
-     * linkedout book.
+     * The applicant identity of {@code editedApplicant} must not
+     * be the same as another existing applicant in the linkedout book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setApplicant(Applicant target, Applicant editedApplicant);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered applicant list */
+    ObservableList<Applicant> getFilteredApplicantList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered applicant list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredApplicantList(Predicate<Applicant> predicate);
 }

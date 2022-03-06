@@ -16,7 +16,7 @@ import seedu.linkedout.model.applicant.Applicant;
 /**
  * An Immutable Linkedout book that is serializable to JSON format.
  */
-@JsonRootName(value = "linkedout")
+@JsonRootName(value = "addressbook")
 class JsonSerializableLinkedout {
 
     public static final String MESSAGE_DUPLICATE_APPLICANT = "Applicant list contains duplicate applicant(s).";
@@ -27,7 +27,7 @@ class JsonSerializableLinkedout {
      * Constructs a {@code JsonSerializableLinkedout} with the given applicants.
      */
     @JsonCreator
-    public JsonSerializableLinkedout(@JsonProperty("applicants") List<JsonAdaptedApplicant> applicants) {
+    public JsonSerializableLinkedout(@JsonProperty("persons") List<JsonAdaptedApplicant> applicants) {
         this.applicants.addAll(applicants);
     }
 

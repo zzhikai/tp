@@ -7,8 +7,8 @@ import seedu.linkedout.commons.core.GuiSettings;
 import seedu.linkedout.logic.commands.CommandResult;
 import seedu.linkedout.logic.commands.exceptions.CommandException;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
-import seedu.linkedout.model.ReadOnlyAddressBook;
-import seedu.linkedout.model.person.Person;
+import seedu.linkedout.model.ReadOnlyLinkedout;
+import seedu.linkedout.model.applicant.Applicant;
 
 /**
  * API of the Logic component
@@ -26,12 +26,12 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see seedu.linkedout.model.Model#getAddressBook()
+     * @see seedu.linkedout.model.Model#getLinkedout()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyLinkedout getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of applicants */
+    ObservableList<Applicant> getFilteredApplicantList();
 
     /**
      * Returns the user prefs' linkedout book file path.
