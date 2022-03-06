@@ -13,9 +13,9 @@ import java.util.stream.Stream;
 import seedu.linkedout.logic.commands.AddCommand;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
 import seedu.linkedout.model.applicant.Address;
+import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.Email;
 import seedu.linkedout.model.applicant.Name;
-import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.Phone;
 import seedu.linkedout.model.tag.Tag;
 

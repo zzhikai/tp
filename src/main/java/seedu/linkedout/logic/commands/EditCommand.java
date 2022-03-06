@@ -20,9 +20,9 @@ import seedu.linkedout.commons.util.CollectionUtil;
 import seedu.linkedout.logic.commands.exceptions.CommandException;
 import seedu.linkedout.model.Model;
 import seedu.linkedout.model.applicant.Address;
+import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.Email;
 import seedu.linkedout.model.applicant.Name;
-import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.Phone;
 import seedu.linkedout.model.tag.Tag;
 
@@ -90,7 +90,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Applicant} with the details of {@code applicantToEdit}
      * edited with {@code editApplicantDescriptor}.
      */
-    private static Applicant createEditedApplicant(Applicant applicantToEdit, EditApplicantDescriptor editApplicantDescriptor) {
+    private static Applicant createEditedApplicant(Applicant applicantToEdit,
+                                                   EditApplicantDescriptor editApplicantDescriptor) {
         assert applicantToEdit != null;
 
         Name updatedName = editApplicantDescriptor.getName().orElse(applicantToEdit.getName());
