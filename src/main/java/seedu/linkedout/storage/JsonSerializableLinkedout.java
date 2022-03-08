@@ -14,7 +14,7 @@ import seedu.linkedout.model.ReadOnlyLinkedout;
 import seedu.linkedout.model.applicant.Applicant;
 
 /**
- * An Immutable Linkedout book that is serializable to JSON format.
+ * An Immutable Linkedout app that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
 class JsonSerializableLinkedout {
@@ -42,7 +42,7 @@ class JsonSerializableLinkedout {
     }
 
     /**
-     * Converts this linkedout book into the model's {@code Linkedout} object.
+     * Converts this linkedout app into the model's {@code Linkedout} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

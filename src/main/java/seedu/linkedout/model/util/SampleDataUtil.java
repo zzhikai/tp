@@ -14,7 +14,7 @@ import seedu.linkedout.model.applicant.Phone;
 import seedu.linkedout.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code Linkedout} with sample data.
  */
 public class SampleDataUtil {
     public static Applicant[] getSampleApplicants() {

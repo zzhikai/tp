@@ -36,7 +36,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setAddressBookFilePath(newUserPrefs.getLinkedoutFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -46,10 +46,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         this.guiSettings = guiSettings;
-    }
-
-    public Path getAddressBookFilePath() {
-        return addressBookFilePath;
     }
 
     public Path getLinkedoutFilePath() {

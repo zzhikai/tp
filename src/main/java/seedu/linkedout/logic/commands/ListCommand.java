@@ -6,7 +6,7 @@ import static seedu.linkedout.model.Model.PREDICATE_SHOW_ALL_APPLICANTS;
 import seedu.linkedout.model.Model;
 
 /**
- * Lists all applicants in the linkedout book to the user.
+ * Lists all applicants in the linkedout app to the user.
  */
 public class ListCommand extends Command {
 

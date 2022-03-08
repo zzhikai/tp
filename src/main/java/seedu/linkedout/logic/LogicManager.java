@@ -10,7 +10,7 @@ import seedu.linkedout.commons.core.LogsCenter;
 import seedu.linkedout.logic.commands.Command;
 import seedu.linkedout.logic.commands.CommandResult;
 import seedu.linkedout.logic.commands.exceptions.CommandException;
-import seedu.linkedout.logic.parser.AddressBookParser;
+import seedu.linkedout.logic.parser.LinkedoutParser;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
 import seedu.linkedout.model.Model;
 import seedu.linkedout.model.ReadOnlyLinkedout;
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final LinkedoutParser linkedoutParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        linkedoutParser = new LinkedoutParser();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = linkedoutParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
@@ -55,7 +55,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyLinkedout getAddressBook() {
+    public ReadOnlyLinkedout getLinkedout() {
         return model.getLinkedout();
     }
 
@@ -65,7 +65,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getLinkedoutFilePath() {
         return model.getLinkedoutFilePath();
     }
 

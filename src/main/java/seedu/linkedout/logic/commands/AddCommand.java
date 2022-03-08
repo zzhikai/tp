@@ -12,7 +12,7 @@ import seedu.linkedout.model.Model;
 import seedu.linkedout.model.applicant.Applicant;
 
 /**
- * Adds a applicant to the linkedout book.
+ * Adds an applicant to the linkedout app.
  */
 public class AddCommand extends Command {
 

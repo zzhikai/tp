@@ -11,7 +11,7 @@ import seedu.linkedout.model.Model;
 import seedu.linkedout.model.applicant.Applicant;
 
 /**
- * Deletes a applicant identified using it's displayed index from the linkedout book.
+ * Deletes an applicant identified using it's displayed index from the linkedout app.
  */
 public class DeleteCommand extends Command {
 

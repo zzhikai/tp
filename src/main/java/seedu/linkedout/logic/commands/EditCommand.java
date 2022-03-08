@@ -27,7 +27,7 @@ import seedu.linkedout.model.applicant.Phone;
 import seedu.linkedout.model.tag.Tag;
 
 /**
- * Edits the details of an existing applicant in the linkedout book.
+ * Edits the details of an existing applicant in the linkedout app.
  */
 public class EditCommand extends Command {
 

@@ -9,7 +9,7 @@ import java.util.Set;
 import seedu.linkedout.model.tag.Tag;
 
 /**
- * Represents an Applicant in LinkedOUT
+ * Represents an Applicant in linkedout.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Applicant {

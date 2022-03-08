@@ -24,19 +24,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the linkedout app.
      *
      * @see seedu.linkedout.model.Model#getLinkedout()
      */
-    ReadOnlyLinkedout getAddressBook();
+    ReadOnlyLinkedout getLinkedout();
 
     /** Returns an unmodifiable view of the filtered list of applicants */
     ObservableList<Applicant> getFilteredApplicantList();
 
     /**
-     * Returns the user prefs' linkedout book file path.
+     * Returns the user prefs' linkedout app file path.
      */
-    Path getAddressBookFilePath();
+    Path getLinkedoutFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

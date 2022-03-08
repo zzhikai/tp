@@ -6,7 +6,7 @@ import seedu.linkedout.model.Linkedout;
 import seedu.linkedout.model.Model;
 
 /**
- * Clears the linkedout book.
+ * Clears the linkedout app.
  */
 public class ClearCommand extends Command {
 
