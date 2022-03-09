@@ -43,8 +43,8 @@ public class UniqueApplicantListTest {
     @Test
     public void contains_applicantWithSameIdentityFieldsInList_returnsTrue() {
         uniqueApplicantList.add(ALICE);
-        Applicant editedAlice = new ApplicantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_PYTHON)
-                .build();
+        Applicant editedAlice = new ApplicantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withSkills(VALID_SKILL_PYTHON).build();
         assertTrue(uniqueApplicantList.contains(editedAlice));
     }
 
@@ -86,8 +86,8 @@ public class UniqueApplicantListTest {
     @Test
     public void setApplicant_editedApplicantHasSameIdentity_success() {
         uniqueApplicantList.add(ALICE);
-        Applicant editedAlice = new ApplicantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_PYTHON)
-                .build();
+        Applicant editedAlice = new ApplicantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withSkills(VALID_SKILL_PYTHON).build();
         uniqueApplicantList.setApplicant(ALICE, editedAlice);
         UniqueApplicantList expectedUniqueApplicantList = new UniqueApplicantList();
         expectedUniqueApplicantList.add(editedAlice);

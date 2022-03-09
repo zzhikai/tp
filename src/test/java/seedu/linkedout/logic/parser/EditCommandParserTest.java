@@ -1,7 +1,29 @@
 package seedu.linkedout.logic.parser;
 
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.linkedout.logic.commands.CommandTestUtil.*;
+import static seedu.linkedout.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.linkedout.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.linkedout.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.linkedout.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_SKILL_DESC;
+import static seedu.linkedout.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.linkedout.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.linkedout.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.linkedout.logic.commands.CommandTestUtil.SKILL_DESC_MARKETING;
+import static seedu.linkedout.logic.commands.CommandTestUtil.SKILL_DESC_PYTHON;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_SKILL_MARKETING;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_SKILL_PYTHON;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_SKILL;
 import static seedu.linkedout.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.linkedout.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -74,13 +96,16 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Applicant} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + SKILL_DESC_MARKETING + SKILL_DESC_PYTHON + SKILL_EMPTY, Skill.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + SKILL_DESC_MARKETING + SKILL_EMPTY + SKILL_DESC_PYTHON, Skill.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + SKILL_EMPTY + SKILL_DESC_MARKETING + SKILL_DESC_PYTHON, Skill.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + SKILL_DESC_MARKETING + SKILL_DESC_PYTHON + SKILL_EMPTY,
+                Skill.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + SKILL_DESC_MARKETING + SKILL_EMPTY + SKILL_DESC_PYTHON,
+                Skill.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + SKILL_EMPTY + SKILL_DESC_MARKETING + SKILL_DESC_PYTHON,
+                Skill.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
-                Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY
+                + VALID_PHONE_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -151,8 +176,8 @@ public class EditCommandParserTest {
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + SKILL_DESC_MARKETING;
 
         EditApplicantDescriptor descriptor = new EditApplicantDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_MARKETING, VALID_SKILL_PYTHON)
-                .build();
+                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_MARKETING,
+                        VALID_SKILL_PYTHON).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

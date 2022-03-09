@@ -46,8 +46,8 @@ public class LinkedoutTest {
     @Test
     public void resetData_withDuplicateApplicants_throwsDuplicateApplicantException() {
         // Two applicants with the same identity fields
-        Applicant editedAlice = new ApplicantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_PYTHON)
-                .build();
+        Applicant editedAlice = new ApplicantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withSkills(VALID_SKILL_PYTHON).build();
         List<Applicant> newApplicants = Arrays.asList(ALICE, editedAlice);
         LinkedoutStub newData = new LinkedoutStub(newApplicants);
 
@@ -73,8 +73,8 @@ public class LinkedoutTest {
     @Test
     public void hasApplicant_applicantWithSameIdentityFieldsInLinkedout_returnsTrue() {
         linkedout.addApplicant(ALICE);
-        Applicant editedAlice = new ApplicantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withSkills(VALID_SKILL_PYTHON)
-                .build();
+        Applicant editedAlice = new ApplicantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withSkills(VALID_SKILL_PYTHON).build();
         assertTrue(linkedout.hasApplicant(editedAlice));
     }
 
