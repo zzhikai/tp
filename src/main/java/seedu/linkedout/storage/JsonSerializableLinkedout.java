@@ -16,7 +16,7 @@ import seedu.linkedout.model.applicant.Applicant;
 /**
  * An Immutable Linkedout app that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "linkedout")
 class JsonSerializableLinkedout {
 
     public static final String MESSAGE_DUPLICATE_APPLICANT = "Applicant list contains duplicate applicant(s).";
