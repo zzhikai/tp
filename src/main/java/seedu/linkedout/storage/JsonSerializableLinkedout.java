@@ -27,7 +27,7 @@ class JsonSerializableLinkedout {
      * Constructs a {@code JsonSerializableLinkedout} with the given applicants.
      */
     @JsonCreator
-    public JsonSerializableLinkedout(@JsonProperty("persons") List<JsonAdaptedApplicant> applicants) {
+    public JsonSerializableLinkedout(@JsonProperty("applicants") List<JsonAdaptedApplicant> applicants) {
         this.applicants.addAll(applicants);
     }
 
