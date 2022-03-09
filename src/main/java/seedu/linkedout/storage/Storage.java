@@ -5,15 +5,14 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.linkedout.commons.exceptions.DataConversionException;
-import seedu.linkedout.model.ReadOnlyAddressBook;
+import seedu.linkedout.model.ReadOnlyLinkedout;
 import seedu.linkedout.model.ReadOnlyUserPrefs;
 import seedu.linkedout.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage {
-
+public interface Storage extends LinkedoutStorage, UserPrefsStorage {
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
 
@@ -21,12 +20,11 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getLinkedoutFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyLinkedout> readLinkedout() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
-
+    void saveLinkedout(ReadOnlyLinkedout linkedout) throws IOException;
 }

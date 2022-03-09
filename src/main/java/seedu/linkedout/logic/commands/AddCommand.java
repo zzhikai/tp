@@ -9,16 +9,16 @@ import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.linkedout.logic.commands.exceptions.CommandException;
 import seedu.linkedout.model.Model;
-import seedu.linkedout.model.person.Person;
+import seedu.linkedout.model.applicant.Applicant;
 
 /**
- * Adds a person to the linkedout book.
+ * Adds an applicant to the linkedout app.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the linkedout book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a applicant to the linkedout book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -33,28 +33,28 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the linkedout book";
+    public static final String MESSAGE_SUCCESS = "New applicant added: %1$s";
+    public static final String MESSAGE_DUPLICATE_APPLICANT = "This applicant already exists in the linkedout book";
 
-    private final Person toAdd;
+    private final Applicant toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Applicant}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Applicant applicant) {
+        requireNonNull(applicant);
+        toAdd = applicant;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasApplicant(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_APPLICANT);
         }
 
-        model.addPerson(toAdd);
+        model.addApplicant(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

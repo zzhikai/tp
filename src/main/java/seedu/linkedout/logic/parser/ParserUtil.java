@@ -9,10 +9,10 @@ import java.util.Set;
 import seedu.linkedout.commons.core.index.Index;
 import seedu.linkedout.commons.util.StringUtil;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
-import seedu.linkedout.model.person.Address;
-import seedu.linkedout.model.person.Email;
-import seedu.linkedout.model.person.Name;
-import seedu.linkedout.model.person.Phone;
+import seedu.linkedout.model.applicant.Address;
+import seedu.linkedout.model.applicant.Email;
+import seedu.linkedout.model.applicant.Name;
+import seedu.linkedout.model.applicant.Phone;
 import seedu.linkedout.model.tag.Tag;
 
 /**

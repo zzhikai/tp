@@ -2,11 +2,11 @@ package seedu.linkedout.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.linkedout.model.AddressBook;
+import seedu.linkedout.model.Linkedout;
 import seedu.linkedout.model.Model;
 
 /**
- * Clears the linkedout book.
+ * Clears the linkedout app.
  */
 public class ClearCommand extends Command {
 
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setLinkedout(new Linkedout());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

@@ -10,11 +10,11 @@ import seedu.linkedout.commons.core.LogsCenter;
 import seedu.linkedout.logic.commands.Command;
 import seedu.linkedout.logic.commands.CommandResult;
 import seedu.linkedout.logic.commands.exceptions.CommandException;
-import seedu.linkedout.logic.parser.AddressBookParser;
+import seedu.linkedout.logic.parser.LinkedoutParser;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
 import seedu.linkedout.model.Model;
-import seedu.linkedout.model.ReadOnlyAddressBook;
-import seedu.linkedout.model.person.Person;
+import seedu.linkedout.model.ReadOnlyLinkedout;
+import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.storage.Storage;
 
 /**
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final LinkedoutParser linkedoutParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        linkedoutParser = new LinkedoutParser();
     }
 
     @Override
@@ -42,11 +42,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = linkedoutParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveLinkedout(model.getLinkedout());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,18 +55,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyLinkedout getLinkedout() {
+        return model.getLinkedout();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Applicant> getFilteredApplicantList() {
+        return model.getFilteredApplicantList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getLinkedoutFilePath() {
+        return model.getLinkedoutFilePath();
     }
 
     @Override

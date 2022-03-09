@@ -15,16 +15,16 @@ import seedu.linkedout.commons.util.ConfigUtil;
 import seedu.linkedout.commons.util.StringUtil;
 import seedu.linkedout.logic.Logic;
 import seedu.linkedout.logic.LogicManager;
-import seedu.linkedout.model.AddressBook;
+import seedu.linkedout.model.Linkedout;
 import seedu.linkedout.model.Model;
 import seedu.linkedout.model.ModelManager;
-import seedu.linkedout.model.ReadOnlyAddressBook;
+import seedu.linkedout.model.ReadOnlyLinkedout;
 import seedu.linkedout.model.ReadOnlyUserPrefs;
 import seedu.linkedout.model.UserPrefs;
 import seedu.linkedout.model.util.SampleDataUtil;
-import seedu.linkedout.storage.AddressBookStorage;
-import seedu.linkedout.storage.JsonAddressBookStorage;
+import seedu.linkedout.storage.JsonLinkedoutStorage;
 import seedu.linkedout.storage.JsonUserPrefsStorage;
+import seedu.linkedout.storage.LinkedoutStorage;
 import seedu.linkedout.storage.Storage;
 import seedu.linkedout.storage.StorageManager;
 import seedu.linkedout.storage.UserPrefsStorage;
@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing Linkedout ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        LinkedoutStorage linkedoutStorage = new JsonLinkedoutStorage(userPrefs.getLinkedoutFilePath());
+        storage = new StorageManager(linkedoutStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -71,23 +71,23 @@ public class MainApp extends Application {
     /**
      * Returns a {@code ModelManager} with the data from {@code storage}'s linkedout book and {@code userPrefs}. <br>
      * The data from the sample linkedout book will be used instead if {@code storage}'s linkedout book is not found,
-     * or an empty linkedout book will be used instead if errors occur when reading {@code storage}'s linkedout book.
+     * or an empty linkedout app will be used instead if errors occur when reading {@code storage}'s linkedout app.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyLinkedout> linkedoutOptional;
+        ReadOnlyLinkedout initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            linkedoutOptional = storage.readLinkedout();
+            if (!linkedoutOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample Linkedout app");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = linkedoutOptional.orElseGet(SampleDataUtil::getSampleLinkedout);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty Linkedout app");
+            initialData = new Linkedout();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty Linkedout app");
+            initialData = new Linkedout();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -151,7 +151,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty Linkedout app");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,13 +167,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting Linkedout " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Linkedout ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

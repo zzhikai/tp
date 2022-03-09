@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.linkedout.logic.commands.ViewCommand;
-import seedu.linkedout.model.person.NameContainsKeywordsPredicate;
+import seedu.linkedout.model.applicant.NameContainsKeywordsPredicate;
 
 public class ViewCommandParserTest {
 
