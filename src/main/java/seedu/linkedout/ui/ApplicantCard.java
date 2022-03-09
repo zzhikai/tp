@@ -39,7 +39,7 @@ public class ApplicantCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private FlowPane skills;
 
     /**
      * Creates a {@code ApplicantCode} with the given {@code Applicant} and index to display.
@@ -52,9 +52,9 @@ public class ApplicantCard extends UiPart<Region> {
         phone.setText(applicant.getPhone().value);
         address.setText(applicant.getAddress().value);
         email.setText(applicant.getEmail().value);
-        applicant.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        applicant.getSkills().stream()
+                .sorted(Comparator.comparing(skill -> skill.skillName))
+                .forEach(skill -> skills.getChildren().add(new Label(skill.skillName)));
     }
 
     @Override

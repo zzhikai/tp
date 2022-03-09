@@ -2,13 +2,7 @@ package seedu.linkedout.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.linkedout.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.linkedout.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.linkedout.logic.commands.CommandTestUtil.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -48,12 +42,12 @@ public class EditApplicantDescriptorTest {
         editedAmy = new EditApplicantDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different linkedout -> returns false
+        // different address -> returns false
         editedAmy = new EditApplicantDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different tags -> returns false
-        editedAmy = new EditApplicantDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        // different skills -> returns false
+        editedAmy = new EditApplicantDescriptorBuilder(DESC_AMY).withSkills(VALID_SKILL_PYTHON).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

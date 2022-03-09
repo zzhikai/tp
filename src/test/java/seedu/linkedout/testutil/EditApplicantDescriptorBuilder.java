@@ -10,7 +10,7 @@ import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.Email;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
-import seedu.linkedout.model.tag.Tag;
+import seedu.linkedout.model.skill.Skill;
 
 /**
  * A utility class to help with building EditApplicantDescriptor objects.
@@ -36,7 +36,7 @@ public class EditApplicantDescriptorBuilder {
         descriptor.setPhone(applicant.getPhone());
         descriptor.setEmail(applicant.getEmail());
         descriptor.setAddress(applicant.getAddress());
-        descriptor.setTags(applicant.getTags());
+        descriptor.setSkills(applicant.getSkills());
     }
 
     /**
@@ -72,12 +72,12 @@ public class EditApplicantDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditApplicantDescriptor}
+     * Parses the {@code skills} into a {@code Set<Skill>} and set it to the {@code EditApplicantDescriptor}
      * that we are building.
      */
-    public EditApplicantDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditApplicantDescriptorBuilder withSkills(String... skills) {
+        Set<Skill> skillSet = Stream.of(skills).map(Skill::new).collect(Collectors.toSet());
+        descriptor.setSkills(skillSet);
         return this;
     }
 
