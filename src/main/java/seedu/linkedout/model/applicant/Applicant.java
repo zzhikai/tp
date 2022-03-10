@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.linkedout.model.tag.Tag;
+import seedu.linkedout.model.skill.Skill;
 
 /**
  * Represents an Applicant in linkedout.
@@ -21,18 +21,18 @@ public class Applicant {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Skill> skills = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Applicant(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Applicant(Name name, Phone phone, Email email, Address address, Set<Skill> skills) {
+        requireAllNonNull(name, phone, email, address, skills);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.skills.addAll(skills);
     }
 
     public Name getName() {
@@ -52,11 +52,11 @@ public class Applicant {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable skill set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Skill> getSkills() {
+        return Collections.unmodifiableSet(skills);
     }
 
     /**
@@ -91,13 +91,13 @@ public class Applicant {
                 && otherApplicant.getPhone().equals(getPhone())
                 && otherApplicant.getEmail().equals(getEmail())
                 && otherApplicant.getAddress().equals(getAddress())
-                && otherApplicant.getTags().equals(getTags());
+                && otherApplicant.getSkills().equals(getSkills());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, skills);
     }
 
     @Override
@@ -111,10 +111,10 @@ public class Applicant {
                 .append("; Address: ")
                 .append(getAddress());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+        Set<Skill> skills = getSkills();
+        if (!skills.isEmpty()) {
+            builder.append("; Skills: ");
+            skills.forEach(builder::append);
         }
         return builder.toString();
     }

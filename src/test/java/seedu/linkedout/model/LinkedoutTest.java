@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_SKILL_PYTHON;
 import static seedu.linkedout.testutil.Assert.assertThrows;
 import static seedu.linkedout.testutil.TypicalApplicants.ALICE;
 import static seedu.linkedout.testutil.TypicalApplicants.getTypicalLinkedout;
@@ -46,8 +46,8 @@ public class LinkedoutTest {
     @Test
     public void resetData_withDuplicateApplicants_throwsDuplicateApplicantException() {
         // Two applicants with the same identity fields
-        Applicant editedAlice = new ApplicantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Applicant editedAlice = new ApplicantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withSkills(VALID_SKILL_PYTHON).build();
         List<Applicant> newApplicants = Arrays.asList(ALICE, editedAlice);
         LinkedoutStub newData = new LinkedoutStub(newApplicants);
 
@@ -73,8 +73,8 @@ public class LinkedoutTest {
     @Test
     public void hasApplicant_applicantWithSameIdentityFieldsInLinkedout_returnsTrue() {
         linkedout.addApplicant(ALICE);
-        Applicant editedAlice = new ApplicantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Applicant editedAlice = new ApplicantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withSkills(VALID_SKILL_PYTHON).build();
         assertTrue(linkedout.hasApplicant(editedAlice));
     }
 

@@ -15,7 +15,7 @@ import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.Email;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
-import seedu.linkedout.model.tag.Tag;
+import seedu.linkedout.model.skill.Skill;
 
 /**
  * Jackson-friendly version of {@link Applicant}.
@@ -28,7 +28,7 @@ class JsonAdaptedApplicant {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedSkill> skilled = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedApplicant} with the given applicant details.
@@ -36,13 +36,13 @@ class JsonAdaptedApplicant {
     @JsonCreator
     public JsonAdaptedApplicant(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("job") String address,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> skills) {
+                             @JsonProperty("skilled") List<JsonAdaptedSkill> skills) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         if (skills != null) {
-            this.tagged.addAll(skills);
+            this.skilled.addAll(skills);
         }
     }
 
@@ -54,8 +54,8 @@ class JsonAdaptedApplicant {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        skilled.addAll(source.getSkills().stream()
+                .map(JsonAdaptedSkill::new)
                 .collect(Collectors.toList()));
     }
 
@@ -65,9 +65,9 @@ class JsonAdaptedApplicant {
      * @throws IllegalValueException if there were any data constraints violated in the adapted applicant.
      */
     public Applicant toModelType() throws IllegalValueException {
-        final List<Tag> applicantTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            applicantTags.add(tag.toModelType());
+        final List<Skill> applicantSkills = new ArrayList<>();
+        for (JsonAdaptedSkill skill : skilled) {
+            applicantSkills.add(skill.toModelType());
         }
 
         if (name == null) {
@@ -102,8 +102,8 @@ class JsonAdaptedApplicant {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(applicantTags);
-        return new Applicant(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        final Set<Skill> modelSkills = new HashSet<>(applicantSkills);
+        return new Applicant(modelName, modelPhone, modelEmail, modelAddress, modelSkills);
     }
 
 }

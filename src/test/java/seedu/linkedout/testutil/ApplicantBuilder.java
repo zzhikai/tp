@@ -8,7 +8,7 @@ import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.Email;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
-import seedu.linkedout.model.tag.Tag;
+import seedu.linkedout.model.skill.Skill;
 import seedu.linkedout.model.util.SampleDataUtil;
 
 /**
@@ -25,7 +25,7 @@ public class ApplicantBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
+    private Set<Skill> skills;
 
     /**
      * Creates a {@code ApplicantBuilder} with the default details.
@@ -35,7 +35,7 @@ public class ApplicantBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        skills = new HashSet<>();
     }
 
     /**
@@ -46,7 +46,7 @@ public class ApplicantBuilder {
         phone = applicantToCopy.getPhone();
         email = applicantToCopy.getEmail();
         address = applicantToCopy.getAddress();
-        tags = new HashSet<>(applicantToCopy.getTags());
+        skills = new HashSet<>(applicantToCopy.getSkills());
     }
 
     /**
@@ -58,10 +58,10 @@ public class ApplicantBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Applicant} that we are building.
+     * Parses the {@code skills} into a {@code Set<Skill>} and set it to the {@code Applicant} that we are building.
      */
-    public ApplicantBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public ApplicantBuilder withSkills(String ... skills) {
+        this.skills = SampleDataUtil.getSkillSet(skills);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class ApplicantBuilder {
     }
 
     public Applicant build() {
-        return new Applicant(name, phone, email, address, tags);
+        return new Applicant(name, phone, email, address, skills);
     }
 
 }

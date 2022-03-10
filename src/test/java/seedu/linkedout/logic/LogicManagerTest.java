@@ -81,7 +81,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Applicant expectedApplicant = new ApplicantBuilder(AMY).withTags().build();
+        Applicant expectedApplicant = new ApplicantBuilder(AMY).withSkills().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addApplicant(expectedApplicant);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
