@@ -21,16 +21,16 @@ public class JobTest {
 
     @Test
     public void isValidJob() {
-        // null linkedout
+        // null job
         assertThrows(NullPointerException.class, () -> Job.isValidJob(null));
 
-        // invalid jobes
+        // invalid jobs
         assertFalse(Job.isValidJob("")); // empty string
         assertFalse(Job.isValidJob(" ")); // spaces only
 
-        // valid Jobes
-        assertTrue(Job.isValidJob("Blk 456, Den Road, #01-355"));
+        // valid Jobs
+        assertTrue(Job.isValidJob("Software Engineer"));
         assertTrue(Job.isValidJob("-")); // one character
-        assertTrue(Job.isValidJob("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long linkedout
+        assertTrue(Job.isValidJob("Full Stack Software Engineer")); // long job
     }
 }

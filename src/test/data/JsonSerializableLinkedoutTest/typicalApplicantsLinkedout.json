@@ -4,43 +4,43 @@
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
-    "job" : "123, Jurong West Ave 6, #08-111",
+    "job" : "Frontend Software Engineer",
     "skilled" : [ "Java", "Python" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
-    "job" : "311, Clementi Ave 2, #02-25",
+    "job" : "Video Editor",
     "skilled" : [ "Photography", "Videography" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
-    "job" : "wall street",
+    "job" : "Developer",
     "skilled" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
-    "job" : "10th street",
+    "job" : "UI/UX Developer",
     "skilled" : [ "Marksmanship" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
-    "job" : "michegan ave",
+    "job" : "Engineer",
     "skilled" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
-    "job" : "little tokyo",
+    "job" : "Developer",
     "skilled" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
-    "job" : "4th street",
+    "job" : "Software Developer",
     "skilled" : [ ]
   } ]
 }

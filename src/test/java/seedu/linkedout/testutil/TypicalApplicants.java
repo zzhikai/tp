@@ -24,29 +24,29 @@ import seedu.linkedout.model.applicant.Applicant;
 public class TypicalApplicants {
 
     public static final Applicant ALICE = new ApplicantBuilder().withName("Alice Pauline")
-            .withJob("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+            .withJob("Frontend Software Engineer").withEmail("alice@example.com")
             .withPhone("94351253")
             .withSkills("Java", "Python").build();
     public static final Applicant BENSON = new ApplicantBuilder().withName("Benson Meier")
-            .withJob("311, Clementi Ave 2, #02-25")
+            .withJob("Video Editor")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withSkills("Photography", "Videography").build();
     public static final Applicant CARL = new ApplicantBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withJob("wall street").build();
+            .withEmail("heinz@example.com").withJob("Developer").build();
     public static final Applicant DANIEL = new ApplicantBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withJob("10th street").withSkills("Marksmanship").build();
+            .withEmail("cornelia@example.com").withJob("UI/UX Developer").withSkills("Marksmanship").build();
     public static final Applicant ELLE = new ApplicantBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withJob("michegan ave").build();
+            .withEmail("werner@example.com").withJob("Engineer").build();
     public static final Applicant FIONA = new ApplicantBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withJob("little tokyo").build();
+            .withEmail("lydia@example.com").withJob("Developer").build();
     public static final Applicant GEORGE = new ApplicantBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withJob("4th street").build();
+            .withEmail("anna@example.com").withJob("Software Developer").build();
 
     // Manually added
     public static final Applicant HOON = new ApplicantBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withJob("little india").build();
+            .withEmail("stefan@example.com").withJob("Backend Software Engineer").build();
     public static final Applicant IDA = new ApplicantBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withJob("chicago ave").build();
+            .withEmail("hans@example.com").withJob("Blockchain Engineer").build();
 
     // Manually added - Applicant's details found in {@code CommandTestUtil}
     public static final Applicant AMY = new ApplicantBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)

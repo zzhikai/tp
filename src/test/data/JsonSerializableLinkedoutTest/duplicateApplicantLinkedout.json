@@ -3,12 +3,12 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
-    "job": "123, Jurong West Ave 6, #08-111",
+    "job": "Frontend Software Engineer",
     "skilled": [ "Pythonzzz" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "job": "4th street"
+    "job": "Frontend Software Engineer"
   } ]
 }
