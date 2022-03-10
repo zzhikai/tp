@@ -20,18 +20,18 @@ public class Applicant {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final Job job;
     private final Set<Skill> skills = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Applicant(Name name, Phone phone, Email email, Address address, Set<Skill> skills) {
-        requireAllNonNull(name, phone, email, address, skills);
+    public Applicant(Name name, Phone phone, Email email, Job job, Set<Skill> skills) {
+        requireAllNonNull(name, phone, email, job, skills);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.job = job;
         this.skills.addAll(skills);
     }
 
@@ -47,8 +47,8 @@ public class Applicant {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Job getJob() {
+        return job;
     }
 
     /**
@@ -90,14 +90,14 @@ public class Applicant {
         return otherApplicant.getName().equals(getName())
                 && otherApplicant.getPhone().equals(getPhone())
                 && otherApplicant.getEmail().equals(getEmail())
-                && otherApplicant.getAddress().equals(getAddress())
+                && otherApplicant.getJob().equals(getJob())
                 && otherApplicant.getSkills().equals(getSkills());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, skills);
+        return Objects.hash(name, phone, email, job, skills);
     }
 
     @Override
@@ -108,8 +108,8 @@ public class Applicant {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; Job: ")
+                .append(getJob());
 
         Set<Skill> skills = getSkills();
         if (!skills.isEmpty()) {

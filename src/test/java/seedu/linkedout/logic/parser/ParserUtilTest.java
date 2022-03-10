@@ -14,7 +14,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.linkedout.logic.parser.exceptions.ParseException;
-import seedu.linkedout.model.applicant.Address;
+import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Email;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
@@ -24,13 +24,13 @@ import seedu.linkedout.model.skill.Skill;
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_JOB = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_SKILL = "Skill With Too Many Words Inside";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
+    private static final String VALID_JOB = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_SKILL_1 = "Python";
     private static final String VALID_SKILL_2 = "Java";
@@ -104,26 +104,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+    public void parseJob_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseJob((String) null));
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+    public void parseJob_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseJob(INVALID_JOB));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
+    public void parseJob_validValueWithoutWhitespace_returnsJob() throws Exception {
+        Job expectedJob = new Job(VALID_JOB);
+        assertEquals(expectedJob, ParserUtil.parseJob(VALID_JOB));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+    public void parseJob_validValueWithWhitespace_returnsTrimmedJob() throws Exception {
+        String jobWithWhitespace = WHITESPACE + VALID_JOB + WHITESPACE;
+        Job expectedJob = new Job(VALID_JOB);
+        assertEquals(expectedJob, ParserUtil.parseJob(jobWithWhitespace));
     }
 
     @Test

@@ -35,7 +35,7 @@ public class ApplicantCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
+    private Label job;
     @FXML
     private Label email;
     @FXML
@@ -50,7 +50,7 @@ public class ApplicantCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(applicant.getName().fullName);
         phone.setText(applicant.getPhone().value);
-        address.setText(applicant.getAddress().value);
+        job.setText(applicant.getJob().value);
         email.setText(applicant.getEmail().value);
         applicant.getSkills().stream()
                 .sorted(Comparator.comparing(skill -> skill.skillName))

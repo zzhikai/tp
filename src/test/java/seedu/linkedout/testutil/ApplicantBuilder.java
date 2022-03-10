@@ -3,7 +3,7 @@ package seedu.linkedout.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.linkedout.model.applicant.Address;
+import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.Email;
 import seedu.linkedout.model.applicant.Name;
@@ -19,12 +19,12 @@ public class ApplicantBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_JOB = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Phone phone;
     private Email email;
-    private Address address;
+    private Job job;
     private Set<Skill> skills;
 
     /**
@@ -34,7 +34,7 @@ public class ApplicantBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        job = new Job(DEFAULT_JOB);
         skills = new HashSet<>();
     }
 
@@ -45,7 +45,7 @@ public class ApplicantBuilder {
         name = applicantToCopy.getName();
         phone = applicantToCopy.getPhone();
         email = applicantToCopy.getEmail();
-        address = applicantToCopy.getAddress();
+        job = applicantToCopy.getJob();
         skills = new HashSet<>(applicantToCopy.getSkills());
     }
 
@@ -66,10 +66,10 @@ public class ApplicantBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Applicant} that we are building.
+     * Sets the {@code Job} of the {@code Applicant} that we are building.
      */
-    public ApplicantBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public ApplicantBuilder withJob(String job) {
+        this.job = new Job(job);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class ApplicantBuilder {
     }
 
     public Applicant build() {
-        return new Applicant(name, phone, email, address, skills);
+        return new Applicant(name, phone, email, job, skills);
     }
 
 }

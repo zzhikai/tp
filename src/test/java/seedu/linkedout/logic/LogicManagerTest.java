@@ -3,7 +3,7 @@ package seedu.linkedout.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_APPLICANT_DISPLAYED_INDEX;
 import static seedu.linkedout.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.linkedout.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.linkedout.logic.commands.CommandTestUtil.JOB_DESC_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -80,7 +80,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
+                + JOB_DESC_AMY;
         Applicant expectedApplicant = new ApplicantBuilder(AMY).withSkills().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addApplicant(expectedApplicant);
