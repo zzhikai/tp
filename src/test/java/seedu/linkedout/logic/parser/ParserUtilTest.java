@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.linkedout.logic.parser.exceptions.ParseException;
 import seedu.linkedout.model.applicant.Stage;
+import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Email;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
@@ -24,12 +25,14 @@ import seedu.linkedout.model.skill.Skill;
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_JOB = " ";
     private static final String INVALID_STAGE = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_SKILL = "Skill With Too Many Words Inside";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
+    private static final String VALID_JOB = "123 Main Street #0505";
     private static final String VALID_STAGE = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_SKILL_1 = "Python";
@@ -124,6 +127,28 @@ public class ParserUtilTest {
         String stageWithWhitespace = WHITESPACE + VALID_STAGE + WHITESPACE;
         Stage expectedStage = new Stage(VALID_STAGE);
         assertEquals(expectedStage, ParserUtil.parseStage(stageWithWhitespace));
+    }
+    @Test
+    public void parseJob_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseJob((String) null));
+    }
+
+    @Test
+    public void parseJob_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseJob(INVALID_JOB));
+    }
+
+    @Test
+    public void parseJob_validValueWithoutWhitespace_returnsJob() throws Exception {
+        Job expectedJob = new Job(VALID_JOB);
+        assertEquals(expectedJob, ParserUtil.parseJob(VALID_JOB));
+    }
+
+    @Test
+    public void parseJob_validValueWithWhitespace_returnsTrimmedJob() throws Exception {
+        String jobWithWhitespace = WHITESPACE + VALID_JOB + WHITESPACE;
+        Job expectedJob = new Job(VALID_JOB);
+        assertEquals(expectedJob, ParserUtil.parseJob(jobWithWhitespace));
     }
 
     @Test

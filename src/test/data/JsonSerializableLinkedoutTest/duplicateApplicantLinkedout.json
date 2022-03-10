@@ -3,12 +3,14 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
+    "job": "Frontend Software Engineer",
     "stage": "123, Jurong West Ave 6, #08-111",
     "skilled": [ "Pythonzzz" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
+    "job": "Frontend Software Engineer",
     "stage": "Technical Interview"
   } ]
 }

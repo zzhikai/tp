@@ -2,6 +2,7 @@ package seedu.linkedout.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_SKILL;
@@ -21,6 +22,7 @@ import seedu.linkedout.logic.commands.exceptions.CommandException;
 import seedu.linkedout.model.Model;
 import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.Email;
+import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
 import seedu.linkedout.model.applicant.Stage;
@@ -40,6 +42,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_JOB + "JOB] "
             + "[" + PREFIX_STAGE + "STAGE] "
             + "[" + PREFIX_SKILL + "SKILL]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -97,10 +100,10 @@ public class EditCommand extends Command {
         Name updatedName = editApplicantDescriptor.getName().orElse(applicantToEdit.getName());
         Phone updatedPhone = editApplicantDescriptor.getPhone().orElse(applicantToEdit.getPhone());
         Email updatedEmail = editApplicantDescriptor.getEmail().orElse(applicantToEdit.getEmail());
+        Job updatedJob = editApplicantDescriptor.getJob().orElse(applicantToEdit.getJob());
         Stage updatedStage = editApplicantDescriptor.getStage().orElse(applicantToEdit.getStage());
         Set<Skill> updatedSkills = editApplicantDescriptor.getSkills().orElse(applicantToEdit.getSkills());
-
-        return new Applicant(updatedName, updatedPhone, updatedEmail, updatedStage, updatedSkills);
+        return new Applicant(updatedName, updatedPhone, updatedEmail, updatedJob, updatedStage, updatedSkills);
     }
 
     @Override
@@ -129,6 +132,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
+        private Job job;
         private Stage stage;
         private Set<Skill> skills;
 
@@ -142,6 +146,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setJob(toCopy.job);
             setStage(toCopy.stage);
             setSkills(toCopy.skills);
         }
@@ -150,7 +155,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, stage, skills);
+            return CollectionUtil.isAnyNonNull(name, phone, email, job, stage, skills);
         }
 
         public void setName(Name name) {
@@ -183,6 +188,13 @@ public class EditCommand extends Command {
 
         public Optional<Stage> getStage() {
             return Optional.ofNullable(stage);
+        }
+        public void setJob(Job job) {
+            this.job = job;
+        }
+
+        public Optional<Job> getJob() {
+            return Optional.ofNullable(job);
         }
 
         /**
@@ -220,6 +232,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getJob().equals(e.getJob())
                     && getStage().equals(e.getStage())
                     && getSkills().equals(e.getSkills());
         }

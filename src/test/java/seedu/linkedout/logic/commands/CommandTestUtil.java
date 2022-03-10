@@ -2,10 +2,12 @@ package seedu.linkedout.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_STAGE;
+
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_JOB;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_STAGE;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_SKILL;
 import static seedu.linkedout.testutil.Assert.assertThrows;
 
@@ -32,6 +34,8 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_JOB_AMY = "Marketing Manager";
+    public static final String VALID_JOB_BOB = "Data Analyst";
     public static final String VALID_STAGE_AMY = "Block 312, Amy Street 1";
     public static final String VALID_STAGE_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_SKILL_PYTHON = "Python";
@@ -43,6 +47,8 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+    public static final String JOB_DESC_AMY = " " + PREFIX_JOB + VALID_JOB_AMY;
+    public static final String JOB_DESC_BOB = " " + PREFIX_JOB + VALID_JOB_BOB;
     public static final String STAGE_DESC_AMY = " " + PREFIX_STAGE + VALID_STAGE_AMY;
     public static final String STAGE_DESC_BOB = " " + PREFIX_STAGE + VALID_STAGE_BOB;
     public static final String SKILL_DESC_MARKETING = " " + PREFIX_SKILL + VALID_SKILL_MARKETING;
@@ -51,7 +57,8 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_STAGE_DESC = " " + PREFIX_STAGE; // empty string not allowed for stagees
+    public static final String INVALID_JOB_DESC = " " + PREFIX_JOB; // empty string not allowed for jobs
+    public static final String INVALID_STAGE_DESC = " " + PREFIX_STAGE; // empty string not allowed for stages
     public static final String INVALID_SKILL_DESC = " " + PREFIX_SKILL + "way too many words inside skill";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -62,11 +69,11 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditApplicantDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withStage(VALID_STAGE_AMY)
-                .withSkills(VALID_SKILL_MARKETING).build();
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withJob(VALID_JOB_AMY)
+                .withStage(VALID_STAGE_AMY).withSkills(VALID_SKILL_MARKETING).build();
         DESC_BOB = new EditApplicantDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withStage(VALID_STAGE_BOB)
-                .withSkills(VALID_SKILL_PYTHON, VALID_SKILL_MARKETING).build();
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withJob(VALID_JOB_BOB)
+                .withStage(VALID_STAGE_BOB).withSkills(VALID_SKILL_PYTHON, VALID_SKILL_MARKETING).build();
     }
 
     /**

@@ -2,10 +2,12 @@ package seedu.linkedout.model.applicant;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_STAGE_BOB;
+
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_JOB_BOB;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_STAGE_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_SKILL_PYTHON;
 import static seedu.linkedout.testutil.Assert.assertThrows;
 import static seedu.linkedout.testutil.TypicalApplicants.ALICE;
@@ -33,7 +35,7 @@ public class ApplicantTest {
 
         // same name, all other attributes different -> returns true
         Applicant editedAlice = new ApplicantBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withStage(VALID_STAGE_BOB).withSkills(VALID_SKILL_PYTHON).build();
+                .withJob(VALID_JOB_BOB).withStage(VALID_STAGE_BOB).withSkills(VALID_SKILL_PYTHON).build();
         assertTrue(ALICE.isSameApplicant(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -80,7 +82,11 @@ public class ApplicantTest {
         editedAlice = new ApplicantBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different linkedout -> returns false
+        // different job -> returns false
+        editedAlice = new ApplicantBuilder(ALICE).withJob(VALID_JOB_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different stage -> returns false
         editedAlice = new ApplicantBuilder(ALICE).withStage(VALID_STAGE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 

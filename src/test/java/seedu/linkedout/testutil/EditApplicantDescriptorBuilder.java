@@ -5,11 +5,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.linkedout.logic.commands.EditCommand.EditApplicantDescriptor;
-import seedu.linkedout.model.applicant.Stage;
 import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.Email;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
+import seedu.linkedout.model.applicant.Job;
+import seedu.linkedout.model.applicant.Stage;
 import seedu.linkedout.model.skill.Skill;
 
 /**
@@ -35,6 +36,7 @@ public class EditApplicantDescriptorBuilder {
         descriptor.setName(applicant.getName());
         descriptor.setPhone(applicant.getPhone());
         descriptor.setEmail(applicant.getEmail());
+        descriptor.setJob(applicant.getJob());
         descriptor.setStage(applicant.getStage());
         descriptor.setSkills(applicant.getSkills());
     }
@@ -60,6 +62,14 @@ public class EditApplicantDescriptorBuilder {
      */
     public EditApplicantDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Job} of the {@code EditApplicantDescriptor} that we are building.
+     */
+    public EditApplicantDescriptorBuilder withJob(String job) {
+        descriptor.setJob(new Job(job));
         return this;
     }
 

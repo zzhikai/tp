@@ -21,16 +21,18 @@ public class Applicant {
 
     // Data fields
     private final Stage stage;
+    private final Job job;
     private final Set<Skill> skills = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Applicant(Name name, Phone phone, Email email, Stage stage, Set<Skill> skills) {
-        requireAllNonNull(name, phone, email, stage, skills);
+    public Applicant(Name name, Phone phone, Email email, Job job, Stage stage, Set<Skill> skills) {
+        requireAllNonNull(name, phone, email, job, skills);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.job = job;
         this.stage = stage;
         this.skills.addAll(skills);
     }
@@ -49,6 +51,10 @@ public class Applicant {
 
     public Stage getStage() {
         return stage;
+    }
+
+    public Job getJob() {
+        return job;
     }
 
     /**
@@ -91,13 +97,14 @@ public class Applicant {
                 && otherApplicant.getPhone().equals(getPhone())
                 && otherApplicant.getEmail().equals(getEmail())
                 && otherApplicant.getStage().equals(getStage())
+                && otherApplicant.getJob().equals(getJob())
                 && otherApplicant.getSkills().equals(getSkills());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, stage, skills);
+        return Objects.hash(name, phone, email, job, stage, skills);
     }
 
     @Override
@@ -108,6 +115,8 @@ public class Applicant {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
+                .append("; Job: ")
+                .append(getJob())
                 .append("; Stage: ")
                 .append(getStage());
 

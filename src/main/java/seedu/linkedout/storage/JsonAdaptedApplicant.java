@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.linkedout.commons.exceptions.IllegalValueException;
 import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.Email;
+import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
 import seedu.linkedout.model.applicant.Stage;
@@ -27,6 +28,7 @@ class JsonAdaptedApplicant {
     private final String name;
     private final String phone;
     private final String email;
+    private final String job;
     private final String stage;
     private final List<JsonAdaptedSkill> skilled = new ArrayList<>();
 
@@ -35,11 +37,12 @@ class JsonAdaptedApplicant {
      */
     @JsonCreator
     public JsonAdaptedApplicant(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("job") String stage,
-                             @JsonProperty("skilled") List<JsonAdaptedSkill> skills) {
+                             @JsonProperty("email") String email, @JsonProperty("job") String job,
+                             @JsonProperty("stage") String stage, @JsonProperty("skilled") List<JsonAdaptedSkill> skills) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.job = job;
         this.stage = stage;
         if (skills != null) {
             this.skilled.addAll(skills);
@@ -53,6 +56,7 @@ class JsonAdaptedApplicant {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        job = source.getJob().value;
         stage = source.getStage().value;
         skilled.addAll(source.getSkills().stream()
                 .map(JsonAdaptedSkill::new)
@@ -94,6 +98,15 @@ class JsonAdaptedApplicant {
         }
         final Email modelEmail = new Email(email);
 
+        if (job == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Job.class.getSimpleName()));
+        }
+        if (!Job.isValidJob(job)) {
+            throw new IllegalValueException(Job.MESSAGE_CONSTRAINTS);
+        }
+
+        final Job modelJob = new Job(job);
+
         if (stage == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Stage.class.getSimpleName()));
         }
@@ -103,7 +116,7 @@ class JsonAdaptedApplicant {
         final Stage modelStage = new Stage(stage);
 
         final Set<Skill> modelSkills = new HashSet<>(applicantSkills);
-        return new Applicant(modelName, modelPhone, modelEmail, modelStage, modelSkills);
+        return new Applicant(modelName, modelPhone, modelEmail, modelJob, modelStage, modelSkills);
     }
 
 }
