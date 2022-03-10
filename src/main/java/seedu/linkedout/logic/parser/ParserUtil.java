@@ -96,10 +96,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String skill} into a {@code Skill}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code skill} is invalid.
      */
     public static Skill parseSkill(String skill) throws ParseException {
         requireNonNull(skill);
@@ -111,7 +111,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> skills} into a {@code Set<Skill>}.
      */
     public static Set<Skill> parseSkills(Collection<String> skills) throws ParseException {
         requireNonNull(skills);

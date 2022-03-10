@@ -49,7 +49,7 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a tag set containing the list of strings given.
+     * Returns a skill set containing the list of strings given.
      */
     public static Set<Skill> getSkillSet(String... strings) {
         return Arrays.stream(strings)

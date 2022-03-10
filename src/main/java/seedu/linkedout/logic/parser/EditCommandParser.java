@@ -65,9 +65,9 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * Parses {@code Collection<String> skills} into a {@code Set<Skill>} if {@code skills} is non-empty.
+     * If {@code skills} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Skill>} containing zero skills.
      */
     private Optional<Set<Skill>> parseSkillsForEdit(Collection<String> skills) throws ParseException {
         assert skills != null;
