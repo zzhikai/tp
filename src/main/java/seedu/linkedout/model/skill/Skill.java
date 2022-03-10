@@ -15,9 +15,9 @@ public class Skill {
     public final String skillName;
 
     /**
-     * Constructs a {@code Tag}.
+     * Constructs a {@code Skill}.
      *
-     * @param skillName A valid tag name.
+     * @param skillName A valid skill name.
      */
     public Skill(String skillName) {
         requireNonNull(skillName);
@@ -26,7 +26,7 @@ public class Skill {
     }
 
     /**
-     * Returns true if a given string is a valid tag name.
+     * Returns true if a given string is a valid skill name.
      */
     public static boolean isValidSkillName(String test) {
         return test.matches(VALIDATION_REGEX);

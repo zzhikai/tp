@@ -58,10 +58,10 @@ public class ApplicantBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Applicant} that we are building.
+     * Parses the {@code skills} into a {@code Set<Skill>} and set it to the {@code Applicant} that we are building.
      */
-    public ApplicantBuilder withSkills(String ... tags) {
-        this.skills = SampleDataUtil.getSkillSet(tags);
+    public ApplicantBuilder withSkills(String ... skills) {
+        this.skills = SampleDataUtil.getSkillSet(skills);
         return this;
     }
 
