@@ -14,7 +14,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.linkedout.logic.parser.exceptions.ParseException;
-import seedu.linkedout.model.applicant.Address;
+import seedu.linkedout.model.applicant.Stage;
 import seedu.linkedout.model.applicant.Email;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
@@ -24,13 +24,13 @@ import seedu.linkedout.model.skill.Skill;
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_STAGE = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_SKILL = "Skill With Too Many Words Inside";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
+    private static final String VALID_STAGE = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_SKILL_1 = "Python";
     private static final String VALID_SKILL_2 = "Java";
@@ -104,26 +104,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+    public void parseStage_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseStage((String) null));
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+    public void parseStage_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseStage(INVALID_STAGE));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
+    public void parseStage_validValueWithoutWhitespace_returnsStage() throws Exception {
+        Stage expectedStage = new Stage(VALID_STAGE);
+        assertEquals(expectedStage, ParserUtil.parseStage(VALID_STAGE));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+    public void parseStage_validValueWithWhitespace_returnsTrimmedStage() throws Exception {
+        String stageWithWhitespace = WHITESPACE + VALID_STAGE + WHITESPACE;
+        Stage expectedStage = new Stage(VALID_STAGE);
+        assertEquals(expectedStage, ParserUtil.parseStage(stageWithWhitespace));
     }
 
     @Test

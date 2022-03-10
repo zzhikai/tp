@@ -1,7 +1,7 @@
 package seedu.linkedout.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_STAGE;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -23,13 +23,13 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_STAGE + "STAGE "
             + "[" + PREFIX_SKILL + "SKILL]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_STAGE + "311, Clementi Ave 2, #02-25 "
             + PREFIX_SKILL + "Python "
             + PREFIX_SKILL + "Java";
 

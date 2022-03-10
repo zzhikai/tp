@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.linkedout.logic.commands.EditCommand.EditApplicantDescriptor;
-import seedu.linkedout.model.applicant.Address;
+import seedu.linkedout.model.applicant.Stage;
 import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.Email;
 import seedu.linkedout.model.applicant.Name;
@@ -35,7 +35,7 @@ public class EditApplicantDescriptorBuilder {
         descriptor.setName(applicant.getName());
         descriptor.setPhone(applicant.getPhone());
         descriptor.setEmail(applicant.getEmail());
-        descriptor.setAddress(applicant.getAddress());
+        descriptor.setStage(applicant.getStage());
         descriptor.setSkills(applicant.getSkills());
     }
 
@@ -64,10 +64,10 @@ public class EditApplicantDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditApplicantDescriptor} that we are building.
+     * Sets the {@code Stage} of the {@code EditApplicantDescriptor} that we are building.
      */
-    public EditApplicantDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditApplicantDescriptorBuilder withStage(String stage) {
+        descriptor.setStage(new Stage(stage));
         return this;
     }
 

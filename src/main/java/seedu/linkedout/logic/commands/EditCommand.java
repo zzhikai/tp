@@ -1,7 +1,7 @@
 package seedu.linkedout.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_STAGE;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -19,7 +19,7 @@ import seedu.linkedout.commons.core.index.Index;
 import seedu.linkedout.commons.util.CollectionUtil;
 import seedu.linkedout.logic.commands.exceptions.CommandException;
 import seedu.linkedout.model.Model;
-import seedu.linkedout.model.applicant.Address;
+import seedu.linkedout.model.applicant.Stage;
 import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.Email;
 import seedu.linkedout.model.applicant.Name;
@@ -40,7 +40,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_STAGE + "STAGE] "
             + "[" + PREFIX_SKILL + "SKILL]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -97,10 +97,10 @@ public class EditCommand extends Command {
         Name updatedName = editApplicantDescriptor.getName().orElse(applicantToEdit.getName());
         Phone updatedPhone = editApplicantDescriptor.getPhone().orElse(applicantToEdit.getPhone());
         Email updatedEmail = editApplicantDescriptor.getEmail().orElse(applicantToEdit.getEmail());
-        Address updatedAddress = editApplicantDescriptor.getAddress().orElse(applicantToEdit.getAddress());
+        Stage updatedStage = editApplicantDescriptor.getStage().orElse(applicantToEdit.getStage());
         Set<Skill> updatedSkills = editApplicantDescriptor.getSkills().orElse(applicantToEdit.getSkills());
 
-        return new Applicant(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedSkills);
+        return new Applicant(updatedName, updatedPhone, updatedEmail, updatedStage, updatedSkills);
     }
 
     @Override
@@ -129,7 +129,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Address address;
+        private Stage stage;
         private Set<Skill> skills;
 
         public EditApplicantDescriptor() {}
@@ -142,7 +142,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setStage(toCopy.stage);
             setSkills(toCopy.skills);
         }
 
@@ -150,7 +150,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, skills);
+            return CollectionUtil.isAnyNonNull(name, phone, email, stage, skills);
         }
 
         public void setName(Name name) {
@@ -177,12 +177,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setStage(Stage stage) {
+            this.stage = stage;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Stage> getStage() {
+            return Optional.ofNullable(stage);
         }
 
         /**
@@ -220,7 +220,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+                    && getStage().equals(e.getStage())
                     && getSkills().equals(e.getSkills());
         }
     }
