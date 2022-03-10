@@ -1,20 +1,16 @@
 package seedu.linkedout.logic.parser;
 
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.linkedout.logic.commands.CommandTestUtil.STAGE_DESC_AMY;
-import static seedu.linkedout.logic.commands.CommandTestUtil.STAGE_DESC_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_STAGE_DESC;
-import static seedu.linkedout.logic.commands.CommandTestUtil.JOB_DESC_AMY;
-import static seedu.linkedout.logic.commands.CommandTestUtil.JOB_DESC_BOB;
-import static seedu.linkedout.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.linkedout.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_JOB_DESC;
 import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_JOB_DESC;
 import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_SKILL_DESC;
+import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_STAGE_DESC;
+import static seedu.linkedout.logic.commands.CommandTestUtil.JOB_DESC_AMY;
+import static seedu.linkedout.logic.commands.CommandTestUtil.JOB_DESC_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -23,13 +19,15 @@ import static seedu.linkedout.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.linkedout.logic.commands.CommandTestUtil.SKILL_DESC_MARKETING;
 import static seedu.linkedout.logic.commands.CommandTestUtil.SKILL_DESC_PYTHON;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_STAGE_BOB;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_JOB_BOB;
+import static seedu.linkedout.logic.commands.CommandTestUtil.STAGE_DESC_AMY;
+import static seedu.linkedout.logic.commands.CommandTestUtil.STAGE_DESC_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_JOB_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_SKILL_MARKETING;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_SKILL_PYTHON;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_STAGE_BOB;
 import static seedu.linkedout.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.linkedout.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.linkedout.testutil.TypicalApplicants.AMY;
@@ -38,12 +36,12 @@ import static seedu.linkedout.testutil.TypicalApplicants.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.linkedout.logic.commands.AddCommand;
-import seedu.linkedout.model.applicant.Stage;
-import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.Email;
+import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
+import seedu.linkedout.model.applicant.Stage;
 import seedu.linkedout.model.skill.Skill;
 import seedu.linkedout.testutil.ApplicantBuilder;
 
@@ -162,7 +160,7 @@ public class AddCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + JOB_DESC_BOB  + STAGE_DESC_BOB + SKILL_DESC_MARKETING + SKILL_DESC_PYTHON,
+                + JOB_DESC_BOB + STAGE_DESC_BOB + SKILL_DESC_MARKETING + SKILL_DESC_PYTHON,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

@@ -1,36 +1,34 @@
 package seedu.linkedout.logic.parser;
 
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.linkedout.logic.commands.CommandTestUtil.STAGE_DESC_AMY;
-import static seedu.linkedout.logic.commands.CommandTestUtil.STAGE_DESC_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_STAGE_DESC;
-import static seedu.linkedout.logic.commands.CommandTestUtil.JOB_DESC_AMY;
-import static seedu.linkedout.logic.commands.CommandTestUtil.JOB_DESC_BOB;
-import static seedu.linkedout.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.linkedout.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_JOB_DESC;
 import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_JOB_DESC;
 import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_SKILL_DESC;
+import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_STAGE_DESC;
+import static seedu.linkedout.logic.commands.CommandTestUtil.JOB_DESC_AMY;
+import static seedu.linkedout.logic.commands.CommandTestUtil.JOB_DESC_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.SKILL_DESC_MARKETING;
 import static seedu.linkedout.logic.commands.CommandTestUtil.SKILL_DESC_PYTHON;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_STAGE_AMY;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_STAGE_BOB;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_JOB_AMY;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_JOB_BOB;
+import static seedu.linkedout.logic.commands.CommandTestUtil.STAGE_DESC_AMY;
+import static seedu.linkedout.logic.commands.CommandTestUtil.STAGE_DESC_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_JOB_AMY;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_JOB_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_SKILL_MARKETING;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_SKILL_PYTHON;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_STAGE_AMY;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_STAGE_BOB;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_SKILL;
 import static seedu.linkedout.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.linkedout.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -43,11 +41,11 @@ import org.junit.jupiter.api.Test;
 import seedu.linkedout.commons.core.index.Index;
 import seedu.linkedout.logic.commands.EditCommand;
 import seedu.linkedout.logic.commands.EditCommand.EditApplicantDescriptor;
-import seedu.linkedout.model.applicant.Stage;
-import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Email;
+import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
+import seedu.linkedout.model.applicant.Stage;
 import seedu.linkedout.model.skill.Skill;
 import seedu.linkedout.testutil.EditApplicantDescriptorBuilder;
 
@@ -187,8 +185,9 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_APPLICANT;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + JOB_DESC_AMY + STAGE_DESC_AMY + EMAIL_DESC_AMY
-                + SKILL_DESC_MARKETING + PHONE_DESC_AMY + JOB_DESC_AMY + STAGE_DESC_AMY + EMAIL_DESC_AMY + SKILL_DESC_PYTHON
-                + PHONE_DESC_BOB + STAGE_DESC_BOB + JOB_DESC_BOB + EMAIL_DESC_BOB + SKILL_DESC_MARKETING;
+                + SKILL_DESC_MARKETING + PHONE_DESC_AMY + JOB_DESC_AMY + STAGE_DESC_AMY + EMAIL_DESC_AMY
+                + SKILL_DESC_PYTHON + PHONE_DESC_BOB + STAGE_DESC_BOB + JOB_DESC_BOB
+                + EMAIL_DESC_BOB + SKILL_DESC_MARKETING;
 
         EditApplicantDescriptor descriptor = new EditApplicantDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withJob(VALID_JOB_BOB).withStage(VALID_STAGE_BOB)

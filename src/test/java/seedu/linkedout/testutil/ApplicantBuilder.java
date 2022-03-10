@@ -5,9 +5,9 @@ import java.util.Set;
 
 import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.Email;
+import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
-import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Stage;
 import seedu.linkedout.model.skill.Skill;
 import seedu.linkedout.model.util.SampleDataUtil;

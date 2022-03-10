@@ -36,9 +36,10 @@ class JsonAdaptedApplicant {
      * Constructs a {@code JsonAdaptedApplicant} with the given applicant details.
      */
     @JsonCreator
-    public JsonAdaptedApplicant(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("job") String job,
-                             @JsonProperty("stage") String stage, @JsonProperty("skilled") List<JsonAdaptedSkill> skills) {
+    public JsonAdaptedApplicant(@JsonProperty("name") String name,
+                                @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+                                @JsonProperty("job") String job, @JsonProperty("stage") String stage,
+                                @JsonProperty("skilled") List<JsonAdaptedSkill> skills) {
         this.name = name;
         this.phone = phone;
         this.email = email;

@@ -2,13 +2,12 @@ package seedu.linkedout.model.applicant;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_JOB_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_JOB_BOB;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_STAGE_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_SKILL_PYTHON;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_STAGE_BOB;
 import static seedu.linkedout.testutil.Assert.assertThrows;
 import static seedu.linkedout.testutil.TypicalApplicants.ALICE;
 import static seedu.linkedout.testutil.TypicalApplicants.BOB;

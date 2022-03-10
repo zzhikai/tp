@@ -1,17 +1,17 @@
 package seedu.linkedout.testutil;
 
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_STAGE_AMY;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_STAGE_BOB;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_JOB_AMY;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_JOB_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_JOB_AMY;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_JOB_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_SKILL_MARKETING;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_SKILL_PYTHON;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_STAGE_AMY;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_STAGE_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;

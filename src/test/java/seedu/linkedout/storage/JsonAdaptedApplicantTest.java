@@ -12,11 +12,11 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.linkedout.commons.exceptions.IllegalValueException;
-import seedu.linkedout.model.applicant.Stage;
-import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Email;
+import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
+import seedu.linkedout.model.applicant.Stage;
 
 public class JsonAdaptedApplicantTest {
     private static final String INVALID_NAME = "R@chel";
@@ -125,7 +125,7 @@ public class JsonAdaptedApplicantTest {
         List<JsonAdaptedSkill> invalidSkills = new ArrayList<>(VALID_SKILLS);
         invalidSkills.add(new JsonAdaptedSkill(INVALID_SKILL));
         JsonAdaptedApplicant applicant =
-                new JsonAdaptedApplicant(VALID_NAME, VALID_PHONE, VALID_EMAIL,  VALID_JOB, VALID_STAGE, invalidSkills);
+                new JsonAdaptedApplicant(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_JOB, VALID_STAGE, invalidSkills);
         assertThrows(IllegalValueException.class, applicant::toModelType);
     }
 

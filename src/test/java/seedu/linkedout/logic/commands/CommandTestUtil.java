@@ -2,13 +2,12 @@ package seedu.linkedout.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_JOB;
-import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_STAGE;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_SKILL;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_STAGE;
 import static seedu.linkedout.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;

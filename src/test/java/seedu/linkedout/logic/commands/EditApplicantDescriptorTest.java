@@ -6,10 +6,10 @@ import static seedu.linkedout.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_JOB_BOB;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_STAGE_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_SKILL_PYTHON;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_STAGE_BOB;
 
 import org.junit.jupiter.api.Test;
 

@@ -5,9 +5,9 @@ import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_APPLICANT_DI
 import static seedu.linkedout.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.linkedout.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.JOB_DESC_AMY;
-import static seedu.linkedout.logic.commands.CommandTestUtil.STAGE_DESC_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.linkedout.logic.commands.CommandTestUtil.STAGE_DESC_AMY;
 import static seedu.linkedout.testutil.Assert.assertThrows;
 import static seedu.linkedout.testutil.TypicalApplicants.AMY;
 
