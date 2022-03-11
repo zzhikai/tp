@@ -48,7 +48,8 @@ public class TypicalApplicants {
 
     // Manually added
     public static final Applicant HOON = new ApplicantBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withJob("Backend Software Engineer").withStage("Job Offer Accepted").build();
+            .withEmail("stefan@example.com").withJob("Backend Software Engineer")
+            .withStage("Job Offer Accepted").build();
     public static final Applicant IDA = new ApplicantBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withJob("Blockchain Engineer").withStage("Finalising").build();
 
