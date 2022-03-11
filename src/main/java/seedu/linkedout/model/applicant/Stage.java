@@ -4,15 +4,15 @@ import static java.util.Objects.requireNonNull;
 import static seedu.linkedout.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Applicant's linkedout in the linkedout book.
+ * Represents a Applicant's stage in the linkedout app.
  * Guarantees: immutable; is valid as declared in {@link #isValidStage(String)}
  */
 public class Stage {
 
-    public static final String MESSAGE_CONSTRAINTS = "Stagees can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Stages can take any values, and it should not be blank";
 
     /*
-     * The first character of the linkedout must not be a whitespace,
+     * The first character of the stage must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
@@ -20,9 +20,9 @@ public class Stage {
     public final String value;
 
     /**
-     * Constructs an {@code Stage}.
+     * Constructs a {@code Stage}.
      *
-     * @param stage A valid linkedout.
+     * @param stage A valid stage.
      */
     public Stage(String stage) {
         requireNonNull(stage);

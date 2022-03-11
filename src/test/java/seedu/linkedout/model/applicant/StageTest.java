@@ -21,16 +21,16 @@ public class StageTest {
 
     @Test
     public void isValidStage() {
-        // null linkedout
+        // null stage
         assertThrows(NullPointerException.class, () -> seedu.linkedout.model.applicant.Stage.isValidStage(null));
 
-        // invalid stagees
+        // invalid stages
         assertFalse(seedu.linkedout.model.applicant.Stage.isValidStage("")); // empty string
         assertFalse(seedu.linkedout.model.applicant.Stage.isValidStage(" ")); // spaces only
 
-        // valid stagees
-        assertTrue(seedu.linkedout.model.applicant.Stage.isValidStage("Blk 456, Den Road, #01-355"));
+        // valid stages
+        assertTrue(seedu.linkedout.model.applicant.Stage.isValidStage("Technical Interview"));
         assertTrue(seedu.linkedout.model.applicant.Stage.isValidStage("-")); // one character
-        assertTrue(Stage.isValidStage("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long linkedout
+        assertTrue(Stage.isValidStage("Behavioral and HR interview")); // long stage
     }
 }

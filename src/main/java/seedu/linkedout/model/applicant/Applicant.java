@@ -28,7 +28,7 @@ public class Applicant {
      * Every field must be present and not null.
      */
     public Applicant(Name name, Phone phone, Email email, Job job, Stage stage, Set<Skill> skills) {
-        requireAllNonNull(name, phone, email, job, skills);
+        requireAllNonNull(name, phone, email, job, stage, skills);
         this.name = name;
         this.phone = phone;
         this.email = email;

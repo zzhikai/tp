@@ -70,7 +70,7 @@ public class ParserUtil {
      * Parses a {@code String linkedout} into an {@code Job}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code linkedout} is invalid.
+     * @throws ParseException if the given {@code job} is invalid.
      */
     public static Job parseJob(String job) throws ParseException {
         requireNonNull(job);
@@ -85,7 +85,7 @@ public class ParserUtil {
      * Parses a {@code String linkedout} into an {@code Stage}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code linkedout} is invalid.
+     * @throws ParseException if the given {@code stage} is invalid.
      */
     public static Stage parseStage(String stage) throws ParseException {
         requireNonNull(stage);

@@ -9,7 +9,7 @@ import static seedu.linkedout.commons.util.AppUtil.checkArgument;
  */
 public class Job {
 
-    public static final String MESSAGE_CONSTRAINTS = "Jobes can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Jobs can take any values, and it should not be blank";
 
     /*
      * The first character of the job must not be a whitespace,
@@ -20,7 +20,7 @@ public class Job {
     public final String value;
 
     /**
-     * Constructs an {@code Job}.
+     * Constructs a {@code Job}.
      *
      * @param job A valid job.
      */
