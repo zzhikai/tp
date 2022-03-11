@@ -20,8 +20,8 @@ public class ApplicantBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_JOB = "Marketing Manager";
-    public static final String DEFAULT_STAGE = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_JOB = "Software Engineer";
+    public static final String DEFAULT_STAGE = "Resume Sent";
 
     private Name name;
     private Phone phone;

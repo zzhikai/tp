@@ -27,7 +27,7 @@ public class TypicalApplicants {
 
     public static final Applicant ALICE = new ApplicantBuilder().withName("Alice Pauline")
             .withEmail("alice@example.com").withPhone("94351253")
-            .withJob("Frontend Software Engineer").withStage("123, Jurong West Ave 6, #08-111")
+            .withJob("Frontend Software Engineer").withStage("Resume Sent")
             .withSkills("Java", "Python").build();
 
     public static final Applicant BENSON = new ApplicantBuilder().withName("Benson Meier")
