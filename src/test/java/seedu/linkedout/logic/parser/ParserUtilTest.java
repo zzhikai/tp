@@ -32,8 +32,8 @@ public class ParserUtilTest {
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
-    private static final String VALID_JOB = "123 Main Street #0505";
-    private static final String VALID_STAGE = "123 Main Street #0505";
+    private static final String VALID_JOB = "Software Engineer";
+    private static final String VALID_STAGE = "Technical Interview";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_SKILL_1 = "Python";
     private static final String VALID_SKILL_2 = "Java";
