@@ -28,7 +28,7 @@ public class JobTest {
         assertFalse(Job.isValidJob("")); // empty string
         assertFalse(Job.isValidJob(" ")); // spaces only
 
-        // valid Jobs
+        // valid jobs
         assertTrue(Job.isValidJob("Software Engineer"));
         assertTrue(Job.isValidJob("-")); // one character
         assertTrue(Job.isValidJob("Full Stack Software Engineer")); // long job
