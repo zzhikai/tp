@@ -29,7 +29,6 @@ public class TypicalApplicants {
             .withEmail("alice@example.com").withPhone("94351253")
             .withJob("Frontend Software Engineer").withStage("Resume Sent")
             .withSkills("Java", "Python").build();
-
     public static final Applicant BENSON = new ApplicantBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withJob("Video Editor").withStage("Practical Interview")
