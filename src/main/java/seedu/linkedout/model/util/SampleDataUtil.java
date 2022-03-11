@@ -21,34 +21,34 @@ public class SampleDataUtil {
     public static Applicant[] getSampleApplicants() {
         return new Applicant[] {
             new Applicant(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Job("Blk 30 Geylang Street 29, #06-40"), new Stage("Blk 30 Geylang Street 29, #06-40"),
+                new Job("Software Engineer"), new Stage("Technical Interview"),
                 getSkillSet("Java", "Python")),
             new Applicant(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Job("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                    new Stage("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                new Job("Social Media Marketer"),
+                    new Stage("Instagram Check"),
                 getSkillSet("Video Editing", "Social Media Marketing")),
             new Applicant(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Job("Blk 11 Ang Mo Kio Street 74, #11-04"), new Stage("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                new Job("Middle Manager"), new Stage("Behavioural Interview"),
                 getSkillSet("Business Development")),
             new Applicant(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Job("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                    new Stage("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                new Job("Risk Assessment Associate"),
+                    new Stage("Stock Pitch Assessment"),
                 getSkillSet("Accounting", "Equities", "Cryptocurrency")),
             new Applicant(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Job("Blk 47 Tampines Street 20, #17-35"), new Stage("Blk 47 Tampines Street 20, #17-35"),
+                new Job("Editor"), new Stage("Test Article Submitted"),
                 getSkillSet("Writing", "Editing", "Publishing")),
             new Applicant(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Job("Blk 45 Aljunied Street 85, #11-31"), new Stage("Blk 45 Aljunied Street 85, #11-31"),
+                new Job("Van Driver"), new Stage("Driving Safety Test"),
                 getSkillSet("Logistics"))
         };
     }
 
     public static ReadOnlyLinkedout getSampleLinkedout() {
-        Linkedout sampleAb = new Linkedout();
+        Linkedout sampleLo = new Linkedout();
         for (Applicant sampleApplicant : getSampleApplicants()) {
-            sampleAb.addApplicant(sampleApplicant);
+            sampleLo.addApplicant(sampleApplicant);
         }
-        return sampleAb;
+        return sampleLo;
     }
 
     /**
