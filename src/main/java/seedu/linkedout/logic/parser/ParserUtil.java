@@ -9,10 +9,11 @@ import java.util.Set;
 import seedu.linkedout.commons.core.index.Index;
 import seedu.linkedout.commons.util.StringUtil;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
-import seedu.linkedout.model.applicant.Address;
 import seedu.linkedout.model.applicant.Email;
+import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
+import seedu.linkedout.model.applicant.Stage;
 import seedu.linkedout.model.skill.Skill;
 
 /**
@@ -66,18 +67,33 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String linkedout} into an {@code Address}.
+     * Parses a {@code String linkedout} into an {@code Job}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code linkedout} is invalid.
+     * @throws ParseException if the given {@code job} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static Job parseJob(String job) throws ParseException {
+        requireNonNull(job);
+        String trimmedJob = job.trim();
+        if (!Job.isValidJob(trimmedJob)) {
+            throw new ParseException(Job.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new Job(trimmedJob);
+    }
+
+    /**
+     * Parses a {@code String linkedout} into an {@code Stage}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code stage} is invalid.
+     */
+    public static Stage parseStage(String stage) throws ParseException {
+        requireNonNull(stage);
+        String trimmedStage = stage.trim();
+        if (!Stage.isValidStage(trimmedStage)) {
+            throw new ParseException(Stage.MESSAGE_CONSTRAINTS);
+        }
+        return new Stage(trimmedStage);
     }
 
     /**

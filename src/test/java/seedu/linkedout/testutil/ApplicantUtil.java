@@ -1,10 +1,11 @@
 package seedu.linkedout.testutil;
 
-import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_SKILL;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_STAGE;
 
 import java.util.Set;
 
@@ -34,7 +35,8 @@ public class ApplicantUtil {
         sb.append(PREFIX_NAME + applicant.getName().fullName + " ");
         sb.append(PREFIX_PHONE + applicant.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + applicant.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + applicant.getAddress().value + " ");
+        sb.append(PREFIX_JOB + applicant.getJob().value + " ");
+        sb.append(PREFIX_STAGE + applicant.getStage().value + " ");
         applicant.getSkills().stream().forEach(
             s -> sb.append(PREFIX_SKILL + s.skillName + " ")
         );
@@ -49,7 +51,8 @@ public class ApplicantUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getJob().ifPresent(job -> sb.append(PREFIX_JOB).append(job.value).append(" "));
+        descriptor.getStage().ifPresent(stage -> sb.append(PREFIX_STAGE).append(stage.value).append(" "));
         if (descriptor.getSkills().isPresent()) {
             Set<Skill> skills = descriptor.getSkills().get();
             if (skills.isEmpty()) {

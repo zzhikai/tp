@@ -10,11 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.linkedout.commons.exceptions.IllegalValueException;
-import seedu.linkedout.model.applicant.Address;
 import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.Email;
+import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
+import seedu.linkedout.model.applicant.Stage;
 import seedu.linkedout.model.skill.Skill;
 
 /**
@@ -27,20 +28,23 @@ class JsonAdaptedApplicant {
     private final String name;
     private final String phone;
     private final String email;
-    private final String address;
+    private final String job;
+    private final String stage;
     private final List<JsonAdaptedSkill> skilled = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedApplicant} with the given applicant details.
      */
     @JsonCreator
-    public JsonAdaptedApplicant(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("job") String address,
-                             @JsonProperty("skilled") List<JsonAdaptedSkill> skills) {
+    public JsonAdaptedApplicant(@JsonProperty("name") String name,
+                                @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+                                @JsonProperty("job") String job, @JsonProperty("stage") String stage,
+                                @JsonProperty("skilled") List<JsonAdaptedSkill> skills) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.job = job;
+        this.stage = stage;
         if (skills != null) {
             this.skilled.addAll(skills);
         }
@@ -53,7 +57,8 @@ class JsonAdaptedApplicant {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        address = source.getAddress().value;
+        job = source.getJob().value;
+        stage = source.getStage().value;
         skilled.addAll(source.getSkills().stream()
                 .map(JsonAdaptedSkill::new)
                 .collect(Collectors.toList()));
@@ -94,16 +99,25 @@ class JsonAdaptedApplicant {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        if (job == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Job.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!Job.isValidJob(job)) {
+            throw new IllegalValueException(Job.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+
+        final Job modelJob = new Job(job);
+
+        if (stage == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Stage.class.getSimpleName()));
+        }
+        if (!Stage.isValidStage(stage)) {
+            throw new IllegalValueException(Stage.MESSAGE_CONSTRAINTS);
+        }
+        final Stage modelStage = new Stage(stage);
 
         final Set<Skill> modelSkills = new HashSet<>(applicantSkills);
-        return new Applicant(modelName, modelPhone, modelEmail, modelAddress, modelSkills);
+        return new Applicant(modelName, modelPhone, modelEmail, modelJob, modelStage, modelSkills);
     }
 
 }
