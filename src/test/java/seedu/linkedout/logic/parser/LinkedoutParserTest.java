@@ -21,9 +21,11 @@ import seedu.linkedout.logic.commands.EditCommand.EditApplicantDescriptor;
 import seedu.linkedout.logic.commands.ExitCommand;
 import seedu.linkedout.logic.commands.HelpCommand;
 import seedu.linkedout.logic.commands.ListCommand;
+import seedu.linkedout.logic.commands.SearchCommand;
 import seedu.linkedout.logic.commands.ViewCommand;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
 import seedu.linkedout.model.applicant.Applicant;
+import seedu.linkedout.model.applicant.NameContainsAllKeywordsPredicate;
 import seedu.linkedout.model.applicant.NameContainsKeywordsPredicate;
 import seedu.linkedout.testutil.ApplicantBuilder;
 import seedu.linkedout.testutil.ApplicantUtil;
@@ -71,10 +73,18 @@ public class LinkedoutParserTest {
 
     @Test
     public void parseCommand_view() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        String keywords = "foo bar baz".toLowerCase();
         ViewCommand command = (ViewCommand) parser.parseCommand(
-                ViewCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new ViewCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                ViewCommand.COMMAND_WORD + " " + keywords);
+        assertEquals(new ViewCommand(new NameContainsAllKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_search() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        SearchCommand command = (SearchCommand) parser.parseCommand(
+                SearchCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new SearchCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
