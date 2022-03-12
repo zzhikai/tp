@@ -4,12 +4,13 @@ import static seedu.linkedout.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
-import seedu.linkedout.model.tag.Tag;
+import seedu.linkedout.model.skill.Skill;
 
 /**
- * Represents an Applicant in LinkedOUT
+ * Represents an Applicant in linkedout.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Applicant {
@@ -19,19 +20,21 @@ public class Applicant {
     private final Email email;
 
     // Data fields
-    private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Stage stage;
+    private final Job job;
+    private final Set<Skill> skills = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Applicant(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Applicant(Name name, Phone phone, Email email, Job job, Stage stage, Set<Skill> skills) {
+        requireAllNonNull(name, phone, email, job, stage, skills);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
+        this.job = job;
+        this.stage = stage;
+        this.skills.addAll(skills);
     }
 
     public Name getName() {
@@ -46,16 +49,20 @@ public class Applicant {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Stage getStage() {
+        return stage;
+    }
+
+    public Job getJob() {
+        return job;
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable skill set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Skill> getSkills() {
+        return Collections.unmodifiableSet(skills);
     }
 
     /**
@@ -89,7 +96,35 @@ public class Applicant {
         return otherApplicant.getName().equals(getName())
                 && otherApplicant.getPhone().equals(getPhone())
                 && otherApplicant.getEmail().equals(getEmail())
-                && otherApplicant.getAddress().equals(getAddress())
-                && otherApplicant.getTags().equals(getTags());
+                && otherApplicant.getStage().equals(getStage())
+                && otherApplicant.getJob().equals(getJob())
+                && otherApplicant.getSkills().equals(getSkills());
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(name, phone, email, job, stage, skills);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName())
+                .append("; Phone: ")
+                .append(getPhone())
+                .append("; Email: ")
+                .append(getEmail())
+                .append("; Job: ")
+                .append(getJob())
+                .append("; Stage: ")
+                .append(getStage());
+
+        Set<Skill> skills = getSkills();
+        if (!skills.isEmpty()) {
+            builder.append("; Skills: ");
+            skills.forEach(builder::append);
+        }
+        return builder.toString();
     }
 }

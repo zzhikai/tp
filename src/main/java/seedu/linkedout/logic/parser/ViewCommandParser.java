@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.linkedout.logic.commands.ViewCommand;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
-import seedu.linkedout.model.person.NameContainsKeywordsPredicate;
+import seedu.linkedout.model.applicant.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new ViewCommand object

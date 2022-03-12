@@ -1,0 +1,53 @@
+{
+  "_comment": "LinkedOUT save file which contains the same Person values as in TypicalApplicants#getTypicalLinkedout()",
+  "applicants" : [ {
+    "name" : "Alice Pauline",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "job" : "Frontend Software Engineer",
+    "stage" : "Resume Sent",
+    "skilled" : [ "Java", "Python" ]
+  }, {
+    "name" : "Benson Meier",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "job" : "Video Editor",
+    "stage" : "Practical Interview",
+    "skilled" : [ "Photography", "Videography" ]
+  }, {
+    "name" : "Carl Kurz",
+    "phone" : "95352563",
+    "email" : "heinz@example.com",
+    "job" : "Developer",
+    "stage" : "Interviewed",
+    "skilled" : [ ]
+  }, {
+    "name" : "Daniel Meier",
+    "phone" : "87652533",
+    "email" : "cornelia@example.com",
+    "job" : "UI/UX Developer",
+    "stage" : "Recruiting",
+    "skilled" : [ "Marksmanship" ]
+  }, {
+    "name" : "Elle Meyer",
+    "phone" : "9482224",
+    "email" : "werner@example.com",
+    "job" : "Engineer",
+    "stage" : "Classical Mechanics Test",
+    "skilled" : [ ]
+  }, {
+    "name" : "Fiona Kunz",
+    "phone" : "9482427",
+    "email" : "lydia@example.com",
+    "job" : "Developer",
+    "stage" : "Job Offer Rejected",
+    "skilled" : [ ]
+  }, {
+    "name" : "George Best",
+    "phone" : "9482442",
+    "email" : "anna@example.com",
+    "job" : "Software Developer",
+    "stage" : "Resume Reviewed",
+    "skilled" : [ ]
+  } ]
+}

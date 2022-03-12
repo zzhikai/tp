@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.linkedout.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Applicant}'s {@code Name} matches any of the keywords given.
  */
 public class NameContainsKeywordsPredicate implements Predicate<Applicant> {
     private final List<String> keywords;

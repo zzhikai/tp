@@ -1,9 +1,9 @@
 package seedu.linkedout.logic.commands;
 
 import static seedu.linkedout.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.linkedout.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.linkedout.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.linkedout.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.linkedout.logic.commands.CommandTestUtil.showApplicantAtIndex;
+import static seedu.linkedout.testutil.TypicalApplicants.getTypicalLinkedout;
+import static seedu.linkedout.testutil.TypicalIndexes.INDEX_FIRST_APPLICANT;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +22,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalLinkedout(), new UserPrefs());
+        expectedModel = new ModelManager(model.getLinkedout(), new UserPrefs());
     }
 
     @Test
@@ -33,7 +33,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showApplicantAtIndex(model, INDEX_FIRST_APPLICANT);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

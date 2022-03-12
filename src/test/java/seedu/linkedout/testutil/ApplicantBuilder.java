@@ -3,12 +3,13 @@ package seedu.linkedout.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.linkedout.model.applicant.Address;
 import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.Email;
+import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
-import seedu.linkedout.model.tag.Tag;
+import seedu.linkedout.model.applicant.Stage;
+import seedu.linkedout.model.skill.Skill;
 import seedu.linkedout.model.util.SampleDataUtil;
 
 /**
@@ -19,13 +20,15 @@ public class ApplicantBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_JOB = "Software Engineer";
+    public static final String DEFAULT_STAGE = "Resume Sent";
 
     private Name name;
     private Phone phone;
     private Email email;
-    private Address address;
-    private Set<Tag> tags;
+    private Job job;
+    private Stage stage;
+    private Set<Skill> skills;
 
     /**
      * Creates a {@code ApplicantBuilder} with the default details.
@@ -34,8 +37,9 @@ public class ApplicantBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        job = new Job(DEFAULT_JOB);
+        stage = new Stage(DEFAULT_STAGE);
+        skills = new HashSet<>();
     }
 
     /**
@@ -45,8 +49,9 @@ public class ApplicantBuilder {
         name = applicantToCopy.getName();
         phone = applicantToCopy.getPhone();
         email = applicantToCopy.getEmail();
-        address = applicantToCopy.getAddress();
-        tags = new HashSet<>(applicantToCopy.getTags());
+        job = applicantToCopy.getJob();
+        stage = applicantToCopy.getStage();
+        skills = new HashSet<>(applicantToCopy.getSkills());
     }
 
     /**
@@ -58,18 +63,26 @@ public class ApplicantBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Applicant} that we are building.
+     * Parses the {@code skills} into a {@code Set<Skill>} and set it to the {@code Applicant} that we are building.
      */
-    public ApplicantBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public ApplicantBuilder withSkills(String ... skills) {
+        this.skills = SampleDataUtil.getSkillSet(skills);
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code Applicant} that we are building.
+     * Sets the {@code Job} of the {@code Applicant} that we are building.
      */
-    public ApplicantBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public ApplicantBuilder withJob(String job) {
+        this.job = new Job(job);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Stage} of the {@code Applicant} that we are building.
+     */
+    public ApplicantBuilder withStage(String stage) {
+        this.stage = new Stage(stage);
         return this;
     }
 
@@ -90,7 +103,7 @@ public class ApplicantBuilder {
     }
 
     public Applicant build() {
-        return new Applicant(name, phone, email, address, tags);
+        return new Applicant(name, phone, email, job, stage, skills);
     }
 
 }

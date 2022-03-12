@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.linkedout.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's phone number in the linkedout book.
+ * Represents an Applicant's phone number in the linkedout app.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class Phone {

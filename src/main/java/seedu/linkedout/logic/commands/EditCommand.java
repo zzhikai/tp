@@ -1,12 +1,13 @@
 package seedu.linkedout.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.linkedout.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_SKILL;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_STAGE;
+import static seedu.linkedout.model.Model.PREDICATE_SHOW_ALL_APPLICANTS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -19,87 +20,90 @@ import seedu.linkedout.commons.core.index.Index;
 import seedu.linkedout.commons.util.CollectionUtil;
 import seedu.linkedout.logic.commands.exceptions.CommandException;
 import seedu.linkedout.model.Model;
-import seedu.linkedout.model.person.Address;
-import seedu.linkedout.model.person.Email;
-import seedu.linkedout.model.person.Name;
-import seedu.linkedout.model.person.Person;
-import seedu.linkedout.model.person.Phone;
-import seedu.linkedout.model.tag.Tag;
+import seedu.linkedout.model.applicant.Applicant;
+import seedu.linkedout.model.applicant.Email;
+import seedu.linkedout.model.applicant.Job;
+import seedu.linkedout.model.applicant.Name;
+import seedu.linkedout.model.applicant.Phone;
+import seedu.linkedout.model.applicant.Stage;
+import seedu.linkedout.model.skill.Skill;
 
 /**
- * Edits the details of an existing person in the linkedout book.
+ * Edits the details of an existing applicant in the linkedout app.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the applicant identified "
+            + "by the index number used in the displayed applicant list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_JOB + "JOB] "
+            + "[" + PREFIX_STAGE + "STAGE] "
+            + "[" + PREFIX_SKILL + "SKILL]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_APPLICANT_SUCCESS = "Edited Applicant: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the linkedout book.";
+    public static final String MESSAGE_DUPLICATE_APPLICANT = "This applicant already exists in the linkedout book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditApplicantDescriptor editApplicantDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the applicant in the filtered applicant list to edit
+     * @param editApplicantDescriptor details to edit the applicant with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditApplicantDescriptor editApplicantDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editApplicantDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editApplicantDescriptor = new EditApplicantDescriptor(editApplicantDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Applicant> lastShownList = model.getFilteredApplicantList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_APPLICANT_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Applicant applicantToEdit = lastShownList.get(index.getZeroBased());
+        Applicant editedApplicant = createEditedApplicant(applicantToEdit, editApplicantDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!applicantToEdit.isSameApplicant(editedApplicant) && model.hasApplicant(editedApplicant)) {
+            throw new CommandException(MESSAGE_DUPLICATE_APPLICANT);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        model.setApplicant(applicantToEdit, editedApplicant);
+        model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
+        return new CommandResult(String.format(MESSAGE_EDIT_APPLICANT_SUCCESS, editedApplicant));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Applicant} with the details of {@code applicantToEdit}
+     * edited with {@code editApplicantDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Applicant createEditedApplicant(Applicant applicantToEdit,
+                                                   EditApplicantDescriptor editApplicantDescriptor) {
+        assert applicantToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        Name updatedName = editApplicantDescriptor.getName().orElse(applicantToEdit.getName());
+        Phone updatedPhone = editApplicantDescriptor.getPhone().orElse(applicantToEdit.getPhone());
+        Email updatedEmail = editApplicantDescriptor.getEmail().orElse(applicantToEdit.getEmail());
+        Job updatedJob = editApplicantDescriptor.getJob().orElse(applicantToEdit.getJob());
+        Stage updatedStage = editApplicantDescriptor.getStage().orElse(applicantToEdit.getStage());
+        Set<Skill> updatedSkills = editApplicantDescriptor.getSkills().orElse(applicantToEdit.getSkills());
+        return new Applicant(updatedName, updatedPhone, updatedEmail, updatedJob, updatedStage, updatedSkills);
     }
 
     @Override
@@ -117,39 +121,41 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editApplicantDescriptor.equals(e.editApplicantDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the applicant with. Each non-empty field value will replace the
+     * corresponding field value of the applicant.
      */
-    public static class EditPersonDescriptor {
+    public static class EditApplicantDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
-        private Address address;
-        private Set<Tag> tags;
+        private Job job;
+        private Stage stage;
+        private Set<Skill> skills;
 
-        public EditPersonDescriptor() {}
+        public EditApplicantDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code skills} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditApplicantDescriptor(EditApplicantDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setJob(toCopy.job);
+            setStage(toCopy.stage);
+            setSkills(toCopy.skills);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, job, stage, skills);
         }
 
         public void setName(Name name) {
@@ -176,29 +182,36 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setStage(Stage stage) {
+            this.stage = stage;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Stage> getStage() {
+            return Optional.ofNullable(stage);
+        }
+        public void setJob(Job job) {
+            this.job = job;
+        }
+
+        public Optional<Job> getJob() {
+            return Optional.ofNullable(job);
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code skills} to this object's {@code skills}.
+         * A defensive copy of {@code skills} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setSkills(Set<Skill> skills) {
+            this.skills = (skills != null) ? new HashSet<>(skills) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable skill set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code skills} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Skill>> getSkills() {
+            return (skills != null) ? Optional.of(Collections.unmodifiableSet(skills)) : Optional.empty();
         }
 
         @Override
@@ -209,18 +222,19 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditApplicantDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditApplicantDescriptor e = (EditApplicantDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getJob().equals(e.getJob())
+                    && getStage().equals(e.getStage())
+                    && getSkills().equals(e.getSkills());
         }
     }
 }

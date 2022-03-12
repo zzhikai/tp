@@ -1,11 +1,11 @@
 package seedu.linkedout.logic.commands;
 
 import static seedu.linkedout.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.linkedout.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.linkedout.testutil.TypicalApplicants.getTypicalLinkedout;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.linkedout.model.AddressBook;
+import seedu.linkedout.model.Linkedout;
 import seedu.linkedout.model.Model;
 import seedu.linkedout.model.ModelManager;
 import seedu.linkedout.model.UserPrefs;
@@ -13,7 +13,7 @@ import seedu.linkedout.model.UserPrefs;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyLinkedout_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -21,10 +21,10 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setAddressBook(new AddressBook());
+    public void execute_nonEmptyLinkedout_success() {
+        Model model = new ModelManager(getTypicalLinkedout(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalLinkedout(), new UserPrefs());
+        expectedModel.setLinkedout(new Linkedout());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

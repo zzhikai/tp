@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.linkedout.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Applicant's email in the linkedout book.
+ * Represents a Applicant's email in the linkedout app.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {
@@ -36,7 +36,7 @@ public class Email {
     /**
      * Constructs an {@code Email}.
      *
-     * @param email A valid email linkedout.
+     * @param email A valid email.
      */
     public Email(String email) {
         requireNonNull(email);

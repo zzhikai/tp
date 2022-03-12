@@ -2,11 +2,12 @@ package seedu.linkedout.model.applicant;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_JOB_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_SKILL_PYTHON;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_STAGE_BOB;
 import static seedu.linkedout.testutil.Assert.assertThrows;
 import static seedu.linkedout.testutil.TypicalApplicants.ALICE;
 import static seedu.linkedout.testutil.TypicalApplicants.BOB;
@@ -20,7 +21,7 @@ public class ApplicantTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Applicant applicant = new ApplicantBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> applicant.getTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> applicant.getSkills().remove(0));
     }
 
     @Test
@@ -33,7 +34,7 @@ public class ApplicantTest {
 
         // same name, all other attributes different -> returns true
         Applicant editedAlice = new ApplicantBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withJob(VALID_JOB_BOB).withStage(VALID_STAGE_BOB).withSkills(VALID_SKILL_PYTHON).build();
         assertTrue(ALICE.isSameApplicant(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -80,12 +81,16 @@ public class ApplicantTest {
         editedAlice = new ApplicantBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different linkedout -> returns false
-        editedAlice = new ApplicantBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
+        // different job -> returns false
+        editedAlice = new ApplicantBuilder(ALICE).withJob(VALID_JOB_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different stage -> returns false
+        editedAlice = new ApplicantBuilder(ALICE).withStage(VALID_STAGE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new ApplicantBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new ApplicantBuilder(ALICE).withSkills(VALID_SKILL_PYTHON).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }
