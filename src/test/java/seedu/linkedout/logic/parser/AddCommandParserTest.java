@@ -115,7 +115,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + JOB_DESC_BOB + VALID_STAGE_BOB,
                 expectedMessage);
 
-
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_JOB_BOB
                 + VALID_STAGE_BOB, expectedMessage);
@@ -124,39 +123,38 @@ public class AddCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + JOB_DESC_BOB
-                + STAGE_DESC_BOB
+        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + JOB_DESC_BOB + STAGE_DESC_BOB
                 + SKILL_DESC_MARKETING + SKILL_DESC_PYTHON, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + JOB_DESC_BOB
-                + STAGE_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC
+                + EMAIL_DESC_BOB + JOB_DESC_BOB + STAGE_DESC_BOB
                 + SKILL_DESC_MARKETING + SKILL_DESC_PYTHON, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + JOB_DESC_BOB
-                + STAGE_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB
+                + INVALID_EMAIL_DESC + JOB_DESC_BOB + STAGE_DESC_BOB
                 + SKILL_DESC_MARKETING + SKILL_DESC_PYTHON, Email.MESSAGE_CONSTRAINTS);
 
         // invalid job
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_JOB_DESC
-                + STAGE_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + INVALID_JOB_DESC + STAGE_DESC_BOB
                 + SKILL_DESC_MARKETING + SKILL_DESC_PYTHON, Job.MESSAGE_CONSTRAINTS);
 
         // invalid stage
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + JOB_DESC_BOB
-                + INVALID_STAGE_DESC
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + JOB_DESC_BOB + INVALID_STAGE_DESC
                 + SKILL_DESC_MARKETING + SKILL_DESC_PYTHON, Stage.MESSAGE_CONSTRAINTS);
 
         // invalid skill
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + JOB_DESC_BOB
-                + STAGE_DESC_BOB
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + JOB_DESC_BOB + STAGE_DESC_BOB
                 + INVALID_SKILL_DESC + VALID_SKILL_PYTHON, Skill.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + JOB_DESC_BOB
-                + INVALID_STAGE_DESC,
-                Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB
+                + EMAIL_DESC_BOB + JOB_DESC_BOB + INVALID_STAGE_DESC, Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
