@@ -69,11 +69,11 @@ Format: `help`
 
 ### Adding an applicant: `add`
 
-Adds a new applicant to be tracked, by adding their name, phone number, the job they have applied for, along with a variable number of skills.
+Adds a new applicant to be tracked, by adding their name, phone number, email, the job they have applied for, stage of job application, along with a variable number of skills.
 
 Format:
 ```
-add n/NAME p/PHONE_NUMBER j/JOB [s/SKILLS]...
+add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/STAGE [s/SKILLS]...
 ```
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of skills (including 0)
@@ -81,11 +81,11 @@ A person can have any number of skills (including 0)
 
 Example:
 ```
-add n/Bob p/99999999 j/Data Analyst s/Pandas s/Python s/Java
+add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas s/Python s/Java
 ```
 Sample Output:
 ```
-Applicant Bob has been successfully added for job Data Analyst
+New applicant added: Bob; Phone: 99999999; Email: bob@example.com; Job: Data Analyst; Stage: Interview; Skills: [Java][Pandas][Python]
 ```
 ### Listing all applicants : `list`
 
@@ -114,7 +114,7 @@ Phone Number: 88888888
 ```
 ### Viewing a specific applicant : `view`
 
-Allows the user to view an overview of a specific applicant, specified by applicant name
+Allows the user to view an overview of a specific applicant, specified by applicant's full name (exact match)
 
 Format:
 ```
@@ -122,7 +122,8 @@ view n/NAME
 ```
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Only full name will be matched e.g. `Han Lee` will not match `Han`
+* Only exact full name with correct spacing will be matched e.g. `HanLee` will not match `Han Lee`
 
 Example:
 ```
@@ -135,24 +136,69 @@ Phone Number: 99999999
 Job Applied: CEO of Apple
 Skills: Product Design  
 ```
-### Deleting an applicant : `delete`
+### Searching a specific applicant : `search`
 
-Deletes a specific job applicant, specified by applicant name.
+Allows the user to view an overview of a specific applicant, specified by applicant's first or last name 
 
 Format:
 ```
-delete n/NAME
+search n/NAME
 ```
-* Delete is case-insensitive. e.g `hans` will delete `Hans`
-* Only exact matches are deleted. e.g `Hans` will not delete `Hans Gruber`
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* First name/Last name will be matched e.g. `Han` will match `Han Lee`
 
 Example:
 ```
-delete n/Elon Musk
+search n/Steve
 ```
 Sample Output:
 ```
-Applicant Elon Musk has been deleted
+Here’s an overview of Steve Jobs:
+Phone Number: 99999999
+Job Applied: CEO of Apple
+Skills: Product Design  
+```
+### Editing an applicant : `edit`
+
+Edits the details of the applicant identified by the index number used in the displayed applicant list. Existing values will be overwritten by the input values.
+
+Format:
+```
+edit i/INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/STAGE] [s/SKILL]...
+```
+
+* Only valid index are edited. e.g `5` will not edit if there are only `4` applicants in the list
+* Only positive index are edited. e.g `-1` will not edit the details of an applicant
+
+Example:
+```
+edit 1 p/91234567 e/johndoe@example.com
+```
+Sample Output:
+```
+Edited Applicant: David Lee; Phone: 91234567; Email: johndoe@example.com; Job: Risk Assessment Associate; Stage: Stock Pitch Assessment; Skills: [Accounting][Equities][Cryptocurrency]
+```
+### Deleting an applicant : `delete`
+
+Deletes a specific job applicant, specified by index.
+
+Format:
+```
+delete i/INDEX
+```
+
+* Only valid index are deleted. e.g `5` will not delete if there are only `4` applicants in the list
+* Only positive index are deleted. e.g `-3` will not delete the applicant
+
+Example:
+```
+delete i/1
+```
+Sample Output:
+```
+Deleted Applicant: Bernice Yu; Phone: 99272758; Email: berniceyu@example.com; Job: Social Media Marketer; Stage: Instagram Check; Skills: [Video Editing][Social Media Marketing]
 ```
 ### Exiting the program : `exit`
 
@@ -183,11 +229,13 @@ If your changes to the data file makes its format invalid, LinkedOUT will discar
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER j/JOB [s/SKILLS]...` e.g: `add n/Bob p/99999999 j/Data Analyst s/Pandas s/Python s/Java `
-**Delete** | `delete n/NAME` e.g: `delete n/Elon Musk`
-**View** | `view n/NAME` e.g: `view n/Steve Jobs`
-**List** | `list`
-**Help** | `help`
-**Exit** | `exit`
+| Action     | Format, Examples                                                                                                                                            |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**   | `help`                                                                                                                                                      |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/STAGE [s/SKILLS]...<br/>` <br/>e.g: `add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas` |
+| **List**   | `list`                                                                                                                                                      |
+| **View**   | `view n/NAME` e.g: `view n/Steve Jobs`                                                                                                                      |
+| **Search** | `search n/NAME` e.g: `search n/Steve`                                                                                                                       |
+| **Edit**   | `edit i/INDEX [n/NAME] ...` e.g: `edit 1 n/Elon Musk`                                                                                                       |
+| **Delete** | `delete i/INDEX` e.g: `delete 1`                                                                                                                            |                                                                                                           |
+| **Exit**   | `exit`                                                                                                                                                      |
