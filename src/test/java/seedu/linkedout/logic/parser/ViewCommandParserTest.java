@@ -25,7 +25,7 @@ public class ViewCommandParserTest {
                 new ViewCommand(new NameContainsAllKeywordsPredicate("Alice Bob"));
         assertParseSuccess(parser, "Alice Bob", expectedViewCommand);
 
-        //case insensitive
+        // case insensitive
         assertParseSuccess(parser, "alice bob", expectedViewCommand);
     }
 
