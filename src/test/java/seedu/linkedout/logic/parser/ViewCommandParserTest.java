@@ -4,12 +4,10 @@ import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.linkedout.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.linkedout.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.linkedout.logic.commands.ViewCommand;
-import seedu.linkedout.model.applicant.NameContainsKeywordsPredicate;
+import seedu.linkedout.model.applicant.NameContainsAllKeywordsPredicate;
 
 public class ViewCommandParserTest {
 
@@ -24,11 +22,11 @@ public class ViewCommandParserTest {
     public void parse_validArgs_returnsViewCommand() {
         // no leading and trailing whitespaces
         ViewCommand expectedViewCommand =
-                new ViewCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+                new ViewCommand(new NameContainsAllKeywordsPredicate("Alice Bob"));
         assertParseSuccess(parser, "Alice Bob", expectedViewCommand);
 
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedViewCommand);
+        // case insensitive
+        assertParseSuccess(parser, "alice bob", expectedViewCommand);
     }
 
 }

@@ -2,11 +2,9 @@ package seedu.linkedout.logic.parser;
 
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.Arrays;
-
 import seedu.linkedout.logic.commands.ViewCommand;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
-import seedu.linkedout.model.applicant.NameContainsKeywordsPredicate;
+import seedu.linkedout.model.applicant.NameContainsAllKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new ViewCommand object
@@ -25,9 +23,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
-
-        return new ViewCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new ViewCommand(new NameContainsAllKeywordsPredicate(trimmedArgs));
     }
 
 }

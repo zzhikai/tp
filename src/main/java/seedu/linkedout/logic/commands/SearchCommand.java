@@ -4,24 +4,24 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.linkedout.commons.core.Messages;
 import seedu.linkedout.model.Model;
-import seedu.linkedout.model.applicant.NameContainsAllKeywordsPredicate;
+import seedu.linkedout.model.applicant.NameContainsKeywordsPredicate;
 
 /**
- * view on applicant(s) in linkedout app whose name contains the exact argument keywords.
+ * search on applicant(s) in linkedout app whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class ViewCommand extends Command {
+public class SearchCommand extends Command {
 
-    public static final String COMMAND_WORD = "view";
+    public static final String COMMAND_WORD = "search";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": View an overview of a specific applicant"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Search an overview of a specific applicant"
             + "specified by applicant's name (case-insensitive) and displays the applicant's information.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " Steve Jobs";
+            + "Example: " + COMMAND_WORD + "Steve";
 
-    private final NameContainsAllKeywordsPredicate predicate;
+    private final NameContainsKeywordsPredicate predicate;
 
-    public ViewCommand(NameContainsAllKeywordsPredicate predicate) {
+    public SearchCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -36,7 +36,7 @@ public class ViewCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ViewCommand // instanceof handles nulls
-                && predicate.equals(((ViewCommand) other).predicate)); // state check
+                || (other instanceof SearchCommand // instanceof handles nulls
+                && predicate.equals(((SearchCommand) other).predicate)); // state check
     }
 }
