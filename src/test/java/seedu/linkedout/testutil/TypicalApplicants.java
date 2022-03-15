@@ -36,7 +36,7 @@ public class TypicalApplicants {
     public static final Applicant CARL = new ApplicantBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withJob("Developer").withStage("Interviewed").build();
     public static final Applicant DANIEL = new ApplicantBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withJob("UI/UX Developer")
+            .withEmail("cornelia@example.com").withJob("UI and UX Developer")
             .withStage("Recruiting").withSkills("Marksmanship").build();
     public static final Applicant ELLE = new ApplicantBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withJob("Engineer").withStage("Classical Mechanics Test").build();
