@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_JOB_BOB;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_ROUND_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_SKILL_PYTHON;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_STAGE_BOB;
 import static seedu.linkedout.testutil.Assert.assertThrows;
 import static seedu.linkedout.testutil.TypicalApplicants.ALICE;
 import static seedu.linkedout.testutil.TypicalApplicants.BOB;
@@ -45,7 +45,7 @@ public class UniqueApplicantListTest {
     public void contains_applicantWithSameIdentityFieldsInList_returnsTrue() {
         uniqueApplicantList.add(ALICE);
         /* previously only needed one withAddress here */
-        Applicant editedAlice = new ApplicantBuilder(ALICE).withJob(VALID_JOB_BOB).withStage(VALID_STAGE_BOB)
+        Applicant editedAlice = new ApplicantBuilder(ALICE).withJob(VALID_JOB_BOB).withRound(VALID_ROUND_BOB)
                 .withSkills(VALID_SKILL_PYTHON).build();
         assertTrue(uniqueApplicantList.contains(editedAlice));
     }
@@ -89,7 +89,7 @@ public class UniqueApplicantListTest {
     public void setApplicant_editedApplicantHasSameIdentity_success() {
         uniqueApplicantList.add(ALICE);
         /* previously only needed one withAddress here */
-        Applicant editedAlice = new ApplicantBuilder(ALICE).withJob(VALID_JOB_BOB).withStage(VALID_STAGE_BOB)
+        Applicant editedAlice = new ApplicantBuilder(ALICE).withJob(VALID_JOB_BOB).withRound(VALID_ROUND_BOB)
                 .withSkills(VALID_SKILL_PYTHON).build();
         uniqueApplicantList.setApplicant(ALICE, editedAlice);
         UniqueApplicantList expectedUniqueApplicantList = new UniqueApplicantList();

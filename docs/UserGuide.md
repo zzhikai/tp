@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-LinkedOUT is the only application that any experienced recruiter needs. LinkedOUT allows recruiters to keep track of many applicants, and the job they applied for. You can store their contact details, skills and the stage of their application, all in one place.
+LinkedOUT is the only application that any experienced recruiter needs. LinkedOUT allows recruiters to keep track of many applicants, and the job they applied for. You can store their contact details, skills and the round of their application, all in one place.
 
 * Table of Contents
 {:toc}
@@ -25,9 +25,9 @@ LinkedOUT is the only application that any experienced recruiter needs. LinkedOU
 
   * **`list`** : Lists all job applicants, along with an overview of each applicant.
 
-  * **`add`**`n/Bob p/99999999 j/Data Analyst` : Adds an applicant named `Bob` to the list of applicants.
+  * **`add`**`n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas` : Adds an applicant named `Bob` to the list of applicants.
 
-  * **`delete`**`Bob` : Deletes Bob from the list of applicants.
+  * **`delete`**`INDEX` : Deletes the applicant from the list of applicants.
 
   * **`exit`** : Exits the app.
 
@@ -69,11 +69,11 @@ Format: `help`
 
 ### Adding an applicant: `add`
 
-Adds a new applicant to be tracked, by adding their name, phone number, email, the job they have applied for, stage of job application, along with a variable number of skills.
+Adds a new applicant to be tracked, by adding their name, phone number, email, the job they have applied for, round of job application, along with a variable number of skills.
 
 Format:
 ```
-add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/STAGE [s/SKILLS]...
+add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILLS]...
 ```
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of skills (including 0)
@@ -85,7 +85,7 @@ add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas s/Pyt
 ```
 Sample Output:
 ```
-New applicant added: Bob; Phone: 99999999; Email: bob@example.com; Job: Data Analyst; Stage: Interview; Skills: [Java][Pandas][Python]
+New applicant added: Bob; Phone: 99999999; Email: bob@example.com; Job: Data Analyst; Round: Interview; Skills: [Java][Pandas][Python]
 ```
 ### Listing all applicants : `list`
 
@@ -166,7 +166,7 @@ Edits the details of the applicant identified by the index number used in the di
 
 Format:
 ```
-edit i/INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/STAGE] [s/SKILL]...
+edit i/INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]...
 ```
 
 * Only valid index are edited. e.g `5` will not edit if there are only `4` applicants in the list
@@ -178,7 +178,7 @@ edit 1 p/91234567 e/johndoe@example.com
 ```
 Sample Output:
 ```
-Edited Applicant: David Lee; Phone: 91234567; Email: johndoe@example.com; Job: Risk Assessment Associate; Stage: Stock Pitch Assessment; Skills: [Accounting][Equities][Cryptocurrency]
+Edited Applicant: David Lee; Phone: 91234567; Email: johndoe@example.com; Job: Risk Assessment Associate; Round: Stock Pitch Assessment; Skills: [Accounting][Equities][Cryptocurrency]
 ```
 ### Deleting an applicant : `delete`
 
@@ -198,7 +198,7 @@ delete i/1
 ```
 Sample Output:
 ```
-Deleted Applicant: Bernice Yu; Phone: 99272758; Email: berniceyu@example.com; Job: Social Media Marketer; Stage: Instagram Check; Skills: [Video Editing][Social Media Marketing]
+Deleted Applicant: Bernice Yu; Phone: 99272758; Email: berniceyu@example.com; Job: Social Media Marketer; Round: Instagram Check; Skills: [Video Editing][Social Media Marketing]
 ```
 ### Exiting the program : `exit`
 
@@ -232,7 +232,7 @@ If your changes to the data file makes its format invalid, LinkedOUT will discar
 | Action     | Format, Examples                                                                                                                                            |
 |------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Help**   | `help`                                                                                                                                                      |
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/STAGE [s/SKILLS]...<br/>` <br/>e.g: `add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas` |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILLS]...<br/>` <br/>e.g: `add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas` |
 | **List**   | `list`                                                                                                                                                      |
 | **View**   | `view n/NAME` e.g: `view n/Steve Jobs`                                                                                                                      |
 | **Search** | `search n/NAME` e.g: `search n/Steve`                                                                                                                       |

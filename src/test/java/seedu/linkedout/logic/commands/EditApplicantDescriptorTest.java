@@ -8,8 +8,8 @@ import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_JOB_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_ROUND_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_SKILL_PYTHON;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_STAGE_BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -52,8 +52,8 @@ public class EditApplicantDescriptorTest {
         // different job -> returns false
         editedAmy = new EditApplicantDescriptorBuilder(DESC_AMY).withJob(VALID_JOB_BOB).build();
 
-        // different stage -> returns false
-        editedAmy = new EditApplicantDescriptorBuilder(DESC_AMY).withStage(VALID_STAGE_BOB).build();
+        // different round -> returns false
+        editedAmy = new EditApplicantDescriptorBuilder(DESC_AMY).withRound(VALID_ROUND_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different skills -> returns false

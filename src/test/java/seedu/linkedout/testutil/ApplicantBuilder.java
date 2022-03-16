@@ -8,7 +8,7 @@ import seedu.linkedout.model.applicant.Email;
 import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
-import seedu.linkedout.model.applicant.Stage;
+import seedu.linkedout.model.applicant.Round;
 import seedu.linkedout.model.skill.Skill;
 import seedu.linkedout.model.util.SampleDataUtil;
 
@@ -21,13 +21,13 @@ public class ApplicantBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_JOB = "Software Engineer";
-    public static final String DEFAULT_STAGE = "Resume Sent";
+    public static final String DEFAULT_ROUND = "Resume Sent";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Job job;
-    private Stage stage;
+    private Round round;
     private Set<Skill> skills;
 
     /**
@@ -38,7 +38,7 @@ public class ApplicantBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         job = new Job(DEFAULT_JOB);
-        stage = new Stage(DEFAULT_STAGE);
+        round = new Round(DEFAULT_ROUND);
         skills = new HashSet<>();
     }
 
@@ -50,7 +50,7 @@ public class ApplicantBuilder {
         phone = applicantToCopy.getPhone();
         email = applicantToCopy.getEmail();
         job = applicantToCopy.getJob();
-        stage = applicantToCopy.getStage();
+        round = applicantToCopy.getRound();
         skills = new HashSet<>(applicantToCopy.getSkills());
     }
 
@@ -79,10 +79,10 @@ public class ApplicantBuilder {
     }
 
     /**
-     * Sets the {@code Stage} of the {@code Applicant} that we are building.
+     * Sets the {@code Round} of the {@code Applicant} that we are building.
      */
-    public ApplicantBuilder withStage(String stage) {
-        this.stage = new Stage(stage);
+    public ApplicantBuilder withRound(String round) {
+        this.round = new Round(round);
         return this;
     }
 
@@ -103,7 +103,7 @@ public class ApplicantBuilder {
     }
 
     public Applicant build() {
-        return new Applicant(name, phone, email, job, stage, skills);
+        return new Applicant(name, phone, email, job, round, skills);
     }
 
 }
