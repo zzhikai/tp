@@ -35,7 +35,7 @@ public class ApplicantCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private FlowPane stage;
+    private Label stage;
     @FXML
     private Label job;
     @FXML
@@ -53,7 +53,7 @@ public class ApplicantCard extends UiPart<Region> {
         name.setText(applicant.getName().fullName);
         phone.setText(applicant.getPhone().value);
         job.setText(applicant.getJob().value);
-        stage.getChildren().add(new Label(applicant.getStage().value));
+        stage.setText(applicant.getStage().value);
         email.setText(applicant.getEmail().value);
         applicant.getSkills().stream()
                 .sorted(Comparator.comparing(skill -> skill.skillName))
