@@ -18,7 +18,7 @@ import seedu.linkedout.model.applicant.Email;
 import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
-import seedu.linkedout.model.applicant.Stage;
+import seedu.linkedout.model.applicant.Round;
 import seedu.linkedout.model.skill.Skill;
 
 
@@ -26,14 +26,14 @@ public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_JOB = " ";
-    private static final String INVALID_STAGE = " ";
+    private static final String INVALID_ROUND = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_SKILL = "Skill With Too Many Words Inside";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_JOB = "Software Engineer";
-    private static final String VALID_STAGE = "Technical Interview";
+    private static final String VALID_ROUND = "Technical Interview";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_SKILL_1 = "Python";
     private static final String VALID_SKILL_2 = "Java";
@@ -107,26 +107,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseStage_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseStage((String) null));
+    public void parseRound_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRound((String) null));
     }
 
     @Test
-    public void parseStage_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseStage(INVALID_STAGE));
+    public void parseRound_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRound(INVALID_ROUND));
     }
 
     @Test
-    public void parseStage_validValueWithoutWhitespace_returnsStage() throws Exception {
-        Stage expectedStage = new Stage(VALID_STAGE);
-        assertEquals(expectedStage, ParserUtil.parseStage(VALID_STAGE));
+    public void parseRound_validValueWithoutWhitespace_returnsRound() throws Exception {
+        Round expectedRound = new Round(VALID_ROUND);
+        assertEquals(expectedRound, ParserUtil.parseRound(VALID_ROUND));
     }
 
     @Test
-    public void parseStage_validValueWithWhitespace_returnsTrimmedStage() throws Exception {
-        String stageWithWhitespace = WHITESPACE + VALID_STAGE + WHITESPACE;
-        Stage expectedStage = new Stage(VALID_STAGE);
-        assertEquals(expectedStage, ParserUtil.parseStage(stageWithWhitespace));
+    public void parseRound_validValueWithWhitespace_returnsTrimmedRound() throws Exception {
+        String roundWithWhitespace = WHITESPACE + VALID_ROUND + WHITESPACE;
+        Round expectedRound = new Round(VALID_ROUND);
+        assertEquals(expectedRound, ParserUtil.parseRound(roundWithWhitespace));
     }
     @Test
     public void parseJob_null_throwsNullPointerException() {

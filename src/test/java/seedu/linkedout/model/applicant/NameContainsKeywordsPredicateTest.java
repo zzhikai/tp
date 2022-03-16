@@ -72,10 +72,10 @@ public class NameContainsKeywordsPredicateTest {
         predicate = new seedu.linkedout.model.applicant.NameContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new ApplicantBuilder().withName("Alice Bob").build()));
 
-        // Keywords match phone, email, job and stage, but does not match name
+        // Keywords match phone, email, job and round, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com",
                 "Engineer", "Interview"));
         assertFalse(predicate.test(new ApplicantBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withJob("Engineer").withStage("Interview").build()));
+                .withEmail("alice@email.com").withJob("Engineer").withRound("Interview").build()));
     }
 }

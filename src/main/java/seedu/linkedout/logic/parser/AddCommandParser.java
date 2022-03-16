@@ -5,8 +5,8 @@ import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ROUND;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_SKILL;
-import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_STAGE;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -18,7 +18,7 @@ import seedu.linkedout.model.applicant.Email;
 import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
-import seedu.linkedout.model.applicant.Stage;
+import seedu.linkedout.model.applicant.Round;
 import seedu.linkedout.model.skill.Skill;
 
 /**
@@ -34,9 +34,9 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_JOB,
-                        PREFIX_STAGE, PREFIX_SKILL);
+                        PREFIX_ROUND, PREFIX_SKILL);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_JOB, PREFIX_STAGE, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_JOB, PREFIX_ROUND, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -45,10 +45,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Job job = ParserUtil.parseJob(argMultimap.getValue(PREFIX_JOB).get());
-        Stage stage = ParserUtil.parseStage(argMultimap.getValue(PREFIX_STAGE).get());
+        Round round = ParserUtil.parseRound(argMultimap.getValue(PREFIX_ROUND).get());
         Set<Skill> skillList = ParserUtil.parseSkills(argMultimap.getAllValues(PREFIX_SKILL));
 
-        Applicant applicant = new Applicant(name, phone, email, job, stage, skillList);
+        Applicant applicant = new Applicant(name, phone, email, job, round, skillList);
 
         return new AddCommand(applicant);
     }
