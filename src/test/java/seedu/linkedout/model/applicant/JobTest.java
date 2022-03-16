@@ -1,11 +1,22 @@
 package seedu.linkedout.model.applicant;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.linkedout.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 public class JobTest {
+
+    static final int ASCII_CHARACTER_EXCLAMATION_MARK = 33;
+    static final int ASCII_CHARACTER_BACKSLASH = 47;
+    static final int ASCII_CHARACTER_COLON = 58;
+    static final int ASCII_CHARACTER_AT = 64;
+    static final int ASCII_CHARACTER_SQUARE_BRACKET = 91;
+    static final int ASCII_CHARACTER_BACK_TICK = 96;
+    static final int ASCII_CHARACTER_LEFT_CURLY_BRACE = 123;
+    static final int ASCII_CHARACTER_DEL = 127;
 
     @Test
     public void constructor_emptyJob_throwsIllegalArgumentException() {
@@ -40,14 +51,6 @@ public class JobTest {
 
     @Test
     public void isValidJob_nonAlphaNumeric_false() {
-        final int ASCII_CHARACTER_EXCLAMATION_MARK = 33;
-        final int ASCII_CHARACTER_BACKSLASH = 47;
-        final int ASCII_CHARACTER_COLON = 58;
-        final int ASCII_CHARACTER_AT = 64;
-        final int ASCII_CHARACTER_SQUARE_BRACKET = 91;
-        final int ASCII_CHARACTER_BACK_TICK = 96;
-        final int ASCII_CHARACTER_LEFT_CURLY_BRACE = 123;
-        final int ASCII_CHARACTER_DEL = 127;
 
         char character = ASCII_CHARACTER_EXCLAMATION_MARK;
         while (character <= ASCII_CHARACTER_BACKSLASH) {
@@ -57,7 +60,7 @@ public class JobTest {
         }
 
         character = ASCII_CHARACTER_COLON;
-        while(character <= ASCII_CHARACTER_AT) {
+        while (character <= ASCII_CHARACTER_AT) {
             String jobValue = String.valueOf(character);
             assertFalse(Job.isValidJob(jobValue));
             character++;
