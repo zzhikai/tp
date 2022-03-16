@@ -27,7 +27,7 @@ LinkedOUT is the only application that any experienced recruiter needs. LinkedOU
 
   * **`add`**`n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas` : Adds an applicant named `Bob` to the list of applicants.
 
-  * **`delete`**`INDEX` : Deletes Bob from the list of applicants.
+  * **`delete`**`INDEX` : Deletes the applicant from the list of applicants.
 
   * **`exit`** : Exits the app.
 
