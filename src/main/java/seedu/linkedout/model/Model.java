@@ -53,7 +53,7 @@ public interface Model {
     ReadOnlyLinkedout getLinkedout();
 
     /**
-     * Returns true if a applicant with the same identity as {@code applicant} exists in the linkedout app.
+     * Returns true if an applicant with the same identity as {@code applicant} exists in the linkedout app.
      */
     boolean hasApplicant(Applicant applicant);
 

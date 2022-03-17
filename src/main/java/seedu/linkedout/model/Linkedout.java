@@ -59,7 +59,7 @@ public class Linkedout implements ReadOnlyLinkedout {
     //// applicant-level operations
 
     /**
-     * Returns true if a applicant with the same identity as {@code applicant} exists in the linkedout book.
+     * Returns true if an applicant with the same identity as {@code applicant} exists in the linkedout app.
      */
     public boolean hasApplicant(Applicant applicant) {
         requireNonNull(applicant);

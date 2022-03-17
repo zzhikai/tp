@@ -67,7 +67,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String linkedout} into an {@code Job}.
+     * Parses a {@code String job} into a {@code Job}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code job} is invalid.
@@ -82,7 +82,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String linkedout} into an {@code Round}.
+     * Parses a {@code String round} into a {@code Round}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code round} is invalid.
