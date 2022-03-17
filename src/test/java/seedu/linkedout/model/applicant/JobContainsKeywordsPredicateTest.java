@@ -75,6 +75,6 @@ public class JobContainsKeywordsPredicateTest {
         // Keywords match name ,phone, email and stage, but does not match job
         predicate = new JobContainsKeywordsPredicate(Arrays.asList("Alice", "12345", "alice@email.com", "Interview"));
         assertFalse(predicate.test(new ApplicantBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withJob("Engineer").withStage("Interview").build()));
+                .withEmail("alice@email.com").withJob("Engineer").withRound("Interview").build()));
     }
 }
