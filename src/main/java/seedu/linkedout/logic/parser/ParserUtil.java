@@ -13,7 +13,7 @@ import seedu.linkedout.model.applicant.Email;
 import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
-import seedu.linkedout.model.applicant.Stage;
+import seedu.linkedout.model.applicant.Round;
 import seedu.linkedout.model.skill.Skill;
 
 /**
@@ -67,7 +67,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String linkedout} into an {@code Job}.
+     * Parses a {@code String job} into a {@code Job}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code job} is invalid.
@@ -82,18 +82,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String linkedout} into an {@code Stage}.
+     * Parses a {@code String round} into a {@code Round}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code stage} is invalid.
+     * @throws ParseException if the given {@code round} is invalid.
      */
-    public static Stage parseStage(String stage) throws ParseException {
-        requireNonNull(stage);
-        String trimmedStage = stage.trim();
-        if (!Stage.isValidStage(trimmedStage)) {
-            throw new ParseException(Stage.MESSAGE_CONSTRAINTS);
+    public static Round parseRound(String round) throws ParseException {
+        requireNonNull(round);
+        String trimmedRound = round.trim();
+        if (!Round.isValidRound(trimmedRound)) {
+            throw new ParseException(Round.MESSAGE_CONSTRAINTS);
         }
-        return new Stage(trimmedStage);
+        return new Round(trimmedRound);
     }
 
     /**

@@ -20,20 +20,20 @@ public class Applicant {
     private final Email email;
 
     // Data fields
-    private final Stage stage;
+    private final Round round;
     private final Job job;
     private final Set<Skill> skills = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Applicant(Name name, Phone phone, Email email, Job job, Stage stage, Set<Skill> skills) {
-        requireAllNonNull(name, phone, email, job, stage, skills);
+    public Applicant(Name name, Phone phone, Email email, Job job, Round round, Set<Skill> skills) {
+        requireAllNonNull(name, phone, email, job, round, skills);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.job = job;
-        this.stage = stage;
+        this.round = round;
         this.skills.addAll(skills);
     }
 
@@ -49,8 +49,8 @@ public class Applicant {
         return email;
     }
 
-    public Stage getStage() {
-        return stage;
+    public Round getRound() {
+        return round;
     }
 
     public Job getJob() {
@@ -96,7 +96,7 @@ public class Applicant {
         return otherApplicant.getName().equals(getName())
                 && otherApplicant.getPhone().equals(getPhone())
                 && otherApplicant.getEmail().equals(getEmail())
-                && otherApplicant.getStage().equals(getStage())
+                && otherApplicant.getRound().equals(getRound())
                 && otherApplicant.getJob().equals(getJob())
                 && otherApplicant.getSkills().equals(getSkills());
     }
@@ -104,7 +104,7 @@ public class Applicant {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, job, stage, skills);
+        return Objects.hash(name, phone, email, job, round, skills);
     }
 
     @Override
@@ -117,8 +117,8 @@ public class Applicant {
                 .append(getEmail())
                 .append("; Job: ")
                 .append(getJob())
-                .append("; Stage: ")
-                .append(getStage());
+                .append("; Round: ")
+                .append(getRound());
 
         Set<Skill> skills = getSkills();
         if (!skills.isEmpty()) {

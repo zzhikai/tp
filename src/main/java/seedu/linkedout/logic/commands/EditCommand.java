@@ -5,8 +5,8 @@ import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ROUND;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_SKILL;
-import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_STAGE;
 import static seedu.linkedout.model.Model.PREDICATE_SHOW_ALL_APPLICANTS;
 
 import java.util.Collections;
@@ -25,7 +25,7 @@ import seedu.linkedout.model.applicant.Email;
 import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
-import seedu.linkedout.model.applicant.Stage;
+import seedu.linkedout.model.applicant.Round;
 import seedu.linkedout.model.skill.Skill;
 
 /**
@@ -43,7 +43,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_JOB + "JOB] "
-            + "[" + PREFIX_STAGE + "STAGE] "
+            + "[" + PREFIX_ROUND + "ROUND] "
             + "[" + PREFIX_SKILL + "SKILL]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -51,7 +51,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_APPLICANT_SUCCESS = "Edited Applicant: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_APPLICANT = "This applicant already exists in the linkedout book.";
+    public static final String MESSAGE_DUPLICATE_APPLICANT = "This applicant already exists in the LinkedOUT app.";
 
     private final Index index;
     private final EditApplicantDescriptor editApplicantDescriptor;
@@ -101,9 +101,9 @@ public class EditCommand extends Command {
         Phone updatedPhone = editApplicantDescriptor.getPhone().orElse(applicantToEdit.getPhone());
         Email updatedEmail = editApplicantDescriptor.getEmail().orElse(applicantToEdit.getEmail());
         Job updatedJob = editApplicantDescriptor.getJob().orElse(applicantToEdit.getJob());
-        Stage updatedStage = editApplicantDescriptor.getStage().orElse(applicantToEdit.getStage());
+        Round updatedRound = editApplicantDescriptor.getRound().orElse(applicantToEdit.getRound());
         Set<Skill> updatedSkills = editApplicantDescriptor.getSkills().orElse(applicantToEdit.getSkills());
-        return new Applicant(updatedName, updatedPhone, updatedEmail, updatedJob, updatedStage, updatedSkills);
+        return new Applicant(updatedName, updatedPhone, updatedEmail, updatedJob, updatedRound, updatedSkills);
     }
 
     @Override
@@ -133,7 +133,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Job job;
-        private Stage stage;
+        private Round round;
         private Set<Skill> skills;
 
         public EditApplicantDescriptor() {}
@@ -147,7 +147,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setJob(toCopy.job);
-            setStage(toCopy.stage);
+            setRound(toCopy.round);
             setSkills(toCopy.skills);
         }
 
@@ -155,7 +155,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, job, stage, skills);
+            return CollectionUtil.isAnyNonNull(name, phone, email, job, round, skills);
         }
 
         public void setName(Name name) {
@@ -182,12 +182,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setStage(Stage stage) {
-            this.stage = stage;
+        public void setRound(Round round) {
+            this.round = round;
         }
 
-        public Optional<Stage> getStage() {
-            return Optional.ofNullable(stage);
+        public Optional<Round> getRound() {
+            return Optional.ofNullable(round);
         }
         public void setJob(Job job) {
             this.job = job;
@@ -233,7 +233,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getJob().equals(e.getJob())
-                    && getStage().equals(e.getStage())
+                    && getRound().equals(e.getRound())
                     && getSkills().equals(e.getSkills());
         }
     }

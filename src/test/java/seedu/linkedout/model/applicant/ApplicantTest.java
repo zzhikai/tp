@@ -6,8 +6,8 @@ import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_JOB_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_ROUND_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_SKILL_PYTHON;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_STAGE_BOB;
 import static seedu.linkedout.testutil.Assert.assertThrows;
 import static seedu.linkedout.testutil.TypicalApplicants.ALICE;
 import static seedu.linkedout.testutil.TypicalApplicants.BOB;
@@ -34,7 +34,7 @@ public class ApplicantTest {
 
         // same name, all other attributes different -> returns true
         Applicant editedAlice = new ApplicantBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withJob(VALID_JOB_BOB).withStage(VALID_STAGE_BOB).withSkills(VALID_SKILL_PYTHON).build();
+                .withJob(VALID_JOB_BOB).withRound(VALID_ROUND_BOB).withSkills(VALID_SKILL_PYTHON).build();
         assertTrue(ALICE.isSameApplicant(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -85,8 +85,8 @@ public class ApplicantTest {
         editedAlice = new ApplicantBuilder(ALICE).withJob(VALID_JOB_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different stage -> returns false
-        editedAlice = new ApplicantBuilder(ALICE).withStage(VALID_STAGE_BOB).build();
+        // different Round -> returns false
+        editedAlice = new ApplicantBuilder(ALICE).withRound(VALID_ROUND_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false

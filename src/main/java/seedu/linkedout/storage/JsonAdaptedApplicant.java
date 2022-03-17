@@ -15,7 +15,7 @@ import seedu.linkedout.model.applicant.Email;
 import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
-import seedu.linkedout.model.applicant.Stage;
+import seedu.linkedout.model.applicant.Round;
 import seedu.linkedout.model.skill.Skill;
 
 /**
@@ -29,7 +29,7 @@ class JsonAdaptedApplicant {
     private final String phone;
     private final String email;
     private final String job;
-    private final String stage;
+    private final String round;
     private final List<JsonAdaptedSkill> skilled = new ArrayList<>();
 
     /**
@@ -38,13 +38,13 @@ class JsonAdaptedApplicant {
     @JsonCreator
     public JsonAdaptedApplicant(@JsonProperty("name") String name,
                                 @JsonProperty("phone") String phone, @JsonProperty("email") String email,
-                                @JsonProperty("job") String job, @JsonProperty("stage") String stage,
+                                @JsonProperty("job") String job, @JsonProperty("round") String round,
                                 @JsonProperty("skilled") List<JsonAdaptedSkill> skills) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.job = job;
-        this.stage = stage;
+        this.round = round;
         if (skills != null) {
             this.skilled.addAll(skills);
         }
@@ -58,7 +58,7 @@ class JsonAdaptedApplicant {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         job = source.getJob().value;
-        stage = source.getStage().value;
+        round = source.getRound().value;
         skilled.addAll(source.getSkills().stream()
                 .map(JsonAdaptedSkill::new)
                 .collect(Collectors.toList()));
@@ -108,16 +108,16 @@ class JsonAdaptedApplicant {
 
         final Job modelJob = new Job(job);
 
-        if (stage == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Stage.class.getSimpleName()));
+        if (round == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Round.class.getSimpleName()));
         }
-        if (!Stage.isValidStage(stage)) {
-            throw new IllegalValueException(Stage.MESSAGE_CONSTRAINTS);
+        if (!Round.isValidRound(round)) {
+            throw new IllegalValueException(Round.MESSAGE_CONSTRAINTS);
         }
-        final Stage modelStage = new Stage(stage);
+        final Round modelRound = new Round(round);
 
         final Set<Skill> modelSkills = new HashSet<>(applicantSkills);
-        return new Applicant(modelName, modelPhone, modelEmail, modelJob, modelStage, modelSkills);
+        return new Applicant(modelName, modelPhone, modelEmail, modelJob, modelRound, modelSkills);
     }
 
 }
