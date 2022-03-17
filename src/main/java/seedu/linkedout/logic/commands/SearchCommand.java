@@ -1,10 +1,13 @@
 package seedu.linkedout.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_JOB;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.linkedout.commons.core.Messages;
 import seedu.linkedout.model.Model;
-import seedu.linkedout.model.applicant.NameContainsKeywordsPredicate;
+import seedu.linkedout.model.applicant.KeywordsPredicate;
+
 
 /**
  * search on applicant(s) in linkedout app whose name contains any of the argument keywords.
@@ -14,14 +17,18 @@ public class SearchCommand extends Command {
 
     public static final String COMMAND_WORD = "search";
 
+    public static final String MESSAGE_CONSTRAINTS = "Keyword(s) should not be empty";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Search an overview of a specific applicant"
-            + "specified by applicant's name (case-insensitive) and displays the applicant's information.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + "Steve";
+            + "Parameters: "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_JOB + "Job "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " Steve";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final KeywordsPredicate predicate;
 
-    public SearchCommand(NameContainsKeywordsPredicate predicate) {
+
+    public SearchCommand(KeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
