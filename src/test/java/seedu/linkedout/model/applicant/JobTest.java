@@ -110,7 +110,7 @@ public class JobTest {
     }
 
     @Test
-    public void equals_otherJobSameValue_true() {
+    public void equals_otherJobSameTypeDifferentValue_false() {
         Job job = new Job("job");
         Job otherJob = new Job("otherJob");
         assertFalse(job.equals(otherJob));
