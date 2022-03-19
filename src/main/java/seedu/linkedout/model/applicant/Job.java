@@ -9,13 +9,13 @@ import static seedu.linkedout.commons.util.AppUtil.checkArgument;
  */
 public class Job {
 
-    public static final String MESSAGE_CONSTRAINTS = "Jobs can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Jobs can only be alphanumeric and it should not be blank";
 
     /*
      * The first character of the job must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String value;
 
