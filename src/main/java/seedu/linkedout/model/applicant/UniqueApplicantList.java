@@ -17,7 +17,7 @@ import seedu.linkedout.model.applicant.exceptions.DuplicateApplicantException;
  * A applicant is considered unique by comparing using {@code Applicant#isSameApplicant(applicant)}. As such, adding
  * and updating of applicants uses Applicant#isSameApplicant(Applicant) for equality so as to ensure that the applicant
  * being added or updated is unique in terms of identity in the UniqueApplicantList.
- * However, the removal of a applicant uses Applicant#equals(Object) so as to ensure that the applicant with exactly
+ * However, the removal of an applicant uses Applicant#equals(Object) so as to ensure that the applicant with exactly
  * the same fields will be removed.
  *
  * Supports a minimal set of list operations.
@@ -39,7 +39,7 @@ public class UniqueApplicantList implements Iterable<Applicant> {
     }
 
     /**
-     * Adds a applicant to the list.
+     * Adds an applicant to the list.
      * The applicant must not already exist in the list.
      */
     public void add(Applicant toAdd) {

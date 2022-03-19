@@ -6,8 +6,8 @@ import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ROUND;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_SKILL;
-import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_STAGE;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -34,7 +34,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_JOB, PREFIX_STAGE, PREFIX_SKILL);
+                        PREFIX_JOB, PREFIX_ROUND, PREFIX_SKILL);
 
         Index index;
 
@@ -57,8 +57,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_JOB).isPresent()) {
             editApplicantDescriptor.setJob(ParserUtil.parseJob(argMultimap.getValue(PREFIX_JOB).get()));
         }
-        if (argMultimap.getValue(PREFIX_STAGE).isPresent()) {
-            editApplicantDescriptor.setStage(ParserUtil.parseStage(argMultimap.getValue(PREFIX_STAGE).get()));
+        if (argMultimap.getValue(PREFIX_ROUND).isPresent()) {
+            editApplicantDescriptor.setRound(ParserUtil.parseRound(argMultimap.getValue(PREFIX_ROUND).get()));
         }
         parseSkillsForEdit(argMultimap.getAllValues(PREFIX_SKILL)).ifPresent(editApplicantDescriptor::setSkills);
 

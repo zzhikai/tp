@@ -10,7 +10,7 @@ import seedu.linkedout.model.applicant.Email;
 import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
-import seedu.linkedout.model.applicant.Stage;
+import seedu.linkedout.model.applicant.Round;
 import seedu.linkedout.model.skill.Skill;
 
 /**
@@ -37,7 +37,7 @@ public class EditApplicantDescriptorBuilder {
         descriptor.setPhone(applicant.getPhone());
         descriptor.setEmail(applicant.getEmail());
         descriptor.setJob(applicant.getJob());
-        descriptor.setStage(applicant.getStage());
+        descriptor.setRound(applicant.getRound());
         descriptor.setSkills(applicant.getSkills());
     }
 
@@ -74,10 +74,10 @@ public class EditApplicantDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Stage} of the {@code EditApplicantDescriptor} that we are building.
+     * Sets the {@code Round} of the {@code EditApplicantDescriptor} that we are building.
      */
-    public EditApplicantDescriptorBuilder withStage(String stage) {
-        descriptor.setStage(new Stage(stage));
+    public EditApplicantDescriptorBuilder withRound(String round) {
+        descriptor.setRound(new Round(round));
         return this;
     }
 

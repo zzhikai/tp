@@ -7,17 +7,17 @@ import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_JOB_DESC;
 import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_ROUND_DESC;
 import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_SKILL_DESC;
-import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_STAGE_DESC;
 import static seedu.linkedout.logic.commands.CommandTestUtil.JOB_DESC_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.JOB_DESC_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.linkedout.logic.commands.CommandTestUtil.ROUND_DESC_AMY;
+import static seedu.linkedout.logic.commands.CommandTestUtil.ROUND_DESC_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.SKILL_DESC_MARKETING;
 import static seedu.linkedout.logic.commands.CommandTestUtil.SKILL_DESC_PYTHON;
-import static seedu.linkedout.logic.commands.CommandTestUtil.STAGE_DESC_AMY;
-import static seedu.linkedout.logic.commands.CommandTestUtil.STAGE_DESC_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_JOB_AMY;
@@ -25,10 +25,10 @@ import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_JOB_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_ROUND_AMY;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_ROUND_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_SKILL_MARKETING;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_SKILL_PYTHON;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_STAGE_AMY;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_STAGE_BOB;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_SKILL;
 import static seedu.linkedout.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.linkedout.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -45,7 +45,7 @@ import seedu.linkedout.model.applicant.Email;
 import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
-import seedu.linkedout.model.applicant.Stage;
+import seedu.linkedout.model.applicant.Round;
 import seedu.linkedout.model.skill.Skill;
 import seedu.linkedout.testutil.EditApplicantDescriptorBuilder;
 
@@ -91,7 +91,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_JOB_DESC, Job.MESSAGE_CONSTRAINTS); // invalid job
-        assertParseFailure(parser, "1" + INVALID_STAGE_DESC, Stage.MESSAGE_CONSTRAINTS); // invalid stage
+        assertParseFailure(parser, "1" + INVALID_ROUND_DESC, Round.MESSAGE_CONSTRAINTS); // invalid round
         assertParseFailure(parser, "1" + INVALID_SKILL_DESC, Skill.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
@@ -112,18 +112,18 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_JOB_AMY
-                + VALID_STAGE_AMY + VALID_PHONE_AMY, Name.MESSAGE_CONSTRAINTS);
+                + VALID_ROUND_AMY + VALID_PHONE_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_APPLICANT;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + SKILL_DESC_PYTHON
-                + EMAIL_DESC_AMY + JOB_DESC_AMY + STAGE_DESC_AMY + NAME_DESC_AMY + SKILL_DESC_MARKETING;
+                + EMAIL_DESC_AMY + JOB_DESC_AMY + ROUND_DESC_AMY + NAME_DESC_AMY + SKILL_DESC_MARKETING;
 
         EditApplicantDescriptor descriptor = new EditApplicantDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withJob(VALID_JOB_AMY)
-                .withStage(VALID_STAGE_AMY).withSkills(VALID_SKILL_PYTHON, VALID_SKILL_MARKETING).build();
+                .withRound(VALID_ROUND_AMY).withSkills(VALID_SKILL_PYTHON, VALID_SKILL_MARKETING).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -168,9 +168,9 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // stage
-        userInput = targetIndex.getOneBased() + STAGE_DESC_AMY;
-        descriptor = new EditApplicantDescriptorBuilder().withStage(VALID_STAGE_AMY).build();
+        // round
+        userInput = targetIndex.getOneBased() + ROUND_DESC_AMY;
+        descriptor = new EditApplicantDescriptorBuilder().withRound(VALID_ROUND_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -184,13 +184,13 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_APPLICANT;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + JOB_DESC_AMY + STAGE_DESC_AMY + EMAIL_DESC_AMY
-                + SKILL_DESC_MARKETING + PHONE_DESC_AMY + JOB_DESC_AMY + STAGE_DESC_AMY + EMAIL_DESC_AMY
-                + SKILL_DESC_PYTHON + PHONE_DESC_BOB + STAGE_DESC_BOB + JOB_DESC_BOB
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + JOB_DESC_AMY + ROUND_DESC_AMY + EMAIL_DESC_AMY
+                + SKILL_DESC_MARKETING + PHONE_DESC_AMY + JOB_DESC_AMY + ROUND_DESC_AMY + EMAIL_DESC_AMY
+                + SKILL_DESC_PYTHON + PHONE_DESC_BOB + ROUND_DESC_BOB + JOB_DESC_BOB
                 + EMAIL_DESC_BOB + SKILL_DESC_MARKETING;
 
         EditApplicantDescriptor descriptor = new EditApplicantDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withJob(VALID_JOB_BOB).withStage(VALID_STAGE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withJob(VALID_JOB_BOB).withRound(VALID_ROUND_BOB)
                 .withSkills(VALID_SKILL_MARKETING, VALID_SKILL_PYTHON).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -207,10 +207,10 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + JOB_DESC_BOB + STAGE_DESC_BOB
+        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + JOB_DESC_BOB + ROUND_DESC_BOB
                 + PHONE_DESC_BOB;
         descriptor = new EditApplicantDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withJob(VALID_JOB_BOB).withStage(VALID_STAGE_BOB).build();
+                .withJob(VALID_JOB_BOB).withRound(VALID_ROUND_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
