@@ -22,7 +22,7 @@ public class SearchCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Search an overview of a specific applicant"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_JOB + "Job "
+            + PREFIX_JOB + "JOB "
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " Steve";
 
     private final KeywordsPredicate predicate;
