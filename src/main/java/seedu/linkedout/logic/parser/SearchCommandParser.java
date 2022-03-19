@@ -27,8 +27,10 @@ public class SearchCommandParser implements Parser<SearchCommand> {
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_JOB);
 
-        if (!anyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_JOB)
-                || !argMultimap.getPreamble().isEmpty() || args.isEmpty()) {
+        boolean noPrefixesPresent = !anyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_JOB);
+        boolean noEmptyPreamble = !argMultimap.getPreamble().isEmpty();
+        boolean emptyArguments = args.isEmpty();
+        if (noPrefixesPresent || noEmptyPreamble || emptyArguments) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
         }
@@ -42,7 +44,10 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         }
     }
 
-
+    /**
+     * Returns true if any of the prefixes are not empty  {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
     private static boolean anyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
