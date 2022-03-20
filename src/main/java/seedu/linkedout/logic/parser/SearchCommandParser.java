@@ -27,10 +27,10 @@ public class SearchCommandParser implements Parser<SearchCommand> {
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_JOB);
 
-        boolean noPrefixesPresent = !anyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_JOB);
-        boolean noEmptyPreamble = !argMultimap.getPreamble().isEmpty();
-        boolean emptyArguments = args.isEmpty();
-        if (noPrefixesPresent || noEmptyPreamble || emptyArguments) {
+        boolean hasNoPrefixesPresent = !anyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_JOB);
+        boolean hasNoEmptyPreamble = !argMultimap.getPreamble().isEmpty();
+        boolean hasEmptyArguments = args.isEmpty();
+        if (hasNoPrefixesPresent || hasNoEmptyPreamble || hasEmptyArguments) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
         }
