@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.linkedout.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.linkedout.testutil.Assert.assertThrows;
 import static seedu.linkedout.testutil.TypicalIndexes.INDEX_FIRST_APPLICANT;
 
@@ -83,7 +84,8 @@ public class LinkedoutParserTest {
     public void parseCommand_search() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         SearchCommand command = (SearchCommand) parser.parseCommand(
-                SearchCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                SearchCommand.COMMAND_WORD + " "
+                        + PREFIX_NAME.getPrefix() + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new SearchCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
