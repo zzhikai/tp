@@ -19,10 +19,10 @@ public class SearchCommand extends Command {
 
     public static final String MESSAGE_CONSTRAINTS = "Keyword(s) should not be empty";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Search an overview of a specific applicant"
-            + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_JOB + "JOB "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Search an overview of a specific applicant \n"
+            + "Parameters: must contain at least one prefix "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_JOB + "JOB] \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " Steve";
 
     private final KeywordsPredicate predicate;
