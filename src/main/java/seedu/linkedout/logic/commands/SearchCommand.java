@@ -4,9 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 
+import javafx.collections.transformation.FilteredList;
 import seedu.linkedout.commons.core.Messages;
 import seedu.linkedout.model.Model;
+import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.KeywordsPredicate;
+
+import java.util.List;
+import java.util.function.Predicate;
 
 
 /**
@@ -25,20 +30,24 @@ public class SearchCommand extends Command {
             + "[" + PREFIX_JOB + "JOB] \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " Steve";
 
-    private final KeywordsPredicate predicate;
+    private final List<KeywordsPredicate> predicate;
 
 
-    public SearchCommand(KeywordsPredicate predicate) {
+    public SearchCommand(List<KeywordsPredicate> predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredApplicantList(predicate);
+//        for (int i = 0; i < predicate.size(); i++) {
+//            model.updateFilteredApplicantList(predicate.get(i));
+//        }
+        model.updateTempFilteredApplicantList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_APPLICANTS_LISTED_OVERVIEW, model.getFilteredApplicantList().size()));
+                String.format(Messages.MESSAGE_APPLICANTS_LISTED_OVERVIEW, model.getTempFilteredApplicantList().size()));
     }
+
 
     @Override
     public boolean equals(Object other) {

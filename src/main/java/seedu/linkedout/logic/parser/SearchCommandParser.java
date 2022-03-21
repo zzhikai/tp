@@ -3,12 +3,15 @@ import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.linkedout.logic.commands.SearchCommand;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
 import seedu.linkedout.model.applicant.JobContainsKeywordsPredicate;
+import seedu.linkedout.model.applicant.KeywordsPredicate;
 import seedu.linkedout.model.applicant.NameContainsKeywordsPredicate;
 
 
@@ -35,12 +38,25 @@ public class SearchCommandParser implements Parser<SearchCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
         }
 
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+        if (argMultimap.getValue(PREFIX_NAME).isPresent() && argMultimap.getValue(PREFIX_JOB).isPresent()) {
             String[] nameKeywords = getArrayOfKeywords(PREFIX_NAME, argMultimap);
-            return new SearchCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            String[] jobKeywords = getArrayOfKeywords(PREFIX_JOB, argMultimap);
+            List<KeywordsPredicate> keywordsPredicateList = new ArrayList<>();
+            keywordsPredicateList.add(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            keywordsPredicateList.add(new JobContainsKeywordsPredicate(Arrays.asList(jobKeywords)));
+
+            return new SearchCommand(keywordsPredicateList);
+
+        } else if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            String[] nameKeywords = getArrayOfKeywords(PREFIX_NAME, argMultimap);
+            List<KeywordsPredicate> keywordsPredicateList = new ArrayList<>();
+            keywordsPredicateList.add(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            return new SearchCommand(keywordsPredicateList);
         } else {
             String[] jobKeywords = getArrayOfKeywords(PREFIX_JOB, argMultimap);
-            return new SearchCommand(new JobContainsKeywordsPredicate(Arrays.asList(jobKeywords)));
+            List<KeywordsPredicate> keywordsPredicateList = new ArrayList<>();
+            keywordsPredicateList.add(new JobContainsKeywordsPredicate(Arrays.asList(jobKeywords)));
+            return new SearchCommand(keywordsPredicateList);
         }
     }
 

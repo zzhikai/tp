@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.linkedout.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.linkedout.commons.core.GuiSettings;
 import seedu.linkedout.commons.core.LogsCenter;
 import seedu.linkedout.model.applicant.Applicant;
+import seedu.linkedout.model.applicant.KeywordsPredicate;
 
 /**
  * Represents the in-memory model of the linkedout app data.
@@ -22,6 +24,7 @@ public class ModelManager implements Model {
     private final Linkedout linkedout;
     private final UserPrefs userPrefs;
     private final FilteredList<Applicant> filteredApplicants;
+    private final FilteredList<Applicant> filteredTempApplicants;
 
     /**
      * Initializes a ModelManager with the given linkedout app and userPrefs.
@@ -34,6 +37,7 @@ public class ModelManager implements Model {
         this.linkedout = new Linkedout(linkedout);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredApplicants = new FilteredList<Applicant>(this.linkedout.getApplicantList());
+        filteredTempApplicants = new FilteredList<Applicant>(this.linkedout.getApplicantList());
     }
 
     public ModelManager() {
@@ -126,6 +130,19 @@ public class ModelManager implements Model {
     public void updateFilteredApplicantList(Predicate<Applicant> predicate) {
         requireNonNull(predicate);
         filteredApplicants.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Applicant> getTempFilteredApplicantList() {
+        return filteredTempApplicants;
+    }
+
+    @Override
+    public void updateTempFilteredApplicantList(List<KeywordsPredicate> predicate) {
+        requireNonNull(predicate);
+        for (int i = 0; i < predicate.size(); i++) {
+            filteredTempApplicants.setPredicate(predicate.get(i));
+        }
     }
 
     @Override
