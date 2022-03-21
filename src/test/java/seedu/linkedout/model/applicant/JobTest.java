@@ -51,34 +51,21 @@ public class JobTest {
 
     @Test
     public void isValidJob_nonAlphaNumeric_false() {
+        // Partition of symbols with ascii values 33-47
+        assertFalse(Job.isValidJob(String.valueOf((char) ASCII_CHARACTER_EXCLAMATION_MARK)));
+        assertFalse(Job.isValidJob(String.valueOf((char) ASCII_CHARACTER_BACKSLASH)));
 
-        char character = ASCII_CHARACTER_EXCLAMATION_MARK;
-        while (character <= ASCII_CHARACTER_BACKSLASH) {
-            String jobValue = String.valueOf(character);
-            assertFalse(Job.isValidJob(jobValue));
-            character++;
-        }
+        // Partition of symbols with ascii values 58-64
+        assertFalse(Job.isValidJob(String.valueOf((char) ASCII_CHARACTER_COLON)));
+        assertFalse(Job.isValidJob(String.valueOf((char) ASCII_CHARACTER_AT)));
 
-        character = ASCII_CHARACTER_COLON;
-        while (character <= ASCII_CHARACTER_AT) {
-            String jobValue = String.valueOf(character);
-            assertFalse(Job.isValidJob(jobValue));
-            character++;
-        }
+        // Partition of symbols with ascii values 91-96
+        assertFalse(Job.isValidJob(String.valueOf((char) ASCII_CHARACTER_SQUARE_BRACKET)));
+        assertFalse(Job.isValidJob(String.valueOf((char) ASCII_CHARACTER_BACK_TICK)));
 
-        character = ASCII_CHARACTER_SQUARE_BRACKET;
-        while (character <= ASCII_CHARACTER_BACK_TICK) {
-            String jobValue = String.valueOf(character);
-            assertFalse(Job.isValidJob(jobValue));
-            character++;
-        }
-
-        character = ASCII_CHARACTER_LEFT_CURLY_BRACE;
-        while (character <= ASCII_CHARACTER_DEL) {
-            String jobValue = String.valueOf(character);
-            assertFalse(Job.isValidJob(jobValue));
-            character++;
-        }
+        // Partition of symbols with ascii values 123-127
+        assertFalse(Job.isValidJob(String.valueOf((char) ASCII_CHARACTER_LEFT_CURLY_BRACE)));
+        assertFalse(Job.isValidJob(String.valueOf((char) ASCII_CHARACTER_DEL)));
     }
 
     @Test
