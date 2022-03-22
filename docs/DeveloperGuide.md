@@ -419,9 +419,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+* **LO**: LinkedOUT
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **OOP**: Object Oriented Programming: A programming paradigm that models real life objects.
-* **AB3**: Address Book 3
+* **API**: Application Programming Interface: Refers to a software acting as an intermediary allowing two applications
+  to communicate with each other.
 * **JSON**: JavaScript Object Notation: An open standard file format which we use to read and write data from.
 * **GUI**: Graphical User Interface: Refers to the user interface that the user interacts with.
 * **CLI**: Command Line Interface: Refers to a computer program that accepts text inputs.

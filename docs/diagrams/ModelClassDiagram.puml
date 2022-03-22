@@ -5,46 +5,46 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyLinkedout" as ReadOnlyLinkedout
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class Linkedout
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
+Class UniqueApplicantList
+Class Applicant
+Class Job
+Class Stage
 Class Name
 Class Phone
-Class Tag
+Class Skill
 
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Linkedout .up.|> ReadOnlyLinkedout
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyLinkedout
+ModelManager -left-> "1" Linkedout
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Linkedout *--> "1" UniqueApplicantList
+UniqueApplicantList --> "~* all" Applicant
+Applicant *--> Name
+Applicant *--> Phone
+Applicant *--> Stage
+Applicant *--> Job
+Applicant *--> "*" Skill
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Phone -[hidden]right-> Job
+Job -[hidden]right-> Stage
 
-ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" Applicant
 @enduml
