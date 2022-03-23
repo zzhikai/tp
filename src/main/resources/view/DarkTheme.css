@@ -94,30 +94,37 @@
 }
 
 .list-cell {
-    -fx-label-padding: 0 0 0 0;
+    -fx-label-padding: 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 10 0;
+    -fx-padding: 10;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-background-insets: 8;
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: white;
+    /* #3c3e3f; */
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: green;
+    /* #515658; */
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-color: yellow;
+    /* #424d5f; */
 }
 
 .list-cell:filled:selected #cardPane {
     -fx-border-color: #3e7b91;
     -fx-border-width: 1;
+    -fx-border-radius: 10;
 }
 
 .list-cell .label {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-padding: 2 0 2 0
 }
 
@@ -139,6 +146,8 @@
     -fx-border-radius: 20;
     -fx-background-color: white;
     -fx-font-family: "Segoe UI Bold";
+    -fx-border-width: 2;
+    -fx-border-color: derive(grey, 50%);
 }
 
 .list-cell .cell_small_label_round {
@@ -324,6 +333,7 @@
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
+    -fx-vgap: 20;
 }
 
 #commandTypeLabel {
