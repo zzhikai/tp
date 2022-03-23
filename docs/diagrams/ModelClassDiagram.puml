@@ -15,7 +15,7 @@ Class UserPrefs
 Class UniqueApplicantList
 Class Applicant
 Class Job
-Class Stage
+Class Round
 Class Name
 Class Phone
 Class Skill
@@ -38,13 +38,13 @@ Linkedout *--> "1" UniqueApplicantList
 UniqueApplicantList --> "~* all" Applicant
 Applicant *--> Name
 Applicant *--> Phone
-Applicant *--> Stage
+Applicant *--> Round
 Applicant *--> Job
 Applicant *--> "*" Skill
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Job
-Job -[hidden]right-> Stage
+Job -[hidden]right-> Round
 
 ModelManager -->"~* filtered" Applicant
 @enduml
