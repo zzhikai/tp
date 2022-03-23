@@ -234,9 +234,22 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### \[Proposed\] Flagging an applicant
 
-_{Explain here how the data archiving feature will be implemented}_
+The flagging feature flags an applicant as important, and will be displayed at the top of the applicant list.
+The current display of applicant relies on the ordering of the applicants in the `UniqueApplicantList`. The
+`Applicant` in the `UniqueApplicantList` are ordered in the order they are added in. This makes it difficult
+to have a custom ordering for the flagging feature.
+
+As such, the flag feature alters the `UniqueApplicantList` by changing its internal implementation from an
+`ObservableArrayList` to an `ObservablePriorityQueue`. Since an `ObservablePriorityQueue` does not exist in
+the Java library, the flag feature comes with the team's own design for an `ObservablePriorityQueue`.
+
+The `ObservablePriorityQueue` implements the Java Collections, Iterable, PriorityQueue and Observable interfaces,
+and exposes all related functionality from these relevant interfaces. 
+
+`Applicants` will also be edited to contain a boolean `flagged` for use as a comparator in the `ObservablePriorityQueue`
+
 
 
 --------------------------------------------------------------------------------------------------------------------
