@@ -14,6 +14,7 @@ Class UserPrefs
 
 Class UniqueApplicantList
 Class Applicant
+Class Email
 Class Job
 Class Round
 Class Name
@@ -38,6 +39,7 @@ Linkedout *--> "1" UniqueApplicantList
 UniqueApplicantList --> "~* all" Applicant
 Applicant *--> Name
 Applicant *--> Phone
+Applicant *--> Email
 Applicant *--> Round
 Applicant *--> Job
 Applicant *--> "*" Skill
