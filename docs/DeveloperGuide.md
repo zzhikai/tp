@@ -248,7 +248,7 @@ the Java library, the flag feature comes with the team's own design for an `Obse
 The `ObservablePriorityQueue` implements the Java Collections, Iterable, PriorityQueue and Observable interfaces,
 and exposes all related functionality from these relevant interfaces. 
 
-`Applicants` will also be edited to contain a boolean `flagged` for use as a comparator in the `ObservablePriorityQueue`
+`Applicant` will also be edited to contain a boolean `flagged` for use as a comparator in the `ObservablePriorityQueue`
 
 
 

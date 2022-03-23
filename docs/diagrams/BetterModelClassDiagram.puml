@@ -4,7 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniqueApplicantList
+Linkedout *-right-> "1" UniqueApplicantList
 UniqueApplicantList -right-> Applicant
 
 Applicant -up-> "*" Skill
