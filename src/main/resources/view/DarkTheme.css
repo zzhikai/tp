@@ -118,10 +118,11 @@
 
 .list-cell .label {
     -fx-text-fill: white;
+    -fx-padding: 2 0 2 0
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Segoe UI Bold";
     -fx-font-size: 16px;
     -fx-text-fill: #010504;
 }
@@ -136,13 +137,13 @@
     -fx-font-size: 13px;
     -fx-background-radius: 20;
     -fx-border-radius: 20;
-    -fx-padding: 2 10 2 10;
     -fx-background-color: white;
-    -fx-font-family: "Segoe UI Black";
+    -fx-font-family: "Segoe UI Bold";
 }
 
 .list-cell .cell_small_label_round {
     -fx-text-fill: black;
+    -fx-padding: 2 10 2 10;
 }
 
 .stack-pane {
@@ -351,15 +352,15 @@
 }
 
 #skills {
-    -fx-hgap: 7;
+    -fx-hgap: 5;
     -fx-vgap: 3;
 }
 
 #skills .label {
     -fx-text-fill: white;
     -fx-background-color: #000000;
-    -fx-font-family: "Segoe UI Black";
-    -fx-padding: 1 5 1 5;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-padding: 2 5 2 5;
     -fx-border-radius: 20;
     -fx-background-radius: 20;
     -fx-font-size: 11;
