@@ -18,8 +18,8 @@ package "Linkedout Storage" #F4F6F6{
 Class "<<interface>>\nLinkedoutStorage" as LinkedoutStorage
 Class JsonLinkedoutStorage
 Class JsonSerializableLinkedout
-Class JsonAdaptedPerson
-Class JsonAdaptedTag
+Class JsonAdaptedApplicant
+Class JsonAdaptedSkill
 }
 
 }
@@ -37,7 +37,7 @@ Storage -right-|> LinkedoutStorage
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonLinkedoutStorage .up.|> LinkedoutStorage
 JsonLinkedoutStorage ..> JsonSerializableLinkedout
-JsonSerializableLinkedout --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonSerializableLinkedout --> "*" JsonAdaptedApplicant
+JsonAdaptedApplicant --> "*" JsonAdaptedSkill
 
 @enduml
