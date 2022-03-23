@@ -9,7 +9,9 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.linkedout.logic.commands.SearchCommand;
+import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.JobContainsKeywordsPredicate;
+import seedu.linkedout.model.applicant.KeywordsPredicate;
 import seedu.linkedout.model.applicant.NameContainsKeywordsPredicate;
 
 public class SearchCommandParserTest {
@@ -45,10 +47,17 @@ public class SearchCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsSearchCommand() {
+        NameContainsKeywordsPredicate nameKeywordPredicate
+                = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
+        JobContainsKeywordsPredicate jobKeywordPredicate
+                = new JobContainsKeywordsPredicate(Arrays.asList("Software", "Engineer"));
+
         SearchCommand expectedNameSearchCommand =
-                new SearchCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+                new SearchCommand(nameKeywordPredicate);
         SearchCommand expectedJobSearchCommand =
-                new SearchCommand(new JobContainsKeywordsPredicate(Arrays.asList("Software", "Engineer")));
+                new SearchCommand(jobKeywordPredicate);
+        SearchCommand expectedNameAndJobSearchCommand =
+                new SearchCommand(jobKeywordPredicate.and(nameKeywordPredicate));
 
         // no leading and trailing whitespaces
         assertParseSuccess(parser, " n/Alice Bob", expectedNameSearchCommand);
@@ -65,6 +74,9 @@ public class SearchCommandParserTest {
         //case insensitive
         assertParseSuccess(parser, " n/AlIce BOb", expectedNameSearchCommand);
         assertParseSuccess(parser, " j/soFTwaRe enGiNeer", expectedJobSearchCommand);
+
+        //AND condition for different prefix
+        //assertParseSuccess(parser," n/Alice Bob j/Software Engineer", expectedNameAndJobSearchCommand);
 
     }
 
