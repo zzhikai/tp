@@ -252,7 +252,7 @@ Step 2: LinkedOUT updates the applicant with the edited information.
 
 The following sequence diagram shows how the edit operation works:
 
-![UndoSequenceDiagram](images/EditSequenceDiagram.png)
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
 
 #### Design considerations:
