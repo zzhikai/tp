@@ -10,7 +10,7 @@ participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant "NameContainsAllKeywordsPredicate" as NameContainsAllKeywordsPredicate MODEL_COLOR
+participant "p:NameContainsAllKeywordsPredicate" as NameContainsAllKeywordsPredicate MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
 end box
 
@@ -34,6 +34,13 @@ create ViewCommand
 ViewCommandParser -> ViewCommand
 activate ViewCommand
 
+create NameContainsAllKeywordsPredicate
+ViewCommand -> NameContainsAllKeywordsPredicate
+activate NameContainsAllKeywordsPredicate
+
+NameContainsAllKeywordsPredicate --> ViewCommand
+deactivate NameContainsAllKeywordsPredicate
+
 ViewCommand --> ViewCommandParser : d
 deactivate ViewCommand
 
@@ -49,15 +56,8 @@ deactivate LinkedoutParser
 LogicManager -> ViewCommand : execute()
 activate ViewCommand
 
-create NameContainsAllKeywordsPredicate
-ViewCommand -> NameContainsAllKeywordsPredicate
-activate NameContainsAllKeywordsPredicate
-
-NameContainsAllKeywordsPredicate --> ViewCommand
-deactivate NameContainsAllKeywordsPredicate
-
 create Model
-ViewCommand -> Model : getFilteredApplicantList()
+ViewCommand -> Model : getFilteredApplicantList(p)
 activate Model
 
 Model --> ViewCommand
