@@ -5,6 +5,7 @@ title: User Guide
 
 LinkedOUT is the only application that any experienced recruiter needs. LinkedOUT allows recruiters to keep track of many applicants, and the job they applied for. You can store their contact details, skills and the round of their application, all in one place.
 
+# Table of Content
 * Table of Contents
 {:toc}
 
@@ -14,7 +15,7 @@ LinkedOUT is the only application that any experienced recruiter needs. LinkedOU
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `linkedout.jar` from [here] (URL to be updated).
+1. Download the latest `linkedout.jar` from [here](https://github.com/AY2122S2-CS2103T-T09-2/tp/releases/tag/v1.3(trial)).
 
 1. Copy the file to the folder you want to use as the _home folder_ for LinkedOUT.
 
@@ -160,6 +161,9 @@ Phone Number: 99999999
 Job Applied: CEO of Apple
 Skills: Product Design  
 ```
+
+[Return to Table of Content](#Table of Content)
+
 ### Editing an applicant : `edit`
 
 Edits the details of the applicant identified by the index number used in the displayed applicant list. Existing values will be overwritten by the input values.
