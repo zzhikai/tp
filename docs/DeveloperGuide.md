@@ -203,10 +203,10 @@ As `ViewCommandParser` uses `NameContainsAllKeywordsPredicate`, the `Name` being
 Given below is an example usage scenario of how to view a specific applicant.
 
 1. The user enters the view command with the specific name, `view Alex Megos`.
-2. `LinkedoutParser` is invoked to handle the command `view` through `LinkedoutParser#parseCommand`. 
-3. It then calls upon `ViewCommandParser#parse` to check if the input is empty.
-4. If input is not empty, it passes the input to `NameContainsAllKeywordsPredicate`.
-5. The result is then initialized as a predicate in `ViewCommand`. `ViewCommand#execute` then tries to find a match.
+2. `LinkedoutParser` is invoked to handle the command `view` through `LinkedoutParser#parseCommand()`. 
+3. It then calls upon `ViewCommandParser#parse()` to check if the input is empty.
+4. If input is not empty, it passes the input to `NameContainsAllKeywordsPredicate()`.
+5. The result is then initialized as a predicate in `ViewCommand`. `ViewCommand#execute()` then tries to find a match.
 6. It then calls upon `CommandResult` to display the final result on the GUI.
 
 The following sequence diagram shows how the view operation works:
