@@ -234,7 +234,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-
 ### Edit applicant feature
 
 #### Implementation
@@ -269,6 +268,7 @@ The following sequence diagram shows how the edit operation works:
 
 _{more aspects and alternatives to be added}_
 
+
 ### Search applicant feature
 #### Rationale
 `Search`  allows for a quick view of applicant's information in the linkedout book.
@@ -285,7 +285,7 @@ Given below is an example usage scenario and how the search mechanism behaves at
 Step 1. The user enters `search n/David` command to search for applicants with partial matched name in the linkedout book. The `search` command calls `SearchCommandParser` and creates a `NameContainsKeywordsPredicate`. The predicate is pass into `Model#updateFilteredApplicantList` to filter and display applicants with partial name matching of "David" in the linkedout book.
 
 
-Step 2. The user enters `search j/Software Engineer` command to search for applicants with partial matched job name in the linkedout book. The `search` command calls `SearchCommandParser` and creates a `JobContainsKeywordsPredicate`. The predicate is pass into `Model#updateFilteredApplicantList` to filter and display applicants with partial job name matching of `Software` or `Engineer` in the linkedout book.
+Step 2. The user enters `search j/Software Engineer` command to search for applicants with partial matched job name in the linkedout book. The `search` command calls `SearchCommandParser` and creates a `JobContainsKeywordsPredicate`. The predicate is pass into `Model#updateFilteredApplicantList` to filter and display applicants with partial job name matching of "Software" or "Engineer" in the linkedout book.
 
 
 The following sequence diagram shows how the search operation works:
@@ -306,6 +306,25 @@ The following sequence diagram shows how the search operation works:
     * Cons: Inflexible use of search command.
 
 _{more aspects and alternatives to be added}_
+
+
+### \[Proposed\] Flagging an applicant
+
+The flagging feature flags an applicant as important, and will be displayed at the top of the applicant list.
+The current display of applicant relies on the ordering of the applicants in the `UniqueApplicantList`. The
+`Applicant` in the `UniqueApplicantList` are ordered in the order they are added in. This makes it difficult
+to have a custom ordering for the flagging feature.
+
+As such, the flag feature alters the `UniqueApplicantList` by changing its internal implementation from an
+`ObservableArrayList` to an `ObservablePriorityQueue`. Since an `ObservablePriorityQueue` does not exist in
+the Java library, the flag feature comes with the team's own design for an `ObservablePriorityQueue`.
+
+The `ObservablePriorityQueue` implements the Java Collections, Iterable, PriorityQueue and Observable interfaces,
+and exposes all related functionality from these relevant interfaces. 
+
+`Applicant` will also be edited to contain a boolean `flagged` for use as a comparator in the `ObservablePriorityQueue`
+
+### \[Proposed\] Data archiving
 
 --------------------------------------------------------------------------------------------------------------------
 
