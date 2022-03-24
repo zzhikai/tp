@@ -37,11 +37,11 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 Linkedout *--> "1" UniqueApplicantList
 UniqueApplicantList --> "~* all" Applicant
-Applicant *--> Name
-Applicant *--> Phone
-Applicant *--> Email
-Applicant *--> Round
-Applicant *--> Job
+Applicant *--> "1" Name
+Applicant *--> "1" Phone
+Applicant *--> "1" Email
+Applicant *--> "1" Round
+Applicant *--> "1" Job
 Applicant *--> "*" Skill
 
 Name -[hidden]right-> Phone

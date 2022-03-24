@@ -234,8 +234,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-
-### Edit applicant feature
+### Edit feature
 
 #### Implementation
 
@@ -245,15 +244,14 @@ The user need to specify an `Index` to select the applicant to edit. `editComman
 
 Given below is an example usage scenario of how an applicant is edited.
 
-Step 1: The user enters the edit command with the specific fields to edit, `edit 1 r/HR Interview`.
+1: The user enters the edit command with the specific fields to edit, `edit 1 r/HR Interview`.
 
-Step 2: LinkedOUT updates the applicant with the edited information.
+2: LinkedOUT updates the applicant with the edited information.
 
 
 The following sequence diagram shows how the edit operation works:
 
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
-
 
 #### Design considerations:
 
@@ -267,12 +265,15 @@ The following sequence diagram shows how the edit operation works:
     * Pros: Will use less memory (Do not have to create an extra applicant).
     * Cons: We must ensure that the implementation of each individual command to change an information is correct.
 
-_{more aspects and alternatives to be added}_
+### View feature
 
-### \[Proposed\] Data archiving
+#### Rationale
 
-_{Explain here how the data archiving feature will be implemented}_
 
+
+#### Implementation
+
+#### Deisgn Considertaions
 
 --------------------------------------------------------------------------------------------------------------------
 
