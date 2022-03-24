@@ -35,7 +35,6 @@ public class UiManager implements Ui {
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting UI...");
-
         //Set the application icon.
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 

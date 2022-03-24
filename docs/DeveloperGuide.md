@@ -234,6 +234,60 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### Add applicant feature
+
+#### Implementation
+
+The add command allows the user to add a new applicant to the LinkedOUT list. The add command is facilitated by creating an `AddCommand`.
+
+`AddCommand` extends `Command` and implements the `Command#execute()` method. 
+
+The following activity diagram shows what happens when the user utilises the `add` command
+
+![AddCommandActivityDiagram](images/AddCommandActivityDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source:
+ **Note:** There should only be one arrowhead at the end of every line 
+in the Activity Diagram. This is a known limitation of PlantUML.</div>
+
+Given below is an example usage scenario of how an applicant is added, and how the operation is handled by LinkedOUT: 
+
+Step 1: The user enters a valid add command, for example: `add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas s/Python s/Java`. For each command
+`LogicManager#execute()` is invoked, which calls `LinkedoutParser#parseCommand()` to separate the command word `add` and the argument 
+`n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas s/Python s/Java`
+
+Step 2: Upon identifying the add command, `AddCommandParser` is instantiated and uses `AddCommandParser#parse()` to 
+map the various prefixes to the attributes: (e.g `n/` to `Bob`, `p/` to `99999999`)
+
+Step 3: `AddCommandParser#arePrefixesPresent()` is called to ensure all the mandatory prefixes have been inputted by the user. After which
+`AddCommandParser#parse()` creates the new `Applicant`
+
+Step 4. `AddCommandParser#parse()` then initializes an `AddCommand` with the new `Applicant` as an argument. `AddCommand#execute()`
+is then called, which calls `Model#hasApplicant()` to ensure that the new `Applicant` is not a duplicate of any existing applicant in the
+`LinkedOUT`. upon completion of the check, `Model#addApplicant()` to add the new applicant in the `LinkedOUT`.
+
+Step 5: The command is complete and a `CommandResult` containing the details of the new applicant as a String is returned to 
+the user.
+
+The following sequence diagram shows how the add operation works:
+
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser`
+should not exceed the destroy marker X. This is a known limitation of PlantUML.</div>
+
+
+#### Design considerations:
+
+**Aspect: How add executes:**
+
+* **Alternative 1 (current choice):** Check whether specified applicant already exists before creating an Applicant object.
+    * Pros: Avoid creation of unnecessary objects
+    * Cons: May cause reduced performance
+
+_{more aspects and alternatives to be added}_
+
+
 ### Edit applicant feature
 
 #### Implementation

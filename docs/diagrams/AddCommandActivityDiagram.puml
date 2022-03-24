@@ -1,0 +1,30 @@
+@startuml
+start
+:User executes Add Command;
+
+
+if () then ([User enters valid command])
+
+    :Create the new Applicant with the attributes provided;
+
+    if () then ([new Applicant already
+    exists in LinkedOUT])
+
+        :Error Message Displayed to User, showing
+        existing applicant;
+
+        stop
+
+    else ([else])
+    endif
+
+    :Add the new Applicant into the LinkedOUT;
+
+    :Update GUI to display new applicant in list of applicants;
+else ([else])
+
+:Invalid Command Error Message Displayed to User;
+
+endif
+stop
+@enduml
