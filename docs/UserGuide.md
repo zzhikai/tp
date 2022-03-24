@@ -10,7 +10,6 @@ LinkedOUT is the only application that any experienced recruiter needs. LinkedOU
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -62,6 +61,7 @@ LinkedOUT is the only application that any experienced recruiter needs. LinkedOU
 
 </div>
 
+[Back to top](#table-of-content)
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -113,6 +113,8 @@ Job Applied: Software Developer
 Skills: Pandas, Python
 Phone Number: 88888888
 ```
+
+[Back to top](#table-of-content)
 ### Viewing a specific applicant : `view`
 
 Allows the user to view an overview of a specific applicant, specified by applicant's full name (exact match)
@@ -162,8 +164,7 @@ Job Applied: CEO of Apple
 Skills: Product Design  
 ```
 
-[Return to Table of Content](#table-of-content)
-
+[Back to top](#table-of-content)
 ### Editing an applicant : `edit`
 
 Edits the details of the applicant identified by the index number used in the displayed applicant list. Existing values will be overwritten by the input values.
@@ -204,6 +205,7 @@ Sample Output:
 ```
 Deleted Applicant: Bernice Yu; Phone: 99272758; Email: berniceyu@example.com; Job: Social Media Marketer; Round: Instagram Check; Skills: [Video Editing][Social Media Marketing]
 ```
+[Back to top](#table-of-content)
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -230,7 +232,7 @@ If your changes to the data file makes its format invalid, LinkedOUT will discar
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous LinkedOUT home folder.
 
 --------------------------------------------------------------------------------------------------------------------
-
+[Back to top](#table-of-content)
 ## Command summary
 
 | Action     | Format, Examples                                                                                                                                            |
