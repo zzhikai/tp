@@ -14,10 +14,10 @@ participant "keyword:KeywordsPredicate" as KeywordsPredicate MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("search n/David Lee ...")
+[-> LogicManager : execute("search n/David Lee")
 activate LogicManager
 
-LogicManager -> LinkedoutParser : parseCommand("search n/David Lee ...")
+LogicManager -> LinkedoutParser : parseCommand("search n/David Lee")
 activate LinkedoutParser
 
 create SearchCommandParser
@@ -27,7 +27,7 @@ activate SearchCommandParser
 SearchCommandParser --> LinkedoutParser
 deactivate SearchCommandParser
 
-LinkedoutParser -> SearchCommandParser : parse(args)
+LinkedoutParser -> SearchCommandParser : parse("n/David Lee")
 activate SearchCommandParser
 
 create SearchCommand
