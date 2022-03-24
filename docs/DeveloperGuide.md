@@ -282,14 +282,23 @@ These predicates assist the filtering of applicant list in the `Model` interface
 
 Given below is an example usage scenario and how the search mechanism behaves at each step.
 
-Step 1. The user enters `search n/David` command to search for applicants with partial matched name in the linkedout book. The `search` command calls `SearchCommandParser` and creates a `NameContainsKeywordsPredicate`. The predicate is pass into `Model#updateFilteredApplicantList` to filter and display applicants with partial name matching of "David" in the linkedout book.
+Step 1. The user enters `search n/David` command to search for applicants in the linkedout book.
 
+Step 2. The input keywords will be passed into `SearchCommandParser` and creates a `NameContainsKeywordsPredicate` if the keywords are not empty.
 
-Step 2. The user enters `search j/Software Engineer` command to search for applicants with partial matched job name in the linkedout book. The `search` command calls `SearchCommandParser` and creates a `JobContainsKeywordsPredicate`. The predicate is pass into `Model#updateFilteredApplicantList` to filter and display applicants with partial job name matching of "Software" or "Engineer" in the linkedout book.
+Step 3. The predicate is then passed into `Model#updateFilteredApplicantList` to filter and display applicants with partial name matching of "David" in the linkedout book.
 
+Step 4. The user enters `search j/Software Engineer` command to search for applicants in the linkedout book.
+
+Step 5. The input keywords will be passed into `SearchCommandParser` and creates a `JobContainsKeywordsPredicate` if the keywords are not empty.
+
+Step 6. The predicate is then passed into `Model#updateFilteredApplicantList` to filter and display applicants with partial job name matching of "Software" or "Engineer"  in the linkedout book.
+
+The following activity diagram shows the workflow of the search command:
+![ViewActivityDiagram](images/SearchCommandActivityDiagram.png)
 
 The following sequence diagram shows how the search operation works:
-![EditSequenceDiagram](images/SearchSequenceDiagram.png)
+![SearchSequenceDiagram](images/SearchSequenceDiagram.png)
 
 
 
