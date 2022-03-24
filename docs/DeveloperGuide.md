@@ -268,6 +268,62 @@ The following sequence diagram shows how the edit operation works:
 
 _{more aspects and alternatives to be added}_
 
+
+### Search applicant feature
+
+#### Rationale
+`Search`  allows for a quick view of applicant's information in the `LinkedOUT`.
+
+#### Implementation
+
+The proposed search mechanism is facilitated by `SearchCommandParser`. `SearchCommandParser` will map the creation of `KeywordsPredicate` based on the input prefix. `KeywordsPredicate` supports the following implementation:
+* `NameContainsKeywordsPredicate` — Predicate which returns true if an applicant's full name matches partially with the input keyword.
+* `JobContainsKeywordsPredicate` — Predicate which returns true if an applicant's job name matches partially with the input keyword.
+
+These predicates assist the filtering of applicant list in the `Model` interface, specifically for  `Model#updateFilteredApplicantList()` and `Model#getFilteredApplicantList()`.
+
+Given below is an example usage scenario and how the search mechanism behaves at each step.
+
+1. The user enters search command with prefix and specified keyword , `search n/David`.
+
+
+2. The input keywords will be passed into `SearchCommandParser` and creates a `NameContainsKeywordsPredicate` if the keyword and prefix are not empty.
+
+
+3. The predicate is then passed into `Model#updateFilteredApplicantList()` to filter and display applicants with partial name matching of "David" in the `LinkedOUT`.
+
+
+4. The user enters `search j/Software Engineer` command to search for applicants in the `LinkedOUT`.
+
+
+5. The input keywords will be passed into `SearchCommandParser` and creates a `JobContainsKeywordsPredicate` if the keywords are not empty.
+
+
+6. The predicate is then passed into `Model#updateFilteredApplicantList()` to filter and display applicants with partial job name matching of "Software" or "Engineer"  in the `LinkedOUT`.
+
+The following activity diagram shows the workflow of the search command:
+![ViewActivityDiagram](images/SearchCommandActivityDiagram.png)
+
+The following sequence diagram shows how the search operation works:
+![SearchSequenceDiagram](images/SearchSequenceDiagram.png)
+
+
+
+#### Design considerations:
+
+**Aspect: How search executes:**
+
+* **Alternative 1 (current choice):** Uses prefix to search for applicants with partial matching of keywords
+    * Pros: Able to search an applicant using different fields/prefixes.
+    * Cons: Hard to implement.
+
+* **Alternative 2:** Only search for applicant using partial matching name
+    * Pros: Easy to implement.
+    * Cons: Inflexible use of search command.
+
+_{more aspects and alternatives to be added}_
+
+
 ### \[Proposed\] Flagging an applicant
 
 The flagging feature flags an applicant as important, and will be displayed at the top of the applicant list.
