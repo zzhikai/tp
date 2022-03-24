@@ -1,0 +1,84 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":LinkedoutParser" as LinkedoutParser LOGIC_COLOR
+participant ":SearchCommandParser" as SearchCommandParser LOGIC_COLOR
+participant "d:SearchCommand" as SearchCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "keyword:KeywordsPredicate" as KeywordsPredicate MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("search n/David Lee ...")
+activate LogicManager
+
+LogicManager -> LinkedoutParser : parseCommand("search n/David Lee ...")
+activate LinkedoutParser
+
+create SearchCommandParser
+LinkedoutParser -> SearchCommandParser
+activate SearchCommandParser
+
+SearchCommandParser --> LinkedoutParser
+deactivate SearchCommandParser
+
+LinkedoutParser -> SearchCommandParser : parse(args)
+activate SearchCommandParser
+
+create SearchCommand
+SearchCommandParser -> SearchCommand
+activate SearchCommand
+
+create KeywordsPredicate
+SearchCommand -> KeywordsPredicate
+activate KeywordsPredicate
+
+KeywordsPredicate --> SearchCommand : keyword
+deactivate KeywordsPredicate
+KeywordsPredicate -[hidden]-> SearchCommand
+destroy KeywordsPredicate
+
+SearchCommand --> SearchCommandParser : d
+deactivate SearchCommand
+
+SearchCommandParser --> LinkedoutParser : d
+deactivate SearchCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SearchCommandParser -[hidden]-> LinkedoutParser
+destroy SearchCommandParser
+
+LinkedoutParser --> LogicManager : d
+deactivate LinkedoutParser
+
+LogicManager -> SearchCommand : execute()
+activate SearchCommand
+
+SearchCommand -> Model : updateFilteredApplicantList(keyword);
+activate Model
+
+Model --> SearchCommand
+deactivate Model
+
+SearchCommand -> Model : getFilteredApplicantList()
+activate Model
+Model --> SearchCommand
+deactivate Model
+
+create CommandResult
+SearchCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SearchCommand
+deactivate CommandResult
+
+SearchCommand --> LogicManager : result
+deactivate SearchCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

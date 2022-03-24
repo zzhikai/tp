@@ -274,21 +274,22 @@ _{more aspects and alternatives to be added}_
 `Search`  allows for a quick view of applicant's information in the linkedout book.
 #### Implementation
 
-The proposed search mechanism is facilitated by `SearchCommandParser`. `SearchCommandParser` will create a `KeywordsPredicate` based on the input prefix. `KeywordsPredicate` that supports the implementation:
+The proposed search mechanism is facilitated by `SearchCommandParser`. `SearchCommandParser` will map the creation of `KeywordsPredicate` based on the input prefix. `KeywordsPredicate` that supports the implementation:
 * `NameContainsKeywordsPredicate` — Predicate which returns true if an applicant's full name matches partially with the input keyword.
-* `JobContainsKeywordsPredicate` — Predicate which returns true if an applicant's job matches partially with the input keyword.
+* `JobContainsKeywordsPredicate` — Predicate which returns true if an applicant's job name matches partially with the input keyword.
 
 These predicates assist the filtering of applicant list in the `Model` interface, specifically for  `Model#updateFilteredApplicantList` and `Model#getFilteredApplicantList()`.
 
 Given below is an example usage scenario and how the search mechanism behaves at each step.
 
-Step 1. The user enters `search n/David` command to search for applicants with partial matched name in the linkedout book. The `search` command calls `SearchCommandParser` to create a `NameContainsKeywordsPredicate`. The predicate is pass into `Model#updateFilteredApplicantList` to filter and display applicants with partial name matching of `David` in the linkedout book.
+Step 1. The user enters `search n/David` command to search for applicants with partial matched name in the linkedout book. The `search` command calls `SearchCommandParser` and creates a `NameContainsKeywordsPredicate`. The predicate is pass into `Model#updateFilteredApplicantList` to filter and display applicants with partial name matching of "David" in the linkedout book.
 
 
-Step 2. The user enters `search j/Software Engineer` command to search for applicants with partial matched job name in the linkedout book. The `search` command calls `SearchCommandParser` to create a `JobContainsKeywordsPredicate`. The predicate is pass into `Model#updateFilteredApplicantList` to filter and display applicants with partial job name matching of `Software` or `Engineer` in the linkedout book.
+Step 2. The user enters `search j/Software Engineer` command to search for applicants with partial matched job name in the linkedout book. The `search` command calls `SearchCommandParser` and creates a `JobContainsKeywordsPredicate`. The predicate is pass into `Model#updateFilteredApplicantList` to filter and display applicants with partial job name matching of `Software` or `Engineer` in the linkedout book.
 
 
 The following sequence diagram shows how the search operation works:
+![EditSequenceDiagram](images/SearchSequenceDiagram.png)
 
 
 
