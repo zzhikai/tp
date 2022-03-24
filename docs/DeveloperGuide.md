@@ -126,7 +126,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Skill` list in the `Linkedout`, which `Applicant` references. This allows `Linkedout` to only require one `Skill` object per unique skill, instead of each `Applicant` needing their own `Skill` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Skill` list in `Linkedout`, which `Applicant` references. This allows `Linkedout` to only require one `Skill` object per unique skill, instead of each `Applicant` needing their own `Skill` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -189,7 +189,7 @@ map the various prefixes to the attributes: (e.g `n/` to `Bob`, `p/` to `9999999
 
 4. `AddCommandParser#parse()` then initializes an `AddCommand` with the new `Applicant` as an argument. `AddCommand#execute()`
 is then called, which calls `Model#hasApplicant()` to ensure that the new `Applicant` is not a duplicate of any existing applicant in the
-`LinkedOUT`. upon completion of the check, `Model#addApplicant()` to add the new applicant in the `LinkedOUT`.
+LinkedOUT. upon completion of the check, `Model#addApplicant()` to add the new applicant in LinkedOUT.
 
 
 5. The command is complete and a `CommandResult` containing the details of the new applicant as a String is returned to
@@ -332,6 +332,10 @@ The proposed search mechanism is facilitated by `SearchCommandParser`. `SearchCo
 
 These predicates assist the filtering of applicant list in the `Model` interface, specifically for  `Model#updateFilteredApplicantList()` and `Model#getFilteredApplicantList()`.
 
+The following activity diagram shows the workflow of the search command:
+
+![SearchActivityDiagram](images/SearchCommandActivityDiagram.png)
+
 Given below is an example usage scenario and how the search mechanism behaves at each step.
 
 1. The user enters search command with prefix and specified keyword , `search n/David`.
@@ -340,7 +344,7 @@ Given below is an example usage scenario and how the search mechanism behaves at
 2. The input keywords will be passed into `SearchCommandParser` and creates a `NameContainsKeywordsPredicate` if the keyword and prefix are not empty.
 
 
-3. The predicate is then passed into `Model#updateFilteredApplicantList()` to filter and display applicants with partial name matching of "David" in the LinkedOUT.
+3. The predicate is then passed into `Model#updateFilteredApplicantList()` to filter and display applicants with partial name matching of "David" in LinkedOUT.
 
 
 4. The user enters `search j/Software Engineer` command to search for applicants in LinkedOUT.
@@ -349,11 +353,7 @@ Given below is an example usage scenario and how the search mechanism behaves at
 5. The input keywords will be passed into `SearchCommandParser` and creates a `JobContainsKeywordsPredicate` if the keywords are not empty.
 
 
-6. The predicate is then passed into `Model#updateFilteredApplicantList()` to filter and display applicants with partial job name matching of "Software" or "Engineer"  in the LinkedOUT.
-
-The following activity diagram shows the workflow of the search command:
-
-![ViewActivityDiagram](images/SearchCommandActivityDiagram.png)
+6. The predicate is then passed into `Model#updateFilteredApplicantList()` to filter and display applicants with partial job name matching of "Software" or "Engineer"  in LinkedOUT.
 
 The following sequence diagram shows how the search operation works:
 
@@ -541,7 +541,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `LinkedOUT` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is LinkedOUT and the **Actor** is the user, unless specified otherwise)
 
 **Use case: Add an applicant**
 

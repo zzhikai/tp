@@ -27,7 +27,7 @@ activate ViewCommandParser
 ViewCommandParser --> LinkedoutParser
 deactivate ViewCommandParser
 
-LinkedoutParser -> ViewCommandParser : parse(args)
+LinkedoutParser -> ViewCommandParser : parse("Alex Tan")
 activate ViewCommandParser
 
 create ViewCommand
