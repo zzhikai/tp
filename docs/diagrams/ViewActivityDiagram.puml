@@ -5,7 +5,7 @@ start
 :User executes view command;
 :Parse inputs;
 if () then ([valid inputs])
-:Parse name;
+
     if () then ([valid name])
     :Display to user desired applicant's details;
     else ([else])
