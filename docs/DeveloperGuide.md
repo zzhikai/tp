@@ -27,7 +27,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S2-CS2103T-T09-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-[Back to top](#table-of-content)
+[Back to top](#table-of-contents)
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
@@ -67,7 +67,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 <img src="images/ComponentManagers.png" width="300" />
 
-[Back to top](#table-of-content)
+[Back to top](#table-of-contents)
 
 The sections below give more details of each component.
 
@@ -136,7 +136,7 @@ The `Model` component,
 
 </div>
 
-[Back to top](#table-of-content)
+[Back to top](#table-of-contents)
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/linkedout/storage/Storage.java)
@@ -216,7 +216,7 @@ should not exceed the destroy marker X. This is a known limitation of PlantUML.<
 
 _{more aspects and alternatives to be added}_
 
-[Back to top](#table-of-content)
+[Back to top](#table-of-contents)
 ### Edit applicant feature
 
 #### Rationale
@@ -258,7 +258,7 @@ The following sequence diagram shows how the edit operation works:
 
 _{more aspects and alternatives to be added}_
 
-[Back to top](#table-of-content)
+[Back to top](#table-of-contents)
 ### View applicant feature
 
 #### Rationale
@@ -321,7 +321,7 @@ This is to allow our target user to have greater flexibility, and we believe bot
 
 _{more aspects and alternatives to be added}_
 
-[Back to top](#table-of-content)
+[Back to top](#table-of-contents)
 ### Search applicant feature
 
 #### Rationale
@@ -377,7 +377,7 @@ The following sequence diagram shows how the search operation works:
 
 _{more aspects and alternatives to be added}_
 
-[Back to top](#table-of-content)
+[Back to top](#table-of-contents)
 ### \[Proposed\] Flag applicant feature
 
 The flagging feature flags an applicant as important, and will be displayed at the top of the applicant list.
@@ -504,7 +504,7 @@ _{more aspects and alternatives to be added}_
 
 **Value proposition**: Simple and easy-to-use tool for recruiter to LinkedOUT to applicants and manage the applicant's information efficiently.
 
-[Back to top](#table-of-content)
+[Back to top](#table-of-contents)
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -722,4 +722,4 @@ testers are expected to do more *exploratory* testing.
 1. _{ more test cases …​ }_
 
 
-[Back to top](#table-of-content)
+[Back to top](#table-of-contents)
