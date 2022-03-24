@@ -10,12 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.linkedout.commons.exceptions.IllegalValueException;
-import seedu.linkedout.model.applicant.Applicant;
-import seedu.linkedout.model.applicant.Email;
-import seedu.linkedout.model.applicant.Job;
-import seedu.linkedout.model.applicant.Name;
-import seedu.linkedout.model.applicant.Phone;
-import seedu.linkedout.model.applicant.Round;
+import seedu.linkedout.model.applicant.*;
 import seedu.linkedout.model.skill.Skill;
 
 /**
@@ -30,6 +25,7 @@ class JsonAdaptedApplicant {
     private final String email;
     private final String job;
     private final String round;
+    private final Boolean flag;
     private final List<JsonAdaptedSkill> skilled = new ArrayList<>();
 
     /**
@@ -39,12 +35,14 @@ class JsonAdaptedApplicant {
     public JsonAdaptedApplicant(@JsonProperty("name") String name,
                                 @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                                 @JsonProperty("job") String job, @JsonProperty("round") String round,
+                                @JsonProperty("flag") Boolean flag,
                                 @JsonProperty("skilled") List<JsonAdaptedSkill> skills) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.job = job;
         this.round = round;
+        this.flag = flag;
         if (skills != null) {
             this.skilled.addAll(skills);
         }
@@ -59,6 +57,7 @@ class JsonAdaptedApplicant {
         email = source.getEmail().value;
         job = source.getJob().value;
         round = source.getRound().value;
+        flag = source.getFlag().value;
         skilled.addAll(source.getSkills().stream()
                 .map(JsonAdaptedSkill::new)
                 .collect(Collectors.toList()));
@@ -115,6 +114,11 @@ class JsonAdaptedApplicant {
             throw new IllegalValueException(Round.MESSAGE_CONSTRAINTS);
         }
         final Round modelRound = new Round(round);
+
+        if (flag == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Flag.class.getSimpleName()));
+        }
+        final Flag modelFlag = new Flag(flag);
 
         final Set<Skill> modelSkills = new HashSet<>(applicantSkills);
         return new Applicant(modelName, modelPhone, modelEmail, modelJob, modelRound, modelSkills);

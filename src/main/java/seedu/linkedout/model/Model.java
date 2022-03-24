@@ -70,6 +70,12 @@ public interface Model {
     void addApplicant(Applicant applicant);
 
     /**
+     * Replaces an applicant with its flagged version
+     * The applicant must exist in the linkedout app.
+     */
+    void flagApplicant(Applicant applicant, Applicant flaggedApplicant);
+
+    /**
      * Replaces the given applicant {@code target} with {@code editedApplicant}.
      * {@code target} must exist in the linkedout app.
      * The applicant identity of {@code editedApplicant} must not

@@ -23,8 +23,10 @@ public class Applicant {
     private final Round round;
     private final Job job;
     private final Set<Skill> skills = new HashSet<>();
+    private final Flag flagged;
 
     /**
+     * Default constructor, sets flagged to false.
      * Every field must be present and not null.
      */
     public Applicant(Name name, Phone phone, Email email, Job job, Round round, Set<Skill> skills) {
@@ -35,6 +37,22 @@ public class Applicant {
         this.job = job;
         this.round = round;
         this.skills.addAll(skills);
+        this.flagged = new Flag(false);
+    }
+
+    /**
+     * Constructor that allows an applicant to be flagged
+     * Every field must be present and not null.
+     */
+    public Applicant(Name name, Phone phone, Email email, Job job, Round round, Set<Skill> skills, Flag flag) {
+        requireAllNonNull(name, phone, email, job, round, skills, flag);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.job = job;
+        this.round = round;
+        this.skills.addAll(skills);
+        this.flagged = flag;
     }
 
     public Name getName() {
@@ -55,6 +73,10 @@ public class Applicant {
 
     public Job getJob() {
         return job;
+    }
+
+    public Flag getFlag() {
+        return flagged;
     }
 
     /**
@@ -98,7 +120,8 @@ public class Applicant {
                 && otherApplicant.getEmail().equals(getEmail())
                 && otherApplicant.getRound().equals(getRound())
                 && otherApplicant.getJob().equals(getJob())
-                && otherApplicant.getSkills().equals(getSkills());
+                && otherApplicant.getSkills().equals(getSkills())
+                && otherApplicant.getFlag().equals(getFlag());
     }
 
     @Override

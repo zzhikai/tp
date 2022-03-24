@@ -94,6 +94,11 @@ public class Linkedout implements ReadOnlyLinkedout {
         applicants.remove(key);
     }
 
+    public void flagApplicant(Applicant applicant, Applicant flaggedApplicant) {
+        requireNonNull(applicant);
+        applicants.flag(applicant, flaggedApplicant);
+    }
+
     //// util methods
 
     @Override
