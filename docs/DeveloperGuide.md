@@ -217,7 +217,7 @@ _{more aspects and alternatives to be added}_
 
 #### Rationale
 
-The edit feature allows users to change the applicant's details.
+The edit command allows users to change the applicant's details.
 
 #### Implementation
 
@@ -259,13 +259,13 @@ _{more aspects and alternatives to be added}_
 
 #### Rationale
 
-The view feature searches a **single** applicant in `LinkedOUT` and returns the applicant's details. 
+The view command searches a **single** applicant in LinkedOUT and returns the applicant's details. 
 It is used when users wish to find a specific user they have in mind.
 It takes in a single case-insensitive parameter, which is the applicant's full name. No prefix is required.
 
 #### Implementation
 
-The view mechanism is facilitated by `NameContainsAllKeywordsPredicate` which helps the parser match the input.
+The view command is facilitated by `NameContainsAllKeywordsPredicate` which helps the parser match the input.
 
 The user needs to specify a `Name` to allow the application to match and select the applicant. `ViewCommand` extends `Command` and implements the `Command#execute()` method.
 
@@ -298,7 +298,7 @@ The following sequence diagram shows how the view operation works:
 
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
-#### Deisgn Considerations
+#### Design Considerations
 
 **Aspect: How view executes:**
 
@@ -308,18 +308,21 @@ The following sequence diagram shows how the view operation works:
     * Cons: Strict matching.
     * Cons: Have to remember applicant's name and type it fully.
 
-* **Alternative 2:** Shows multiple applicants based on partial matches
+* **Alternative 2:** Shows multiple applicants based on partial matches.
     * Pros: Less strict matching.
     * Cons: Users are unable to single out a certain applicant.
     
 Weighing the pros and cons of these alternatives, we have decided to abstract alternative 2 as a different feature under `search`.
 This is to allow our target user to have greater flexibility, and we believe both are important features to be implemented.
 
+_{more aspects and alternatives to be added}_
+
 
 ### Search applicant feature
 
 #### Rationale
-`Search` allows for a quick view of applicant's information in the `LinkedOUT`.
+
+The search command allows for a quick view of applicant's information in LinkedOUT.
 
 #### Implementation
 
@@ -337,34 +340,34 @@ Given below is an example usage scenario and how the search mechanism behaves at
 2. The input keywords will be passed into `SearchCommandParser` and creates a `NameContainsKeywordsPredicate` if the keyword and prefix are not empty.
 
 
-3. The predicate is then passed into `Model#updateFilteredApplicantList()` to filter and display applicants with partial name matching of "David" in the `LinkedOUT`.
+3. The predicate is then passed into `Model#updateFilteredApplicantList()` to filter and display applicants with partial name matching of "David" in the LinkedOUT.
 
 
-4. The user enters `search j/Software Engineer` command to search for applicants in the `LinkedOUT`.
+4. The user enters `search j/Software Engineer` command to search for applicants in LinkedOUT.
 
 
 5. The input keywords will be passed into `SearchCommandParser` and creates a `JobContainsKeywordsPredicate` if the keywords are not empty.
 
 
-6. The predicate is then passed into `Model#updateFilteredApplicantList()` to filter and display applicants with partial job name matching of "Software" or "Engineer"  in the `LinkedOUT`.
+6. The predicate is then passed into `Model#updateFilteredApplicantList()` to filter and display applicants with partial job name matching of "Software" or "Engineer"  in the LinkedOUT.
 
 The following activity diagram shows the workflow of the search command:
+
 ![ViewActivityDiagram](images/SearchCommandActivityDiagram.png)
 
 The following sequence diagram shows how the search operation works:
+
 ![SearchSequenceDiagram](images/SearchSequenceDiagram.png)
-
-
 
 #### Design considerations:
 
 **Aspect: How search executes:**
 
-* **Alternative 1 (current choice):** Uses prefix to search for applicants with partial matching of keywords
+* **Alternative 1 (current choice):** Uses prefix to search for applicants with partial matching of keywords.
     * Pros: Able to search an applicant using different fields/prefixes.
     * Cons: Hard to implement.
 
-* **Alternative 2:** Only search for applicant using partial matching name
+* **Alternative 2:** Only search for an applicant using partial matching name.
     * Pros: Easy to implement.
     * Cons: Inflexible use of search command.
 
@@ -386,6 +389,8 @@ The `ObservablePriorityQueue` implements the Java Collections, Iterable, Priorit
 and exposes all related functionality from these relevant interfaces. 
 
 `Applicant` will also be edited to contain a boolean `flagged` for use as a comparator in the `ObservablePriorityQueue`
+
+_{more aspects and alternatives to be added}_
 
 
 ### \[Proposed\] Undo/redo feature
