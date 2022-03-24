@@ -236,11 +236,13 @@ _{more aspects and alternatives to be added}_
 
 ### Add applicant feature
 
+#### Rationale
+
+The add command allows the user to add a new applicant to the LinkedOUT list. 
+
 #### Implementation
 
-The add command allows the user to add a new applicant to the LinkedOUT list. The add command is facilitated by creating an `AddCommand`.
-
-`AddCommand` extends `Command` and implements the `Command#execute()` method.
+The add command is facilitated by creating an `AddCommand`. `AddCommand` extends `Command` and implements the `Command#execute()` method.
 
 The following activity diagram shows what happens when the user utilises the `add` command
 

@@ -66,7 +66,7 @@ deactivate LinkedoutParser
 LogicManager -> AddCommand : execute()
 activate AddCommand
 
-AddCommand -> Model : hasApplicant(applicant))
+AddCommand -> Model : hasApplicant(applicant)
 activate Model
 
 Model --> AddCommand
