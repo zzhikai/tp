@@ -4,7 +4,7 @@ start
 
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
-:parse input;
+:Parse inputs;
 
 if () then ([user enters invalid command])
     :Display invalid command error message;
