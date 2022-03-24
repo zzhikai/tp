@@ -38,10 +38,8 @@ create KeywordsPredicate
 SearchCommand -> KeywordsPredicate
 activate KeywordsPredicate
 
-KeywordsPredicate --> SearchCommand : keyword
+KeywordsPredicate --> SearchCommand
 deactivate KeywordsPredicate
-KeywordsPredicate -[hidden]-> SearchCommand
-destroy KeywordsPredicate
 
 SearchCommand --> SearchCommandParser : d
 deactivate SearchCommand
