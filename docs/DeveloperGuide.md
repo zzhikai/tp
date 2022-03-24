@@ -236,6 +236,10 @@ _{more aspects and alternatives to be added}_
 
 ### Edit applicant feature
 
+#### Rationale
+
+The edit feature allows users to change the applicant's details.
+
 #### Implementation
 
 The proposed edit mechanism is facilitated by `EditApplicantDescriptor`. `EditApplicantDescriptor` stores the details of the applicant to change.
