@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes edit command;
+:Parse inputs;
+if () then ([valid index])
+:Display to user new \n applicant's details;
+else ([else])
+:Display error message to user \n that no applicant found;
+endif
+
+
+stop
+
+@enduml

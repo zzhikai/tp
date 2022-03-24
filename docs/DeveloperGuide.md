@@ -126,7 +126,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Skill` list in the `Linkedout`, which `Applicant` references. This allows `Linkedout` to only require one `Skill` object per unique skill, instead of each `Applicant` needing their own `Skill` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Skill` list in `Linkedout`, which `Applicant` references. This allows `Linkedout` to only require one `Skill` object per unique skill, instead of each `Applicant` needing their own `Skill` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -153,6 +153,245 @@ Classes used by multiple components are in the `seedu.linkedout.commons` package
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Add applicant feature
+
+#### Rationale
+
+The add command allows the user to add a new applicant to the LinkedOUT list.
+
+#### Implementation
+
+The add command is facilitated by creating an `AddCommand`. `AddCommand` extends `Command` and implements the `Command#execute()` method.
+
+The following activity diagram shows the workflow for the add operation:
+
+![AddCommandActivityDiagram](images/AddCommandActivityDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source:
+ **Note:** There should only be one arrowhead at the end of every line
+in the Activity Diagram. This is a known limitation of PlantUML.</div>
+
+Given below is an example usage scenario of how an applicant is added, and how the operation is handled by LinkedOUT:
+
+1. The user enters a valid add command, for example: `add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas s/Python s/Java`. For each command
+`LogicManager#execute()` is invoked, which calls `LinkedoutParser#parseCommand()` to separate the command word `add` and the argument
+`n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas s/Python s/Java`
+
+
+2. Upon identifying the add command, `AddCommandParser` is instantiated and uses `AddCommandParser#parse()` to
+map the various prefixes to the attributes: (e.g `n/` to `Bob`, `p/` to `99999999`)
+
+
+3. `AddCommandParser#arePrefixesPresent()` is called to ensure all the mandatory prefixes have been inputted by the user. After which
+`AddCommandParser#parse()` creates the new `Applicant`
+
+
+4. `AddCommandParser#parse()` then initializes an `AddCommand` with the new `Applicant` as an argument. `AddCommand#execute()`
+is then called, which calls `Model#hasApplicant()` to ensure that the new `Applicant` is not a duplicate of any existing applicant in the
+LinkedOUT. upon completion of the check, `Model#addApplicant()` to add the new applicant in LinkedOUT.
+
+
+5. The command is complete and a `CommandResult` containing the details of the new applicant as a String is returned to
+the user.
+
+The following sequence diagram shows how the add operation works:
+
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser`
+should not exceed the destroy marker X. This is a known limitation of PlantUML.</div>
+
+#### Design considerations
+
+**Aspect: How add executes:**
+
+* **Alternative 1 :** Check whether specified applicant already exists before creating an Applicant object.
+    * Pros: Avoid creation of unnecessary objects
+    * Cons: May cause reduced performance
+
+_{more aspects and alternatives to be added}_
+
+
+### Edit applicant feature
+
+#### Rationale
+
+The edit command allows users to change the applicant's details.
+
+#### Implementation
+
+The proposed edit mechanism is facilitated by `EditApplicantDescriptor`. `EditApplicantDescriptor` stores the details of the applicant to change.
+
+The user need to specify an `Index` to select the applicant to edit. `editCommand` extends `Command` and implements the `Command#execute()` method.
+
+The following activity diagram shows the workflow for the edit operation:
+
+![EditActivityDiagram](images/EditActivityDiagram.png)
+
+Given below is an example usage scenario of how an applicant is edited.
+
+1. The user enters the edit command with the specific fields to edit, `edit 1 r/HR Interview`.
+
+
+2. LinkedOUT updates the applicant with the edited information.
+
+The following sequence diagram shows how the edit operation works:
+
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
+#### Design considerations
+
+**Aspect: How edit executes:**
+
+* **Alternative 1 (current choice):** Creates a new applicant replace old information.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Replace individual fields inside original applicant.
+    * Pros: Will use less memory (Do not have to create an extra applicant).
+    * Cons: We must ensure that the implementation of each individual command to change an information is correct.
+
+_{more aspects and alternatives to be added}_
+    
+
+### View applicant feature
+
+#### Rationale
+
+The view command searches a **single** applicant in LinkedOUT and returns the applicant's details. 
+It is used when users wish to find a specific user they have in mind.
+It takes in a single case-insensitive parameter, which is the applicant's full name. No prefix is required.
+
+#### Implementation
+
+The view command is facilitated by `NameContainsAllKeywordsPredicate` which helps the parser match the input.
+
+The user needs to specify a `Name` to allow the application to match and select the applicant. `ViewCommand` extends `Command` and implements the `Command#execute()` method.
+
+As `ViewCommandParser` uses `NameContainsAllKeywordsPredicate`, the `Name` being passed will not match if it contains additional whitespace, but will match inputs which are case-insensitive.
+
+The following activity diagram shows the workflow for the view operation:
+
+![ViewActivityDiagram](images/ViewActivityDiagram.png)
+
+Given below is an example usage scenario of how to view a specific applicant.
+
+1. The user enters the view command with the specific name, `view Alex Megos`.
+   
+
+2. `LinkedoutParser` is invoked to handle the command `view` through `LinkedoutParser#parseCommand()`. 
+   
+
+3. It then calls upon `ViewCommandParser#parse()` to check if the input is empty.
+   
+
+4. If input is not empty, it passes the input to `NameContainsAllKeywordsPredicate()`.
+   
+
+5. The result is then initialized as a predicate in `ViewCommand`. `ViewCommand#execute()` then tries to find a match.
+   
+
+6. It then calls upon `CommandResult` to display the final result on the GUI.
+
+The following sequence diagram shows how the view operation works:
+
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+
+#### Design Considerations
+
+**Aspect: How view executes:**
+
+* **Alternative 1 (current choice):** Shows a single applicant.
+    * Pros: Easy to implement.
+    * Pros: Result is specific.
+    * Cons: Strict matching.
+    * Cons: Have to remember applicant's name and type it fully.
+
+* **Alternative 2:** Shows multiple applicants based on partial matches.
+    * Pros: Less strict matching.
+    * Cons: Users are unable to single out a certain applicant.
+    
+Weighing the pros and cons of these alternatives, we have decided to abstract alternative 2 as a different feature under `search`.
+This is to allow our target user to have greater flexibility, and we believe both are important features to be implemented.
+
+_{more aspects and alternatives to be added}_
+
+
+### Search applicant feature
+
+#### Rationale
+
+The search command allows for a quick view of applicant's information in LinkedOUT.
+
+#### Implementation
+
+The proposed search mechanism is facilitated by `SearchCommandParser`. `SearchCommandParser` will map the creation of `KeywordsPredicate` based on the input prefix. `KeywordsPredicate` supports the following implementation:
+* `NameContainsKeywordsPredicate` — Predicate which returns true if an applicant's full name matches partially with the input keyword.
+* `JobContainsKeywordsPredicate` — Predicate which returns true if an applicant's job name matches partially with the input keyword.
+
+These predicates assist the filtering of applicant list in the `Model` interface, specifically for  `Model#updateFilteredApplicantList()` and `Model#getFilteredApplicantList()`.
+
+The following activity diagram shows the workflow of the search command:
+
+![SearchActivityDiagram](images/SearchCommandActivityDiagram.png)
+
+Given below is an example usage scenario and how the search mechanism behaves at each step.
+
+1. The user enters search command with prefix and specified keyword , `search n/David`.
+
+
+2. The input keywords will be passed into `SearchCommandParser` and creates a `NameContainsKeywordsPredicate` if the keyword and prefix are not empty.
+
+
+3. The predicate is then passed into `Model#updateFilteredApplicantList()` to filter and display applicants with partial name matching of "David" in LinkedOUT.
+
+
+4. The user enters `search j/Software Engineer` command to search for applicants in LinkedOUT.
+
+
+5. The input keywords will be passed into `SearchCommandParser` and creates a `JobContainsKeywordsPredicate` if the keywords are not empty.
+
+
+6. The predicate is then passed into `Model#updateFilteredApplicantList()` to filter and display applicants with partial job name matching of "Software" or "Engineer"  in LinkedOUT.
+
+The following sequence diagram shows how the search operation works:
+
+![SearchSequenceDiagram](images/SearchSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How search executes:**
+
+* **Alternative 1 (current choice):** Uses prefix to search for applicants with partial matching of keywords.
+    * Pros: Able to search an applicant using different fields/prefixes.
+    * Cons: Hard to implement.
+
+* **Alternative 2:** Only search for an applicant using partial matching name.
+    * Pros: Easy to implement.
+    * Cons: Inflexible use of search command.
+
+_{more aspects and alternatives to be added}_
+
+
+### \[Proposed\] Flag applicant feature
+
+The flagging feature flags an applicant as important, and will be displayed at the top of the applicant list.
+The current display of applicant relies on the ordering of the applicants in the `UniqueApplicantList`. The
+`Applicant` in the `UniqueApplicantList` are ordered in the order they are added in. This makes it difficult
+to have a custom ordering for the flagging feature.
+
+As such, the flag feature alters the `UniqueApplicantList` by changing its internal implementation from an
+`ObservableArrayList` to an `ObservablePriorityQueue`. Since an `ObservablePriorityQueue` does not exist in
+the Java library, the flag feature comes with the team's own design for an `ObservablePriorityQueue`.
+
+The `ObservablePriorityQueue` implements the Java Collections, Iterable, PriorityQueue and Observable interfaces,
+and exposes all related functionality from these relevant interfaces. 
+
+`Applicant` will also be edited to contain a boolean `flagged` for use as a comparator in the `ObservablePriorityQueue`
+
+_{more aspects and alternatives to be added}_
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -234,114 +473,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### Add applicant feature
-
-#### Rationale
-
-The add command allows the user to add a new applicant to the LinkedOUT list. 
-
-#### Implementation
-
-The add command is facilitated by creating an `AddCommand`. `AddCommand` extends `Command` and implements the `Command#execute()` method.
-
-The following activity diagram shows what happens when the user utilises the `add` command
-
-![AddCommandActivityDiagram](images/AddCommandActivityDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source:
- **Note:** There should only be one arrowhead at the end of every line
-in the Activity Diagram. This is a known limitation of PlantUML.</div>
-
-Given below is an example usage scenario of how an applicant is added, and how the operation is handled by LinkedOUT:
-
-Step 1: The user enters a valid add command, for example: `add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas s/Python s/Java`. For each command
-`LogicManager#execute()` is invoked, which calls `LinkedoutParser#parseCommand()` to separate the command word `add` and the argument
-`n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas s/Python s/Java`
-
-Step 2: Upon identifying the add command, `AddCommandParser` is instantiated and uses `AddCommandParser#parse()` to
-map the various prefixes to the attributes: (e.g `n/` to `Bob`, `p/` to `99999999`)
-
-Step 3: `AddCommandParser#arePrefixesPresent()` is called to ensure all the mandatory prefixes have been inputted by the user. After which
-`AddCommandParser#parse()` creates the new `Applicant`
-
-Step 4. `AddCommandParser#parse()` then initializes an `AddCommand` with the new `Applicant` as an argument. `AddCommand#execute()`
-is then called, which calls `Model#hasApplicant()` to ensure that the new `Applicant` is not a duplicate of any existing applicant in the
-`LinkedOUT`. upon completion of the check, `Model#addApplicant()` to add the new applicant in the `LinkedOUT`.
-
-Step 5: The command is complete and a `CommandResult` containing the details of the new applicant as a String is returned to
-the user.
-
-The following sequence diagram shows how the add operation works:
-
-![AddSequenceDiagram](images/AddSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser`
-should not exceed the destroy marker X. This is a known limitation of PlantUML.</div>
-
-
-#### Design considerations
-
-**Aspect: How add executes:**
-
-* **Alternative 1 :** Check whether specified applicant already exists before creating an Applicant object.
-    * Pros: Avoid creation of unnecessary objects
-    * Cons: May cause reduced performance
-
-_{more aspects and alternatives to be added}_
-
-
-### Edit applicant feature
-
-#### Implementation
-
-The proposed edit mechanism is facilitated by `EditApplicantDescriptor`. `EditApplicantDescriptor` stores the details of the applicant to change.
-
-The user need to specify an `Index` to select the applicant to edit. `editCommand` extends `Command` and implements the `Command#execute()` method.
-
-Given below is an example usage scenario of how an applicant is edited.
-
-Step 1: The user enters the edit command with the specific fields to edit, `edit 1 r/HR Interview`.
-
-Step 2: LinkedOUT updates the applicant with the edited information.
-
-
-The following sequence diagram shows how the edit operation works:
-
-![EditSequenceDiagram](images/EditSequenceDiagram.png)
-
-
-#### Design considerations
-
-**Aspect: How edit executes:**
-
-* **Alternative 1 (current choice):** Creates a new applicant replace old information.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Replace individual fields inside original applicant
-    * Pros: Will use less memory (Do not have to create an extra applicant).
-    * Cons: We must ensure that the implementation of each individual command to change an information is correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Flagging an applicant
-
-The flagging feature flags an applicant as important, and will be displayed at the top of the applicant list.
-The current display of applicant relies on the ordering of the applicants in the `UniqueApplicantList`. The
-`Applicant` in the `UniqueApplicantList` are ordered in the order they are added in. This makes it difficult
-to have a custom ordering for the flagging feature.
-
-As such, the flag feature alters the `UniqueApplicantList` by changing its internal implementation from an
-`ObservableArrayList` to an `ObservablePriorityQueue`. Since an `ObservablePriorityQueue` does not exist in
-the Java library, the flag feature comes with the team's own design for an `ObservablePriorityQueue`.
-
-The `ObservablePriorityQueue` implements the Java Collections, Iterable, PriorityQueue and Observable interfaces,
-and exposes all related functionality from these relevant interfaces. 
-
-`Applicant` will also be edited to contain a boolean `flagged` for use as a comparator in the `ObservablePriorityQueue`
-
-### \[Proposed\] Data archiving
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -410,7 +541,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `LinkedOUT` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is LinkedOUT and the **Actor** is the user, unless specified otherwise)
 
 **Use case: Add an applicant**
 
