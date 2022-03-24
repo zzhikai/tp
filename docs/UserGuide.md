@@ -162,7 +162,7 @@ Job Applied: CEO of Apple
 Skills: Product Design  
 ```
 
-[Return to Table of Content](#Table of Content)
+[Return to Table of Content](#table-of-content)
 
 ### Editing an applicant : `edit`
 
