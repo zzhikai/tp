@@ -154,6 +154,104 @@ Classes used by multiple components are in the `seedu.linkedout.commons` package
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Edit feature
+
+#### Implementation
+
+The proposed edit mechanism is facilitated by `EditApplicantDescriptor`. `EditApplicantDescriptor` stores the details of the applicant to change.
+
+The user need to specify an `Index` to select the applicant to edit. `EditCommand` extends `Command` and implements the `Command#execute()` method.
+
+Given below is an example usage scenario of how an applicant is edited.
+
+1. The user enters the edit command with the specific fields to edit, `edit 1 r/HR Interview`.
+2. LinkedOUT updates the applicant with the edited information.
+
+The following sequence diagram shows how the edit operation works:
+
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How edit executes:**
+
+* **Alternative 1 (current choice):** Creates a new applicant replace old information.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Replace individual fields inside original applicant
+    * Pros: Will use less memory (Do not have to create an extra applicant).
+    * Cons: We must ensure that the implementation of each individual command to change an information is correct.
+    
+
+### View feature
+
+#### Rationale
+
+The view feature searches a **single** applicant in the application and returns the applicant's details. 
+It is used when users wish to find a specific user they have in mind.
+It takes in a single case-insensitive parameter, which is the applicant's name. No prefix is required.
+
+#### Implementation
+
+The view mechanism is facilitated by `NameContainsAllKeywordsPredicate` which helps the parser match the input.
+
+The user needs to specify a `Name` to allow the application to match and select the applicant. `ViewCommand` extends `Command` and implements the `Command#execute()` method.
+
+As `ViewCommandParser` uses `NameContainsAllKeywordsPredicate`, the `Name` being passed will not match if it contains additional whitespace, but will match inputs which are case-insensitive.
+
+Given below is an example usage scenario of how to view a specific applicant.
+
+1. The user enters the view command with the specific name, `view Alex Megos`.
+2. `LinkedoutParser` is invoked to handle the command `view` through `LinkedoutParser#parseCommand`. 
+3. It then calls upon `ViewCommandParser#parse` to check if the input is empty.
+4. If input is not empty, it passes the input to `NameContainsAllKeywordsPredicate`.
+5. The result is then initialized as a predicate in `ViewCommand`. `ViewCommand#execute` then tries to find a match.
+6. It then calls upon `CommandResult` to display the final result on the GUI.
+
+The following sequence diagram shows how the view operation works:
+
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+
+The following activity diagram shows the workflow for the view operation:
+
+![ViewActivityDiagram](images/ViewActivityDiagram.png)
+
+#### Deisgn Considerations
+
+**Aspect: How view executes:**
+
+* **Alternative 1 (current choice):** Shows a single applicant.
+    * Pros: Easy to implement.
+    * Pros: Result is specific.
+    * Cons: Strict matching.
+    * Cons: Have to remember applicant's name and type it fully.
+
+* **Alternative 2:** Shows multiple applicants based on partial matches
+    * Pros: Less strict matching.
+    * Cons: Users are unable to single out a certain applicant.
+    
+Weighing the pros and cons of these alternatives, we have decided to abstract alternative 2 as a different feature under `search`.
+This is to allow our target user to have greater flexibility, and we believe both are important features to be implemented.
+
+
+### \[Proposed\] Flagging an applicant
+
+The flagging feature flags an applicant as important, and will be displayed at the top of the applicant list.
+The current display of applicant relies on the ordering of the applicants in the `UniqueApplicantList`. The
+`Applicant` in the `UniqueApplicantList` are ordered in the order they are added in. This makes it difficult
+to have a custom ordering for the flagging feature.
+
+As such, the flag feature alters the `UniqueApplicantList` by changing its internal implementation from an
+`ObservableArrayList` to an `ObservablePriorityQueue`. Since an `ObservablePriorityQueue` does not exist in
+the Java library, the flag feature comes with the team's own design for an `ObservablePriorityQueue`.
+
+The `ObservablePriorityQueue` implements the Java Collections, Iterable, PriorityQueue and Observable interfaces,
+and exposes all related functionality from these relevant interfaces. 
+
+`Applicant` will also be edited to contain a boolean `flagged` for use as a comparator in the `ObservablePriorityQueue`
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -224,71 +322,15 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the applicant being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### Edit feature
-
-#### Implementation
-
-The proposed edit mechanism is facilitated by `EditApplicantDescriptor`. `EditApplicantDescriptor` stores the details of the applicant to change.
-
-The user need to specify an `Index` to select the applicant to edit. `editCommand` extends `Command` and implements the `Command#execute()` method.
-
-Given below is an example usage scenario of how an applicant is edited.
-
-1: The user enters the edit command with the specific fields to edit, `edit 1 r/HR Interview`.
-
-2: LinkedOUT updates the applicant with the edited information.
-
-
-The following sequence diagram shows how the edit operation works:
-
-![EditSequenceDiagram](images/EditSequenceDiagram.png)
-
-#### Design considerations:
-
-**Aspect: How edit executes:**
-
-* **Alternative 1 (current choice):** Creates a new applicant replace old information.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2:** Replace individual fields inside original applicant
-    * Pros: Will use less memory (Do not have to create an extra applicant).
-    * Cons: We must ensure that the implementation of each individual command to change an information is correct.
+* **Alternative 2:** Individual command knows how to undo/redo by
+  itself.
+    * Pros: Will use less memory (e.g. for `delete`, just save the applicant being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
-### View feature
-
-#### Rationale
-
-#### Implementation
-
-#### Deisgn Considerations
-
-### \[Proposed\] Flagging an applicant
-
-The flagging feature flags an applicant as important, and will be displayed at the top of the applicant list.
-The current display of applicant relies on the ordering of the applicants in the `UniqueApplicantList`. The
-`Applicant` in the `UniqueApplicantList` are ordered in the order they are added in. This makes it difficult
-to have a custom ordering for the flagging feature.
-
-As such, the flag feature alters the `UniqueApplicantList` by changing its internal implementation from an
-`ObservableArrayList` to an `ObservablePriorityQueue`. Since an `ObservablePriorityQueue` does not exist in
-the Java library, the flag feature comes with the team's own design for an `ObservablePriorityQueue`.
->>>>>>> master
-
-The `ObservablePriorityQueue` implements the Java Collections, Iterable, PriorityQueue and Observable interfaces,
-and exposes all related functionality from these relevant interfaces. 
-
-`Applicant` will also be edited to contain a boolean `flagged` for use as a comparator in the `ObservablePriorityQueue`
+_{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
