@@ -138,7 +138,7 @@
     -fx-font-size: 13px;
     -fx-background-radius: 20;
     -fx-border-radius: 20;
-    -fx-background-color: white;
+    -fx-background-color: derive(white, -5%);
     -fx-font-family: "Segoe UI Black";
 }
 
@@ -358,8 +358,8 @@
 }
 
 #skills .label {
-    -fx-text-fill: white;
-    -fx-background-color: #000000;
+    -fx-text-fill: derive(white, -10%);
+    -fx-background-color: #1d1d1d;
     -fx-font-family: "Segoe UI Black";
     -fx-padding: 2 10 2 10;
     -fx-border-radius: 20;
