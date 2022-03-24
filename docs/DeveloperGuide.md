@@ -277,7 +277,7 @@ The following sequence diagram shows how the add operation works:
 should not exceed the destroy marker X. This is a known limitation of PlantUML.</div>
 
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How add executes:**
 
@@ -308,7 +308,7 @@ The following sequence diagram shows how the edit operation works:
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How edit executes:**
 
