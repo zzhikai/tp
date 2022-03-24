@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.linkedout.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.linkedout.commons.core.GuiSettings;
 import seedu.linkedout.commons.core.LogsCenter;
 import seedu.linkedout.model.applicant.Applicant;
+import seedu.linkedout.model.applicant.KeywordsPredicate;
 
 /**
  * Represents the in-memory model of the linkedout app data.
@@ -126,6 +128,20 @@ public class ModelManager implements Model {
     public void updateFilteredApplicantList(Predicate<Applicant> predicate) {
         requireNonNull(predicate);
         filteredApplicants.setPredicate(predicate);
+    }
+
+    @Override
+    public void searchApplicantList(KeywordsPredicate predicate) {
+        updateFilteredApplicantList(predicate);
+        System.out.println(filteredApplicants);
+        filteredApplicants.sort(new Comparator<Applicant>() {
+            @Override
+            public int compare(Applicant a1, Applicant a2) {
+                return predicate.numOfMatches(a2) - predicate.numOfMatches(a1);
+            }
+        });
+        System.out.println(filteredApplicants);
+
     }
 
     @Override

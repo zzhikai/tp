@@ -39,7 +39,7 @@ public class SearchCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredApplicantList(predicate);
+        model.searchApplicantList((KeywordsPredicate) predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_APPLICANTS_LISTED_OVERVIEW, model.getFilteredApplicantList().size()));
     }

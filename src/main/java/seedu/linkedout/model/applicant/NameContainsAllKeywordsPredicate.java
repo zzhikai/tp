@@ -1,5 +1,7 @@
 package seedu.linkedout.model.applicant;
 
+import seedu.linkedout.commons.util.StringUtil;
+
 import java.util.Arrays;
 
 
@@ -26,6 +28,11 @@ public class NameContainsAllKeywordsPredicate extends KeywordsPredicate {
         return other == this // short circuit if same object
                 || (other instanceof NameContainsAllKeywordsPredicate // instanceof handles nulls
                 && keywords.equalsIgnoreCase(((NameContainsAllKeywordsPredicate) other).keywords)); // state check
+    }
+
+    @Override
+    public int numOfMatches(Applicant applicant) {
+        return 1;
     }
 
 }

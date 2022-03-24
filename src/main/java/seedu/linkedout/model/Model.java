@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.linkedout.commons.core.GuiSettings;
 import seedu.linkedout.model.applicant.Applicant;
+import seedu.linkedout.model.applicant.KeywordsPredicate;
 
 /**
  * The API of the Model component.
@@ -85,4 +86,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredApplicantList(Predicate<Applicant> predicate);
+
+    void searchApplicantList(KeywordsPredicate predicate);
 }

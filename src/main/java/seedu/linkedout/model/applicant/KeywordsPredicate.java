@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 
 import seedu.linkedout.commons.util.StringUtil;
 
-public class KeywordsPredicate implements Predicate<Applicant> {
+public abstract class KeywordsPredicate implements Predicate<Applicant> {
 
     private final List<String> keywords;
 
@@ -17,6 +17,7 @@ public class KeywordsPredicate implements Predicate<Applicant> {
      * @param applicant
      * @return true if list contains the applicant
      */
+    @Override
     public boolean test(Applicant applicant) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(applicant.getName().fullName, keyword));
@@ -28,4 +29,8 @@ public class KeywordsPredicate implements Predicate<Applicant> {
                 || (other instanceof KeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((KeywordsPredicate) other).keywords)); // state check
     }
+
+
+
+    public abstract int numOfMatches(Applicant applicant);
 }
