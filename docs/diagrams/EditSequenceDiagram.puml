@@ -1,0 +1,86 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":LinkedOUTParser" as LinkedOUTParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "d:EditCommand" as EditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit 1 n/Alex Tan ...")
+activate LogicManager
+
+LogicManager -> LinkedOUTParser : parseCommand("edit 1 n/Alex Tan ...")
+activate LinkedOUTParser
+
+create EditCommandParser
+LinkedOUTParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> LinkedOUTParser
+deactivate EditCommandParser
+
+LinkedOUTParser -> EditCommandParser : parse(args)
+activate EditCommandParser
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+
+EditCommand --> EditCommandParser : d
+deactivate EditCommand
+
+EditCommandParser --> LinkedOUTParser : d
+deactivate EditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> LinkedOUTParser
+destroy EditCommandParser
+
+LinkedOUTParser --> LogicManager : d
+deactivate LinkedOUTParser
+
+LogicManager -> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> Model : getFilteredApplicantList()
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+EditCommand -> Model : setApplicant(applicantToEdit, editedApplicant)
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+EditCommand -> Model : updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+EditCommand -> Model : setApplicant(editedApplicant)
+activate Model
+Model --> EditCommand
+deactivate Model
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
