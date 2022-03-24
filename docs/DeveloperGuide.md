@@ -281,7 +281,7 @@ should not exceed the destroy marker X. This is a known limitation of PlantUML.<
 
 **Aspect: How add executes:**
 
-* **Alternative 1 (current choice):** Check whether specified applicant already exists before creating an Applicant object.
+* **Alternative 1 :** Check whether specified applicant already exists before creating an Applicant object.
     * Pros: Avoid creation of unnecessary objects
     * Cons: May cause reduced performance
 
