@@ -284,17 +284,22 @@ These predicates assist the filtering of applicant list in the `Model` interface
 
 Given below is an example usage scenario and how the search mechanism behaves at each step.
 
-Step 1. The user enters `search n/David` command to search for applicants in the `LinkedOUT`.
+1. The user enters search command with prefix and specified keyword , `search n/David`.
 
-Step 2. The input keywords will be passed into `SearchCommandParser` and creates a `NameContainsKeywordsPredicate` if the keywords are not empty.
 
-Step 3. The predicate is then passed into `Model#updateFilteredApplicantList()` to filter and display applicants with partial name matching of "David" in the `LinkedOUT`.
+2. The input keywords will be passed into `SearchCommandParser` and creates a `NameContainsKeywordsPredicate` if the keyword and prefix are not empty.
 
-Step 4. The user enters `search j/Software Engineer` command to search for applicants in the `LinkedOUT`.
 
-Step 5. The input keywords will be passed into `SearchCommandParser` and creates a `JobContainsKeywordsPredicate` if the keywords are not empty.
+3. The predicate is then passed into `Model#updateFilteredApplicantList()` to filter and display applicants with partial name matching of "David" in the `LinkedOUT`.
 
-Step 6. The predicate is then passed into `Model#updateFilteredApplicantList()` to filter and display applicants with partial job name matching of "Software" or "Engineer"  in the `LinkedOUT`.
+
+4. The user enters `search j/Software Engineer` command to search for applicants in the `LinkedOUT`.
+
+
+5. The input keywords will be passed into `SearchCommandParser` and creates a `JobContainsKeywordsPredicate` if the keywords are not empty.
+
+
+6. The predicate is then passed into `Model#updateFilteredApplicantList()` to filter and display applicants with partial job name matching of "Software" or "Engineer"  in the `LinkedOUT`.
 
 The following activity diagram shows the workflow of the search command:
 ![ViewActivityDiagram](images/SearchCommandActivityDiagram.png)
