@@ -41,6 +41,8 @@ public class ApplicantCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label flagged;
+    @FXML
     private FlowPane skills;
 
     /**
@@ -55,6 +57,11 @@ public class ApplicantCard extends UiPart<Region> {
         job.setText(applicant.getJob().value);
         round.setText(applicant.getRound().value);
         email.setText(applicant.getEmail().value);
+        if (applicant.getFlag().value) {
+            flagged.setText("Flag status: True");
+        } else {
+            flagged.setText("Flag status: False");
+        }
         applicant.getSkills().stream()
                 .sorted(Comparator.comparing(skill -> skill.skillName))
                 .forEach(skill -> skills.getChildren().add(new Label(skill.skillName)));

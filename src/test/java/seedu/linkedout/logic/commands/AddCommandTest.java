@@ -115,6 +115,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void flagApplicant(Applicant applicant, Applicant flaggedApplicant) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setLinkedout(ReadOnlyLinkedout newData) {
             throw new AssertionError("This method should not be called.");
         }

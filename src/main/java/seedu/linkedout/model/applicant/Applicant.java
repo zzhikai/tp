@@ -13,7 +13,7 @@ import seedu.linkedout.model.skill.Skill;
  * Represents an Applicant in linkedout.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Applicant {
+public class Applicant implements Comparable<Applicant> {
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -23,8 +23,10 @@ public class Applicant {
     private final Round round;
     private final Job job;
     private final Set<Skill> skills = new HashSet<>();
+    private final Flag flagged;
 
     /**
+     * Default constructor, sets flagged to false.
      * Every field must be present and not null.
      */
     public Applicant(Name name, Phone phone, Email email, Job job, Round round, Set<Skill> skills) {
@@ -35,6 +37,22 @@ public class Applicant {
         this.job = job;
         this.round = round;
         this.skills.addAll(skills);
+        this.flagged = new Flag(false);
+    }
+
+    /**
+     * Constructor that allows an applicant to be flagged
+     * Every field must be present and not null.
+     */
+    public Applicant(Name name, Phone phone, Email email, Job job, Round round, Set<Skill> skills, Flag flag) {
+        requireAllNonNull(name, phone, email, job, round, skills, flag);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.job = job;
+        this.round = round;
+        this.skills.addAll(skills);
+        this.flagged = flag;
     }
 
     public Name getName() {
@@ -55,6 +73,10 @@ public class Applicant {
 
     public Job getJob() {
         return job;
+    }
+
+    public Flag getFlag() {
+        return flagged;
     }
 
     /**
@@ -98,7 +120,22 @@ public class Applicant {
                 && otherApplicant.getEmail().equals(getEmail())
                 && otherApplicant.getRound().equals(getRound())
                 && otherApplicant.getJob().equals(getJob())
-                && otherApplicant.getSkills().equals(getSkills());
+                && otherApplicant.getSkills().equals(getSkills())
+                && otherApplicant.getFlag().equals(getFlag());
+    }
+
+    @Override
+    public int compareTo(Applicant other) {
+        if (other == this) {
+            return 0;
+        }
+        if (this.flagged.value && !other.getFlag().value) {
+            return -1;
+        } else if (!this.flagged.value && other.getFlag().value) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     @Override
