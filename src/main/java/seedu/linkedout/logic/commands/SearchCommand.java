@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 
-import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.linkedout.commons.core.Messages;
@@ -27,7 +26,7 @@ public class SearchCommand extends Command {
             + "Parameters: must contain at least one prefix "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_JOB + "JOB] \n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " Steve";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " Steve" + " " + PREFIX_JOB + " Software Engineer";
 
     private final Predicate<Applicant> predicate;
 
@@ -39,7 +38,8 @@ public class SearchCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.searchApplicantList((KeywordsPredicate) predicate);
+//        model.searchFilteredApplicantList((KeywordsPredicate) predicate);
+        model.updateFilteredApplicantList((KeywordsPredicate) predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_APPLICANTS_LISTED_OVERVIEW, model.getFilteredApplicantList().size()));
     }

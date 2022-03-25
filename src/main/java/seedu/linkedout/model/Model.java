@@ -87,5 +87,6 @@ public interface Model {
      */
     void updateFilteredApplicantList(Predicate<Applicant> predicate);
 
-    void searchApplicantList(KeywordsPredicate predicate);
+//    public void searchFilteredApplicantList(KeywordsPredicate predicate)
+
 }

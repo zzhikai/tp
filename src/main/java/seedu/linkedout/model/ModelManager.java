@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.linkedout.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,7 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.linkedout.commons.core.GuiSettings;
 import seedu.linkedout.commons.core.LogsCenter;
 import seedu.linkedout.model.applicant.Applicant;
-import seedu.linkedout.model.applicant.KeywordsPredicate;
+
 
 /**
  * Represents the in-memory model of the linkedout app data.
@@ -36,6 +35,7 @@ public class ModelManager implements Model {
         this.linkedout = new Linkedout(linkedout);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredApplicants = new FilteredList<Applicant>(this.linkedout.getApplicantList());
+
     }
 
     public ModelManager() {
@@ -130,19 +130,11 @@ public class ModelManager implements Model {
         filteredApplicants.setPredicate(predicate);
     }
 
-    @Override
-    public void searchApplicantList(KeywordsPredicate predicate) {
-        updateFilteredApplicantList(predicate);
-        System.out.println(filteredApplicants);
-        filteredApplicants.sort(new Comparator<Applicant>() {
-            @Override
-            public int compare(Applicant a1, Applicant a2) {
-                return predicate.numOfMatches(a2) - predicate.numOfMatches(a1);
-            }
-        });
-        System.out.println(filteredApplicants);
-
-    }
+//    @Override
+//    public void searchFilteredApplicantList(KeywordsPredicate predicate) {
+//        updateFilteredApplicantList(predicate);
+//        Collections.sort(filteredApplicants, (a1, a2) -> predicate.numOfMatches(a2) - predicate.numOfMatches(a1));
+//    }
 
     @Override
     public boolean equals(Object obj) {
