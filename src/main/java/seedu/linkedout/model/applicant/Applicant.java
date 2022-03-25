@@ -13,7 +13,7 @@ import seedu.linkedout.model.skill.Skill;
  * Represents an Applicant in linkedout.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Applicant {
+public class Applicant implements Comparable<Applicant> {
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -122,6 +122,20 @@ public class Applicant {
                 && otherApplicant.getJob().equals(getJob())
                 && otherApplicant.getSkills().equals(getSkills())
                 && otherApplicant.getFlag().equals(getFlag());
+    }
+
+    @Override
+    public int compareTo(Applicant other) {
+        if (other == this) {
+            return 0;
+        }
+        if (this.flagged.value && !other.getFlag().value) {
+            return -1;
+        } else if (!this.flagged.value && other.getFlag().value) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     @Override

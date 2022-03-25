@@ -53,20 +53,15 @@ public class UniqueApplicantList implements Iterable<Applicant> {
         internalList.add(toAdd);
     }
 
+    /**
+     * Flags (or unflags if already flagged) an applicant in the list.
+     * The applicant must already exist in the list.
+     */
     public void flag(Applicant toFlag, Applicant flaggedApplicant) {
         requireNonNull(toFlag);
         internalList.remove(toFlag);
         internalList.add(flaggedApplicant);
-        Comparator<Applicant> comparator = (applicant, otherApplicant) -> {
-            if (applicant.getFlag().value && !otherApplicant.getFlag().value) {
-                return 1;
-            } else if (!applicant.getFlag().value && otherApplicant.getFlag().value) {
-                return -1;
-            } else {
-                return 0;
-            }
-        };
-        Collections.sort(internalList, comparator);
+        Collections.sort(internalList);
     }
 
     /**

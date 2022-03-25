@@ -121,7 +121,7 @@ class JsonAdaptedApplicant {
         final Flag modelFlag = new Flag(flag);
 
         final Set<Skill> modelSkills = new HashSet<>(applicantSkills);
-        return new Applicant(modelName, modelPhone, modelEmail, modelJob, modelRound, modelSkills);
+        return new Applicant(modelName, modelPhone, modelEmail, modelJob, modelRound, modelSkills, modelFlag);
     }
 
 }
