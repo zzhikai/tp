@@ -9,6 +9,7 @@ import static seedu.linkedout.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,7 @@ import seedu.linkedout.model.Model;
 import seedu.linkedout.model.ReadOnlyLinkedout;
 import seedu.linkedout.model.ReadOnlyUserPrefs;
 import seedu.linkedout.model.applicant.Applicant;
+import seedu.linkedout.model.applicant.KeywordsPredicate;
 import seedu.linkedout.testutil.ApplicantBuilder;
 
 public class AddCommandTest {
@@ -146,6 +148,16 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredApplicantList(Predicate<Applicant> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Applicant> getSortedApplicantList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSearchedApplicantList(List<KeywordsPredicate> predicates) {
             throw new AssertionError("This method should not be called.");
         }
     }

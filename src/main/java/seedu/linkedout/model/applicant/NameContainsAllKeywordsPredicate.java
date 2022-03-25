@@ -1,7 +1,5 @@
 package seedu.linkedout.model.applicant;
 
-import seedu.linkedout.commons.util.StringUtil;
-
 import java.util.Arrays;
 
 
@@ -31,7 +29,7 @@ public class NameContainsAllKeywordsPredicate extends KeywordsPredicate {
     }
 
     @Override
-    public int numOfMatches(Applicant applicant) {
+    public int numberOfKeywordMatches(Applicant applicant) {
         return 1;
     }
 

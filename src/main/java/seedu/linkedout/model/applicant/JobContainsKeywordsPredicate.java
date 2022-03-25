@@ -22,18 +22,16 @@ public class JobContainsKeywordsPredicate extends KeywordsPredicate implements P
 
     @Override
     public boolean test(Applicant applicant) {
-        int numberMatches = numOfMatches(applicant);
+        int numberMatches = numberOfKeywordMatches(applicant);
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(applicant.getJob().value, keyword));
     }
 
 
     @Override
-    public int numOfMatches(Applicant applicant) {
-        int num = (int) keywords.stream()
+    public int numberOfKeywordMatches(Applicant applicant) {
+        return (int) keywords.stream()
                 .filter(keyword -> StringUtil.containsWordIgnoreCase(applicant.getJob().value, keyword)).count();
-//        System.out.println(num);
-        return num;
     }
 
     @Override

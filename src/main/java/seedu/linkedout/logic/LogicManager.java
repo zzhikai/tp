@@ -64,6 +64,11 @@ public class LogicManager implements Logic {
         return model.getFilteredApplicantList();
     }
 
+    @Override
+    public ObservableList<Applicant> getSortedApplicantList() {
+        return model.getSortedApplicantList();
+    }
+
 
     @Override
     public Path getLinkedoutFilePath() {

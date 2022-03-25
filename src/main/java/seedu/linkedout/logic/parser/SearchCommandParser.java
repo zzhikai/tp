@@ -6,12 +6,10 @@ import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import seedu.linkedout.logic.commands.SearchCommand;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
-import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.JobContainsKeywordsPredicate;
 import seedu.linkedout.model.applicant.KeywordsPredicate;
 import seedu.linkedout.model.applicant.NameContainsKeywordsPredicate;
@@ -51,23 +49,8 @@ public class SearchCommandParser implements Parser<SearchCommand> {
             keywordsPredicateList.add(new JobContainsKeywordsPredicate(jobKeywords));
         }
 
-        Predicate<Applicant> predicates = combinePredicate(keywordsPredicateList);
-        return new SearchCommand(predicates);
+        return new SearchCommand(keywordsPredicateList);
 
-    }
-
-
-    /**
-     * Return the combined predicates of a short-circuiting logical AND of given predicates
-     * @param predicateList
-     * @return combined predicate
-     */
-    private static Predicate<Applicant> combinePredicate(List<KeywordsPredicate> predicateList) {
-        Predicate<Applicant> predicates = predicateList.get(0);
-        for (int i = 1; i < predicateList.size(); i++) {
-            predicates = predicates.and(predicateList.get(i));
-        }
-        return predicates;
     }
 
     /**
@@ -84,7 +67,6 @@ public class SearchCommandParser implements Parser<SearchCommand> {
     private static boolean hasAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 
     /**
      * Get the input keywords according to prefix and split the keywords with white space
@@ -115,7 +97,4 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         }
         return partialKeywords;
     }
-
-
-
 }

@@ -30,7 +30,5 @@ public abstract class KeywordsPredicate implements Predicate<Applicant> {
                 && keywords.equals(((KeywordsPredicate) other).keywords)); // state check
     }
 
-
-
-    public abstract int numOfMatches(Applicant applicant);
+    public abstract int numberOfKeywordMatches(Applicant applicant);
 }

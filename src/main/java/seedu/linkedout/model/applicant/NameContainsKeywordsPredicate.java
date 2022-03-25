@@ -34,7 +34,7 @@ public class NameContainsKeywordsPredicate extends KeywordsPredicate implements 
     }
 
     @Override
-    public int numOfMatches(Applicant applicant) {
+    public int numberOfKeywordMatches(Applicant applicant) {
         return (int) keywords.stream()
                 .filter(keyword -> StringUtil.containsWordIgnoreCase(applicant.getName().fullName, keyword)).count();
     }
