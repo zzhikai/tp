@@ -106,6 +106,7 @@ public class ModelManager implements Model {
 
     @Override
     public void flagApplicant(Applicant applicant, Applicant flaggedApplicant) {
+        requireAllNonNull(applicant, flaggedApplicant);
         linkedout.flagApplicant(applicant, flaggedApplicant);
     }
 
