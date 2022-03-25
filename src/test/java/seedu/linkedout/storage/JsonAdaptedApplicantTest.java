@@ -12,7 +12,13 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.linkedout.commons.exceptions.IllegalValueException;
-import seedu.linkedout.model.applicant.*;
+import seedu.linkedout.model.applicant.Email;
+import seedu.linkedout.model.applicant.Flag;
+import seedu.linkedout.model.applicant.Job;
+import seedu.linkedout.model.applicant.Name;
+import seedu.linkedout.model.applicant.Phone;
+import seedu.linkedout.model.applicant.Round;
+
 
 public class JsonAdaptedApplicantTest {
     private static final String INVALID_NAME = "R@chel";

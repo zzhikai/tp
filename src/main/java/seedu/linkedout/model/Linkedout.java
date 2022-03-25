@@ -94,6 +94,10 @@ public class Linkedout implements ReadOnlyLinkedout {
         applicants.remove(key);
     }
 
+    /**
+     * Flags an applicant in the Linkedout app.
+     * The applicant must already exist in the linkedout app.
+     */
     public void flagApplicant(Applicant applicant, Applicant flaggedApplicant) {
         requireNonNull(applicant);
         applicants.flag(applicant, flaggedApplicant);

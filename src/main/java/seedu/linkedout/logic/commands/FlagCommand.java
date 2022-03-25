@@ -1,15 +1,15 @@
 package seedu.linkedout.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.linkedout.commons.core.Messages;
 import seedu.linkedout.commons.core.index.Index;
 import seedu.linkedout.logic.commands.exceptions.CommandException;
 import seedu.linkedout.model.Model;
 import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.Flag;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 public class FlagCommand extends Command {
 

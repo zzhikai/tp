@@ -3,7 +3,13 @@ package seedu.linkedout.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.linkedout.model.applicant.*;
+import seedu.linkedout.model.applicant.Applicant;
+import seedu.linkedout.model.applicant.Email;
+import seedu.linkedout.model.applicant.Flag;
+import seedu.linkedout.model.applicant.Job;
+import seedu.linkedout.model.applicant.Name;
+import seedu.linkedout.model.applicant.Phone;
+import seedu.linkedout.model.applicant.Round;
 import seedu.linkedout.model.skill.Skill;
 import seedu.linkedout.model.util.SampleDataUtil;
 
@@ -101,6 +107,9 @@ public class ApplicantBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Flag} of the {@code Applicant} that we are building.
+     */
     public ApplicantBuilder withFlag(Boolean flag) {
         this.flag = new Flag(flag);
         return this;

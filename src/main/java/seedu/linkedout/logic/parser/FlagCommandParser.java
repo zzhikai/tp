@@ -1,16 +1,15 @@
 package seedu.linkedout.logic.parser;
 
+import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.linkedout.commons.core.index.Index;
-import seedu.linkedout.logic.commands.DeleteCommand;
 import seedu.linkedout.logic.commands.FlagCommand;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
-
-import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new FlagCommand object
  */
-public class FlagCommandParser implements Parser<FlagCommand>{
+public class FlagCommandParser implements Parser<FlagCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FlagCommand

@@ -1,7 +1,5 @@
 package seedu.linkedout.model.applicant;
 
-import static java.util.Objects.requireNonNull;
-
 /**
  * Represents a Applicant's flagged status in the linkedout app.
  * Guarantees: immutable; is valid as declared.
