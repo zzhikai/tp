@@ -106,9 +106,10 @@ public class ModelManager implements Model {
     public void addApplicant(Applicant applicant) {
         linkedout.addApplicant(applicant);
         updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
+        updateSortedApplicantList((a1, a2) -> 0);
+        // update list to sort when adding applicant
         // need to set applicantList sort to new filteredApplicant list
         // non null comparator in order for it to update?
-        updateSortedApplicantList(null);
     }
 
     @Override
@@ -134,8 +135,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredApplicants.setPredicate(predicate);
         sortedApplicants.setComparator(null);
-//        sortedApplicants.setComparator((a1, a2) -> 0);
-        // check if this affects flag
+        // so that list will not become permanently sorted
     }
 
     //=========== Sorted Applicant List Accessors =============================================================
@@ -151,8 +151,9 @@ public class ModelManager implements Model {
     @Override
     public void updateSortedApplicantList(Comparator<Applicant> comparator) {
         requireNonNull(comparator);
+        // no difference
+        // filteredApplicants.setPredicate(PREDICATE_SHOW_ALL_APPLICANTS);
         sortedApplicants.setComparator(comparator);
-//        filteredApplicants.setPredicate();
     }
 
     //===========
