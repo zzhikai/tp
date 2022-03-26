@@ -15,7 +15,7 @@ LinkedOUT is the only application that any experienced recruiter needs. LinkedOU
 
 This user guide is meant for users who wish to learn how to use our application. It is best suited for recruiters who are looking to incorporate this app into their daily workflows.
 
-If you would like to learn more about the technical aspects of our application instead, you can do so by reading our [Developer Guide].(https://ay2122s2-cs2103t-t09-2.github.io/tp/DeveloperGuide.html)
+If you would like to learn more about the technical aspects of our application instead, you can do so by reading our [Developer Guide](https://ay2122s2-cs2103t-t09-2.github.io/tp/DeveloperGuide.html).
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -31,13 +31,9 @@ Notes are placed in this guide to assist you in interpreting the terminology use
 
 </div>
 
-<br>
-
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Tips are placed in this guide to serve as suggestions that you can try out while using our application.
 </div>
-
-<br>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Cautions are placed in this guide to serve as warnings for certain actions.
