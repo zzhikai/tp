@@ -3,6 +3,7 @@ package seedu.linkedout.model.applicant;
 import static java.util.Objects.requireNonNull;
 import static seedu.linkedout.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -48,6 +49,17 @@ public class UniqueApplicantList implements Iterable<Applicant> {
             throw new DuplicateApplicantException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Flags (or unflags if already flagged) an applicant in the list.
+     * The applicant must already exist in the list.
+     */
+    public void flag(Applicant toFlag, Applicant flaggedApplicant) {
+        requireNonNull(toFlag);
+        internalList.remove(toFlag);
+        internalList.add(flaggedApplicant);
+        Collections.sort(internalList);
     }
 
     /**

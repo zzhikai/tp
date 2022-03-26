@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.Email;
+import seedu.linkedout.model.applicant.Flag;
 import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
@@ -22,12 +23,14 @@ public class ApplicantBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_JOB = "Software Engineer";
     public static final String DEFAULT_ROUND = "Resume Sent";
+    public static final Boolean DEFAULT_FLAG = false;
 
     private Name name;
     private Phone phone;
     private Email email;
     private Job job;
     private Round round;
+    private Flag flag;
     private Set<Skill> skills;
 
     /**
@@ -39,6 +42,7 @@ public class ApplicantBuilder {
         email = new Email(DEFAULT_EMAIL);
         job = new Job(DEFAULT_JOB);
         round = new Round(DEFAULT_ROUND);
+        flag = new Flag(DEFAULT_FLAG);
         skills = new HashSet<>();
     }
 
@@ -51,6 +55,7 @@ public class ApplicantBuilder {
         email = applicantToCopy.getEmail();
         job = applicantToCopy.getJob();
         round = applicantToCopy.getRound();
+        flag = applicantToCopy.getFlag();
         skills = new HashSet<>(applicantToCopy.getSkills());
     }
 
@@ -99,6 +104,14 @@ public class ApplicantBuilder {
      */
     public ApplicantBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Flag} of the {@code Applicant} that we are building.
+     */
+    public ApplicantBuilder withFlag(Boolean flag) {
+        this.flag = new Flag(flag);
         return this;
     }
 

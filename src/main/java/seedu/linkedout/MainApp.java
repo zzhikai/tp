@@ -79,14 +79,14 @@ public class MainApp extends Application {
         try {
             linkedoutOptional = storage.readLinkedout();
             if (!linkedoutOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample Linkedout app");
+                logger.info("Data file not found. Will be starting with a sample linkedout app");
             }
             initialData = linkedoutOptional.orElseGet(SampleDataUtil::getSampleLinkedout);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty Linkedout app");
+            logger.warning("Data file not in the correct format. Will be starting with an empty linkedout app");
             initialData = new Linkedout();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty Linkedout app");
+            logger.warning("Problem while reading from the file. Will be starting with an empty linkedout app");
             initialData = new Linkedout();
         }
 
@@ -94,6 +94,7 @@ public class MainApp extends Application {
     }
 
     private void initLogging(Config config) {
+        assert config != null : "A config should have been predefined.";
         LogsCenter.init(config);
     }
 

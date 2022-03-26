@@ -5,12 +5,14 @@
     "email": "alice@example.com",
     "job": "Frontend Software Engineer",
     "round": "123, Jurong West Ave 6, #08-111",
+    "flag": false,
     "skilled": [ "Pythonzzz" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "job": "Frontend Software Engineer",
+    "flag": false,
     "round": "Technical Interview"
   } ]
 }

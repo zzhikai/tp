@@ -5,16 +5,16 @@ title: User Guide
 
 LinkedOUT is the only application that any experienced recruiter needs. LinkedOUT allows recruiters to keep track of many applicants, and the job they applied for. You can store their contact details, skills and the round of their application, all in one place.
 
+## Table of Contents
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `linkedout.jar` from [here] (URL to be updated).
+1. Download the latest `linkedout.jar` from [here](https://github.com/AY2122S2-CS2103T-T09-2/tp/releases/tag/v1.3(trial)).
 
 1. Copy the file to the folder you want to use as the _home folder_ for LinkedOUT.
 
@@ -32,6 +32,8 @@ LinkedOUT is the only application that any experienced recruiter needs. LinkedOU
   * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -61,12 +63,18 @@ LinkedOUT is the only application that any experienced recruiter needs. LinkedOU
 
 </div>
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
 
 Format: `help`
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Adding an applicant: `add`
 
 Adds a new applicant to be tracked, by adding their name, phone number, email, the job they have applied for, round of job application, along with a variable number of skills.
@@ -87,6 +95,10 @@ Sample Output:
 ```
 New applicant added: Bob; Phone: 99999999; Email: bob@example.com; Job: Data Analyst; Round: Interview; Skills: [Java][Pandas][Python]
 ```
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Listing all applicants : `list`
 
 Show a list of all job applicants, along with an overview of each applicant.
@@ -112,6 +124,10 @@ Job Applied: Software Developer
 Skills: Pandas, Python
 Phone Number: 88888888
 ```
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Viewing a specific applicant : `view`
 
 Allows the user to view an overview of a specific applicant, specified by applicant's full name (exact match)
@@ -136,6 +152,10 @@ Phone Number: 99999999
 Job Applied: CEO of Apple
 Skills: Product Design  
 ```
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Searching a specific applicant : `search`
 
 Allows the user to view an overview of a specific applicant, specified by applicant's first or last name 
@@ -160,6 +180,10 @@ Phone Number: 99999999
 Job Applied: CEO of Apple
 Skills: Product Design  
 ```
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Editing an applicant : `edit`
 
 Edits the details of the applicant identified by the index number used in the displayed applicant list. Existing values will be overwritten by the input values.
@@ -180,6 +204,10 @@ Sample Output:
 ```
 Edited Applicant: David Lee; Phone: 91234567; Email: johndoe@example.com; Job: Risk Assessment Associate; Round: Stock Pitch Assessment; Skills: [Accounting][Equities][Cryptocurrency]
 ```
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Deleting an applicant : `delete`
 
 Deletes a specific job applicant, specified by index.
@@ -200,16 +228,26 @@ Sample Output:
 ```
 Deleted Applicant: Bernice Yu; Phone: 99272758; Email: berniceyu@example.com; Job: Social Media Marketer; Round: Instagram Check; Skills: [Video Editing][Social Media Marketing]
 ```
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Saving the data
 
 LinkedOUT data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Editing the data file
 
 LinkedOUT data is saved as a JSON file `[JAR file location]/data/linkedout.json`. Advanced users are welcome to update data directly by editing that data file.
@@ -218,6 +256,8 @@ LinkedOUT data is saved as a JSON file `[JAR file location]/data/linkedout.json`
 If your changes to the data file makes its format invalid, LinkedOUT will discard all data and start with an empty data file at the next run.
 </div>
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -225,8 +265,9 @@ If your changes to the data file makes its format invalid, LinkedOUT will discar
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous LinkedOUT home folder.
 
---------------------------------------------------------------------------------------------------------------------
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
 ## Command summary
 
 | Action     | Format, Examples                                                                                                                                            |
@@ -239,3 +280,7 @@ If your changes to the data file makes its format invalid, LinkedOUT will discar
 | **Edit**   | `edit i/INDEX [n/NAME] ...` e.g: `edit 1 n/Elon Musk`                                                                                                       |
 | **Delete** | `delete i/INDEX` e.g: `delete 1`                                                                                                                            |                                                                                                           |
 | **Exit**   | `exit`                                                                                                                                                      |
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
