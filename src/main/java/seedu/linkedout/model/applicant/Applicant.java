@@ -129,10 +129,10 @@ public class Applicant {
     }
 
     public int compareNames(Applicant applicant2) {
-        return this.getName().toString().compareTo(applicant2.getName().toString());
+        return this.getName().toString().toLowerCase().compareTo(applicant2.getName().toString().toLowerCase());
     }
 
     public int compareJobs(Applicant applicant2) {
-        return this.getJob().toString().compareTo(applicant2.getJob().toString());
+        return this.getJob().toString().toLowerCase().compareTo(applicant2.getJob().toString().toLowerCase());
     }
 }
