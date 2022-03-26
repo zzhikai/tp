@@ -10,6 +10,13 @@ LinkedOUT is the only application that any experienced recruiter needs. LinkedOU
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Who is this User Guide for?
+
+This user guide is meant for 
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -68,7 +75,7 @@ LinkedOUT is the only application that any experienced recruiter needs. LinkedOU
 ---
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 Format: `help`
 
@@ -77,14 +84,20 @@ Format: `help`
 ---
 ### Adding an applicant: `add`
 
-Adds a new applicant to be tracked, by adding their name, phone number, email, the job they have applied for, round of job application, along with a variable number of skills.
+Allows you to add a new applicant to be tracked with the following details:
+* Name
+* Phone Number
+* Email
+* The job they've applied for
+* Round of job application
+* Particular skills they may have
 
 Format:
 ```
 add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILLS]...
 ```
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of skills (including 0)
+A person can have any number of skills (including none)
 </div>
 
 Example:
@@ -101,7 +114,7 @@ New applicant added: Bob; Phone: 99999999; Email: bob@example.com; Job: Data Ana
 ---
 ### Listing all applicants : `list`
 
-Show a list of all job applicants, along with an overview of each applicant.
+Allows you to list out all job applicants, along with an overview of each applicant.
 
 Format:
 ```
@@ -130,11 +143,11 @@ Phone Number: 88888888
 ---
 ### Viewing a specific applicant : `view`
 
-Allows the user to view an overview of a specific applicant, specified by applicant's full name (exact match)
+Allows you to view an overview of a specific applicant, specified by applicant's full name (exact match)
 
 Format:
 ```
-view n/NAME
+view NAME
 ```
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * Only the name is searched.
@@ -143,7 +156,7 @@ view n/NAME
 
 Example:
 ```
-view n/Steve Jobs
+view Steve Jobs
 ```
 Sample Output:
 ```
@@ -158,7 +171,7 @@ Skills: Product Design
 ---
 ### Searching a specific applicant : `search`
 
-Allows the user to view an overview of a specific applicant, specified by applicant's first or last name 
+Allows you to view an overview of a specific applicant, specified by applicant's first or last name 
 
 Format:
 ```
@@ -186,15 +199,15 @@ Skills: Product Design
 ---
 ### Editing an applicant : `edit`
 
-Edits the details of the applicant identified by the index number used in the displayed applicant list. Existing values will be overwritten by the input values.
+Allows you to edit details of the applicant identified by the index number. The index number used corresponds to the one in the displayed applicant list. Existing values will be overwritten by the input values.
 
 Format:
 ```
 edit i/INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]...
 ```
 
-* Only valid index are edited. e.g `5` will not edit if there are only `4` applicants in the list
-* Only positive index are edited. e.g `-1` will not edit the details of an applicant
+* Only valid indexes are edited. e.g If there are only `4` applicants in LinkedOUT, but the index specified is `5`.
+* Only positive indexes are edited. e.g As we label our applicants starting from `1`, an index of `-1` will not be tagged to an applicant.
 
 Example:
 ```
@@ -208,9 +221,34 @@ Edited Applicant: David Lee; Phone: 91234567; Email: johndoe@example.com; Job: R
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
+### Flagging an applicant : `flag`
+
+Allows you to flag an applicant identified by the index number. The index number used corresponds to the one in the displayed applicant list. Flagged applicants will appear at the top of the list.
+
+Format:
+```
+flag INDEX
+```
+
+* Only valid indexes are edited. e.g If there are only `4` applicants in LinkedOUT, but the index specified is `5`.
+* Only positive indexes are edited. e.g As we label our applicants starting from `1`, an index of `-1` will not be tagged to an applicant.
+* To un-flag the applicant, you may simply re-type the same command.
+
+Example:
+```
+flag 1
+```
+Sample Output:
+```
+Flagged Applicant: David Lee; Phone: 91234567; Email: johndoe@example.com; Job: Risk Assessment Associate; Round: Stock Pitch Assessment; Skills: [Accounting][Equities][Cryptocurrency]
+```
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Deleting an applicant : `delete`
 
-Deletes a specific job applicant, specified by index.
+Allows you to delete a specific job applicant, specified by index.
 
 Format:
 ```
@@ -250,7 +288,7 @@ LinkedOUT data is saved in the hard disk automatically after any command that ch
 ---
 ### Editing the data file
 
-LinkedOUT data is saved as a JSON file `[JAR file location]/data/linkedout.json`. Advanced users are welcome to update data directly by editing that data file.
+LinkedOUT data is saved in `[JAR file location]/data/linkedout.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, LinkedOUT will discard all data and start with an empty data file at the next run.
@@ -263,7 +301,7 @@ If your changes to the data file makes its format invalid, LinkedOUT will discar
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous LinkedOUT home folder.
+**A**: You may first install the app in another computer. Then, you may overwrite the empty data file it creates with the file containing data from the previous LinkedOUT home folder.
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -275,9 +313,10 @@ If your changes to the data file makes its format invalid, LinkedOUT will discar
 | **Help**   | `help`                                                                                                                                                      |
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILLS]...<br/>` <br/>e.g: `add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas` |
 | **List**   | `list`                                                                                                                                                      |
-| **View**   | `view n/NAME` e.g: `view n/Steve Jobs`                                                                                                                      |
+| **View**   | `view NAME` e.g: `view Steve Jobs`                                                                                                                      |
 | **Search** | `search n/NAME` e.g: `search n/Steve`                                                                                                                       |
-| **Edit**   | `edit i/INDEX [n/NAME] ...` e.g: `edit 1 n/Elon Musk`                                                                                                       |
+| **Edit**   | `edit i/INDEX [n/NAME] ...` e.g: `edit 1 n/Elon Musk` 
+| **Flag**   | `flag INDEX` e.g:  `flag 1`
 | **Delete** | `delete i/INDEX` e.g: `delete 1`                                                                                                                            |                                                                                                           |
 | **Exit**   | `exit`                                                                                                                                                      |
 
