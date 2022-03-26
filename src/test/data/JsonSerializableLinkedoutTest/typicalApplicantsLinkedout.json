@@ -6,6 +6,7 @@
     "email" : "alice@example.com",
     "job" : "Frontend Software Engineer",
     "round" : "Resume Sent",
+    "flag": false,
     "skilled" : [ "Java", "Python" ]
   }, {
     "name" : "Benson Meier",
@@ -13,6 +14,7 @@
     "email" : "johnd@example.com",
     "job" : "Video Editor",
     "round" : "Practical Interview",
+    "flag": false,
     "skilled" : [ "Photography", "Videography" ]
   }, {
     "name" : "Carl Kurz",
@@ -20,6 +22,7 @@
     "email" : "heinz@example.com",
     "job" : "Developer",
     "round" : "Interviewed",
+    "flag": false,
     "skilled" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -27,6 +30,7 @@
     "email" : "cornelia@example.com",
     "job" : "UI and UX Developer",
     "round" : "Recruiting",
+    "flag": false,
     "skilled" : [ "Marksmanship" ]
   }, {
     "name" : "Elle Meyer",
@@ -34,6 +38,7 @@
     "email" : "werner@example.com",
     "job" : "Engineer",
     "round" : "Classical Mechanics Test",
+    "flag": false,
     "skilled" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -41,6 +46,7 @@
     "email" : "lydia@example.com",
     "job" : "Developer",
     "round" : "Job Offer Rejected",
+    "flag": false,
     "skilled" : [ ]
   }, {
     "name" : "George Best",
@@ -48,6 +54,7 @@
     "email" : "anna@example.com",
     "job" : "Software Developer",
     "round" : "Resume Reviewed",
+    "flag": false,
     "skilled" : [ ]
   } ]
 }

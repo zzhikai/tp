@@ -2,6 +2,7 @@
 layout: page
 title: Developer Guide
 ---
+## **Table of Contents**
 * Table of Contents
 {:toc}
 
@@ -11,11 +12,15 @@ title: Developer Guide
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -25,6 +30,10 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S2-CS2103T-T09-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 
 ### Architecture
 
@@ -67,6 +76,9 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/linkedout/ui/Ui.java)
@@ -113,6 +125,9 @@ How the parsing works:
 * When called upon to parse a user command, the `LinkedoutParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `LinkedoutParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2122S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/linkedout/model/Model.java)
 
@@ -132,7 +147,9 @@ The `Model` component,
 
 </div>
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
+---
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/linkedout/storage/Storage.java)
@@ -144,9 +161,14 @@ The `Storage` component,
 * inherits from both `LinkedoutStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Common classes
 
 Classes used by multiple components are in the `seedu.linkedout.commons` package.
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -212,6 +234,9 @@ should not exceed the destroy marker X. This is a known limitation of PlantUML.<
 
 _{more aspects and alternatives to be added}_
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 
 ### Edit applicant feature
 
@@ -253,8 +278,10 @@ The following sequence diagram shows how the edit operation works:
     * Cons: We must ensure that the implementation of each individual command to change an information is correct.
 
 _{more aspects and alternatives to be added}_
-    
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### View applicant feature
 
 #### Rationale
@@ -317,7 +344,9 @@ This is to allow our target user to have greater flexibility, and we believe bot
 
 _{more aspects and alternatives to be added}_
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
+---
 ### Search applicant feature
 
 #### Rationale
@@ -373,7 +402,9 @@ The following sequence diagram shows how the search operation works:
 
 _{more aspects and alternatives to be added}_
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
+---
 ### \[Proposed\] Flag applicant feature
 
 The flagging feature flags an applicant as important, and will be displayed at the top of the applicant list.
@@ -392,7 +423,9 @@ and exposes all related functionality from these relevant interfaces.
 
 _{more aspects and alternatives to be added}_
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
+---
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -473,6 +506,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -482,6 +517,8 @@ _{more aspects and alternatives to be added}_
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+  
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -500,7 +537,9 @@ _{more aspects and alternatives to be added}_
 
 **Value proposition**: Simple and easy-to-use tool for recruiter to LinkedOUT to applicants and manage the applicant's information efficiently.
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
+---
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -538,7 +577,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | Lazy recruiter                                    | automate commands                                                                                                  | do everything in one click                                        |
 | `*`      | Efficient recruiter                               | work on the app smoothly                                                                                           | handle large amount of tasks at one time                          |
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
+---
 ### Use cases
 
 (For all use cases below, the **System** is LinkedOUT and the **Actor** is the user, unless specified otherwise)
@@ -634,6 +675,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Non-Functional Requirements
 
 1.  Technical: The application should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -651,6 +695,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Glossary
 
 * **LO**: LinkedOUT
@@ -663,6 +710,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **CLI**: Command Line Interface: Refers to a computer program that accepts text inputs.
 
 *{More to be added}*
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -716,3 +765,7 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
