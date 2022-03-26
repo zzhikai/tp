@@ -26,9 +26,7 @@ If you would like to learn more about the technical aspects of our application i
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**
-
 Notes are placed in this guide to assist you in interpreting the terminology used throughout this guide.
-
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
