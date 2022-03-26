@@ -42,4 +42,12 @@ public class SortComparator implements Comparator<Applicant> {
         }
     }
     // toString and equals not overriden yet
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof SortComparator
+            && field.equals(((SortComparator) other).field)
+            && order.equals(((SortComparator) other).order));
+    }
+
 }

@@ -110,9 +110,8 @@ public class LinkedoutParserTest {
     public void parseCommand_sort() throws Exception {
         String field = "NAME";
         Order order = new Order("ASC");
-        SortCommand command = (SortCommand) parser.parseCommand(
-                SortCommand.COMMAND_WORD + " "
-                        + PREFIX_FIELD + field + PREFIX_ORDER + order.toString());
+        SortCommand command = (SortCommand) parser.parseCommand(SortCommand.COMMAND_WORD + " "
+                        + PREFIX_FIELD + field + " " + PREFIX_ORDER + order.toString());
         assertEquals(new SortCommand(new SortComparator("NAME", order)), command);
     }
 
