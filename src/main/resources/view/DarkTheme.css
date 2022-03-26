@@ -108,12 +108,12 @@
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: green;
+    -fx-background-color: derive(white, -5%); /* less bright */
     /* #515658; */
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: yellow;
+    -fx-background-color: derive(white, -25%);
     /* #424d5f; */
 }
 
