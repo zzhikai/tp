@@ -151,8 +151,6 @@ public class ModelManager implements Model {
     @Override
     public void updateSortedApplicantList(Comparator<Applicant> comparator) {
         requireNonNull(comparator);
-        // no difference
-        // filteredApplicants.setPredicate(PREDICATE_SHOW_ALL_APPLICANTS);
         sortedApplicants.setComparator(comparator);
     }
 
