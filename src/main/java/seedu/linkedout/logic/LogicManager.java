@@ -69,7 +69,6 @@ public class LogicManager implements Logic {
         return model.getSortedApplicantList();
     }
 
-
     @Override
     public Path getLinkedoutFilePath() {
         return model.getLinkedoutFilePath();

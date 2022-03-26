@@ -2,6 +2,7 @@ package seedu.linkedout.model;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -94,6 +95,7 @@ public interface Model {
      */
     void updateFilteredApplicantList(Predicate<Applicant> predicate);
 
+
     /** Returns an unmodifiable view of the sorted applicant list */
     ObservableList<Applicant> getSortedApplicantList();
 
@@ -103,4 +105,9 @@ public interface Model {
      */
     void updateSearchedApplicantList(List<KeywordsPredicate> predicate);
 
+    /**
+     * Updates the filter of the sorted applicant list to sorted by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateSortedApplicantList(Comparator<Applicant> comparator);
 }

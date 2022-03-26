@@ -16,6 +16,7 @@ import seedu.linkedout.logic.commands.FlagCommand;
 import seedu.linkedout.logic.commands.HelpCommand;
 import seedu.linkedout.logic.commands.ListCommand;
 import seedu.linkedout.logic.commands.SearchCommand;
+import seedu.linkedout.logic.commands.SortCommand;
 import seedu.linkedout.logic.commands.ViewCommand;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
 
@@ -69,6 +70,9 @@ public class LinkedoutParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

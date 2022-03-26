@@ -164,4 +164,12 @@ public class Applicant implements Comparable<Applicant> {
         }
         return builder.toString();
     }
+
+    public int compareNames(Applicant applicant2) {
+        return this.getName().toString().toLowerCase().compareTo(applicant2.getName().toString().toLowerCase());
+    }
+
+    public int compareJobs(Applicant applicant2) {
+        return this.getJob().toString().toLowerCase().compareTo(applicant2.getJob().toString().toLowerCase());
+    }
 }
