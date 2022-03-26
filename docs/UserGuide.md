@@ -13,7 +13,37 @@ LinkedOUT is the only application that any experienced recruiter needs. LinkedOU
 
 ## Who is this User Guide for?
 
-This user guide is meant for 
+This user guide is meant for users who wish to learn how to use our application. It is best suited for recruiters who are looking to incorporate this app into their daily workflows.
+
+If you would like to learn more about the technical aspects of our application instead, you can do so by reading our [Developer Guide].(https://ay2122s2-cs2103t-t09-2.github.io/tp/DeveloperGuide.html)
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Legend
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**<br>
+
+Notes are placed in this guide to assist you in interpreting the terminology used throughout this guide.
+
+</div>
+
+<br>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Tips are placed in this guide to serve as suggestions that you can try out while using our application.
+</div>
+
+<br>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Cautions are placed in this guide to serve as warnings for certain actions.
+</div>
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -57,7 +87,7 @@ This user guide is meant for
   e.g `n/NAME [s/SKILLS]` can be used as `n/John Doe s/Python` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[s/SKILLS]…​` can be used as ` ` (i.e. 0 times), `s/Python`, `s/Python s/Java` etc.
+  e.g. `[s/SKILLS]…​` can be used as (i.e. 0 times), `s/Python`, `s/Python s/Java` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -97,7 +127,7 @@ Format:
 add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILLS]...
 ```
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of skills (including none)
+A person can have any number of skills (including none at all)
 </div>
 
 Example:
@@ -143,7 +173,7 @@ Phone Number: 88888888
 ---
 ### Viewing a specific applicant : `view`
 
-Allows you to view an overview of a specific applicant, specified by applicant's full name (exact match)
+Allows you to view an overview of a specific applicant, specified by an applicant's full name (exact match)
 
 Format:
 ```
@@ -171,7 +201,7 @@ Skills: Product Design
 ---
 ### Searching a specific applicant : `search`
 
-Allows you to view an overview of a specific applicant, specified by applicant's first or last name 
+Allows you to view an overview of a specific applicant, specified by an applicant's first or last name 
 
 Format:
 ```
@@ -206,7 +236,7 @@ Format:
 edit i/INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]...
 ```
 
-* Only valid indexes are edited. e.g If there are only `4` applicants in LinkedOUT, but the index specified is `5`.
+* Only valid indexes are edited. e.g If there are only `4` applicants in LinkedOUT but `5` is specified, then the intended action will not be carried out.
 * Only positive indexes are edited. e.g As we label our applicants starting from `1`, an index of `-1` will not be tagged to an applicant.
 
 Example:
@@ -232,7 +262,7 @@ flag INDEX
 
 * Only valid indexes are edited. e.g If there are only `4` applicants in LinkedOUT, but the index specified is `5`.
 * Only positive indexes are edited. e.g As we label our applicants starting from `1`, an index of `-1` will not be tagged to an applicant.
-* To un-flag the applicant, you may simply re-type the same command.
+* Flag acts like a toggle. To un-flag the applicant, you may simply re-type the same command.
 
 Example:
 ```
@@ -291,7 +321,7 @@ LinkedOUT data is saved in the hard disk automatically after any command that ch
 LinkedOUT data is saved in `[JAR file location]/data/linkedout.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, LinkedOUT will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, LinkedOUT will discard all data and start with an empty data file on the next run.
 </div>
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
