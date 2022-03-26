@@ -21,7 +21,7 @@ public class SortComparator implements Comparator<Applicant> {
     public int compare(Applicant applicant1, Applicant applicant2) {
         requireNonNull(applicant1);
         requireNonNull(applicant2);
-        if (order.equals("DESC")) {
+        if (order.toString().equals("ASC")) {
             switch (field) {
             case "NAME":
                 return applicant1.compareNames(applicant2);
