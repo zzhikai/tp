@@ -1,14 +1,8 @@
 package seedu.linkedout.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_FIELD;
-import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_JOB;
-import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ORDER;
-import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ROUND;
-import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_SKILL;
 
 import java.util.Comparator;
 

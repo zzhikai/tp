@@ -2,30 +2,15 @@ package seedu.linkedout.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_FIELD;
-import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_JOB;
-import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ORDER;
-import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ROUND;
-import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_SKILL;
 
-import java.util.Comparator;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.linkedout.logic.commands.SortCommand;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
-import seedu.linkedout.model.applicant.Applicant;
-import seedu.linkedout.model.applicant.Email;
-import seedu.linkedout.model.applicant.Job;
-import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Order;
-import seedu.linkedout.model.applicant.Phone;
-import seedu.linkedout.model.applicant.Round;
 import seedu.linkedout.model.applicant.SortComparator;
-import seedu.linkedout.model.skill.Skill;
 
 /**
  * Parses input arguments and creates a new SortCommand object
@@ -49,7 +34,8 @@ public class SortCommandParser implements Parser<SortCommand> {
 
         // get().isBlank to see if String is present anot
         // pass upper case to SortCommand
-        if (!argMultimap.getValue(PREFIX_ORDER).get().isBlank() && !argMultimap.getValue(PREFIX_FIELD).get().isBlank()) {
+        if (!argMultimap.getValue(PREFIX_ORDER).get().isBlank()
+                && !argMultimap.getValue(PREFIX_FIELD).get().isBlank()) {
             Order order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_ORDER).get().toUpperCase());
             String field = argMultimap.getValue(PREFIX_FIELD).get().toUpperCase();
             return new SortCommand(new SortComparator(field, order));

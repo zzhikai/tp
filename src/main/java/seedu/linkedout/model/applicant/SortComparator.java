@@ -9,6 +9,11 @@ public class SortComparator implements Comparator<Applicant> {
     private final String field;
     private final Order order;
 
+    /**
+     *
+     * @param field
+     * @param order
+     */
     public SortComparator(String field, Order order) {
         // assume both pass parseUtil before passing here
         requireNonNull(field);

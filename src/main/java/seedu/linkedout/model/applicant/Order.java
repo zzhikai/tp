@@ -8,14 +8,14 @@ import static seedu.linkedout.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidOrder(String)}
  */
 public class Order {
-
+    public static final String ASCENDING_ORDER = "ASC";
+    public static final String DESCENDING_ORDER = "DESC";
     public static final String MESSAGE_CONSTRAINTS =
             "Order should either be 'asc' or 'desc'(case-insensitive)";
 
     public final String sortOrder;
 
-    public static final String ascendingOrder = "ASC";
-    public static final String descendingOrder = "DESC";
+
 
     /**
      * Constructs a {@code Order}.
@@ -33,7 +33,7 @@ public class Order {
      */
     public static boolean isValidOrder(String test) {
         String orderUpperCase = test.toUpperCase();
-        if (orderUpperCase.equals(ascendingOrder) || orderUpperCase.equals(descendingOrder)) {
+        if (orderUpperCase.equals(ASCENDING_ORDER) || orderUpperCase.equals(DESCENDING_ORDER)) {
             return true;
         } else {
             return false;
