@@ -30,5 +30,10 @@ public abstract class KeywordsPredicate implements Predicate<Applicant> {
                 && keywords.equals(((KeywordsPredicate) other).keywords)); // state check
     }
 
+    /**
+     * Checks for number of matched keywords with the same prefix an applicant has
+     * @param applicant
+     * @return number of matches
+     */
     public abstract int numberOfKeywordMatches(Applicant applicant);
 }

@@ -168,8 +168,8 @@ public class ModelManager implements Model {
         requireNonNull(predicates);
         Predicate<Applicant> keywordPredicate = combinePredicates(predicates);
         updateFilteredApplicantList(keywordPredicate);
-        sortedApplicants.setComparator((a1, a2) -> numberOfKeywordMatches(a2, predicates)
-                - numberOfKeywordMatches(a1, predicates));
+        sortedApplicants.setComparator((applicant1, applicant2) -> numberOfKeywordMatches(applicant2, predicates)
+                - numberOfKeywordMatches(applicant1, predicates));
     }
 
     /**
@@ -177,8 +177,10 @@ public class ModelManager implements Model {
      * @param applicant
      * @param predicates list of predicates
      * @return number of keywords matched
+     * @throws NullPointerException if predicate is empty
      */
     private static int numberOfKeywordMatches (Applicant applicant, List<KeywordsPredicate> predicates) {
+        requireNonNull(predicates);
         int matchedNumber = 0;
         for (int i = 0; i < predicates.size(); i++) {
             matchedNumber += predicates.get(i).numberOfKeywordMatches(applicant);
@@ -190,8 +192,10 @@ public class ModelManager implements Model {
      * Return the combined predicates of a short-circuiting logical AND of given predicates
      * @param predicateList list of predicates
      * @return combined predicate
+     * @throws NullPointerException if predicate is empty
      */
     private static Predicate<Applicant> combinePredicates(List<KeywordsPredicate> predicateList) {
+        requireNonNull(predicateList);
         Predicate<Applicant> predicates = predicateList.get(0);
         for (int i = 1; i < predicateList.size(); i++) {
             predicates = predicates.and(predicateList.get(i));

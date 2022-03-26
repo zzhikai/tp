@@ -73,6 +73,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
      * @param prefix input prefixes
      * {@code ArgumentMultimap}.
      * @return an array of keywords without white space
+     * @throws  ParseException if the user input is empty
      */
     private static List<String> getArrayOfKeywords(Prefix prefix, ArgumentMultimap argMultimap) throws ParseException {
         String keyword = argMultimap.getValue(prefix).get();
@@ -89,7 +90,10 @@ public class SearchCommandParser implements Parser<SearchCommand> {
      * @return List of substrings without whitespace
      * @throws  ParseException if the user input is empty
      */
-    private static List<String> splitKeywordsWithWhiteSpace(List<String> keywords) {
+    private static List<String> splitKeywordsWithWhiteSpace(List<String> keywords) throws ParseException {
+        if (keywords.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_CONSTRAINTS));
+        }
         List<String> partialKeywords = new ArrayList<>();
         for (int i = 0; i < keywords.size(); i++) {
             String[] splitKeywords = keywords.get(i).split("\\s+");

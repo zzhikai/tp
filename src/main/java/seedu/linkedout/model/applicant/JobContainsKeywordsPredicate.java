@@ -10,8 +10,6 @@ import seedu.linkedout.commons.util.StringUtil;
 public class JobContainsKeywordsPredicate extends KeywordsPredicate implements Predicate<Applicant> {
 
     private final List<String> keywords;
-    private int noOfMatches;
-
     /**
      * @param keywords
      */
