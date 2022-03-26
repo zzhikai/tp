@@ -6,7 +6,7 @@ import static seedu.linkedout.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.linkedout.logic.commands.AddCommand;
+import seedu.linkedout.logic.commands.SortCommand;
 import seedu.linkedout.logic.commands.ClearCommand;
 import seedu.linkedout.logic.commands.Command;
 import seedu.linkedout.logic.commands.DeleteCommand;
@@ -45,8 +45,8 @@ public class LinkedoutParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);

@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.linkedout.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_FIELD;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.linkedout.testutil.Assert.assertThrows;
 import static seedu.linkedout.testutil.TypicalIndexes.INDEX_FIRST_APPLICANT;
 
@@ -14,7 +16,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.linkedout.logic.commands.AddCommand;
+import seedu.linkedout.logic.commands.SortCommand;
 import seedu.linkedout.logic.commands.ClearCommand;
 import seedu.linkedout.logic.commands.DeleteCommand;
 import seedu.linkedout.logic.commands.EditCommand;
@@ -28,6 +30,8 @@ import seedu.linkedout.logic.parser.exceptions.ParseException;
 import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.NameContainsAllKeywordsPredicate;
 import seedu.linkedout.model.applicant.NameContainsKeywordsPredicate;
+import seedu.linkedout.model.applicant.Order;
+import seedu.linkedout.model.applicant.SortComparator;
 import seedu.linkedout.testutil.ApplicantBuilder;
 import seedu.linkedout.testutil.ApplicantUtil;
 import seedu.linkedout.testutil.EditApplicantDescriptorBuilder;
@@ -37,10 +41,13 @@ public class LinkedoutParserTest {
     private final LinkedoutParser parser = new LinkedoutParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
-        Applicant applicant = new ApplicantBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(ApplicantUtil.getAddCommand(applicant));
-        assertEquals(new AddCommand(applicant), command);
+    public void parseCommand_sort() throws Exception {
+        String field = "NAME";
+        Order order = new Order("ASC");
+        SortCommand command = (SortCommand) parser.parseCommand(
+                SortCommand.COMMAND_WORD + " "
+                + PREFIX_FIELD + field + PREFIX_ORDER + order.toString());
+        assertEquals(new SortCommand(new SortComparator("NAME", order)), command);
     }
 
     @Test

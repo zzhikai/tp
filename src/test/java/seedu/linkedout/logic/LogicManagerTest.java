@@ -18,7 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.linkedout.logic.commands.AddCommand;
+import seedu.linkedout.logic.commands.SortCommand;
 import seedu.linkedout.logic.commands.CommandResult;
 import seedu.linkedout.logic.commands.ListCommand;
 import seedu.linkedout.logic.commands.exceptions.CommandException;
@@ -80,13 +80,13 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String sortCommand = SortCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + JOB_DESC_AMY + ROUND_DESC_AMY;
         Applicant expectedApplicant = new ApplicantBuilder(AMY).withSkills().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addApplicant(expectedApplicant);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        assertCommandFailure(sortCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test

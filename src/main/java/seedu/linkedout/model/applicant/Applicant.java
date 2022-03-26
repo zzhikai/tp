@@ -127,4 +127,12 @@ public class Applicant {
         }
         return builder.toString();
     }
+
+    public int compareNames(Applicant applicant2) {
+        return this.getName().toString().compareTo(applicant2.getName().toString());
+    }
+
+    public int compareJobs(Applicant applicant2) {
+        return this.getJob().toString().compareTo(applicant2.getJob().toString());
+    }
 }

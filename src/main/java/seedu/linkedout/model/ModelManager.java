@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.linkedout.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.linkedout.commons.core.GuiSettings;
 import seedu.linkedout.commons.core.LogsCenter;
 import seedu.linkedout.model.applicant.Applicant;
@@ -22,6 +24,7 @@ public class ModelManager implements Model {
     private final Linkedout linkedout;
     private final UserPrefs userPrefs;
     private final FilteredList<Applicant> filteredApplicants;
+    private final SortedList<Applicant> sortedApplicants;
 
     /**
      * Initializes a ModelManager with the given linkedout app and userPrefs.
@@ -34,6 +37,7 @@ public class ModelManager implements Model {
         this.linkedout = new Linkedout(linkedout);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredApplicants = new FilteredList<Applicant>(this.linkedout.getApplicantList());
+        sortedApplicants = new SortedList<>(filteredApplicants); // default to filteredList
     }
 
     public ModelManager() {
@@ -126,8 +130,28 @@ public class ModelManager implements Model {
     public void updateFilteredApplicantList(Predicate<Applicant> predicate) {
         requireNonNull(predicate);
         filteredApplicants.setPredicate(predicate);
+        sortedApplicants.setComparator(null);
+        // check if this affects flag
     }
 
+    //=========== Sorted Applicant List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the list of {@code Applicant} backed by the internal list of
+     * {@code versionedLinkedout}
+     */
+    @Override
+    public ObservableList<Applicant> getSortedApplicantList() {
+        return sortedApplicants;
+    }
+
+    @Override
+    public void updateSortedApplicantList(Comparator<Applicant> comparator) {
+        requireNonNull(comparator);
+        sortedApplicants.setComparator(comparator);
+        filteredApplicants.setPredicate(null);
+    }
+
+    //===========
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -144,7 +168,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return linkedout.equals(other.linkedout)
                 && userPrefs.equals(other.userPrefs)
-                && filteredApplicants.equals(other.filteredApplicants);
+                && filteredApplicants.equals(other.filteredApplicants)
+                && sortedApplicants.equals(other.sortedApplicants);
     }
+
 
 }
