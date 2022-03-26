@@ -12,6 +12,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_ROUND = new Prefix("r/");
     public static final Prefix PREFIX_JOB = new Prefix("j/");
     public static final Prefix PREFIX_SKILL = new Prefix("s/");
+    public static final Prefix PREFIX_FIELD = new Prefix("f/");
+    public static final Prefix PREFIX_ORDER = new Prefix("o/");
 
 }
 
