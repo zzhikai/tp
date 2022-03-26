@@ -6,6 +6,7 @@ import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ORDER;
 
 import java.util.Comparator;
 
+import seedu.linkedout.commons.core.Messages;
 import seedu.linkedout.logic.commands.exceptions.CommandException;
 import seedu.linkedout.model.Model;
 import seedu.linkedout.model.applicant.Applicant;
@@ -25,7 +26,7 @@ public class SortCommand extends Command {
             + PREFIX_FIELD + "NAME "
             + PREFIX_ORDER + "asc ";
 
-    public static final String MESSAGE_SUCCESS = "List has been sorted with %1$s";
+    public static final String MESSAGE_SUCCESS = "List has been sorted in %1$s";
     public static final String MESSAGE_DUPLICATE_APPLICANT = "This applicant already exists in the LinkedOUT app.";
     public static final Object MESSAGE_CONSTRAINTS = "FIELD and ORDER should not be empty";
 

@@ -46,7 +46,18 @@ public class SortComparator implements Comparator<Applicant> {
             }
         }
     }
-    // toString and equals not overriden yet
+
+    @Override
+    public String toString() {
+        if (this.order.toString().equals("ASC")) {
+            return "ascending order";
+        } else if (this.order.toString().equals("DESC")) {
+            return "descending order";
+        } else {
+            return null;
+        }
+    }
+    
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
