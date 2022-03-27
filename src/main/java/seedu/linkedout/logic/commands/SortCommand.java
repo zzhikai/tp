@@ -6,7 +6,6 @@ import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ORDER;
 
 import java.util.Comparator;
 
-import seedu.linkedout.commons.core.Messages;
 import seedu.linkedout.logic.commands.exceptions.CommandException;
 import seedu.linkedout.model.Model;
 import seedu.linkedout.model.applicant.Applicant;
