@@ -27,20 +27,22 @@ public class SortCommandParser implements Parser<SortCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_FIELD, PREFIX_ORDER);
 
-        // either not present will throw ParseException
+        // either prefix not present will throw ParseException
         if (!arePrefixesPresent(argMultimap, PREFIX_ORDER, PREFIX_FIELD)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
-        // get().isBlank to see if String is present anot
+        // get().isBlank to check if String is present !Blank
         // pass upper case to SortCommand
-        if (!argMultimap.getValue(PREFIX_ORDER).get().isBlank()
-                && !argMultimap.getValue(PREFIX_FIELD).get().isBlank()) {
+        boolean hasOrder = !argMultimap.getValue(PREFIX_ORDER).get().isBlank();
+        boolean hasField = !argMultimap.getValue(PREFIX_FIELD).get().isBlank();
+        if (hasOrder && hasField) {
             Order order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_ORDER).get().toUpperCase());
+            // Change to use ParserUtil to parseField?
             String field = argMultimap.getValue(PREFIX_FIELD).get().toUpperCase();
             return new SortCommand(new SortComparator(field, order));
         }
-        // field is not valid
+        // field is not valid or is blank
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
 
     }
