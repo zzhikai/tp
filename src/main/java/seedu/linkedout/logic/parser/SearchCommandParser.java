@@ -1,7 +1,9 @@
 package seedu.linkedout.logic.parser;
+import static java.util.Objects.requireNonNull;
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ROUND;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -10,6 +12,7 @@ import seedu.linkedout.logic.commands.SearchCommand;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
 import seedu.linkedout.model.applicant.JobContainsKeywordsPredicate;
 import seedu.linkedout.model.applicant.NameContainsKeywordsPredicate;
+import seedu.linkedout.model.applicant.RoundContainsKeywordsPredicate;
 
 
 /**
@@ -25,22 +28,39 @@ public class SearchCommandParser implements Parser<SearchCommand> {
      */
     public SearchCommand parse(String args) throws ParseException {
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_JOB);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_JOB, PREFIX_ROUND);
 
-        boolean hasNoPrefixesPresent = !anyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_JOB);
+        boolean hasNoPrefixesPresent = !anyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_JOB, PREFIX_ROUND);
         boolean hasNoEmptyPreamble = !argMultimap.getPreamble().isEmpty();
         boolean hasEmptyArguments = args.isEmpty();
         if (hasNoPrefixesPresent || hasNoEmptyPreamble || hasEmptyArguments) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
         }
+        return parseKeyword(argMultimap);
+    }
 
+    /**
+     *Parses the keywords to be searched in the context of the SearchCommand
+     * and returns a SearchCommand object for execution.
+     *
+     * {@code ArgumentMultimap}.
+     * @throws ParseException if there exists a case where no prefixes match
+     */
+    public SearchCommand parseKeyword(ArgumentMultimap argMultimap) throws ParseException {
+        requireNonNull(argMultimap);
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String[] nameKeywords = getArrayOfKeywords(PREFIX_NAME, argMultimap);
             return new SearchCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        } else {
+        } else if (argMultimap.getValue(PREFIX_JOB).isPresent()) {
             String[] jobKeywords = getArrayOfKeywords(PREFIX_JOB, argMultimap);
             return new SearchCommand(new JobContainsKeywordsPredicate(Arrays.asList(jobKeywords)));
+        } else if (argMultimap.getValue(PREFIX_ROUND).isPresent()) {
+            String[] roundKeywords = getArrayOfKeywords(PREFIX_ROUND, argMultimap);
+            return new SearchCommand(new RoundContainsKeywordsPredicate(Arrays.asList(roundKeywords)));
+        } else {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
         }
     }
 
@@ -75,7 +95,5 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         }
         return keywords.split("\\s+");
     }
-
-
 
 }

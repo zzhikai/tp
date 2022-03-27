@@ -4,16 +4,16 @@ import java.util.List;
 import seedu.linkedout.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Applicant}'s {@code Job} matches any of the keywords given.
+ * Tests that a {@code Applicant}'s {@code Round} matches any of the keywords given.
  */
-public class JobContainsKeywordsPredicate extends KeywordsPredicate {
+public class RoundContainsKeywordsPredicate extends KeywordsPredicate {
 
     private final List<String> keywords;
 
     /**
      * @param keywords
      */
-    public JobContainsKeywordsPredicate(List<String> keywords) {
+    public RoundContainsKeywordsPredicate(List<String> keywords) {
         super(keywords);
         this.keywords = keywords;
     }
@@ -21,15 +21,15 @@ public class JobContainsKeywordsPredicate extends KeywordsPredicate {
     @Override
     public boolean test(Applicant applicant) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(applicant.getJob().value, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(applicant.getRound().value, keyword));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof JobContainsKeywordsPredicate // instanceof handles nulls
+                || (other instanceof RoundContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.toString().equalsIgnoreCase(((
-                        JobContainsKeywordsPredicate) other).keywords.toString())); // state check
+                RoundContainsKeywordsPredicate) other).keywords.toString())); // state check
     }
 
 }
