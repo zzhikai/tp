@@ -38,7 +38,6 @@
     </VBox>
   </GridPane>
   <VBox alignment = "CENTER">
-
     <ImageView fx:id="flagIcon">
       <image>
         <Image url = "@../images/flag.png"/>
