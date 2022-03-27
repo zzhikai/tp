@@ -4,14 +4,18 @@ import static java.util.Objects.requireNonNull;
 import static seedu.linkedout.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.linkedout.commons.core.GuiSettings;
 import seedu.linkedout.commons.core.LogsCenter;
 import seedu.linkedout.model.applicant.Applicant;
+import seedu.linkedout.model.applicant.KeywordsPredicate;
+
 
 /**
  * Represents the in-memory model of the linkedout app data.
@@ -22,6 +26,7 @@ public class ModelManager implements Model {
     private final Linkedout linkedout;
     private final UserPrefs userPrefs;
     private final FilteredList<Applicant> filteredApplicants;
+    private final SortedList<Applicant> sortedApplicants;
 
     /**
      * Initializes a ModelManager with the given linkedout app and userPrefs.
@@ -34,6 +39,7 @@ public class ModelManager implements Model {
         this.linkedout = new Linkedout(linkedout);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredApplicants = new FilteredList<Applicant>(this.linkedout.getApplicantList());
+        sortedApplicants = new SortedList<>(filteredApplicants);
     }
 
     public ModelManager() {
@@ -150,7 +156,56 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return linkedout.equals(other.linkedout)
                 && userPrefs.equals(other.userPrefs)
-                && filteredApplicants.equals(other.filteredApplicants);
+                && filteredApplicants.equals(other.filteredApplicants)
+                && sortedApplicants.equals(other.sortedApplicants);
     }
 
+    //=========== Sorted Applicant List Accessors =============================================================
+
+    @Override
+    public ObservableList<Applicant> getSortedApplicantList() {
+        return sortedApplicants;
+    }
+
+    //=========== Search Applicant List Accessors =============================================================
+
+    @Override
+    public void updateSearchedApplicantList(List<KeywordsPredicate> predicates) {
+        requireNonNull(predicates);
+        Predicate<Applicant> keywordPredicate = combinePredicates(predicates);
+        updateFilteredApplicantList(keywordPredicate);
+        sortedApplicants.setComparator((applicant1, applicant2) -> numberOfKeywordMatches(applicant2, predicates)
+                - numberOfKeywordMatches(applicant1, predicates));
+    }
+
+    /**
+     * Returns the number of matched input keywords with an applicant
+     * @param applicant
+     * @param predicates list of predicates
+     * @return number of keywords matched
+     * @throws NullPointerException if predicate is empty
+     */
+    private static int numberOfKeywordMatches (Applicant applicant, List<KeywordsPredicate> predicates) {
+        requireNonNull(predicates);
+        int matchedNumber = 0;
+        for (int i = 0; i < predicates.size(); i++) {
+            matchedNumber += predicates.get(i).numberOfKeywordMatches(applicant);
+        }
+        return matchedNumber;
+    }
+
+    /**
+     * Return the combined predicates of a short-circuiting logical AND of given predicates
+     * @param predicateList list of predicates
+     * @return combined predicate
+     * @throws NullPointerException if predicate is empty
+     */
+    private static Predicate<Applicant> combinePredicates(List<KeywordsPredicate> predicateList) {
+        requireNonNull(predicateList);
+        Predicate<Applicant> predicates = predicateList.get(0);
+        for (int i = 1; i < predicateList.size(); i++) {
+            predicates = predicates.and(predicateList.get(i));
+        }
+        return predicates;
+    }
 }
