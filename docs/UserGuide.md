@@ -26,7 +26,7 @@ If you would like to learn more about the technical aspects of our application i
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**
-Notes are placed in this guide to assist you in interpreting the terminology used throughout this guide.
+Notes are placed in this guide to specify extra details on the command format and serves as a guide to assist you. 
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -116,6 +116,8 @@ Allows you to add a new applicant to be tracked with the following details:
 * Round of job application
 * Particular skills they may have
 
+<br>
+
 Format:
 ```
 add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILLS]...
@@ -123,6 +125,8 @@ add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILLS]...
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of skills (including none at all)
 </div>
+
+<br>
 
 Example:
 ```
@@ -140,10 +144,15 @@ New applicant added: Bob; Phone: 99999999; Email: bob@example.com; Job: Data Ana
 
 Allows you to list out all job applicants, along with an overview of each applicant.
 
+<br>
+
 Format:
 ```
 list
 ```
+
+<br>
+
 Example:
 ```
 list
@@ -169,6 +178,8 @@ Phone Number: 88888888
 
 Allows you to view an overview of a specific applicant, specified by an applicant's full name (exact match)
 
+<br>
+
 Format:
 ```
 view NAME
@@ -177,6 +188,8 @@ view NAME
 * Only the name is searched.
 * Only full name will be matched e.g. `Han Lee` will not match `Han`
 * Only exact full name with correct spacing will be matched e.g. `HanLee` will not match `Han Lee`
+
+<br>
 
 Example:
 ```
@@ -195,16 +208,24 @@ Skills: Product Design
 ---
 ### Searching a specific applicant : `search`
 
-Allows you to view an overview of a specific applicant, specified by an applicant's first or last name 
+Allows you to view an overview of a specific applicant, specified by **either** an applicant's name, job, round or skills.
+
+<br>
 
 Format:
 ```
-search n/NAME
+search [n/NAME][j/JOB][r/ROUND][s/SKILL]
 ```
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
 * First name/Last name will be matched e.g. `Han` will match `Han Lee`
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Search will not work with multiple prefixes. e.g `search n/Alex j/Interview` will only yield results of `search n/Alex`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can try searching for multiple names in the applicant list. Try `search n/Alex Bernice` to look up these 2 applicants!
+</div>
+
+<br>
 
 Example:
 ```
@@ -225,13 +246,17 @@ Skills: Product Design
 
 Allows you to edit details of the applicant identified by the index number. The index number used corresponds to the one in the displayed applicant list. Existing values will be overwritten by the input values.
 
+<br>
+
 Format:
 ```
 edit i/INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]...
 ```
 
 * Only valid indexes are edited. e.g If there are only `4` applicants in LinkedOUT but `5` is specified, then the intended action will not be carried out.
-* Only positive indexes are edited. e.g As we label our applicants starting from `1`, an index of `-1` will not be tagged to an applicant.
+* Only positive indexes are edited. e.g As we label our applicants starting from `1...`, an index of `-1` will not be tagged to an applicant.
+
+<br>
 
 Example:
 ```
@@ -247,7 +272,9 @@ Edited Applicant: David Lee; Phone: 91234567; Email: johndoe@example.com; Job: R
 ---
 ### Flagging an applicant : `flag`
 
-Allows you to flag an applicant identified by the index number. The index number used corresponds to the one in the displayed applicant list. Flagged applicants will appear at the top of the list.
+Allows you to flag an applicant identified by the index number. The index number used corresponds to the one in the displayed applicant list. Flagged applicants will appear at the top of the list and are identified with a flag symbol.
+
+<br>
 
 Format:
 ```
@@ -257,6 +284,12 @@ flag INDEX
 * Only valid indexes are edited. e.g If there are only `4` applicants in LinkedOUT, but the index specified is `5`.
 * Only positive indexes are edited. e.g As we label our applicants starting from `1`, an index of `-1` will not be tagged to an applicant.
 * Flag acts like a toggle. To un-flag the applicant, you may simply re-type the same command.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Try flagging the first applicant by typing `flag 1`. You should see it at the top with a flag symbol. Then try un-flagging the same applicant with `flag 1`.
+</div>
+
+<br>
 
 Example:
 ```
@@ -274,6 +307,8 @@ Flagged Applicant: David Lee; Phone: 91234567; Email: johndoe@example.com; Job: 
 
 Allows you to delete a specific job applicant, specified by index.
 
+<br>
+
 Format:
 ```
 delete i/INDEX
@@ -282,9 +317,11 @@ delete i/INDEX
 * Only valid index are deleted. e.g `5` will not delete if there are only `4` applicants in the list
 * Only positive index are deleted. e.g `-3` will not delete the applicant
 
+<br>
+
 Example:
 ```
-delete i/1
+delete 1
 ```
 Sample Output:
 ```
@@ -297,6 +334,8 @@ Deleted Applicant: Bernice Yu; Phone: 99272758; Email: berniceyu@example.com; Jo
 ### Exiting the program : `exit`
 
 Exits the program.
+
+<br>
 
 Format: `exit`
 
