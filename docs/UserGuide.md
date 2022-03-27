@@ -131,7 +131,12 @@ add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas s/Pyt
 ```
 Sample Output:
 ```
-New applicant added: Bob; Phone: 99999999; Email: bob@example.com; Job: Data Analyst; Round: Interview; Skills: [Java][Pandas][Python]
+New applicant added: Bob; 
+Phone: 99999999; 
+Email: bob@example.com; 
+Job: Data Analyst;
+Round: Interview; 
+Skills: [Java][Pandas][Python]
 ```
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -157,15 +162,20 @@ list
 Sample Output:
 ```
 List of applicants:
-1. Steve Jobs
-Job Applied: Product Designer
-Skills: Product Design
-Phone Number: 99999999
 
-2. Elon Musk
-Job Applied: Software Developer
-Skills: Pandas, Python
-Phone Number: 88888888
+Name: Steve Jobs;
+Phone: 99999999;
+Email: stevejobs@apple.mail;
+Job: iOS Developer;
+Round: Hired;
+Skills: Swift
+
+Name: Elon Musk;
+Phone: 88888888;
+Email: elonmusk@tesla.com;
+Job: Software Engineer;
+Round: Technical Interview;
+Skills: Java JavaFX Gradle;
 ```
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -194,10 +204,12 @@ view Steve Jobs
 ```
 Sample Output:
 ```
-Here’s an overview of Steve Jobs:
-Phone Number: 99999999
-Job Applied: CEO of Apple
-Skills: Product Design  
+Name: Steve Jobs;
+Phone: 99999999;
+Email: stevejobs@apple.mail;
+Job: iOS Developer;
+Round: Hired;
+Skills: Swift
 ```
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -230,10 +242,12 @@ search n/Steve
 ```
 Sample Output:
 ```
-Here’s an overview of Steve Jobs:
-Phone Number: 99999999
-Job Applied: CEO of Apple
-Skills: Product Design  
+Name: Steve Jobs;
+Phone: 99999999;
+Email: stevejobs@apple.mail;
+Job: iOS Developer;
+Round: Hired;
+Skills: Swift
 ```
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -251,7 +265,7 @@ Format:
 edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]...
 ```
 
-* Only valid indexes are edited. e.g If there are only `4` applicants in LinkedOUT but `5` is specified, then the intended action will not be carried out.
+* Only valid indexes are edited. e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
 * Only positive indexes are edited. e.g As we label our applicants starting from `1...`, an index of `-1` will not be tagged to an applicant.
 
 <br>
@@ -262,7 +276,12 @@ edit 1 p/91234567 e/johndoe@example.com
 ```
 Sample Output:
 ```
-Edited Applicant: David Lee; Phone: 91234567; Email: johndoe@example.com; Job: Risk Assessment Associate; Round: Stock Pitch Assessment; Skills: [Accounting][Equities][Cryptocurrency]
+Edited Applicant: David Lee; 
+Phone: 91234567; 
+Email: johndoe@example.com; 
+Job: Risk Assessment Associate; 
+Round: Stock Pitch Assessment; 
+Skills: [Accounting][Equities][Cryptocurrency]
 ```
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -279,8 +298,8 @@ Format:
 flag INDEX
 ```
 
-* Only valid indexes are edited. e.g If there are only `4` applicants in LinkedOUT, but the index specified is `5`.
-* Only positive indexes are edited. e.g As we label our applicants starting from `1`, an index of `-1` will not be tagged to an applicant.
+* Only valid indexes are flagged. e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
+* Only positive indexes are flagged. e.g As we label our applicants starting from `1...`, an index of `-1` will not be tagged to an applicant.
 * Flag acts like a toggle. To un-flag the applicant, you may simply re-type the same command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -295,7 +314,12 @@ flag 1
 ```
 Sample Output:
 ```
-Flagged Applicant: David Lee; Phone: 91234567; Email: johndoe@example.com; Job: Risk Assessment Associate; Round: Stock Pitch Assessment; Skills: [Accounting][Equities][Cryptocurrency]
+Flagged Applicant: David Lee; 
+Phone: 91234567; 
+Email: johndoe@example.com; 
+Job: Risk Assessment Associate; 
+Round: Stock Pitch Assessment; 
+Skills: [Accounting][Equities][Cryptocurrency]
 ```
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -312,8 +336,8 @@ Format:
 delete INDEX
 ```
 
-* Only valid index are deleted. e.g `5` will not delete if there are only `4` applicants in the list
-* Only positive index are deleted. e.g `-3` will not delete the applicant
+* Only valid indexes are deleted. e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
+* Only positive indexes are deleted. e.g As we label our applicants starting from `1...`, an index of `-1` will not be tagged to an applicant.
 
 <br>
 
@@ -323,7 +347,12 @@ delete 1
 ```
 Sample Output:
 ```
-Deleted Applicant: Bernice Yu; Phone: 99272758; Email: berniceyu@example.com; Job: Social Media Marketer; Round: Instagram Check; Skills: [Video Editing][Social Media Marketing]
+Deleted Applicant: Bernice Yu; 
+Phone: 99272758; 
+Email: berniceyu@example.com; 
+Job: Social Media Marketer; 
+Round: Instagram Check; 
+Skills: [Video Editing][Social Media Marketing]
 ```
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
