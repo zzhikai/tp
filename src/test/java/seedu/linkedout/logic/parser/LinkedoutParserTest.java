@@ -29,6 +29,7 @@ import seedu.linkedout.logic.commands.SortCommand;
 import seedu.linkedout.logic.commands.ViewCommand;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
 import seedu.linkedout.model.applicant.Applicant;
+import seedu.linkedout.model.applicant.Field;
 import seedu.linkedout.model.applicant.NameContainsAllKeywordsPredicate;
 import seedu.linkedout.model.applicant.NameContainsKeywordsPredicate;
 import seedu.linkedout.model.applicant.Order;
@@ -108,11 +109,11 @@ public class LinkedoutParserTest {
 
     @Test
     public void parseCommand_sort() throws Exception {
-        String field = "NAME";
+        Field field = new Field("NAME");
         Order order = new Order("ASC");
         SortCommand command = (SortCommand) parser.parseCommand(SortCommand.COMMAND_WORD + " "
                         + PREFIX_FIELD + field + " " + PREFIX_ORDER + order.toString());
-        assertEquals(new SortCommand(new SortComparator("NAME", order)), command);
+        assertEquals(new SortCommand(new SortComparator(field, order)), command);
     }
 
     @Test

@@ -5,35 +5,33 @@ import static seedu.linkedout.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an Applicant's name in the linkedout app.
- * Guarantees: immutable; is valid as declared in {@link #isValidOrder(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidField(String)}
  */
-public class Order {
-    public static final String ASCENDING_ORDER = "ASC";
-    public static final String DESCENDING_ORDER = "DESC";
+public class Field {
+    public static final String NAME_FIELD = "NAME";
+    public static final String JOB_FIELD = "JOB";
     public static final String MESSAGE_CONSTRAINTS =
-            "Order should either be 'asc' for ascending or 'desc' for descending (case-insensitive)";
+            "Field should either be 'name' or 'job' for sorting";
 
-    public final String sortOrder;
-
-
+    public final String sortField;
 
     /**
-     * Constructs a {@code Order}.
+     * Constructs a {@code Field}.
      *
-     * @param order A valid order.
+     * @param field A valid field.
      */
-    public Order(String order) {
-        requireNonNull(order);
-        checkArgument(isValidOrder(order), MESSAGE_CONSTRAINTS);
-        sortOrder = order.toUpperCase();
+    public Field(String field) {
+        requireNonNull(field);
+        checkArgument(isValidField(field), MESSAGE_CONSTRAINTS);
+        sortField = field.toUpperCase();
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidOrder(String test) {
-        String orderUpperCase = test.toUpperCase();
-        if (orderUpperCase.equals(ASCENDING_ORDER) || orderUpperCase.equals(DESCENDING_ORDER)) {
+    public static boolean isValidField(String test) {
+        String fieldUpperCase = test.toUpperCase();
+        if (fieldUpperCase.equals(NAME_FIELD) || fieldUpperCase.equals(JOB_FIELD)) {
             return true;
         } else {
             return false;
@@ -43,19 +41,19 @@ public class Order {
 
     @Override
     public String toString() {
-        return sortOrder;
+        return sortField;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Order // instanceof handles nulls
-                && sortOrder.equals(((Order) other).sortOrder)); // state check
+                || (other instanceof Field // instanceof handles nulls
+                && sortField.equals(((Field) other).sortField)); // state check
     }
 
     @Override
     public int hashCode() {
-        return sortOrder.hashCode();
+        return sortField.hashCode();
     }
 
 }

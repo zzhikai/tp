@@ -6,7 +6,7 @@ import java.util.Comparator;
 
 public class SortComparator implements Comparator<Applicant> {
 
-    private final String field;
+    private final Field field;
     private final Order order;
 
     /**
@@ -14,7 +14,7 @@ public class SortComparator implements Comparator<Applicant> {
      * @param field
      * @param order
      */
-    public SortComparator(String field, Order order) {
+    public SortComparator(Field field, Order order) {
         // assume both pass parseUtil before passing here
         requireNonNull(field);
         requireNonNull(order);
@@ -26,8 +26,11 @@ public class SortComparator implements Comparator<Applicant> {
     public int compare(Applicant applicant1, Applicant applicant2) {
         requireNonNull(applicant1);
         requireNonNull(applicant2);
-        if (order.toString().equals("ASC")) {
-            switch (field) {
+        String orderString = this.order.toString();
+        String fieldString = this.field.toString();
+        switch(orderString) {
+        case "ASC":
+            switch (fieldString) {
             case "NAME":
                 return applicant1.compareNames(applicant2);
             case "JOB":
@@ -35,8 +38,8 @@ public class SortComparator implements Comparator<Applicant> {
             default:
                 return 0;
             }
-        } else {
-            switch (field) {
+        case "DESC":
+            switch (fieldString) {
             case "NAME":
                 return applicant2.compareNames(applicant1);
             case "JOB":
@@ -44,16 +47,20 @@ public class SortComparator implements Comparator<Applicant> {
             default:
                 return 0;
             }
+        default:
+            return 0;
         }
     }
 
     @Override
     public String toString() {
-        if (this.order.toString().equals("ASC")) {
+        String orderString = this.order.toString();
+        switch(orderString) {
+        case "ASC":
             return "ascending order according to " + this.field;
-        } else if (this.order.toString().equals("DESC")) {
+        case "DESC":
             return "descending order according to " + this.field;
-        } else {
+        default:
             return null;
         }
     }

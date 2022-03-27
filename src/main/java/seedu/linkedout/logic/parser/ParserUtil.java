@@ -10,6 +10,7 @@ import seedu.linkedout.commons.core.index.Index;
 import seedu.linkedout.commons.util.StringUtil;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
 import seedu.linkedout.model.applicant.Email;
+import seedu.linkedout.model.applicant.Field;
 import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Order;
@@ -152,5 +153,20 @@ public class ParserUtil {
             throw new ParseException(Order.MESSAGE_CONSTRAINTS);
         }
         return new Order(trimmedOrder);
+    }
+
+    /**
+     * Parses a {@code String field} into an {@code Field}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code field} is invalid.
+     */
+    public static Field parseField(String field) throws ParseException {
+        requireNonNull(field);
+        String trimmedField = field.trim();
+        if (!Field.isValidField(trimmedField)) {
+            throw new ParseException(Field.MESSAGE_CONSTRAINTS);
+        }
+        return new Field(trimmedField);
     }
 }

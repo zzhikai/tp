@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 
 import seedu.linkedout.logic.commands.SortCommand;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
+import seedu.linkedout.model.applicant.Field;
 import seedu.linkedout.model.applicant.Order;
 import seedu.linkedout.model.applicant.SortComparator;
 
@@ -38,8 +39,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         boolean hasField = !argMultimap.getValue(PREFIX_FIELD).get().isBlank();
         if (hasOrder && hasField) {
             Order order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_ORDER).get().toUpperCase());
-            // Change to use ParserUtil to parseField?
-            String field = argMultimap.getValue(PREFIX_FIELD).get().toUpperCase();
+            Field field = ParserUtil.parseField(argMultimap.getValue(PREFIX_FIELD).get().toUpperCase());
             return new SortCommand(new SortComparator(field, order));
         }
         // field is not valid or is blank

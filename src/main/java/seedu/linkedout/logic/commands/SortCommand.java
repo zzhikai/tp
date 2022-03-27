@@ -26,7 +26,6 @@ public class SortCommand extends Command {
             + PREFIX_ORDER + "asc ";
 
     public static final String MESSAGE_SUCCESS = "List has been sorted in %1$s";
-    public static final String MESSAGE_DUPLICATE_APPLICANT = "This applicant already exists in the LinkedOUT app.";
     public static final Object MESSAGE_CONSTRAINTS = "FIELD and ORDER should not be empty";
 
     private final Comparator<Applicant> comparator;

@@ -30,6 +30,8 @@ public class OrderTest {
         assertFalse(Order.isValidOrder("hello")); // random string
         assertFalse(Order.isValidOrder("descending")); // wrong format
         assertFalse(Order.isValidOrder("DSC")); // wrong format
+        assertFalse(Order.isValidOrder("   DESC  ")); // with white space
+        assertFalse(Order.isValidOrder("   ASC")); // with white space
 
         // valid orders
         assertTrue(Order.isValidOrder("asc"));
