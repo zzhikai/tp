@@ -55,7 +55,7 @@ public class ViewCommandTest {
     @Test
     public void execute_zeroKeywords_noApplicantFound() {
         String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 0);
-        NameContainsAllKeywordsPredicate predicate = preparePredicate(" ");
+        NameContainsAllKeywordsPredicate predicate = prepareNamePredicate(" ");
         ViewCommand command = new ViewCommand(predicate);
         expectedModel.updateFilteredApplicantList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -65,7 +65,7 @@ public class ViewCommandTest {
     @Test
     public void execute_exactKeywords_exactApplicantFound() {
         String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 1);
-        NameContainsAllKeywordsPredicate predicate = preparePredicate("Alice Pauline");
+        NameContainsAllKeywordsPredicate predicate = prepareNamePredicate("Alice Pauline");
         ViewCommand command = new ViewCommand(predicate);
         expectedModel.updateFilteredApplicantList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -76,7 +76,7 @@ public class ViewCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsAllKeywordsPredicate}.
      */
-    private NameContainsAllKeywordsPredicate preparePredicate(String userInput) {
+    private NameContainsAllKeywordsPredicate prepareNamePredicate(String userInput) {
         return new NameContainsAllKeywordsPredicate(userInput);
     }
 }

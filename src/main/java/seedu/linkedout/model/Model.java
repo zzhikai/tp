@@ -1,11 +1,13 @@
 package seedu.linkedout.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.linkedout.commons.core.GuiSettings;
 import seedu.linkedout.model.applicant.Applicant;
+import seedu.linkedout.model.applicant.KeywordsPredicate;
 
 /**
  * The API of the Model component.
@@ -91,4 +93,14 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredApplicantList(Predicate<Applicant> predicate);
+
+    /** Returns an unmodifiable view of the sorted applicant list */
+    ObservableList<Applicant> getSortedApplicantList();
+
+    /**
+     * Updates the search result applicant list to filter and sort by the given {@code list of predicates}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateSearchedApplicantList(List<KeywordsPredicate> predicate);
+
 }
