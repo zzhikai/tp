@@ -49,7 +49,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
      * and returns a SearchCommand object for execution.
      *
      * {@code ArgumentMultimap}.
-     * {@code} List<KeywordsPredicate>}
+     * {@code List<KeywordsPredicate>}
      * @throws ParseException if there exists a case where no prefixes match
      */
     public SearchCommand parseKeyword(ArgumentMultimap argMultimap,
