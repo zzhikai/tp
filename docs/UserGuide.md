@@ -120,7 +120,7 @@ Format:
 add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILLS]...
 ```
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of skills (including none at all)
+An applicant can have any number of skills (including none at all)
 </div>
 
 <br>
@@ -228,10 +228,10 @@ search [n/NAME]... [j/JOB]... [r/ROUND]... [s/SKILL]...
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * First name/Last name will be matched e.g. `Han` will match `Han Lee`
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Search will not work with multiple prefixes. e.g `search n/Alex j/Interview` will only yield results of `search n/Alex`
+* Search will not work with multiple prefixes. e.g `search n/Alex r/Interview` will only yield results of those who are named `Alex` **and** in the `Interview` round
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can try searching for multiple names in the applicant list. Try `search n/Alex Bernice` to look up these 2 applicants!
+You can try searching for multiple names in the applicant list. Try `search n/Alex Bernice` to search for applicants with names `Alex` or `Bernice`!
 </div>
 
 <br>
@@ -327,7 +327,7 @@ Skills: [Accounting][Equities][Cryptocurrency]
 ---
 ### Deleting an applicant : `delete`
 
-Allows you to delete a specific job applicant, specified by index.
+Allows you to delete a specific applicant, specified by index.
 
 <br>
 
