@@ -50,14 +50,14 @@ public class SortComparator implements Comparator<Applicant> {
     @Override
     public String toString() {
         if (this.order.toString().equals("ASC")) {
-            return "ascending order";
+            return "ascending order according to " + this.field;
         } else if (this.order.toString().equals("DESC")) {
-            return "descending order";
+            return "descending order according to " + this.field;
         } else {
             return null;
         }
     }
-    
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
