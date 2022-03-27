@@ -10,7 +10,6 @@ LinkedOUT is the only application that any experienced recruiter needs. LinkedOU
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Who is this User Guide for?
 
 This user guide is meant for users who wish to learn how to use our application. It is best suited for recruiters who are looking to incorporate this app into their daily workflows.
@@ -20,7 +19,6 @@ If you would like to learn more about the technical aspects of our application i
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Legend
 
 <div markdown="block" class="alert alert-info">
@@ -40,7 +38,6 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -214,7 +211,7 @@ Allows you to view an overview of a specific applicant, specified by **either** 
 
 Format:
 ```
-search [n/NAME][j/JOB][r/ROUND][s/SKILL]
+search [n/NAME]... [j/JOB]... [r/ROUND]... [s/SKILL]...
 ```
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * First name/Last name will be matched e.g. `Han` will match `Han Lee`
@@ -244,13 +241,14 @@ Skills: Product Design
 ---
 ### Editing an applicant : `edit`
 
-Allows you to edit details of the applicant identified by the index number. The index number used corresponds to the one in the displayed applicant list. Existing values will be overwritten by the input values.
+Allows you to edit specific details of the applicant identified by the index number. The index number used corresponds to the one in the displayed applicant list. 
+Existing values will be overwritten by the input values
 
 <br>
 
 Format:
 ```
-edit i/INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]...
+edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]...
 ```
 
 * Only valid indexes are edited. e.g If there are only `4` applicants in LinkedOUT but `5` is specified, then the intended action will not be carried out.
@@ -311,7 +309,7 @@ Allows you to delete a specific job applicant, specified by index.
 
 Format:
 ```
-delete i/INDEX
+delete INDEX
 ```
 
 * Only valid index are deleted. e.g `5` will not delete if there are only `4` applicants in the list
@@ -371,17 +369,17 @@ If your changes to the data file makes its format invalid, LinkedOUT will discar
 --------------------------------------------------------------------------------------------------------------------
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                            |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**   | `help`                                                                                                                                                      |
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILLS]...<br/>` <br/>e.g: `add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas` |
-| **List**   | `list`                                                                                                                                                      |
-| **View**   | `view NAME` e.g: `view Steve Jobs`                                                                                                                      |
-| **Search** | `search n/NAME` e.g: `search n/Steve`                                                                                                                       |
-| **Edit**   | `edit i/INDEX [n/NAME] ...` e.g: `edit 1 n/Elon Musk` 
-| **Flag**   | `flag INDEX` e.g:  `flag 1`
-| **Delete** | `delete i/INDEX` e.g: `delete 1`                                                                                                                            |                                                                                                           |
-| **Exit**   | `exit`                                                                                                                                                      |
+| Action     | Format, Examples                                                                                                                                            
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------
+| **Help**   | `help`                                                                                                                                                      
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]...` <br> e.g: `add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas` 
+| **List**   | `list`                                                                                                                                                      
+| **View**   | `view NAME` <br> e.g: `view Steve Jobs`                                                                                                                      
+| **Search** | `search [n/NAME]... [j/JOB]... [r/ROUND]... [s/SKILL]...` <br> e.g: `search n/Steve`                                                           
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]...` <br> e.g: `edit 1 n/Elon Musk` 
+| **Flag**   | `flag INDEX` <br> e.g:  `flag 1`
+| **Delete** | `delete INDEX` <br> e.g: `delete 1`                                                                                                                                                                                                                                   
+| **Exit**   | `exit`                                                                                                                                                      
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
