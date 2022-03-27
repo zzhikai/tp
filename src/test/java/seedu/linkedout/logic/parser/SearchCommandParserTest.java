@@ -4,12 +4,16 @@ import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.linkedout.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.linkedout.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.linkedout.logic.commands.SearchCommand;
 import seedu.linkedout.model.applicant.JobContainsKeywordsPredicate;
+import seedu.linkedout.model.applicant.KeywordsPredicate;
 import seedu.linkedout.model.applicant.NameContainsKeywordsPredicate;
 import seedu.linkedout.model.applicant.RoundContainsKeywordsPredicate;
 
@@ -53,13 +57,36 @@ public class SearchCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsSearchCommand() {
+    public void parse_validSingleArgs_returnsSearchCommand() {
+        List<KeywordsPredicate> nameKeywordPredicateList = new ArrayList<>();
+        List<KeywordsPredicate> jobKeywordPredicateList = new ArrayList<>();
+        List<KeywordsPredicate> roundKeywordPredicateList = new ArrayList<>();
+        List<KeywordsPredicate> combinedNameAndJobPredicateList = new ArrayList<>();
+        List<KeywordsPredicate> combinedNameAndRoundPredicateList = new ArrayList<>();
+
+        NameContainsKeywordsPredicate nameKeywordPredicate =
+                new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
+        JobContainsKeywordsPredicate jobKeywordPredicate =
+                new JobContainsKeywordsPredicate(Arrays.asList("Software", "Engineer"));
+        RoundContainsKeywordsPredicate roundKeywordPredicate =
+                new RoundContainsKeywordsPredicate(Arrays.asList("Technical", "Interview"));
+
+        Collections.addAll(nameKeywordPredicateList, nameKeywordPredicate);
+        Collections.addAll(jobKeywordPredicateList, jobKeywordPredicate);
+        Collections.addAll(roundKeywordPredicateList, roundKeywordPredicate);
+        Collections.addAll(combinedNameAndJobPredicateList, nameKeywordPredicate, jobKeywordPredicate);
+        Collections.addAll(combinedNameAndRoundPredicateList, nameKeywordPredicate, roundKeywordPredicate);
+
         SearchCommand expectedNameSearchCommand =
-                new SearchCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+                new SearchCommand(nameKeywordPredicateList);
         SearchCommand expectedJobSearchCommand =
-                new SearchCommand(new JobContainsKeywordsPredicate(Arrays.asList("Software", "Engineer")));
+                new SearchCommand(jobKeywordPredicateList);
         SearchCommand expectedRoundSearchCommand =
-                new SearchCommand(new RoundContainsKeywordsPredicate(Arrays.asList("Technical", "Interview")));
+                new SearchCommand(roundKeywordPredicateList);
+        SearchCommand expectedNameAndJobSearchCommand =
+                new SearchCommand(combinedNameAndJobPredicateList);
+        SearchCommand expectedNameAndRoundSearchCOmmand =
+                new SearchCommand(combinedNameAndRoundPredicateList);
 
         // no leading and trailing whitespaces
         assertParseSuccess(parser, " n/Alice Bob", expectedNameSearchCommand);
@@ -81,6 +108,9 @@ public class SearchCommandParserTest {
         assertParseSuccess(parser, " j/soFTwaRe enGiNeer", expectedJobSearchCommand);
         assertParseSuccess(parser, " r/teChnIcaL inTerVieW", expectedRoundSearchCommand);
 
+        //AND condition for different prefix
+        assertParseSuccess(parser, " n/Alice Bob j/Software Engineer ", expectedNameAndJobSearchCommand);
+        assertParseSuccess(parser, " n/Alice Bob r/Technical Interview", expectedNameAndRoundSearchCOmmand);
     }
 
 }

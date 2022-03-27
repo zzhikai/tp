@@ -5,6 +5,8 @@ import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ROUND;
 
+import java.util.List;
+
 import seedu.linkedout.commons.core.Messages;
 import seedu.linkedout.model.Model;
 import seedu.linkedout.model.applicant.KeywordsPredicate;
@@ -27,19 +29,19 @@ public class SearchCommand extends Command {
             + "[" + PREFIX_ROUND + "ROUND] \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Steve";
 
-    private final KeywordsPredicate predicate;
+    private final List<KeywordsPredicate> predicate;
 
 
-    public SearchCommand(KeywordsPredicate predicate) {
+    public SearchCommand(List<KeywordsPredicate> predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredApplicantList(predicate);
+        model.updateSearchedApplicantList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_APPLICANTS_LISTED_OVERVIEW, model.getFilteredApplicantList().size()));
+                String.format(Messages.MESSAGE_APPLICANTS_LISTED_OVERVIEW, model.getSortedApplicantList().size()));
     }
 
     @Override
