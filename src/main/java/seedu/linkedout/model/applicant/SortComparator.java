@@ -32,18 +32,18 @@ public class SortComparator implements Comparator<Applicant> {
         case "ASC":
             switch (fieldString) {
             case "NAME":
-                return applicant1.compareNames(applicant2);
+                return applicant1.getName().compareTo(applicant2.getName());
             case "JOB":
-                return applicant1.compareJobs(applicant2);
+                return applicant1.getJob().compareTo(applicant2.getJob());
             default:
                 return 0;
             }
         case "DESC":
             switch (fieldString) {
             case "NAME":
-                return applicant2.compareNames(applicant1);
+                return applicant2.getName().compareTo(applicant1.getName());
             case "JOB":
-                return applicant2.compareJobs(applicant1);
+                return applicant2.getJob().compareTo(applicant2.getJob());
             default:
                 return 0;
             }

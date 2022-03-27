@@ -19,11 +19,12 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sort applicants in the LinkedOUT app. "
             + "Parameters: "
-            + "[" + PREFIX_FIELD + "FIELD]"
-            + PREFIX_ORDER + "ORDER...\n"
-            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_FIELD + "FIELD "
+            + PREFIX_ORDER + "ORDER..."
+            + "\nFIELD has to be NAME or JOB " + "and" + " ORDER either ASC or DESC (case-insensitive)"
+            + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_FIELD + "NAME "
-            + PREFIX_ORDER + "asc ";
+            + PREFIX_ORDER + "ASC ";
 
     public static final String MESSAGE_SUCCESS = "List has been sorted in %1$s";
     public static final Object MESSAGE_CONSTRAINTS = "FIELD and ORDER should not be empty";

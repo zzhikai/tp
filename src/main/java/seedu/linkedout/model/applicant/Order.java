@@ -11,11 +11,9 @@ public class Order {
     public static final String ASCENDING_ORDER = "ASC";
     public static final String DESCENDING_ORDER = "DESC";
     public static final String MESSAGE_CONSTRAINTS =
-            "Order should either be 'asc' for ascending or 'desc' for descending (case-insensitive)";
+            "Order should either be 'ASC' for ascending or 'DESC' for descending (case-insensitive)";
 
     public final String sortOrder;
-
-
 
     /**
      * Constructs a {@code Order}.

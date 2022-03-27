@@ -11,7 +11,7 @@ public class Field {
     public static final String NAME_FIELD = "NAME";
     public static final String JOB_FIELD = "JOB";
     public static final String MESSAGE_CONSTRAINTS =
-            "Field should either be 'name' or 'job' for sorting";
+            "Field should either be 'NAME' or 'JOB' for sorting (case-insensitive)";
 
     public final String sortField;
 

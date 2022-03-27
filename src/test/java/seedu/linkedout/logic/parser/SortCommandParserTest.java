@@ -2,10 +2,15 @@ package seedu.linkedout.logic.parser;
 
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.linkedout.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.linkedout.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.linkedout.logic.commands.SortCommand;
+import seedu.linkedout.model.applicant.Field;
+import seedu.linkedout.model.applicant.Name;
+import seedu.linkedout.model.applicant.Order;
+import seedu.linkedout.model.applicant.SortComparator;
 
 public class SortCommandParserTest {
 
@@ -40,35 +45,39 @@ public class SortCommandParserTest {
         // missing order keyword
         assertParseFailure(parser, " f/NAME o/", String.format(
                 MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
-        // CANNOT TEST FIELD YET, NVR CREATE FIELD
         // missing field  keyword
-        // assertParseFailure(parser, " f/ o/ASC", String.format(
-        //         MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " f/ o/ASC", String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
 
-    /* @Test
-    public void parse_validArgs_returnsSearchCommand() {
-        SearchCommand expectedNameSearchCommand =
-                new SearchCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        SearchCommand expectedJobSearchCommand =
-                new SearchCommand(new JobContainsKeywordsPredicate(Arrays.asList("Software", "Engineer")));
+    @Test
+    public void parse_excessWhitespace_throwsParseException() {
+        //leading whitespace after prefix
+        assertParseFailure(parser, " f/   NAME o/  ASC", String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " f/\nNAME o/ \t ASC", String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+    }
+
+
+    @Test
+    public void parse_validArgs_returnsSortCommand() {
+        SortCommand expectedNameSortCommand =
+                new SortCommand(new SortComparator(new Field("NAME"), new Order("ASC")));
+        SortCommand expectedJobSortCommand =
+                new SortCommand(new SortComparator(new Field("JOB"), new Order("DESC")));
 
         // no leading and trailing whitespaces
-        assertParseSuccess(parser, " n/Alice Bob", expectedNameSearchCommand);
-        assertParseSuccess(parser, " j/Software Engineer", expectedJobSearchCommand);
-
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, " n/Alice \n \t Bob  \t", expectedNameSearchCommand);
-        assertParseSuccess(parser, " j/Software \n \t Engineer  \t", expectedJobSearchCommand);
+        assertParseSuccess(parser, " f/NAME o/ASC", expectedNameSortCommand);
+        assertParseSuccess(parser, " f/JOB o/DESC", expectedJobSortCommand);
 
         //leading whitespace after prefix
-        assertParseSuccess(parser, " n/\nAlice \n \t Bob  \t", expectedNameSearchCommand);
-        assertParseSuccess(parser, " j/
-         Software \n \t Engineer  \t", expectedJobSearchCommand);
+        assertParseSuccess(parser, " f/   NAME o/  ASC", expectedNameSortCommand);
+        assertParseSuccess(parser, " f/\nNAME o/ \t ASC", expectedNameSortCommand);
 
         //case insensitive
-        assertParseSuccess(parser, " n/AlIce BOb", expectedNameSearchCommand);
-        assertParseSuccess(parser, " j/soFTwaRe enGiNeer", expectedJobSearchCommand);
-    } */
+        assertParseSuccess(parser, " f/NAmE o/asc", expectedNameSortCommand);
+        assertParseSuccess(parser, " f/jOB o/DeSc", expectedJobSortCommand);
+    }
 
 }
