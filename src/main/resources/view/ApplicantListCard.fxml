@@ -8,6 +8,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
@@ -32,7 +34,13 @@
       <FlowPane fx:id="skills" />
       <Label fx:id="job" styleClass="cell_small_label" text="\$job" />
       <Label fx:id="round" styleClass="cell_small_label_round" text="\$round" />
-      <Label fx:id="flagged" styleClass="cell_small_label" text="\$flagged" />
     </VBox>
   </GridPane>
+  <VBox alignment = "CENTER">
+    <ImageView fx:id="flagIcon">
+      <image>
+        <Image url = "@../images/flag.png"/>
+      </image>
+    </ImageView>
+  </VBox>
 </HBox>

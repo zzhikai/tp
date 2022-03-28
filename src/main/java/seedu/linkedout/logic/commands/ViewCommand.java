@@ -7,7 +7,7 @@ import seedu.linkedout.model.Model;
 import seedu.linkedout.model.applicant.NameContainsAllKeywordsPredicate;
 
 /**
- * view on applicant(s) in linkedout app whose name contains the exact argument keywords.
+ * view on applicant in linkedout app whose name contains the exact argument keywords.
  * Keyword matching is case insensitive.
  */
 public class ViewCommand extends Command {
