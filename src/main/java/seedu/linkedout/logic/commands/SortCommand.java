@@ -43,7 +43,7 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateSortedApplicantList(comparator);
+        model.updateDefaultApplicantList(comparator);
         return new CommandResult(String.format(MESSAGE_SUCCESS, comparator.toString()));
     }
 

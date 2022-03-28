@@ -84,8 +84,8 @@ public interface Model {
      */
     void setApplicant(Applicant target, Applicant editedApplicant);
 
-    /** Returns an unmodifiable view of the filtered applicant list */
-    ObservableList<Applicant> getFilteredApplicantList();
+//    /** Returns an unmodifiable view of the filtered applicant list */
+//    ObservableList<Applicant> getFilteredApplicantList();
 
     /**
      * Updates the filter of the filtered applicant list to filter by the given {@code predicate}.
@@ -95,11 +95,11 @@ public interface Model {
 
 
     /** Returns an unmodifiable view of the sorted applicant list */
-    ObservableList<Applicant> getSortedApplicantList();
+    ObservableList<Applicant> getDefaultApplicantList();
 
     /**
      * Updates the filter of the sorted applicant list to sorted by the given {@code comparator}.
      * @throws NullPointerException if {@code comparator} is null.
      */
-    void updateSortedApplicantList(Comparator<Applicant> comparator);
+    void updateDefaultApplicantList(Comparator<Applicant> comparator);
 }
