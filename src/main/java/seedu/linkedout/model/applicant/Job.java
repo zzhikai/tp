@@ -7,7 +7,7 @@ import static seedu.linkedout.commons.util.AppUtil.checkArgument;
  * Represents a Applicant's job in the linkedout app.
  * Guarantees: immutable; is valid as declared in {@link #isValidJob(String)}
  */
-public class Job {
+public class Job implements Comparable<Job> {
 
     public static final String MESSAGE_CONSTRAINTS = "Jobs can only be alphanumeric and it should not be blank";
 
@@ -54,4 +54,8 @@ public class Job {
         return value.hashCode();
     }
 
+    @Override
+    public int compareTo(Job other) {
+        return this.toString().toLowerCase().compareTo(other.toString().toLowerCase());
+    }
 }

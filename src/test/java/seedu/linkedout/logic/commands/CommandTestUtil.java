@@ -111,24 +111,24 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         Linkedout expectedLinkedout = new Linkedout(actualModel.getLinkedout());
-        List<Applicant> expectedFilteredList = new ArrayList<>(actualModel.getFilteredApplicantList());
+        List<Applicant> expectedFilteredList = new ArrayList<>(actualModel.getDefaultApplicantList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedLinkedout, actualModel.getLinkedout());
-        assertEquals(expectedFilteredList, actualModel.getFilteredApplicantList());
+        assertEquals(expectedFilteredList, actualModel.getDefaultApplicantList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the applicant at the given {@code targetIndex} in the
      * {@code model}'s linkedout app.
      */
     public static void showApplicantAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredApplicantList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getDefaultApplicantList().size());
 
-        Applicant applicant = model.getFilteredApplicantList().get(targetIndex.getZeroBased());
+        Applicant applicant = model.getDefaultApplicantList().get(targetIndex.getZeroBased());
         final String[] splitName = applicant.getName().fullName.split("\\s+");
         model.updateFilteredApplicantList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredApplicantList().size());
+        assertEquals(1, model.getDefaultApplicantList().size());
     }
 
 }

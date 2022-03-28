@@ -14,6 +14,8 @@ import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
 import seedu.linkedout.model.applicant.Round;
+import seedu.linkedout.model.applicant.util.sort.Field;
+import seedu.linkedout.model.applicant.util.sort.Order;
 import seedu.linkedout.model.skill.Skill;
 
 /**
@@ -136,5 +138,35 @@ public class ParserUtil {
             skillSet.add(parseSkill(skillName));
         }
         return skillSet;
+    }
+
+    /**
+     * Parses a {@code String order} into an {@code Order}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code order} is invalid.
+     */
+    public static Order parseOrder(String order) throws ParseException {
+        requireNonNull(order);
+        String trimmedOrder = order.trim();
+        if (!Order.isValidOrder(trimmedOrder)) {
+            throw new ParseException(Order.MESSAGE_CONSTRAINTS);
+        }
+        return new Order(trimmedOrder);
+    }
+
+    /**
+     * Parses a {@code String field} into an {@code Field}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code field} is invalid.
+     */
+    public static Field parseField(String field) throws ParseException {
+        requireNonNull(field);
+        String trimmedField = field.trim();
+        if (!Field.isValidField(trimmedField)) {
+            throw new ParseException(Field.MESSAGE_CONSTRAINTS);
+        }
+        return new Field(trimmedField);
     }
 }
