@@ -30,12 +30,7 @@ public interface Logic {
      */
     ReadOnlyLinkedout getLinkedout();
 
-//    /** Returns an unmodifiable view of the filtered list of applicants */
-//    ObservableList<Applicant> getFilteredApplicantList();
-//
-//    /** Returns an unmodifiable view of the sorted list of applicants */
-//    ObservableList<Applicant> getSortedApplicantList();
-
+    /** Returns an unmodifiable view of either the filtered or sorted list of applicants depending on latest command*/
     ObservableList<Applicant> getDefaultApplicantList();
 
     /**
