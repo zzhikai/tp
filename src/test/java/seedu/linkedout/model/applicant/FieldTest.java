@@ -20,6 +20,24 @@ public class FieldTest {
     }
 
     @Test
+    public void equals_Field() {
+        Field nameField = new Field("NAME");
+        Field jobField = new Field("JOB");
+
+        // name field
+        assertTrue(nameField.equals(new Field("NaMe")));
+        assertTrue(nameField.equals(new Field("name")));
+
+        // job field
+        assertTrue(jobField.equals(new Field("job")));
+        assertTrue(jobField.equals(new Field("jOb")));
+
+        // different job field
+        assertFalse(nameField.equals(jobField));
+        assertFalse(nameField.equals(new Job("joB")));
+    }
+
+    @Test
     public void isValidField() {
         // null field
         assertThrows(NullPointerException.class, () -> Field.isValidField(null));
