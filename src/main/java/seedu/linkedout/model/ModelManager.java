@@ -102,16 +102,16 @@ public class ModelManager implements Model {
         linkedout.removeApplicant(target);
     }
 
+    // update FilteredList after adding
+    // update defaultList with new FilteredList with comparator so that order is retained
     @Override
     public void addApplicant(Applicant applicant) {
         linkedout.addApplicant(applicant);
         updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
         updateDefaultApplicantList((a1, a2) -> 0);
-        // update list to sort when adding applicant
-        // need to set applicantList sort to new filteredApplicant list
-        // non null comparator in order for it to update?
     }
 
+    // update FilteredList after flagging
     @Override
     public void flagApplicant(Applicant applicant, Applicant flaggedApplicant) {
         requireAllNonNull(applicant, flaggedApplicant);
@@ -144,6 +144,8 @@ public class ModelManager implements Model {
     public ObservableList<Applicant> getDefaultApplicantList() {
         return defaultApplicants;
     }
+
+
     @Override
     public void updateFilteredApplicantList(Predicate<Applicant> predicate) {
         requireNonNull(predicate);
@@ -165,6 +167,7 @@ public class ModelManager implements Model {
     @Override
     public void updateDefaultApplicantList(Comparator<Applicant> comparator) {
         requireNonNull(comparator);
+        // filteredApplicants.setPredicate(PREDICATE_SHOW_ALL_APPLICANTS);
         defaultApplicants.setComparator(comparator);
     }
 

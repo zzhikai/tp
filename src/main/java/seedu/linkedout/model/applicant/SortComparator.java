@@ -43,7 +43,7 @@ public class SortComparator implements Comparator<Applicant> {
             case "NAME":
                 return applicant2.getName().compareTo(applicant1.getName());
             case "JOB":
-                return applicant2.getJob().compareTo(applicant2.getJob());
+                return applicant2.getJob().compareTo(applicant1.getJob());
             default:
                 return 0;
             }
