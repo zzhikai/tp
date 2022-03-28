@@ -12,6 +12,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.linkedout.logic.commands.SearchCommand;
+import seedu.linkedout.model.applicant.ApplicantContainsSkillKeywordsPredicate;
 import seedu.linkedout.model.applicant.JobContainsKeywordsPredicate;
 import seedu.linkedout.model.applicant.KeywordsPredicate;
 import seedu.linkedout.model.applicant.NameContainsKeywordsPredicate;
@@ -34,6 +35,14 @@ public class SearchCommandParserTest {
         //missing job prefix
         assertParseFailure(parser, "Engineer", String.format(
                 MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+
+        //missing skill prefix
+        assertParseFailure(parser, "Javadocs", String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+
+        //missing one prefix
+        assertParseFailure(parser, "Dave s/Javadocs", String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -45,49 +54,86 @@ public class SearchCommandParserTest {
         // missing job keyword
         assertParseFailure(parser, " j/", String.format(
                 MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_CONSTRAINTS));
+
+        //missing skill keyword
+        assertParseFailure(parser, " s/", String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_CONSTRAINTS));
+
+        //missing one prefix
+        assertParseFailure(parser, "Dave s/", String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+
+
     }
 
     @Test
     public void parse_validArgs_returnsSearchCommand() {
         List<KeywordsPredicate> nameKeywordPredicateList = new ArrayList<>();
         List<KeywordsPredicate> jobKeywordPredicateList = new ArrayList<>();
+        List<KeywordsPredicate> skillsKeywordPredicateList = new ArrayList<>();
+        List<KeywordsPredicate> partialCombinedKeywordPredicateList = new ArrayList<>();
         List<KeywordsPredicate> combinedKeywordPredicateList = new ArrayList<>();
 
         NameContainsKeywordsPredicate nameKeywordPredicate =
                 new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
         Collections.addAll(nameKeywordPredicateList, nameKeywordPredicate);
+
         JobContainsKeywordsPredicate jobKeywordPredicate =
                 new JobContainsKeywordsPredicate(Arrays.asList("Software", "Engineer"));
         Collections.addAll(jobKeywordPredicateList, jobKeywordPredicate);
 
-        Collections.addAll(combinedKeywordPredicateList, nameKeywordPredicate, jobKeywordPredicate);
+        ApplicantContainsSkillKeywordsPredicate skillsKeywordPredicate =
+                new ApplicantContainsSkillKeywordsPredicate(Arrays.asList("Java", "Python"));
+        Collections.addAll(skillsKeywordPredicateList, skillsKeywordPredicate);
+
+        Collections.addAll(combinedKeywordPredicateList, nameKeywordPredicate, jobKeywordPredicate,
+                skillsKeywordPredicate);
+
+        Collections.addAll(partialCombinedKeywordPredicateList, nameKeywordPredicate, skillsKeywordPredicate);
 
         SearchCommand expectedNameSearchCommand =
                 new SearchCommand(nameKeywordPredicateList);
         SearchCommand expectedJobSearchCommand =
                 new SearchCommand(jobKeywordPredicateList);
-        SearchCommand expectedNameAndJobSearchCommand =
+        SearchCommand expectedSkillSearchCommand =
+                new SearchCommand(skillsKeywordPredicateList);
+        SearchCommand expectedAllPrefixesCommand =
                 new SearchCommand(combinedKeywordPredicateList);
+        SearchCommand expectedPartialSearchCommand =
+                new SearchCommand(partialCombinedKeywordPredicateList);
 
 
         // no leading and trailing whitespaces
         assertParseSuccess(parser, " n/Alice Bob", expectedNameSearchCommand);
         assertParseSuccess(parser, " j/Software Engineer", expectedJobSearchCommand);
+        assertParseSuccess(parser, " s/Java s/Python", expectedSkillSearchCommand);
+        assertParseSuccess(parser, " n/Alice Bob s/Java s/Python", expectedPartialSearchCommand);
+        assertParseSuccess(parser, " n/Alice Bob j/Software Engineer s/Java s/Python", expectedAllPrefixesCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " n/Alice \n \t Bob  \t", expectedNameSearchCommand);
         assertParseSuccess(parser, " j/Software \n \t Engineer  \t", expectedJobSearchCommand);
 
+
         //leading whitespace after prefix
         assertParseSuccess(parser, " n/\nAlice \n \t Bob  \t", expectedNameSearchCommand);
-        assertParseSuccess(parser, " j/                  Software \n \t Engineer  \t", expectedJobSearchCommand);
+        assertParseSuccess(parser, " j/               Software \n \t Engineer  \t", expectedJobSearchCommand);
+        assertParseSuccess(parser, " s/    Java s/   Python", expectedSkillSearchCommand);
 
         //case insensitive
         assertParseSuccess(parser, " n/AlIce BOb", expectedNameSearchCommand);
         assertParseSuccess(parser, " j/soFTwaRe enGiNeer", expectedJobSearchCommand);
+        assertParseSuccess(parser, " s/JaVa s/PyThON", expectedSkillSearchCommand);
+        assertParseSuccess(parser, " n/AlIce BOb s/JaVa s/PyThON", expectedPartialSearchCommand);
+        assertParseSuccess(parser, " n/AlIce BOb j/soFTwaRe enGiNeer s/JaVa s/PyThON",
+                expectedAllPrefixesCommand);
 
-        //AND condition for different prefix
-        assertParseSuccess(parser, " n/Alice Bob j/Software Engineer", expectedNameAndJobSearchCommand);
+        //AND condition for all prefix
+        assertParseSuccess(parser, " n/Alice Bob j/Software Engineer s/Java s/Python",
+                expectedAllPrefixesCommand);
+
+        //AND condition for partial prefix
+        assertParseSuccess(parser, " n/Alice Bob s/Java s/Python", expectedPartialSearchCommand);
     }
 
 }
