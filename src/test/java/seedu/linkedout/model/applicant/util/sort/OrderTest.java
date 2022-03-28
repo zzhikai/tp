@@ -6,8 +6,6 @@ import static seedu.linkedout.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.linkedout.model.applicant.util.sort.Order;
-
 public class OrderTest {
 
     @Test

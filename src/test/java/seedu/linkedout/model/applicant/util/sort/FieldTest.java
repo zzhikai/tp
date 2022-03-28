@@ -6,9 +6,6 @@ import static seedu.linkedout.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.linkedout.model.applicant.Job;
-import seedu.linkedout.model.applicant.util.sort.Field;
-
 public class FieldTest {
 
     @Test
@@ -37,7 +34,7 @@ public class FieldTest {
 
         // different job field
         assertFalse(nameField.equals(jobField));
-        assertFalse(nameField.equals(new Job("joB")));
+        assertFalse(nameField.equals(new Field("joB")));
     }
 
     @Test
