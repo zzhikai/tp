@@ -1,6 +1,7 @@
 package seedu.linkedout.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -85,9 +86,6 @@ public interface Model {
      */
     void setApplicant(Applicant target, Applicant editedApplicant);
 
-    /** Returns an unmodifiable view of the filtered applicant list */
-    ObservableList<Applicant> getFilteredApplicantList();
-
     /**
      * Updates the filter of the filtered applicant list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -95,7 +93,13 @@ public interface Model {
     void updateFilteredApplicantList(Predicate<Applicant> predicate);
 
     /** Returns an unmodifiable view of the sorted applicant list */
-    ObservableList<Applicant> getSortedApplicantList();
+    ObservableList<Applicant> getDefaultApplicantList();
+
+    /**
+     * Updates the filter of the sorted applicant list to sorted by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateDefaultApplicantList(Comparator<Applicant> comparator);
 
     /**
      * Updates the search result applicant list to filter and sort by the given {@code list of predicates}.
