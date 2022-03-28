@@ -20,7 +20,7 @@ public class FieldTest {
     }
 
     @Test
-    public void equals_Field() {
+    public void equalsField() {
         Field nameField = new Field("NAME");
         Field jobField = new Field("JOB");
 

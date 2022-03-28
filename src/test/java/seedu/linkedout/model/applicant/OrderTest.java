@@ -20,7 +20,7 @@ public class OrderTest {
     }
 
     @Test
-    public void equals_Order() {
+    public void equalsOrder() {
         Order ascOrder = new Order("ASC");
         Order descOrder = new Order("DESC");
 
@@ -36,8 +36,7 @@ public class OrderTest {
         assertFalse(ascOrder.equals(descOrder));
         assertFalse(ascOrder.equals(new Order("desc")));
     }
-    
-    
+
     @Test
     public void isValidOrder() {
         // null order
