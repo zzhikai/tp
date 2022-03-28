@@ -164,24 +164,4 @@ public class Applicant implements Comparable<Applicant> {
         }
         return builder.toString();
     }
-
-    /**
-     * Returns integer value representing if String value of name of current applicant
-     * is more or less, or equal String value of name of current applicant to {@code applicant2}.
-     */
-    public int compareNames(Applicant applicant2) {
-        String nameOfFirstApplicant = this.getName().toString().toLowerCase();
-        String nameOfSecondApplicant = applicant2.getName().toString().toLowerCase();
-        return nameOfFirstApplicant.compareTo(nameOfSecondApplicant);
-    }
-
-    /**
-     * Returns integer value representing if String value of job of current applicant
-     * is more or less, or equal String value of job of current applicant to {@code applicant2}.
-     */
-    public int compareJobs(Applicant applicant2) {
-        String jobOfFirstApplicant = this.getJob().toString().toLowerCase();
-        String jobOfSecondApplicant = applicant2.getJob().toString().toLowerCase();
-        return jobOfFirstApplicant.compareTo(jobOfSecondApplicant);
-    }
 }

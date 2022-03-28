@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.linkedout.logic.commands.SortCommand;
 import seedu.linkedout.model.applicant.Field;
-import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Order;
 import seedu.linkedout.model.applicant.SortComparator;
 
@@ -49,16 +48,6 @@ public class SortCommandParserTest {
         assertParseFailure(parser, " f/ o/ASC", String.format(
                 MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
-
-    @Test
-    public void parse_excessWhitespace_throwsParseException() {
-        //leading whitespace after prefix
-        assertParseFailure(parser, " f/   NAME o/  ASC", String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, " f/\nNAME o/ \t ASC", String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
-    }
-
 
     @Test
     public void parse_validArgs_returnsSortCommand() {

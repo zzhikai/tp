@@ -43,15 +43,15 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_APPLICANT_SUCCESS, editedApplicant);
 
         Model expectedModel = new ModelManager(new Linkedout(model.getLinkedout()), new UserPrefs());
-        expectedModel.setApplicant(model.getFilteredApplicantList().get(0), editedApplicant);
+        expectedModel.setApplicant(model.getDefaultApplicantList().get(0), editedApplicant);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastApplicant = Index.fromOneBased(model.getFilteredApplicantList().size());
-        Applicant lastApplicant = model.getFilteredApplicantList().get(indexLastApplicant.getZeroBased());
+        Index indexLastApplicant = Index.fromOneBased(model.getDefaultApplicantList().size());
+        Applicant lastApplicant = model.getDefaultApplicantList().get(indexLastApplicant.getZeroBased());
 
         ApplicantBuilder applicantInList = new ApplicantBuilder(lastApplicant);
         Applicant editedApplicant = applicantInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
@@ -72,7 +72,7 @@ public class EditCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_APPLICANT, new EditApplicantDescriptor());
-        Applicant editedApplicant = model.getFilteredApplicantList().get(INDEX_FIRST_APPLICANT.getZeroBased());
+        Applicant editedApplicant = model.getDefaultApplicantList().get(INDEX_FIRST_APPLICANT.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_APPLICANT_SUCCESS, editedApplicant);
 
@@ -85,7 +85,7 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showApplicantAtIndex(model, INDEX_FIRST_APPLICANT);
 
-        Applicant applicantInFilteredList = model.getFilteredApplicantList().get(INDEX_FIRST_APPLICANT.getZeroBased());
+        Applicant applicantInFilteredList = model.getDefaultApplicantList().get(INDEX_FIRST_APPLICANT.getZeroBased());
         Applicant editedApplicant = new ApplicantBuilder(applicantInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_APPLICANT,
                 new EditApplicantDescriptorBuilder().withName(VALID_NAME_BOB).build());
@@ -93,14 +93,14 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_APPLICANT_SUCCESS, editedApplicant);
 
         Model expectedModel = new ModelManager(new Linkedout(model.getLinkedout()), new UserPrefs());
-        expectedModel.setApplicant(model.getFilteredApplicantList().get(0), editedApplicant);
+        expectedModel.setApplicant(model.getDefaultApplicantList().get(0), editedApplicant);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicateApplicantUnfilteredList_failure() {
-        Applicant firstApplicant = model.getFilteredApplicantList().get(INDEX_FIRST_APPLICANT.getZeroBased());
+        Applicant firstApplicant = model.getDefaultApplicantList().get(INDEX_FIRST_APPLICANT.getZeroBased());
         EditApplicantDescriptor descriptor = new EditApplicantDescriptorBuilder(firstApplicant).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_APPLICANT, descriptor);
 
@@ -121,7 +121,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_invalidApplicantIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredApplicantList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getDefaultApplicantList().size() + 1);
         EditApplicantDescriptor descriptor = new EditApplicantDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 

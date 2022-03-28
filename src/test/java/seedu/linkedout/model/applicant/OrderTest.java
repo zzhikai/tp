@@ -20,6 +20,24 @@ public class OrderTest {
     }
 
     @Test
+    public void equalsOrder() {
+        Order ascOrder = new Order("ASC");
+        Order descOrder = new Order("DESC");
+
+        // asc order
+        assertTrue(ascOrder.equals(new Order("Asc")));
+        assertTrue(ascOrder.equals(new Order("asc")));
+
+        // desc order
+        assertTrue(descOrder.equals(new Order("desc")));
+        assertTrue(descOrder.equals(new Order("desc")));
+
+        // different desc order
+        assertFalse(ascOrder.equals(descOrder));
+        assertFalse(ascOrder.equals(new Order("desc")));
+    }
+
+    @Test
     public void isValidOrder() {
         // null order
         assertThrows(NullPointerException.class, () -> Order.isValidOrder(null));

@@ -59,7 +59,7 @@ public class ViewCommandTest {
         ViewCommand command = new ViewCommand(predicate);
         expectedModel.updateFilteredApplicantList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredApplicantList());
+        assertEquals(Collections.emptyList(), model.getDefaultApplicantList());
     }
 
     @Test
@@ -69,7 +69,7 @@ public class ViewCommandTest {
         ViewCommand command = new ViewCommand(predicate);
         expectedModel.updateFilteredApplicantList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE), model.getFilteredApplicantList());
+        assertEquals(Arrays.asList(ALICE), model.getDefaultApplicantList());
     }
 
 

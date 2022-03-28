@@ -24,7 +24,7 @@ public class ModelManager implements Model {
     private final Linkedout linkedout;
     private final UserPrefs userPrefs;
     private final FilteredList<Applicant> filteredApplicants;
-    private final SortedList<Applicant> sortedApplicants;
+    private final SortedList<Applicant> defaultApplicants;
 
     /**
      * Initializes a ModelManager with the given linkedout app and userPrefs.
@@ -37,7 +37,7 @@ public class ModelManager implements Model {
         this.linkedout = new Linkedout(linkedout);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredApplicants = new FilteredList<Applicant>(this.linkedout.getApplicantList());
-        sortedApplicants = new SortedList<>(filteredApplicants); // default to filteredList
+        defaultApplicants = new SortedList<>(filteredApplicants); // default to filteredList
     }
 
     public ModelManager() {
@@ -102,20 +102,23 @@ public class ModelManager implements Model {
         linkedout.removeApplicant(target);
     }
 
+    // update FilteredList after adding
+    // update defaultList with new FilteredList with comparator so that order is retained
     @Override
     public void addApplicant(Applicant applicant) {
         linkedout.addApplicant(applicant);
         updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
-        updateSortedApplicantList((a1, a2) -> 0);
-        // update list to sort when adding applicant
-        // need to set applicantList sort to new filteredApplicant list
-        // non null comparator in order for it to update?
+        updateDefaultApplicantList((a1, a2) -> 0);
     }
 
+    // update FilteredList after flagging
     @Override
     public void flagApplicant(Applicant applicant, Applicant flaggedApplicant) {
         requireAllNonNull(applicant, flaggedApplicant);
         linkedout.flagApplicant(applicant, flaggedApplicant);
+        // flag applicant not pin to top on first flag, only after using it moves up
+        updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
+        // updateDefaultApplicantList((a1, a2) -> 0);
     }
 
     @Override
@@ -131,33 +134,31 @@ public class ModelManager implements Model {
      * Returns an unmodifiable view of the list of {@code Applicant} backed by the internal list of
      * {@code versionedLinkedout}
      */
+
     @Override
-    public ObservableList<Applicant> getFilteredApplicantList() {
-        return filteredApplicants;
+    public ObservableList<Applicant> getDefaultApplicantList() {
+        return defaultApplicants;
     }
+
 
     @Override
     public void updateFilteredApplicantList(Predicate<Applicant> predicate) {
         requireNonNull(predicate);
         filteredApplicants.setPredicate(predicate);
-        sortedApplicants.setComparator(null);
+        defaultApplicants.setComparator(null);
         // so that list will not become permanently sorted
     }
 
-    //=========== Sorted Applicant List Accessors =============================================================
+    //=========== Default Applicant List Accessors =============================================================
     /**
      * Returns an unmodifiable view of the list of {@code Applicant} backed by the internal list of
      * {@code versionedLinkedout}
      */
     @Override
-    public ObservableList<Applicant> getSortedApplicantList() {
-        return sortedApplicants;
-    }
-
-    @Override
-    public void updateSortedApplicantList(Comparator<Applicant> comparator) {
+    public void updateDefaultApplicantList(Comparator<Applicant> comparator) {
         requireNonNull(comparator);
-        sortedApplicants.setComparator(comparator);
+        // filteredApplicants.setPredicate(PREDICATE_SHOW_ALL_APPLICANTS);
+        defaultApplicants.setComparator(comparator);
     }
 
     //===========
@@ -178,7 +179,7 @@ public class ModelManager implements Model {
         return linkedout.equals(other.linkedout)
                 && userPrefs.equals(other.userPrefs)
                 && filteredApplicants.equals(other.filteredApplicants)
-                && sortedApplicants.equals(other.sortedApplicants);
+                && defaultApplicants.equals(other.defaultApplicants);
     }
 
 

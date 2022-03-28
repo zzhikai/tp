@@ -59,14 +59,10 @@ public class LogicManager implements Logic {
         return model.getLinkedout();
     }
 
-    @Override
-    public ObservableList<Applicant> getFilteredApplicantList() {
-        return model.getFilteredApplicantList();
-    }
 
     @Override
-    public ObservableList<Applicant> getSortedApplicantList() {
-        return model.getSortedApplicantList();
+    public ObservableList<Applicant> getDefaultApplicantList() {
+        return model.getDefaultApplicantList();
     }
 
     @Override

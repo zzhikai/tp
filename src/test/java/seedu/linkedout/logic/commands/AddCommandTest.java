@@ -145,10 +145,6 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public ObservableList<Applicant> getFilteredApplicantList() {
-            throw new AssertionError("This method should not be called.");
-        }
 
         @Override
         public void updateFilteredApplicantList(Predicate<Applicant> predicate) {
@@ -156,12 +152,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Applicant> getSortedApplicantList() {
+        public ObservableList<Applicant> getDefaultApplicantList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateSortedApplicantList(Comparator<Applicant> comparator) {
+        public void updateDefaultApplicantList(Comparator<Applicant> comparator) {
             throw new AssertionError("This method should not be called.");
         }
     }
