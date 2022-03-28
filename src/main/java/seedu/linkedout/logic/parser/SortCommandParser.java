@@ -33,7 +33,7 @@ public class SortCommandParser implements Parser<SortCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
-        // get().isBlank to check if String is present !Blank
+        // get().isBlank to check if String is present
         // pass upper case to SortCommand
         boolean hasOrder = !argMultimap.getValue(PREFIX_ORDER).get().isBlank();
         boolean hasField = !argMultimap.getValue(PREFIX_FIELD).get().isBlank();
