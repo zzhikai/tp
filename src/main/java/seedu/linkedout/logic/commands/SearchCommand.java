@@ -39,7 +39,8 @@ public class SearchCommand extends Command {
         requireNonNull(model);
         model.updateSearchedApplicantList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_APPLICANTS_LISTED_OVERVIEW, model.getSortedApplicantList().size()));
+                String.format(Messages.MESSAGE_APPLICANTS_LISTED_OVERVIEW, model.getDefaultApplicantList().size()));
+
     }
 
     @Override
