@@ -45,10 +45,10 @@ public class ApplicantTest {
         Applicant editedBob = new ApplicantBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
         assertFalse(BOB.isSameApplicant(editedBob));
 
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new ApplicantBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameApplicant(editedBob));
+        // name has multiple whitespaces, all other attributes same -> returns true
+        String nameWithMultipleSpaces = VALID_NAME_BOB + " ";
+        editedBob = new ApplicantBuilder(BOB).withName(nameWithMultipleSpaces).build();
+        assertTrue(BOB.isSameApplicant(editedBob));
     }
 
     @Test
