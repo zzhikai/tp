@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
- * Tests that a {@code Applicant}'s {@code Skills} contains all of the keywords given.
+ * Tests that a {@code Applicant}'s {@code Skills} contains any of the keywords given.
  */
 public class ApplicantContainsSkillKeywordsPredicate extends KeywordsPredicate implements Predicate<Applicant> {
 

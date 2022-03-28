@@ -108,7 +108,8 @@ public class SearchCommandParserTest {
         assertParseSuccess(parser, " j/Software Engineer", expectedJobSearchCommand);
         assertParseSuccess(parser, " s/Java s/Python", expectedSkillSearchCommand);
         assertParseSuccess(parser, " n/Alice Bob s/Java s/Python", expectedPartialSearchCommand);
-        assertParseSuccess(parser, " n/Alice Bob j/Software Engineer s/Java s/Python", expectedAllPrefixesCommand);
+        assertParseSuccess(parser, " n/Alice Bob j/Software Engineer s/Java s/Python",
+                expectedAllPrefixesCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " n/Alice \n \t Bob  \t", expectedNameSearchCommand);

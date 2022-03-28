@@ -102,7 +102,7 @@ public class SearchCommandTest {
         SearchCommand command = new SearchCommand(keywordPredicate);
         expectedModel.updateSearchedApplicantList(keywordPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(BENSON), model.getSortedApplicantList());
+        assertEquals(Arrays.asList(BENSON), model.getDefaultApplicantList());
     }
 
     @Test
@@ -116,7 +116,7 @@ public class SearchCommandTest {
         SearchCommand command = new SearchCommand(keywordPredicate);
         expectedModel.updateSearchedApplicantList(keywordPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(BENSON), model.getSortedApplicantList());
+        assertEquals(Arrays.asList(BENSON), model.getDefaultApplicantList());
     }
 
     /**
