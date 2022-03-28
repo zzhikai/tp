@@ -10,14 +10,18 @@ import static seedu.linkedout.testutil.TypicalApplicants.ELLE;
 import static seedu.linkedout.testutil.TypicalApplicants.FIONA;
 import static seedu.linkedout.testutil.TypicalApplicants.getTypicalLinkedout;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.linkedout.model.Model;
 import seedu.linkedout.model.ModelManager;
 import seedu.linkedout.model.UserPrefs;
+import seedu.linkedout.model.applicant.JobContainsKeywordsPredicate;
+import seedu.linkedout.model.applicant.KeywordsPredicate;
 import seedu.linkedout.model.applicant.NameContainsKeywordsPredicate;
 
 /**
@@ -29,19 +33,25 @@ public class SearchCommandTest {
 
     @Test
     public void equals() {
+        List<KeywordsPredicate> firstKeywordsPredicateList = new ArrayList<>();
+        List<KeywordsPredicate> secondKeywordsPredicateList = new ArrayList<>();
+
         NameContainsKeywordsPredicate firstPredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("first"));
         NameContainsKeywordsPredicate secondPredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        SearchCommand searchFirstCommand = new SearchCommand(firstPredicate);
-        SearchCommand searchSecondCommand = new SearchCommand(secondPredicate);
+        firstKeywordsPredicateList.add(firstPredicate);
+        secondKeywordsPredicateList.add(secondPredicate);
+
+        SearchCommand searchFirstCommand = new SearchCommand(firstKeywordsPredicateList);
+        SearchCommand searchSecondCommand = new SearchCommand(secondKeywordsPredicateList);
 
         // same object -> returns true
         assertTrue(searchFirstCommand.equals(searchFirstCommand));
 
         // same values -> returns true
-        SearchCommand searchFirstCommandCopy = new SearchCommand(firstPredicate);
+        SearchCommand searchFirstCommandCopy = new SearchCommand(firstKeywordsPredicateList);
         assertTrue(searchFirstCommand.equals(searchFirstCommandCopy));
 
         // different types -> returns false
@@ -57,27 +67,39 @@ public class SearchCommandTest {
     @Test
     public void execute_zeroKeywords_noApplicantFound() {
         String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        SearchCommand command = new SearchCommand(predicate);
-        expectedModel.updateFilteredApplicantList(predicate);
+        NameContainsKeywordsPredicate namePredicate = prepareNamePredicate(" ");
+        JobContainsKeywordsPredicate jobPredicate = prepareJobPredicate(" ");
+        List<KeywordsPredicate> keywordPredicate = new ArrayList<>();
+        Collections.addAll(keywordPredicate, namePredicate, jobPredicate);
+        SearchCommand command = new SearchCommand(keywordPredicate);
+        expectedModel.updateSearchedApplicantList(keywordPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredApplicantList());
+        assertEquals(Collections.emptyList(), model.getSortedApplicantList());
     }
 
     @Test
     public void execute_multipleKeywords_multipleApplicantsFound() {
         String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        SearchCommand command = new SearchCommand(predicate);
-        expectedModel.updateFilteredApplicantList(predicate);
+        NameContainsKeywordsPredicate predicate = prepareNamePredicate("Kurz Elle Kunz");
+        List<KeywordsPredicate> keywordPredicate = new ArrayList<>();
+        keywordPredicate.add(predicate);
+        SearchCommand command = new SearchCommand(keywordPredicate);
+        expectedModel.updateSearchedApplicantList(keywordPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredApplicantList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getSortedApplicantList());
     }
 
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
+    private NameContainsKeywordsPredicate prepareNamePredicate(String userInput) {
         return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code JobContainsKeywordsPredicate}.
+     */
+    private JobContainsKeywordsPredicate prepareJobPredicate(String userInput) {
+        return new JobContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

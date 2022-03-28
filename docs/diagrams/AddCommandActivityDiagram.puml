@@ -18,7 +18,7 @@ if () then ([User enters valid command])
     else ([else])
     endif
 
-    :Add the new Applicant into the LinkedOUT;
+    :Add the new Applicant into LinkedOUT;
 
     :Update GUI to display new applicant in list of applicants;
 else ([else])

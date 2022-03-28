@@ -3,12 +3,15 @@ import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.linkedout.logic.commands.SearchCommand;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
 import seedu.linkedout.model.applicant.JobContainsKeywordsPredicate;
+import seedu.linkedout.model.applicant.KeywordsPredicate;
 import seedu.linkedout.model.applicant.NameContainsKeywordsPredicate;
 
 
@@ -27,7 +30,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_JOB);
 
-        boolean hasNoPrefixesPresent = !anyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_JOB);
+        boolean hasNoPrefixesPresent = !hasAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_JOB);
         boolean hasNoEmptyPreamble = !argMultimap.getPreamble().isEmpty();
         boolean hasEmptyArguments = args.isEmpty();
         if (hasNoPrefixesPresent || hasNoEmptyPreamble || hasEmptyArguments) {
@@ -35,20 +38,33 @@ public class SearchCommandParser implements Parser<SearchCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
         }
 
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            String[] nameKeywords = getArrayOfKeywords(PREFIX_NAME, argMultimap);
-            return new SearchCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        } else {
-            String[] jobKeywords = getArrayOfKeywords(PREFIX_JOB, argMultimap);
-            return new SearchCommand(new JobContainsKeywordsPredicate(Arrays.asList(jobKeywords)));
+        List<KeywordsPredicate> keywordsPredicateList = new ArrayList<>();
+
+        if (isPrefixPresent(PREFIX_NAME, argMultimap)) {
+            List<String> nameKeywords = getArrayOfKeywords(PREFIX_NAME, argMultimap);
+            keywordsPredicateList.add(new NameContainsKeywordsPredicate(nameKeywords));
         }
+        if (isPrefixPresent(PREFIX_JOB, argMultimap)) {
+            List<String> jobKeywords = getArrayOfKeywords(PREFIX_JOB, argMultimap);
+            keywordsPredicateList.add(new JobContainsKeywordsPredicate(jobKeywords));
+        }
+
+        return new SearchCommand(keywordsPredicateList);
+
+    }
+
+    /**
+     * Returns true if the prefix is not empty
+     */
+    private static boolean isPrefixPresent(Prefix prefix, ArgumentMultimap argumentMultimap) {
+        return argumentMultimap.getValue(prefix).isPresent();
     }
 
     /**
      * Returns true if any of the prefixes are not empty  {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    private static boolean anyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    private static boolean hasAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
@@ -57,25 +73,32 @@ public class SearchCommandParser implements Parser<SearchCommand> {
      * @param prefix input prefixes
      * {@code ArgumentMultimap}.
      * @return an array of keywords without white space
+     * @throws  ParseException if the user input is empty
      */
-    private static String[] getArrayOfKeywords(Prefix prefix, ArgumentMultimap argMultimap) throws ParseException {
+    private static List<String> getArrayOfKeywords(Prefix prefix, ArgumentMultimap argMultimap) throws ParseException {
         String keyword = argMultimap.getValue(prefix).get();
-        return splitKeywordsWithWhiteSpace(keyword);
+        if (keyword.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_CONSTRAINTS));
+        }
+        List<String> keywords = argMultimap.getAllValues(prefix);
+        return splitKeywordsWithWhiteSpace(keywords);
     }
 
     /**
      * Split the keywords with white space to allow partial matching
      * @param keywords input keywords
-     * @return Array of substrings without whitespace
+     * @return List of substrings without whitespace
      * @throws  ParseException if the user input is empty
      */
-    private static String[] splitKeywordsWithWhiteSpace(String keywords) throws ParseException {
+    private static List<String> splitKeywordsWithWhiteSpace(List<String> keywords) throws ParseException {
         if (keywords.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_CONSTRAINTS));
         }
-        return keywords.split("\\s+");
+        List<String> partialKeywords = new ArrayList<>();
+        for (int i = 0; i < keywords.size(); i++) {
+            String[] splitKeywords = keywords.get(i).split("\\s+");
+            partialKeywords.addAll(Arrays.asList(splitKeywords));
+        }
+        return partialKeywords;
     }
-
-
-
 }
