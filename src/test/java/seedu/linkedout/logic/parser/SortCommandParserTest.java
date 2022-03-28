@@ -51,16 +51,6 @@ public class SortCommandParserTest {
     }
 
     @Test
-    public void parse_excessWhitespace_throwsParseException() {
-        //leading whitespace after prefix
-        assertParseFailure(parser, " f/   NAME o/  ASC", String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, " f/\nNAME o/ \t ASC", String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
-    }
-
-
-    @Test
     public void parse_validArgs_returnsSortCommand() {
         SortCommand expectedNameSortCommand =
                 new SortCommand(new SortComparator(new Field("NAME"), new Order("ASC")));
