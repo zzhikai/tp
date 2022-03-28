@@ -22,6 +22,7 @@ import seedu.linkedout.logic.commands.exceptions.CommandException;
 import seedu.linkedout.model.Model;
 import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.Email;
+import seedu.linkedout.model.applicant.Flag;
 import seedu.linkedout.model.applicant.Job;
 import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Phone;
@@ -103,7 +104,9 @@ public class EditCommand extends Command {
         Job updatedJob = editApplicantDescriptor.getJob().orElse(applicantToEdit.getJob());
         Round updatedRound = editApplicantDescriptor.getRound().orElse(applicantToEdit.getRound());
         Set<Skill> updatedSkills = editApplicantDescriptor.getSkills().orElse(applicantToEdit.getSkills());
-        return new Applicant(updatedName, updatedPhone, updatedEmail, updatedJob, updatedRound, updatedSkills);
+        Flag updatedFlag = applicantToEdit.getFlag();
+        return new Applicant(updatedName, updatedPhone, updatedEmail, updatedJob, updatedRound, updatedSkills,
+                updatedFlag);
     }
 
     @Override
