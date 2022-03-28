@@ -59,6 +59,10 @@ public class SearchCommandParserTest {
         assertParseFailure(parser, " s/", String.format(
                 MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_CONSTRAINTS));
 
+        //missing multiple skill keyword
+        assertParseFailure(parser, " j/ s/", String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_CONSTRAINTS));
+
         //missing one prefix
         assertParseFailure(parser, "Dave s/", String.format(
                 MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
