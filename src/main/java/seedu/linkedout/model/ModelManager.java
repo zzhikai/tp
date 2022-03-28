@@ -134,11 +134,6 @@ public class ModelManager implements Model {
      * Returns an unmodifiable view of the list of {@code Applicant} backed by the internal list of
      * {@code versionedLinkedout}
      */
-//    @Override
-//    public ObservableList<Applicant> getFilteredApplicantList() {
-//        // return filteredApplicants;
-//        return defaultApplicants;
-//    }
 
     @Override
     public ObservableList<Applicant> getDefaultApplicantList() {
@@ -154,16 +149,11 @@ public class ModelManager implements Model {
         // so that list will not become permanently sorted
     }
 
-    //=========== Sorted Applicant List Accessors =============================================================
+    //=========== Default Applicant List Accessors =============================================================
     /**
      * Returns an unmodifiable view of the list of {@code Applicant} backed by the internal list of
      * {@code versionedLinkedout}
      */
-//    @Override
-//    public ObservableList<Applicant> getSortedApplicantList() {
-//        return defaultApplicants;
-//    }
-
     @Override
     public void updateDefaultApplicantList(Comparator<Applicant> comparator) {
         requireNonNull(comparator);

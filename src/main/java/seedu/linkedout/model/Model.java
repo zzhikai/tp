@@ -84,9 +84,6 @@ public interface Model {
      */
     void setApplicant(Applicant target, Applicant editedApplicant);
 
-//    /** Returns an unmodifiable view of the filtered applicant list */
-//    ObservableList<Applicant> getFilteredApplicantList();
-
     /**
      * Updates the filter of the filtered applicant list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

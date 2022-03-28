@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.linkedout.logic.commands.SortCommand;
 import seedu.linkedout.model.applicant.Field;
-import seedu.linkedout.model.applicant.Name;
 import seedu.linkedout.model.applicant.Order;
 import seedu.linkedout.model.applicant.SortComparator;
 
