@@ -29,6 +29,7 @@ public class FieldTest {
         assertFalse(Field.isValidField(" ")); // spaces only
         assertFalse(Field.isValidField("EMAIL")); // not supported
         assertFalse(Field.isValidField("round")); // wrong format
+        assertFalse(Field.isValidField("NAMESSS")); // wrong format
         assertFalse(Field.isValidField("JOBS")); // wrong format
         assertFalse(Field.isValidField("   JOB ")); // with whitespace
 
