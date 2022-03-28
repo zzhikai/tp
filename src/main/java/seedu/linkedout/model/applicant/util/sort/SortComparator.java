@@ -2,6 +2,7 @@ package seedu.linkedout.model.applicant.util.sort;
 
 import static java.util.Objects.requireNonNull;
 
+import java.security.InvalidParameterException;
 import java.util.Comparator;
 
 import seedu.linkedout.model.applicant.Applicant;
@@ -25,7 +26,7 @@ public class SortComparator implements Comparator<Applicant> {
     }
 
     @Override
-    public int compare(Applicant applicant1, Applicant applicant2) {
+    public int compare(Applicant applicant1, Applicant applicant2) throws InvalidParameterException {
         requireNonNull(applicant1);
         requireNonNull(applicant2);
         String orderString = this.order.toString();
@@ -38,7 +39,7 @@ public class SortComparator implements Comparator<Applicant> {
             case "JOB":
                 return applicant1.getJob().compareTo(applicant2.getJob());
             default:
-                return 0;
+                throw new InvalidParameterException("Field object in Comparator is invalid or null");
             }
         case "DESC":
             switch (fieldString) {
@@ -47,10 +48,10 @@ public class SortComparator implements Comparator<Applicant> {
             case "JOB":
                 return applicant2.getJob().compareTo(applicant1.getJob());
             default:
-                return 0;
+                throw new InvalidParameterException("Field object in Comparator is invalid or null");
             }
         default:
-            return 0;
+            throw new InvalidParameterException("Order object in Comparator is invalid or null");
         }
     }
 
