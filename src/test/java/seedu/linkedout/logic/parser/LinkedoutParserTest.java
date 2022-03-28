@@ -4,10 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.linkedout.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.linkedout.testutil.Assert.assertThrows;
 import static seedu.linkedout.testutil.TypicalIndexes.INDEX_FIRST_APPLICANT;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +28,7 @@ import seedu.linkedout.logic.commands.SearchCommand;
 import seedu.linkedout.logic.commands.ViewCommand;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
 import seedu.linkedout.model.applicant.Applicant;
+import seedu.linkedout.model.applicant.KeywordsPredicate;
 import seedu.linkedout.model.applicant.NameContainsAllKeywordsPredicate;
 import seedu.linkedout.model.applicant.NameContainsKeywordsPredicate;
 import seedu.linkedout.testutil.ApplicantBuilder;
@@ -82,9 +86,12 @@ public class LinkedoutParserTest {
     @Test
     public void parseCommand_search() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        List<KeywordsPredicate> keywordsPredicateList = new ArrayList<>();
         SearchCommand command = (SearchCommand) parser.parseCommand(
-                SearchCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new SearchCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                SearchCommand.COMMAND_WORD + " "
+                        + PREFIX_NAME.getPrefix() + keywords.stream().collect(Collectors.joining(" ")));
+        Collections.addAll(keywordsPredicateList, new NameContainsKeywordsPredicate(keywords));
+        assertEquals(new SearchCommand(keywordsPredicateList), command);
     }
 
     @Test

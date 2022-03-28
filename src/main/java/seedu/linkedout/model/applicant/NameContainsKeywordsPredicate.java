@@ -8,10 +8,14 @@ import seedu.linkedout.commons.util.StringUtil;
 /**
  * Tests that a {@code Applicant}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Applicant> {
+public class NameContainsKeywordsPredicate extends KeywordsPredicate implements Predicate<Applicant> {
     private final List<String> keywords;
 
+    /**
+     * @param keywords
+     */
     public NameContainsKeywordsPredicate(List<String> keywords) {
+        super(keywords);
         this.keywords = keywords;
     }
 
@@ -25,7 +29,13 @@ public class NameContainsKeywordsPredicate implements Predicate<Applicant> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                && keywords.toString().equalsIgnoreCase(((
+                        NameContainsKeywordsPredicate) other).keywords.toString())); // state check
     }
 
+    @Override
+    public int numberOfKeywordMatches(Applicant applicant) {
+        return (int) keywords.stream()
+                .filter(keyword -> StringUtil.containsWordIgnoreCase(applicant.getName().fullName, keyword)).count();
+    }
 }

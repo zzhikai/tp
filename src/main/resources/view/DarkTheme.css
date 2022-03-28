@@ -103,23 +103,21 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: white;
-    /* #3c3e3f; */
+    -fx-background-color: derive(white, -3%);
 }
 
+/* odd and even cell style is now the same */
 .list-cell:filled:odd {
-    -fx-background-color: derive(white, -5%); /* less bright */
-    /* #515658; */
+    -fx-background-color: derive(white, -3%); /* less bright */
 }
 
 .list-cell:filled:selected {
     -fx-background-color: derive(white, -25%);
-    /* #424d5f; */
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
+    -fx-border-color: white;
+    -fx-border-width: 3;
     -fx-border-radius: 10;
 }
 
@@ -367,11 +365,11 @@
 }
 
 #skills .label {
-    -fx-text-fill: white;
-    -fx-background-color: #000000;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-padding: 2 5 2 5;
+    -fx-text-fill: derive(white, -10%);
+    -fx-background-color: #1d1d1d;
+    -fx-font-family: "Segoe UI Black";
+    -fx-padding: 2 10 2 10;
     -fx-border-radius: 20;
     -fx-background-radius: 20;
-    -fx-font-size: 11;
+    -fx-font-size: 13;
 }

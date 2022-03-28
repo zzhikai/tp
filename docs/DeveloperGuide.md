@@ -2,6 +2,7 @@
 layout: page
 title: Developer Guide
 ---
+## **Table of Contents**
 * Table of Contents
 {:toc}
 
@@ -11,11 +12,15 @@ title: Developer Guide
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,8 +28,12 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S2-CS2103T-T09-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 
 ### Architecture
 
@@ -36,7 +45,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2122S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/linkedout/Main.java) and [`MainApp`](https://github.com/AY2122S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/linkedout/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -67,35 +76,38 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2122S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/linkedout/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ApplicantListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/linkedout-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/linkedout-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Applicant` object residing in the `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2122S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/linkedout/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `LinkedoutParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add an applicant).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -110,43 +122,53 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `LinkedoutParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `LinkedoutParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2122S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/linkedout/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the LinkedOUT application data i.e., all `Applicant` objects (which are contained in a `UniqueApplicantList` object).
+* stores the currently 'selected' `Applicant` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Applicant>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Skill` list in `Linkedout`, which `Applicant` references. This allows `Linkedout` to only require one `Skill` object per unique skill, instead of each `Applicant` needing their own `Skill` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
+---
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2122S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/linkedout/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both LinkedOUT application data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `LinkedoutStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.linkedout.commons` package.
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -154,41 +176,291 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add applicant feature
+
+#### Rationale
+
+The add command allows the user to add a new applicant to the LinkedOUT list.
+
+#### Implementation
+
+The add command is facilitated by creating an `AddCommand`. `AddCommand` extends `Command` and implements the `Command#execute()` method.
+
+The following activity diagram shows the workflow for the add operation:
+
+![AddCommandActivityDiagram](images/AddCommandActivityDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source:
+ **Note:** There should only be one arrowhead at the end of every line
+in the Activity Diagram. This is a known limitation of PlantUML.</div>
+
+Given below is an example usage scenario of how an applicant is added, and how the operation is handled by LinkedOUT:
+
+1. The user enters a valid add command, for example: `add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas s/Python s/Java`. For each command
+`LogicManager#execute()` is invoked, which calls `LinkedoutParser#parseCommand()` to separate the command word `add` and the argument
+`n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas s/Python s/Java`
+
+
+2. Upon identifying the add command, `AddCommandParser` is instantiated and uses `AddCommandParser#parse()` to
+map the various prefixes to the attributes: (e.g `n/` to `Bob`, `p/` to `99999999`)
+
+
+3. `AddCommandParser#arePrefixesPresent()` is called to ensure all the mandatory prefixes have been inputted by the user. After which
+`AddCommandParser#parse()` creates the new `Applicant`
+
+
+4. `AddCommandParser#parse()` then initializes an `AddCommand` with the new `Applicant` as an argument. `AddCommand#execute()`
+is then called, which calls `Model#hasApplicant()` to ensure that the new `Applicant` is not a duplicate of any existing applicant in the
+LinkedOUT. upon completion of the check, `Model#addApplicant()` to add the new applicant in LinkedOUT.
+
+
+5. The command is complete and a `CommandResult` containing the details of the new applicant as a String is returned to
+the user.
+
+The following sequence diagram shows how the add operation works:
+
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser`
+should not exceed the destroy marker X. This is a known limitation of PlantUML.</div>
+
+#### Design considerations
+
+**Aspect: How add executes:**
+
+* **Alternative 1 :** Check whether specified applicant already exists before creating an Applicant object.
+    * Pros: Avoid creation of unnecessary objects
+    * Cons: May cause reduced performance
+
+_{more aspects and alternatives to be added}_
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+
+### Edit applicant feature
+
+#### Rationale
+
+The edit command allows users to change the applicant's details.
+
+#### Implementation
+
+The proposed edit mechanism is facilitated by `EditApplicantDescriptor`. `EditApplicantDescriptor` stores the details of the applicant to change.
+
+The user need to specify an `Index` to select the applicant to edit. `editCommand` extends `Command` and implements the `Command#execute()` method.
+
+The following activity diagram shows the workflow for the edit operation:
+
+![EditActivityDiagram](images/EditActivityDiagram.png)
+
+Given below is an example usage scenario of how an applicant is edited.
+
+1. The user enters the edit command with the specific fields to edit, `edit 1 r/HR Interview`.
+
+
+2. LinkedOUT updates the applicant with the edited information.
+
+The following sequence diagram shows how the edit operation works:
+
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
+#### Design considerations
+
+**Aspect: How edit executes:**
+
+* **Alternative 1 (current choice):** Creates a new applicant replace old information.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Replace individual fields inside original applicant.
+    * Pros: Will use less memory (Do not have to create an extra applicant).
+    * Cons: We must ensure that the implementation of each individual command to change an information is correct.
+
+_{more aspects and alternatives to be added}_
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+### View applicant feature
+
+#### Rationale
+
+The view command searches a **single** applicant in LinkedOUT and returns the applicant's details. 
+It is used when users wish to find a specific user they have in mind.
+It takes in a single case-insensitive parameter, which is the applicant's full name. No prefix is required.
+
+#### Implementation
+
+The view command is facilitated by `NameContainsAllKeywordsPredicate` which helps the parser match the input.
+
+The user needs to specify a `Name` to allow the application to match and select the applicant. `ViewCommand` extends `Command` and implements the `Command#execute()` method.
+
+As `ViewCommandParser` uses `NameContainsAllKeywordsPredicate`, the `Name` being passed will not match if it contains additional whitespace, but will match inputs which are case-insensitive.
+
+The following activity diagram shows the workflow for the view operation:
+
+![ViewActivityDiagram](images/ViewActivityDiagram.png)
+
+Given below is an example usage scenario of how to view a specific applicant.
+
+1. The user enters the view command with the specific name, `view Alex Megos`.
+   
+
+2. `LinkedoutParser` is invoked to handle the command `view` through `LinkedoutParser#parseCommand()`. 
+   
+
+3. It then calls upon `ViewCommandParser#parse()` to check if the input is empty.
+   
+
+4. If input is not empty, it passes the input to `NameContainsAllKeywordsPredicate()`.
+   
+
+5. The result is then initialized as a predicate in `ViewCommand`. `ViewCommand#execute()` then tries to find a match.
+   
+
+6. It then calls upon `CommandResult` to display the final result on the GUI.
+
+The following sequence diagram shows how the view operation works:
+
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+
+#### Design Considerations
+
+**Aspect: How view executes:**
+
+* **Alternative 1 (current choice):** Shows a single applicant.
+    * Pros: Easy to implement.
+    * Pros: Result is specific.
+    * Cons: Strict matching.
+    * Cons: Have to remember applicant's name and type it fully.
+
+* **Alternative 2:** Shows multiple applicants based on partial matches.
+    * Pros: Less strict matching.
+    * Cons: Users are unable to single out a certain applicant.
+    
+Weighing the pros and cons of these alternatives, we have decided to abstract alternative 2 as a different feature under `search`.
+This is to allow our target user to have greater flexibility, and we believe both are important features to be implemented.
+
+_{more aspects and alternatives to be added}_
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+### Search applicant feature
+
+#### Rationale
+
+The search command allows for a quick view of applicant's information in LinkedOUT.
+
+#### Implementation
+
+The proposed search mechanism is facilitated by `SearchCommandParser`. `SearchCommandParser` will map the creation of `KeywordsPredicate` based on the input prefix. `KeywordsPredicate` supports the following implementation:
+* `NameContainsKeywordsPredicate` — Predicate which returns true if an applicant's full name matches partially with the input keyword.
+* `JobContainsKeywordsPredicate` — Predicate which returns true if an applicant's job name matches partially with the input keyword.
+
+These predicates assist the filtering of applicant list in the `Model` interface, specifically for  `Model#updateFilteredApplicantList()` and `Model#getFilteredApplicantList()`.
+
+The following activity diagram shows the workflow of the search command:
+
+![SearchActivityDiagram](images/SearchCommandActivityDiagram.png)
+
+Given below is an example usage scenario and how the search mechanism behaves at each step.
+
+1. The user enters search command with prefix and specified keyword , `search n/David`.
+
+
+2. The input keywords will be passed into `SearchCommandParser` and creates a `NameContainsKeywordsPredicate` if the keyword and prefix are not empty.
+
+
+3. The predicate is then passed into `Model#updateFilteredApplicantList()` to filter and display applicants with partial name matching of "David" in LinkedOUT.
+
+
+4. The user enters `search j/Software Engineer` command to search for applicants in LinkedOUT.
+
+
+5. The input keywords will be passed into `SearchCommandParser` and creates a `JobContainsKeywordsPredicate` if the keywords are not empty.
+
+
+6. The predicate is then passed into `Model#updateFilteredApplicantList()` to filter and display applicants with partial job name matching of "Software" or "Engineer"  in LinkedOUT.
+
+The following sequence diagram shows how the search operation works:
+
+![SearchSequenceDiagram](images/SearchSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How search executes:**
+
+* **Alternative 1 (current choice):** Uses prefix to search for applicants with partial matching of keywords.
+    * Pros: Able to search an applicant using different fields/prefixes.
+    * Cons: Hard to implement.
+
+* **Alternative 2:** Only search for an applicant using partial matching name.
+    * Pros: Easy to implement.
+    * Cons: Inflexible use of search command.
+
+_{more aspects and alternatives to be added}_
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+### \[Proposed\] Flag applicant feature
+
+The flagging feature flags an applicant as important, and will be displayed at the top of the applicant list.
+The current display of applicant relies on the ordering of the applicants in the `UniqueApplicantList`. The
+`Applicant` in the `UniqueApplicantList` are ordered in the order they are added in. This makes it difficult
+to have a custom ordering for the flagging feature.
+
+As such, the flag feature alters the `UniqueApplicantList` by changing its internal implementation from an
+`ObservableArrayList` to an `ObservablePriorityQueue`. Since an `ObservablePriorityQueue` does not exist in
+the Java library, the flag feature comes with the team's own design for an `ObservablePriorityQueue`.
+
+The `ObservablePriorityQueue` implements the Java Collections, Iterable, PriorityQueue and Observable interfaces,
+and exposes all related functionality from these relevant interfaces. 
+
+`Applicant` will also be edited to contain a boolean `flagged` for use as a comparator in the `ObservablePriorityQueue`
+
+_{more aspects and alternatives to be added}_
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedLinkedout`. It extends `Linkedout` with an undo/redo history, stored internally as an `linkedoutStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedLinkedout#commit()` — Saves the current address book state in its history.
+* `VersionedLinkedout#undo()` — Restores the previous address book state from its history.
+* `VersionedLinkedout#redo()` — Restores a previously undone address book state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitLinkedout()`, `Model#undoLinkedout()` and `Model#redoLinkedout()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedLinkedout` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th applicant in the address book. The `delete` command calls `Model#commitLinkedout()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `linkedoutStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new applicant. The `add` command also calls `Model#commitLinkedout()`, causing another modified address book state to be saved into the `linkedoutStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitLinkedout()`, so the address book state will not be saved into the `linkedoutStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the applicant was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoLinkedout()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Linkedout state, then there are no previous Linkedout states to restore. The `undo` command uses `Model#canUndoLinkedout()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -201,17 +473,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoLinkedout()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `linkedoutStateList.size() - 1`, pointing to the latest address book state, then there are no undone Linkedout states to restore. The `redo` command uses `Model#canRedoLinkedout()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitLinkedout()`, `Model#undoLinkedout()` or `Model#redoLinkedout()`. Thus, the `linkedoutStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitLinkedout()`. Since the `currentStatePointer` is not pointing at the end of the `linkedoutStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -229,15 +501,12 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the applicant being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -248,6 +517,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+  
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -266,7 +537,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**: Simple and easy-to-use tool for recruiter to LinkedOUT to applicants and manage the applicant's information efficiently.
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
+---
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -277,7 +550,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Recruiter (new user)                              | view an individual applicant                                                                                       | see the details of a particular applicant                         |
 | `* * *`  | Recruiter (new user)                              | view the list of all applicants                                                                                    | have an overview of all applicants                                |
 | `* * *`  | Recruiter (new user)                              | delete an applicant                                                                                                | remove an applicant when he is rejected/withdraws application     |
-| `* * *`  | Recruiter                                         | edit applicant's info                                                                                              | update their personal particulars                                 |
+| `* * *`  | Recruiter                                         | edit applicant's info                                                                                              | update their applicantal particulars                                 |
 | `* * *`  | Recruiter                                         | add the applicant’s number of years of work experience in the related field                                        | make hiring decisions                                             |
 | `* * *`  | Recruiter                                         | add the job that the applicant applied to                                                                          | know which applicant is interested in which job.                  |
 | `* * *`  | Recruiter                                         | add the applicant’s highest education level                                                                        | I can make hiring decisions.                                      |
@@ -304,10 +577,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | Lazy recruiter                                    | automate commands                                                                                                  | do everything in one click                                        |
 | `*`      | Efficient recruiter                               | work on the app smoothly                                                                                           | handle large amount of tasks at one time                          |
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
+---
 ### Use cases
 
-(For all use cases below, the **System** is the `LinkedOUT` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is LinkedOUT and the **Actor** is the user, unless specified otherwise)
 
 **Use case: Add an applicant**
 
@@ -400,10 +675,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Non-Functional Requirements
 
 1.  Technical: The application should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Performance: The application should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Performance: The application should be able to hold up to 1000 applicants without a noticeable sluggishness in performance for typical usage.
 3.  Performance: The system should take at most 2 seconds to return an output.
 4.  Disaster Recovery: In case of system failure, the application should still contain data saved up to the last command executed.
 5.  Persistency: The system should save after a command to ensure no data loss.
@@ -417,16 +695,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Glossary
 
+* **LO**: LinkedOUT
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **OOP**: Object Oriented Programming: A programming paradigm that models real life objects.
-* **AB3**: Address Book 3
+* **API**: Application Programming Interface: Refers to a software acting as an intermediary allowing two applications
+  to communicate with each other.
 * **JSON**: JavaScript Object Notation: An open standard file format which we use to read and write data from.
 * **GUI**: Graphical User Interface: Refers to the user interface that the user interacts with.
 * **CLI**: Command Line Interface: Refers to a computer program that accepts text inputs.
 
 *{More to be added}*
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -456,17 +741,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a applicant
 
-1. Deleting a person while all persons are being shown
+1. Deleting a applicant while all applicants are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No applicant is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
@@ -480,3 +765,7 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---

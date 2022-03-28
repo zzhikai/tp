@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -42,6 +43,8 @@ public class ApplicantCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane skills;
+    @FXML
+    private ImageView flagIcon;
 
     /**
      * Creates a {@code ApplicantCode} with the given {@code Applicant} and index to display.
@@ -55,6 +58,11 @@ public class ApplicantCard extends UiPart<Region> {
         job.setText(applicant.getJob().value);
         round.setText(applicant.getRound().value);
         email.setText(applicant.getEmail().value);
+        if (applicant.getFlag().value) {
+            flagIcon.setVisible(true);
+        } else {
+            flagIcon.setVisible(false);
+        }
         applicant.getSkills().stream()
                 .sorted(Comparator.comparing(skill -> skill.skillName))
                 .forEach(skill -> skills.getChildren().add(new Label(skill.skillName)));
