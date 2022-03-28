@@ -42,8 +42,6 @@ public class ApplicantCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private Label flagged;
-    @FXML
     private FlowPane skills;
     @FXML
     private ImageView flagIcon;
@@ -61,10 +59,8 @@ public class ApplicantCard extends UiPart<Region> {
         round.setText(applicant.getRound().value);
         email.setText(applicant.getEmail().value);
         if (applicant.getFlag().value) {
-            flagged.setText("Flag status: True");
             flagIcon.setVisible(true);
         } else {
-            flagged.setText("Flag status: False");
             flagIcon.setVisible(false);
         }
         applicant.getSkills().stream()
