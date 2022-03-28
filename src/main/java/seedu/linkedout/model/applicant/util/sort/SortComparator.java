@@ -1,8 +1,10 @@
-package seedu.linkedout.model.applicant;
+package seedu.linkedout.model.applicant.util.sort;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
+
+import seedu.linkedout.model.applicant.Applicant;
 
 public class SortComparator implements Comparator<Applicant> {
 

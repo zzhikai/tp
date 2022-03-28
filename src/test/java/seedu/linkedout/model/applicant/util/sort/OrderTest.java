@@ -1,10 +1,12 @@
-package seedu.linkedout.model.applicant;
+package seedu.linkedout.model.applicant.util.sort;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.linkedout.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.linkedout.model.applicant.util.sort.Order;
 
 public class OrderTest {
 

@@ -1,4 +1,4 @@
-package seedu.linkedout.model.applicant;
+package seedu.linkedout.model.applicant.util.sort;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.linkedout.commons.util.AppUtil.checkArgument;

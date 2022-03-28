@@ -9,9 +9,9 @@ import java.util.stream.Stream;
 
 import seedu.linkedout.logic.commands.SortCommand;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
-import seedu.linkedout.model.applicant.Field;
-import seedu.linkedout.model.applicant.Order;
-import seedu.linkedout.model.applicant.SortComparator;
+import seedu.linkedout.model.applicant.util.sort.Field;
+import seedu.linkedout.model.applicant.util.sort.Order;
+import seedu.linkedout.model.applicant.util.sort.SortComparator;
 
 /**
  * Parses input arguments and creates a new SortCommand object

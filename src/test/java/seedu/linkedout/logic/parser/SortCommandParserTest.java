@@ -7,9 +7,9 @@ import static seedu.linkedout.logic.parser.CommandParserTestUtil.assertParseSucc
 import org.junit.jupiter.api.Test;
 
 import seedu.linkedout.logic.commands.SortCommand;
-import seedu.linkedout.model.applicant.Field;
-import seedu.linkedout.model.applicant.Order;
-import seedu.linkedout.model.applicant.SortComparator;
+import seedu.linkedout.model.applicant.util.sort.Field;
+import seedu.linkedout.model.applicant.util.sort.Order;
+import seedu.linkedout.model.applicant.util.sort.SortComparator;
 
 public class SortCommandParserTest {
 
