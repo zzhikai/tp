@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.linkedout.commons.core.Messages.MESSAGE_APPLICANTS_LISTED_OVERVIEW;
 import static seedu.linkedout.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.linkedout.testutil.TypicalApplicants.ALICE;
+import static seedu.linkedout.testutil.TypicalApplicants.BENSON;
 import static seedu.linkedout.testutil.TypicalApplicants.CARL;
 import static seedu.linkedout.testutil.TypicalApplicants.DANIEL;
 import static seedu.linkedout.testutil.TypicalApplicants.ELLE;
@@ -23,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import seedu.linkedout.model.Model;
 import seedu.linkedout.model.ModelManager;
 import seedu.linkedout.model.UserPrefs;
+import seedu.linkedout.model.applicant.ApplicantContainsSkillKeywordsPredicate;
 import seedu.linkedout.model.applicant.JobContainsKeywordsPredicate;
 import seedu.linkedout.model.applicant.KeywordsPredicate;
 import seedu.linkedout.model.applicant.NameContainsKeywordsPredicate;
@@ -69,50 +71,23 @@ public class SearchCommandTest {
     }
 
     @Test
-    public void executeOnName_zeroKeywords_noApplicantFound() {
+    public void execute_zeroKeywords_noApplicantFound() {
         String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 0);
-
-        // test model for empty name
-        NameContainsKeywordsPredicate predicate = prepareNamePredicate(" ");
+        NameContainsKeywordsPredicate namePredicate = prepareNamePredicate(" ");
+        JobContainsKeywordsPredicate jobPredicate = prepareJobPredicate(" ");
+        RoundContainsKeywordsPredicate roundPredicate = prepareRoundPredicate(" ");
+        ApplicantContainsSkillKeywordsPredicate skillPredicate = prepareSkillPredicate(" ");
         List<KeywordsPredicate> keywordPredicate = new ArrayList<>();
-        Collections.addAll(keywordPredicate, predicate);
+        Collections.addAll(keywordPredicate, namePredicate, jobPredicate, roundPredicate, skillPredicate);
         SearchCommand command = new SearchCommand(keywordPredicate);
         expectedModel.updateSearchedApplicantList(keywordPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredApplicantList());
-    }
+        assertEquals(Collections.emptyList(), model.getDefaultApplicantList());
 
-    @Test
-    public void executeOnJob_zeroKeywords_noApplicantFound() {
-        String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 0);
-
-        // test model for empty job
-        JobContainsKeywordsPredicate predicate = prepareJobPredicate(" ");
-        List<KeywordsPredicate> keywordPredicate = new ArrayList<>();
-        Collections.addAll(keywordPredicate, predicate);
-        SearchCommand command = new SearchCommand(keywordPredicate);
-        expectedModel.updateSearchedApplicantList(keywordPredicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredApplicantList());
-    }
-
-    @Test
-    public void executeOnRound_zeroKeywords_noApplicantFound() {
-        String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 0);
-
-        // test model for empty round
-        RoundContainsKeywordsPredicate predicate = prepareRoundPredicate(" ");
-        List<KeywordsPredicate> keywordPredicate = new ArrayList<>();
-        Collections.addAll(keywordPredicate, predicate);
-        SearchCommand command = new SearchCommand(keywordPredicate);
-        expectedModel.updateSearchedApplicantList(keywordPredicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredApplicantList());
     }
 
     @Test
     public void executeOnName_multipleKeywords_multipleApplicantsFound() {
-        // test model for name
         String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = prepareNamePredicate("Kurz Elle Kunz");
         List<KeywordsPredicate> keywordPredicate = new ArrayList<>();
@@ -120,12 +95,11 @@ public class SearchCommandTest {
         SearchCommand command = new SearchCommand(keywordPredicate);
         expectedModel.updateSearchedApplicantList(keywordPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getSortedApplicantList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getDefaultApplicantList());
     }
 
     @Test
     public void executeOnJob_multipleKeywords_multipleApplicantsFound() {
-        // test model for job
         String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 6);
         JobContainsKeywordsPredicate predicate = prepareJobPredicate("Developer Engineer");
         List<KeywordsPredicate> keywordPredicate = new ArrayList<>();
@@ -133,12 +107,11 @@ public class SearchCommandTest {
         SearchCommand command = new SearchCommand(keywordPredicate);
         expectedModel.updateSearchedApplicantList(keywordPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, CARL, DANIEL, ELLE, FIONA, GEORGE), model.getSortedApplicantList());
+        assertEquals(Arrays.asList(ALICE, CARL, DANIEL, ELLE, FIONA, GEORGE), model.getDefaultApplicantList());
     }
 
     @Test
     public void executeOnRound_multipleKeywords_multipleApplicantsFound() {
-        // test model for round
         String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 2);
         RoundContainsKeywordsPredicate predicate = prepareRoundPredicate("Job Test");
         List<KeywordsPredicate> keywordPredicate = new ArrayList<>();
@@ -146,7 +119,33 @@ public class SearchCommandTest {
         SearchCommand command = new SearchCommand(keywordPredicate);
         expectedModel.updateSearchedApplicantList(keywordPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ELLE, FIONA), model.getSortedApplicantList());
+        assertEquals(Arrays.asList(ELLE, FIONA), model.getDefaultApplicantList());
+    }
+
+    @Test
+    public void executeOnSkill_multipleSkills_applicantFound() {
+        String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 1);
+        ApplicantContainsSkillKeywordsPredicate predicate = prepareSkillPredicate("Photography Videography");
+        List<KeywordsPredicate> keywordPredicate = new ArrayList<>();
+        keywordPredicate.add(predicate);
+        SearchCommand command = new SearchCommand(keywordPredicate);
+        expectedModel.updateSearchedApplicantList(keywordPredicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON), model.getDefaultApplicantList());
+    }
+
+    @Test
+    public void execute_multipleAttributes_applicantFound() {
+        String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 1);
+        ApplicantContainsSkillKeywordsPredicate keywordsPredicate = prepareSkillPredicate("Photography Videography");
+        NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Meier");
+        List<KeywordsPredicate> keywordPredicate = new ArrayList<>();
+        keywordPredicate.add(keywordsPredicate);
+        keywordPredicate.add(namePredicate);
+        SearchCommand command = new SearchCommand(keywordPredicate);
+        expectedModel.updateSearchedApplicantList(keywordPredicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON), model.getDefaultApplicantList());
     }
 
     /**
@@ -170,4 +169,10 @@ public class SearchCommandTest {
         return new RoundContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 
+    /**
+     * Parses {@code userInput} into a {@code ApplicantContainsSkillKeywordsPredicate}.
+     */
+    private ApplicantContainsSkillKeywordsPredicate prepareSkillPredicate(String userInput) {
+        return new ApplicantContainsSkillKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
 }

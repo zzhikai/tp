@@ -91,7 +91,7 @@ public class LogicManagerTest {
 
     @Test
     public void getFilteredApplicantList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredApplicantList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getDefaultApplicantList().remove(0));
     }
 
     /**

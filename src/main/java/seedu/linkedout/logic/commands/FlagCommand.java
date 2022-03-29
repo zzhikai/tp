@@ -32,40 +32,51 @@ public class FlagCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Applicant> lastShownList = model.getFilteredApplicantList();
+        List<Applicant> lastShownList = model.getDefaultApplicantList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_APPLICANT_DISPLAYED_INDEX);
         }
 
         Applicant applicantToFlag = lastShownList.get(targetIndex.getZeroBased());
-        Applicant flaggedApplicant;
+        Applicant flaggedApplicant = createFlaggedApplicant(applicantToFlag);
 
-        String returnMessage;
+        assert !applicantToFlag.equals(flaggedApplicant);
 
-        if (!applicantToFlag.getFlag().value) {
-            flaggedApplicant = new Applicant(
-                    applicantToFlag.getName(),
-                    applicantToFlag.getPhone(),
-                    applicantToFlag.getEmail(),
-                    applicantToFlag.getJob(),
-                    applicantToFlag.getRound(),
-                    applicantToFlag.getSkills(),
-                    new Flag(true));
-            returnMessage = MESSAGE_FLAG_APPLICANT_SUCCESS;
-        } else {
-            flaggedApplicant = new Applicant(
-                    applicantToFlag.getName(),
-                    applicantToFlag.getPhone(),
-                    applicantToFlag.getEmail(),
-                    applicantToFlag.getJob(),
-                    applicantToFlag.getRound(),
-                    applicantToFlag.getSkills(),
-                    new Flag(false));
-            returnMessage = MESSAGE_UNFLAG_APPLICANT_SUCCESS;
-        }
+        String returnMessage = getReturnMessage(flaggedApplicant);
+
         model.flagApplicant(applicantToFlag, flaggedApplicant);
         return new CommandResult(String.format(returnMessage, flaggedApplicant));
+    }
+
+    private static Applicant createFlaggedApplicant(Applicant applicantToFlag) {
+
+        assert applicantToFlag != null;
+
+        Flag flag;
+        if (!applicantToFlag.getFlag().value) {
+            flag = new Flag(true);
+        } else {
+            flag = new Flag(false);
+        }
+
+        return new Applicant(
+                applicantToFlag.getName(),
+                applicantToFlag.getPhone(),
+                applicantToFlag.getEmail(),
+                applicantToFlag.getJob(),
+                applicantToFlag.getRound(),
+                applicantToFlag.getSkills(),
+                flag);
+    }
+
+    private static String getReturnMessage(Applicant flaggedApplicant) {
+
+        if (flaggedApplicant.getFlag().value) {
+            return MESSAGE_FLAG_APPLICANT_SUCCESS;
+        } else {
+            return MESSAGE_UNFLAG_APPLICANT_SUCCESS;
+        }
     }
 
     @Override

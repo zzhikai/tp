@@ -4,6 +4,7 @@ import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ROUND;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_SKILL;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,6 +13,7 @@ import java.util.stream.Stream;
 
 import seedu.linkedout.logic.commands.SearchCommand;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
+import seedu.linkedout.model.applicant.ApplicantContainsSkillKeywordsPredicate;
 import seedu.linkedout.model.applicant.JobContainsKeywordsPredicate;
 import seedu.linkedout.model.applicant.KeywordsPredicate;
 import seedu.linkedout.model.applicant.NameContainsKeywordsPredicate;
@@ -31,9 +33,11 @@ public class SearchCommandParser implements Parser<SearchCommand> {
      */
     public SearchCommand parse(String args) throws ParseException {
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_JOB, PREFIX_ROUND);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_JOB,
+                PREFIX_ROUND, PREFIX_SKILL);
 
-        boolean hasNoPrefixesPresent = !hasAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_JOB, PREFIX_ROUND);
+        boolean hasNoPrefixesPresent = !hasAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_JOB,
+                PREFIX_ROUND, PREFIX_SKILL);
         boolean hasNoEmptyPreamble = !argMultimap.getPreamble().isEmpty();
         boolean hasEmptyArguments = args.isEmpty();
         if (hasNoPrefixesPresent || hasNoEmptyPreamble || hasEmptyArguments) {
@@ -66,6 +70,10 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         if (isPrefixPresent(PREFIX_ROUND, argMultimap)) {
             List<String> roundKeywords = getListOfKeywords(PREFIX_ROUND, argMultimap);
             keywordsPredicateList.add(new RoundContainsKeywordsPredicate(roundKeywords));
+        }
+        if (isPrefixPresent(PREFIX_SKILL, argMultimap)) {
+            List<String> skillKeywords = getListOfKeywords(PREFIX_SKILL, argMultimap);
+            keywordsPredicateList.add(new ApplicantContainsSkillKeywordsPredicate(skillKeywords));
         }
 
         return new SearchCommand(keywordsPredicateList);

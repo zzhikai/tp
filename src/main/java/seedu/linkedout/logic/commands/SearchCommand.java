@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ROUND;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_SKILL;
 
 import java.util.List;
 
@@ -27,7 +28,8 @@ public class SearchCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_JOB + "JOB] "
             + "[" + PREFIX_ROUND + "ROUND] \n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Steve";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " Steve" + " " + PREFIX_JOB + " Software Engineer"
+            + " " + PREFIX_ROUND + " Interview" + " " + PREFIX_SKILL + "Java" + " " + PREFIX_SKILL + "Python";
 
     private final List<KeywordsPredicate> predicate;
 
@@ -41,7 +43,8 @@ public class SearchCommand extends Command {
         requireNonNull(model);
         model.updateSearchedApplicantList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_APPLICANTS_LISTED_OVERVIEW, model.getSortedApplicantList().size()));
+                String.format(Messages.MESSAGE_APPLICANTS_LISTED_OVERVIEW, model.getDefaultApplicantList().size()));
+
     }
 
     @Override

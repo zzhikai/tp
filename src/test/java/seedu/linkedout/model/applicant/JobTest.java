@@ -102,4 +102,18 @@ public class JobTest {
         Job otherJob = new Job("otherJob");
         assertFalse(job.equals(otherJob));
     }
+
+    @Test
+    public void compareTo_otherJobBiggerThan_true() {
+        Job biggerJob = new Job("Software Engineer");
+        Job smallerJob = new Job("Engineer");
+        assertTrue(biggerJob.compareTo(smallerJob) > 0);
+    }
+
+    @Test
+    public void compareTo_otherJobSmallerThan_false() {
+        Job biggerJob = new Job("Software Engineer");
+        Job smallerJob = new Job("Engineer");
+        assertFalse(smallerJob.compareTo(biggerJob) > 0);
+    }
 }
