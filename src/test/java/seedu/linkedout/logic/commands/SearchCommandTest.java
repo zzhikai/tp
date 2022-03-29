@@ -12,6 +12,7 @@ import static seedu.linkedout.testutil.TypicalApplicants.DANIEL;
 import static seedu.linkedout.testutil.TypicalApplicants.ELLE;
 import static seedu.linkedout.testutil.TypicalApplicants.FIONA;
 import static seedu.linkedout.testutil.TypicalApplicants.GEORGE;
+import static seedu.linkedout.testutil.TypicalApplicants.HOON;
 import static seedu.linkedout.testutil.TypicalApplicants.getTypicalLinkedout;
 
 import java.util.ArrayList;
@@ -137,8 +138,8 @@ public class SearchCommandTest {
     @Test
     public void execute_multipleAttributes_applicantFound() {
         String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 1);
-        ApplicantContainsSkillKeywordsPredicate keywordsPredicate = prepareSkillPredicate("Photography Videography");
-        NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Meier");
+        ApplicantContainsSkillKeywordsPredicate keywordsPredicate = prepareSkillPredicate("Photography");
+        NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Benson");
         List<KeywordsPredicate> keywordPredicate = new ArrayList<>();
         keywordPredicate.add(keywordsPredicate);
         keywordPredicate.add(namePredicate);
