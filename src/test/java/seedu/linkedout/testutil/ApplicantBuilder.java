@@ -116,7 +116,7 @@ public class ApplicantBuilder {
     }
 
     public Applicant build() {
-        return new Applicant(name, phone, email, job, round, skills);
+        return new Applicant(name, phone, email, job, round, skills, flag);
     }
 
 }

@@ -1,8 +1,10 @@
 package seedu.linkedout.model.applicant;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_FLAG_VALUE_TRUE;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_JOB_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -34,7 +36,10 @@ public class ApplicantTest {
 
         // same name, all other attributes different -> returns true
         Applicant editedAlice = new ApplicantBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withJob(VALID_JOB_BOB).withRound(VALID_ROUND_BOB).withSkills(VALID_SKILL_PYTHON).build();
+                .withJob(VALID_JOB_BOB).withRound(VALID_ROUND_BOB)
+                .withFlag(VALID_FLAG_VALUE_TRUE)
+                .withSkills(VALID_SKILL_PYTHON)
+                .build();
         assertTrue(ALICE.isSameApplicant(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -50,6 +55,31 @@ public class ApplicantTest {
         editedBob = new ApplicantBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSameApplicant(editedBob));
     }
+
+    @Test
+    public void compareTo_bothUnflagged_returnZero() {
+        assertEquals(0, ALICE.compareTo(BOB));
+    }
+
+    @Test
+    public void compareTo_bothFlagged_returnZero() {
+        Applicant flaggedAlice = new ApplicantBuilder(ALICE).withFlag(VALID_FLAG_VALUE_TRUE).build();
+        Applicant flaggedBob = new ApplicantBuilder(BOB).withFlag(VALID_FLAG_VALUE_TRUE).build();
+        assertEquals(0, flaggedBob.compareTo(flaggedAlice));
+    }
+
+    @Test
+    public void compareTo_applicantFlaggedOtherApplicantUnflagged_returnNegative() {
+        Applicant flaggedAlice = new ApplicantBuilder(ALICE).withFlag(VALID_FLAG_VALUE_TRUE).build();
+        assertEquals(-1, flaggedAlice.compareTo(BOB));
+    }
+
+    @Test
+    public void compareTo_applicantUnflaggedOtherApplicantFlagged_returnNegative() {
+        Applicant flaggedAlice = new ApplicantBuilder(ALICE).withFlag(VALID_FLAG_VALUE_TRUE).build();
+        assertEquals(1, BOB.compareTo(flaggedAlice));
+    }
+
 
     @Test
     public void equals() {
@@ -91,6 +121,10 @@ public class ApplicantTest {
 
         // different tags -> returns false
         editedAlice = new ApplicantBuilder(ALICE).withSkills(VALID_SKILL_PYTHON).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        //different flags -> return false
+        editedAlice = new ApplicantBuilder(ALICE).withFlag(VALID_FLAG_VALUE_TRUE).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

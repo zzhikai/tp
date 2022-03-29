@@ -39,6 +39,7 @@ public class CommandTestUtil {
     public static final String VALID_ROUND_BOB = "Technical Interview";
     public static final String VALID_SKILL_PYTHON = "Python";
     public static final String VALID_SKILL_MARKETING = "Marketing";
+    public static final Boolean VALID_FLAG_VALUE_TRUE = true;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

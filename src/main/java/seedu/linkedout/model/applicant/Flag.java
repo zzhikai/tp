@@ -1,5 +1,7 @@
 package seedu.linkedout.model.applicant;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Represents a Applicant's flagged status in the linkedout app.
  * Guarantees: immutable; is valid as declared.
@@ -7,7 +9,13 @@ package seedu.linkedout.model.applicant;
 public class Flag {
     public final Boolean value;
 
+    /**
+     * Constructs a {@code Flag}.
+     *
+     * @param value A valid boolean.
+     */
     public Flag(Boolean value) {
+        requireNonNull(value);
         this.value = value;
     }
 
