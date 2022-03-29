@@ -36,7 +36,7 @@ public class Skill {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Skill // instanceof handles nulls
-                && skillName.equals(((Skill) other).skillName)); // state check
+                && skillName.equals((((Skill) other).skillName))); // state check
     }
 
     @Override

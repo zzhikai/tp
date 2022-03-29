@@ -3,6 +3,7 @@ package seedu.linkedout.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_SKILL;
 
 import java.util.List;
 
@@ -24,8 +25,10 @@ public class SearchCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Search an overview of a specific applicant \n"
             + "Parameters: must contain at least one prefix "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_JOB + "JOB] \n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " Steve" + " " + PREFIX_JOB + " Software Engineer";
+            + "[" + PREFIX_JOB + "JOB]"
+            + "[" + PREFIX_SKILL + "SKILL] ... \n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " Steve" + " " + PREFIX_JOB + " Software Engineer"
+                + " " + PREFIX_SKILL + "Java" + " " + PREFIX_SKILL + "Python";
 
     private final List<KeywordsPredicate> predicate;
 
