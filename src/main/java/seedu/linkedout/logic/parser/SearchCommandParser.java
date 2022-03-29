@@ -1,7 +1,10 @@
 package seedu.linkedout.logic.parser;
+import static java.util.Objects.requireNonNull;
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ROUND;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_SKILL;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,9 +13,11 @@ import java.util.stream.Stream;
 
 import seedu.linkedout.logic.commands.SearchCommand;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
+import seedu.linkedout.model.applicant.ApplicantContainsSkillKeywordsPredicate;
 import seedu.linkedout.model.applicant.JobContainsKeywordsPredicate;
 import seedu.linkedout.model.applicant.KeywordsPredicate;
 import seedu.linkedout.model.applicant.NameContainsKeywordsPredicate;
+import seedu.linkedout.model.applicant.RoundContainsKeywordsPredicate;
 
 
 /**
@@ -28,25 +33,47 @@ public class SearchCommandParser implements Parser<SearchCommand> {
      */
     public SearchCommand parse(String args) throws ParseException {
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_JOB);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_JOB,
+                PREFIX_ROUND, PREFIX_SKILL);
 
-        boolean hasNoPrefixesPresent = !hasAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_JOB);
+        boolean hasNoPrefixesPresent = !hasAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_JOB,
+                PREFIX_ROUND, PREFIX_SKILL);
         boolean hasNoEmptyPreamble = !argMultimap.getPreamble().isEmpty();
         boolean hasEmptyArguments = args.isEmpty();
         if (hasNoPrefixesPresent || hasNoEmptyPreamble || hasEmptyArguments) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
         }
-
         List<KeywordsPredicate> keywordsPredicateList = new ArrayList<>();
+        return parseKeyword(argMultimap, keywordsPredicateList);
+    }
 
+    /**
+     *Parses the keywords to be searched in the context of the SearchCommand
+     * and returns a SearchCommand object for execution.
+     *
+     * {@code ArgumentMultimap}.
+     * {@code List<KeywordsPredicate>}
+     * @throws ParseException if there exists a case where no prefixes match
+     */
+    public SearchCommand parseKeyword(ArgumentMultimap argMultimap,
+                                      List<KeywordsPredicate> keywordsPredicateList) throws ParseException {
+        requireNonNull(argMultimap);
         if (isPrefixPresent(PREFIX_NAME, argMultimap)) {
-            List<String> nameKeywords = getArrayOfKeywords(PREFIX_NAME, argMultimap);
+            List<String> nameKeywords = getListOfKeywords(PREFIX_NAME, argMultimap);
             keywordsPredicateList.add(new NameContainsKeywordsPredicate(nameKeywords));
         }
         if (isPrefixPresent(PREFIX_JOB, argMultimap)) {
-            List<String> jobKeywords = getArrayOfKeywords(PREFIX_JOB, argMultimap);
+            List<String> jobKeywords = getListOfKeywords(PREFIX_JOB, argMultimap);
             keywordsPredicateList.add(new JobContainsKeywordsPredicate(jobKeywords));
+        }
+        if (isPrefixPresent(PREFIX_ROUND, argMultimap)) {
+            List<String> roundKeywords = getListOfKeywords(PREFIX_ROUND, argMultimap);
+            keywordsPredicateList.add(new RoundContainsKeywordsPredicate(roundKeywords));
+        }
+        if (isPrefixPresent(PREFIX_SKILL, argMultimap)) {
+            List<String> skillKeywords = getListOfKeywords(PREFIX_SKILL, argMultimap);
+            keywordsPredicateList.add(new ApplicantContainsSkillKeywordsPredicate(skillKeywords));
         }
 
         return new SearchCommand(keywordsPredicateList);
@@ -75,7 +102,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
      * @return an array of keywords without white space
      * @throws  ParseException if the user input is empty
      */
-    private static List<String> getArrayOfKeywords(Prefix prefix, ArgumentMultimap argMultimap) throws ParseException {
+    private static List<String> getListOfKeywords(Prefix prefix, ArgumentMultimap argMultimap) throws ParseException {
         String keyword = argMultimap.getValue(prefix).get();
         if (keyword.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_CONSTRAINTS));
@@ -101,4 +128,5 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         }
         return partialKeywords;
     }
+
 }
