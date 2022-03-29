@@ -94,7 +94,6 @@ public class MainApp extends Application {
     }
 
     private void initLogging(Config config) {
-        assert config != null : "A config should have been predefined.";
         LogsCenter.init(config);
     }
 
