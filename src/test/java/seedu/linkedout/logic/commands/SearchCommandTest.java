@@ -12,7 +12,6 @@ import static seedu.linkedout.testutil.TypicalApplicants.DANIEL;
 import static seedu.linkedout.testutil.TypicalApplicants.ELLE;
 import static seedu.linkedout.testutil.TypicalApplicants.FIONA;
 import static seedu.linkedout.testutil.TypicalApplicants.GEORGE;
-import static seedu.linkedout.testutil.TypicalApplicants.HOON;
 import static seedu.linkedout.testutil.TypicalApplicants.getTypicalLinkedout;
 
 import java.util.ArrayList;
