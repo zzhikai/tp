@@ -108,11 +108,11 @@ public class SearchCommandTest {
     @Test
     public void execute_multipleAttributes_applicantFound() {
         String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 1);
-        ApplicantContainsSkillKeywordsPredicate predicate = prepareSkillPredicate("Photography Videography");
-        NameContainsKeywordsPredicate predicateTwo = prepareNamePredicate("Meier");
+        ApplicantContainsSkillKeywordsPredicate keywordsPredicate = prepareSkillPredicate("Photography Videography");
+        NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Meier");
         List<KeywordsPredicate> keywordPredicate = new ArrayList<>();
-        keywordPredicate.add(predicate);
-        keywordPredicate.add(predicateTwo);
+        keywordPredicate.add(keywordsPredicate);
+        keywordPredicate.add(namePredicate);
         SearchCommand command = new SearchCommand(keywordPredicate);
         expectedModel.updateSearchedApplicantList(keywordPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
