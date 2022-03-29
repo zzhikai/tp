@@ -104,9 +104,9 @@ public class EditCommand extends Command {
         Job updatedJob = editApplicantDescriptor.getJob().orElse(applicantToEdit.getJob());
         Round updatedRound = editApplicantDescriptor.getRound().orElse(applicantToEdit.getRound());
         Set<Skill> updatedSkills = editApplicantDescriptor.getSkills().orElse(applicantToEdit.getSkills());
-        Flag updatedFlag = applicantToEdit.getFlag();
+        Flag flagStatus = applicantToEdit.getFlag();
         return new Applicant(updatedName, updatedPhone, updatedEmail, updatedJob, updatedRound, updatedSkills,
-                updatedFlag);
+                flagStatus);
     }
 
     @Override
