@@ -245,6 +245,8 @@ search n/Steve j/Software
 ```
 Sample Output:
 ```
+3 applicants listed!
+
 Name: Steve Jobs;
 Phone: 99999999;
 Email: stevejobs@apple.mail;
