@@ -101,24 +101,19 @@
     -fx-background-insets: 8;
 }
 
-.list-cell:filled:even {
+.list-cell:filled {
     -fx-background-color: #1d1d1d;
-}
-
-/* odd and even cell style is now the same */
-.list-cell:filled:odd {
-    -fx-background-color: #1d1d1d; /* less bright */
 }
 
 .list-cell:filled:selected {
     -fx-background-color: #000000;
-    -fx-opacity: 0.8;
+    -fx-opacity: 0.95;
 }
 
 .list-cell:filled:selected #cardPane {
     -fx-border-color: white;
     -fx-border-width: 3;
-    -fx-border-radius: 10;
+    -fx-border-radius: 8;
 }
 
 .list-cell .label {
