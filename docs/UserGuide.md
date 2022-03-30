@@ -74,7 +74,7 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 * The command word and the item type for the command are case-sensitive. They have to be `lower_case`. <br>
   e.g. in `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]...`, the command word `add` is valid as it is in
   lower-case and `n/` has to be lower-case as well.<br>
-  That is, `Add n/John Doe...` will be an invalid command due to the command word `Add` not fully `lower_case`.
+  That is, `Add n/John Doe...` will be an invalid command because the command word `Add` is not `lower_case`.
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]...`.<br> 
