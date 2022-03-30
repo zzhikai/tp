@@ -96,7 +96,7 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 ---
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows you a message explaining how to access the help page.
 
 Format: `help`
 
@@ -183,18 +183,21 @@ Skills: Java JavaFX Gradle;
 ---
 ### Viewing a specific applicant : `view`
 
-Allows you to view an overview of a specific applicant, specified by an applicant's full name (exact match)
-
-<br>
+Allows you to view an overview of a specific applicant, specified by an applicant's full name.
 
 Format:
 ```
 view NAME
 ```
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* Only the name is searched.
-* Only full name will be matched e.g. `Han Lee` will not match `Han`
-* Only exact full name with correct spacing will be matched e.g. `HanLee` will not match `Han Lee`
+* You must provide an exact match of an applicant's full name in order to view their details.<br>
+  e.g. if an applicant's full name is `Steve Jobs`, and the command provided is `view Steve` then LinkedOUT will not
+  display Steve Jobs' details. <br>
+* The view command is case-insensitive. <br>
+  e.g `hans` will match `Hans`
+* Only full name will be matched <br>
+  e.g. `Han Lee` will not match `Han`
+* Only exact full name with correct spacing will be matched <br>
+  e.g. `HanLee` will not match `Han Lee`
 
 <br>
 
@@ -226,11 +229,6 @@ Format:
 ```
 search [n/NAME]... [j/JOB]... [r/ROUND]... [s/SKILL]...
 ```
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* First name/Last name will be matched e.g. `Han` will match `Han Lee`
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Applicants containing **any** of the keywords will be shown
-
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can try searching for multiple attributes in the applicant list. Try `search n/Alex s/Java` to search for applicants with 
@@ -284,8 +282,10 @@ Format:
 edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]...
 ```
 
-* Only valid indexes are edited. e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
-* Only positive indexes are edited. e.g As we label our applicants starting from `1...`, an index of `-1` will not be tagged to an applicant.
+* Only valid indexes are edited. <br>
+  e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
+* Only positive indexes are edited. <br>
+  e.g As we label our applicants starting from `1...`, an index of `-1` will not be tagged to an applicant.
 
 <br>
 
@@ -317,8 +317,10 @@ Format:
 flag INDEX
 ```
 
-* Only valid indexes are flagged. e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
-* Only positive indexes are flagged. e.g As we label our applicants starting from `1...`, an index of `-1` will not be tagged to an applicant.
+* Only valid indexes are flagged. <br>
+  e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
+* Only positive indexes are flagged. <br>
+  e.g As we label our applicants starting from `1...`, an index of `-1` will not be tagged to an applicant.
 * Flag acts like a toggle. To un-flag the applicant, you may simply re-type the same command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -340,6 +342,38 @@ Job: Risk Assessment Associate;
 Round: Stock Pitch Assessment; 
 Skills: [Accounting][Equities][Cryptocurrency]
 ```
+<br>
+
+Extended Example for unflagging:
+```
+flag 1
+```
+
+Extended Sample Output for unflagging:
+```
+Unflagged Applicant: David Lee; 
+Phone: 91234567; 
+Email: johndoe@example.com; 
+Job: Risk Assessment Associate; 
+Round: Stock Pitch Assessment; 
+Skills: [Accounting][Equities][Cryptocurrency]
+```
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Flag Command Interaction with Other Commands:**
+
+* Index of applicant to be flagged/unflagged always follows the index indicated on the user interface. <br>
+e.g After executing a search, sort or view command, `flag 1` still flags/unflags the applicant at the top of the list. 
+* A flagged applicant acts like a pinned email, and will always be located at the top of the applicant list,
+except after search and view commands. <br>
+  In that case, flagged applicants will be displayed according to the command's sorting order,
+  and will no longer be displayed at the top.
+  * E.g After a sort command, the no longer be displayed at the top of the list and will be displayed according to the order 
+  specified in the sort command. 
+  * E.g After a search command, flagged applicants will be displayed in order of which applicants most satisfy the search conditions.
+
+</div>
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -355,8 +389,10 @@ Format:
 delete INDEX
 ```
 
-* Only valid indexes are deleted. e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
-* Only positive indexes are deleted. e.g As we label our applicants starting from `1...`, an index of `-1` will not be tagged to an applicant.
+* Only valid indexes are deleted. <br>
+  e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
+* Only positive indexes are deleted. <br>
+  e.g As we label our applicants starting from `1...`, an index of `-1` will not be tagged to an applicant.
 
 <br>
 
