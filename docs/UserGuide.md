@@ -98,6 +98,8 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 
 Shows you a message explaining how to access the help page.
 
+<br>
+
 Format: `help`
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -185,13 +187,15 @@ Skills: Java JavaFX Gradle;
 
 Allows you to view an overview of a specific applicant, specified by an applicant's full name.
 
+<br>
+
 Format:
 ```
 view NAME
 ```
 * You must provide an exact match of an applicant's full name in order to view their details.<br>
   e.g. if an applicant's full name is `Steve Jobs`, and the command provided is `view Steve` then LinkedOUT will not
-  display Steve Jobs' details. <br>
+  display `Steve Jobs`' details. <br>
 * The view command is case-insensitive. <br>
   e.g `hans` will match `Hans`
 * Only full name will be matched <br>
