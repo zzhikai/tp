@@ -89,7 +89,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getFilteredApplicantList_modifyList_throwsUnsupportedOperationException() {
+    public void getDefaultApplicantList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getDefaultApplicantList().remove(0));
     }
 
