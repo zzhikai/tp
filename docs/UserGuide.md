@@ -304,6 +304,11 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]...
   e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
 * Only positive indexes are edited. <br>
   e.g As we label our applicants starting from `1...`, an index of `-1` will not be tagged to an applicant.
+* You can remove all of an applicant's skills by simply typing `edit INDEX s/` without adding anything behind `s/` to 
+  replace existing skills.
+  <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+  This will clear all skills previously added for an applicant and cannot be undone.
+  </div>
 
 <br>
 
