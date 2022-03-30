@@ -29,11 +29,26 @@
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <FlowPane fx:id="skills" />
-      <Label fx:id="job" styleClass="cell_small_label" text="\$job" />
-      <Label fx:id="round" styleClass="cell_small_label_round" text="\$round" />
+      <HBox>
+        <Label fx:id="phoneTitle" styleClass="cell_small_label_title" text="\$title" />
+        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+      </HBox>
+      <HBox>
+        <Label fx:id="emailTitle" styleClass="cell_small_label_title" text="\$title" />
+        <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      </HBox>
+      <HBox>
+        <Label fx:id="skillsTitle" styleClass="cell_small_label_title" text="\$title"/>
+        <FlowPane fx:id="skills" HBox.hgrow="ALWAYS"/>
+      </HBox>
+      <HBox>
+        <Label fx:id="jobTitle" styleClass="cell_small_label_title" text="\$title" />
+        <Label fx:id="job" styleClass="cell_small_label" text="\$job" />
+      </HBox>
+      <HBox>
+        <Label fx:id="roundTitle" styleClass="cell_small_label_title" text="\$title" />
+        <Label fx:id="round" styleClass="cell_small_label_round" text="\$round" />
+      </HBox>
     </VBox>
   </GridPane>
   <VBox alignment = "CENTER">
