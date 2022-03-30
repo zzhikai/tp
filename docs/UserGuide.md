@@ -143,7 +143,7 @@ An applicant can have any number of skills (including none at all)
 
 Example:
 ```
-add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas s/Python s/Java
+add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas s/Python
 ```
 Sample Output:
 ```
@@ -152,7 +152,7 @@ Phone: 99999999;
 Email: bob@example.com; 
 Job: Data Analyst;
 Round: Interview; 
-Skills: [Java][Pandas][Python]
+Skills: [Pandas][Python]
 ```
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
