@@ -10,7 +10,6 @@ import java.util.Set;
 
 import seedu.linkedout.commons.core.Messages;
 import seedu.linkedout.commons.core.index.Index;
-
 import seedu.linkedout.logic.commands.exceptions.CommandException;
 import seedu.linkedout.model.Model;
 import seedu.linkedout.model.applicant.Applicant;
@@ -43,12 +42,15 @@ public class AddSkillCommand extends Command {
     private final Index index;
     private final Set<Skill> skillsToAdd;
 
+    /**
+     * Edits the skills of an existing applicant in the linkedout app.
+     */
     public AddSkillCommand(Index index, Set<Skill> skillsToAdd) {
-            requireNonNull(index);
-            requireNonNull(skillsToAdd);
+        requireNonNull(index);
+        requireNonNull(skillsToAdd);
 
-            this.index = index;
-            this.skillsToAdd = skillsToAdd;
+        this.index = index;
+        this.skillsToAdd = skillsToAdd;
     }
 
     @Override
@@ -72,6 +74,10 @@ public class AddSkillCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedApplicant));
     }
 
+    /**
+     * Creates and returns a {@code Applicant} with the details of {@code applicantToEdit}
+     * edited with {@code skillsToAdd}.
+     */
     private static Applicant createEditedApplicant(Applicant applicantToEdit, Set<Skill> skillsToAdd) {
         assert applicantToEdit != null;
         Name name = applicantToEdit.getName();

@@ -17,6 +17,11 @@ import seedu.linkedout.model.skill.Skill;
 
 public class AddSkillCommandParser implements Parser<AddSkillCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddSkillCommand
+     * and returns an AddSkillCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public AddSkillCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
