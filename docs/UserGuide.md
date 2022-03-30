@@ -313,6 +313,7 @@ Skills: [Accounting][Equities][Cryptocurrency]
 ### Sorting applicants : `sort`
 
 Allows you to sort the applicant list temporarily using the parameter identified by the field. The order of sorting is based on the input order.
+
 <br>
 
 Format:
@@ -459,7 +460,7 @@ Clears the list of applicants
 Format: `clear`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-LinkedOUT will discard all data and start with an empty data file on the next run once you select 'Yes' on the confirmation box .
+LinkedOUT will discard all data and start with an empty data file on the next run once you select 'Yes' on the confirmation box.
 </div>
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -524,16 +525,16 @@ If your changes to the data file makes its format invalid, LinkedOUT will discar
 
 The table below illustrates the meaning of the prefixes
 
-| Prefix | Meaning                  |
-|:-------|:-------------------------|
-| **n/**| Name                     |
-| **p/**| Phone Number             |
-| **e/** | Email                    |
-| **j/** | Job                      |
-| **r/** | Application Round        |
-| **s/** | Skill(s) of an applicant |
-| **f/**  | Field to sort            |
-| **o/**  | Order for sorting        |
+| Prefix | Meaning                    |
+|:-------|:---------------------------|
+| **n/**| Name                       |
+| **p/**| Phone Number               |
+| **e/** | Email                      |
+| **j/** | Job                        |
+| **r/** | Application Round          |
+| **s/** | Skill(s) of an applicant   |
+| **f/**  | Field to sort              |
+| **o/**  | Order for sorting          |
 
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
