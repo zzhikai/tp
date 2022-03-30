@@ -105,7 +105,7 @@ Format: `help`
 ---
 ### Adding an applicant: `add`
 
-Allows you to add a new applicant to be tracked with the following details:
+Allows you to add a new applicant to the LinkedOUT application :
 * Name
 * Phone Number
 * Email
@@ -215,9 +215,10 @@ Skills: Swift
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
-### Searching a specific applicant : `search`
+### Searching for an applicant : `search`
 
-Allows you to view an overview of a specific applicant, specified by **either** an applicant's name, job, round or skills.
+Allows you to search for applicants containing specified keywords, these keywords could be in **any** of the 
+applicant's name, job, round or skills.
 
 <br>
 
@@ -228,26 +229,44 @@ search [n/NAME]... [j/JOB]... [r/ROUND]... [s/SKILL]...
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * First name/Last name will be matched e.g. `Han` will match `Han Lee`
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Search will not work with multiple prefixes. e.g `search n/Alex r/Interview` will only yield results of those who are named `Alex` **and** in the `Interview` round
+* Applicants containing **any** of the keywords will be shown
+
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can try searching for multiple names in the applicant list. Try `search n/Alex Bernice` to search for applicants with names `Alex` or `Bernice`!
+You can try searching for multiple attributes in the applicant list. Try `search n/Alex s/Java` to search for applicants with 
+the name `Alex` or skill `Java`!
 </div>
 
 <br>
 
 Example:
 ```
-search n/Steve
+search n/Steve j/Software
 ```
 Sample Output:
 ```
+3 applicants listed!
+
 Name: Steve Jobs;
 Phone: 99999999;
 Email: stevejobs@apple.mail;
 Job: iOS Developer;
 Round: Hired;
 Skills: Swift
+
+Name: Steve Carroll;
+Phone: 99999111;
+Email: stevecarroll@g.mail;
+Job: Actor;
+Round: Audition;
+Skills: Acting
+
+Name: Charles Leclerc;
+Phone: 10101010;
+Email: charles@g.mail;
+Job: Software Developer;
+Round: Onboarding;
+Skills: Java
 ```
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
