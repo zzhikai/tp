@@ -139,6 +139,14 @@
     -fx-text-fill: #010504;
 }
 
+.cell_small_label_title {
+    -fx-font-family: "Segoe UI Bold";
+    -fx-font-size: 13px;
+    -fx-text-fill: #010504;
+    -fx-font-weight: bold;
+}
+
+
 .cell_small_label_round {
     -fx-font-size: 13px;
     -fx-background-radius: 20;
@@ -152,7 +160,7 @@
 
 .list-cell .cell_small_label_round {
     -fx-text-fill: black;
-    -fx-padding: 2 10 2 10;
+    -fx-padding: 1 5 1 5;
 }
 
 .stack-pane {
@@ -370,7 +378,7 @@
     -fx-text-fill: #ffffff;
     -fx-background-color: #018786;
     -fx-font-family: "Segoe UI Black";
-    -fx-padding: 2 10 2 10;
+    -fx-padding: 1 6 1 6;
     -fx-border-radius: 20;
     -fx-background-radius: 20;
     -fx-font-size: 13;

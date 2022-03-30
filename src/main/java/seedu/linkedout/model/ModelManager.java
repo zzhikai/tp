@@ -225,7 +225,7 @@ public class ModelManager implements Model {
         requireNonNull(predicateList);
         Predicate<Applicant> predicates = predicateList.get(0);
         for (int i = 1; i < predicateList.size(); i++) {
-            predicates = predicates.and(predicateList.get(i));
+            predicates = predicates.or(predicateList.get(i));
         }
         return predicates;
     }

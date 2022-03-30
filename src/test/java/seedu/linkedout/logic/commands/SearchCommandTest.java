@@ -137,8 +137,8 @@ public class SearchCommandTest {
     @Test
     public void execute_multipleAttributes_applicantFound() {
         String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 1);
-        ApplicantContainsSkillKeywordsPredicate keywordsPredicate = prepareSkillPredicate("Photography Videography");
-        NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Meier");
+        ApplicantContainsSkillKeywordsPredicate keywordsPredicate = prepareSkillPredicate("Photography");
+        NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Benson");
         List<KeywordsPredicate> keywordPredicate = new ArrayList<>();
         keywordPredicate.add(keywordsPredicate);
         keywordPredicate.add(namePredicate);

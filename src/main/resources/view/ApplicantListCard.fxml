@@ -19,7 +19,7 @@
     </columnConstraints>
     <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
       <padding>
-        <Insets bottom="5" left="15" right="5" top="5" />
+        <Insets bottom="10.0" left="15.0" right="5.0" top="5.0" />
       </padding>
       <HBox alignment="CENTER_LEFT" spacing="5">
         <Label fx:id="id" styleClass="cell_big_label">
@@ -30,17 +30,41 @@
         </Label>
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="job" styleClass="cell_small_label" text="\$job" />
-      <Label fx:id="round" styleClass="cell_small_label_round" text="\$round" />
-      <FlowPane fx:id="skills">
-            <VBox.margin>
-               <Insets bottom="5.0" top="5.0" />
-            </VBox.margin>
-            <padding>
-               <Insets bottom="6.0" />
-            </padding></FlowPane>
+      <HBox>
+        <Label fx:id="skillsTitle" minWidth="-Infinity" styleClass="cell_small_label_title" text="\$title">
+               <HBox.margin>
+                  <Insets right="3.0" />
+               </HBox.margin></Label>
+        <FlowPane fx:id="skills" HBox.hgrow="ALWAYS" />
+      </HBox>
+      <HBox>
+        <Label fx:id="phoneTitle" styleClass="cell_small_label_title" text="\$title">
+               <HBox.margin>
+                  <Insets right="3.0" />
+               </HBox.margin></Label>
+        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+      </HBox>
+      <HBox>
+        <Label fx:id="emailTitle" styleClass="cell_small_label_title" text="\$title">
+               <HBox.margin>
+                  <Insets right="3.0" />
+               </HBox.margin></Label>
+        <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      </HBox>
+      <HBox>
+        <Label fx:id="jobTitle" styleClass="cell_small_label_title" text="\$title">
+               <HBox.margin>
+                  <Insets right="3.0" />
+               </HBox.margin></Label>
+        <Label fx:id="job" styleClass="cell_small_label" text="\$job" />
+      </HBox>
+      <HBox>
+        <Label fx:id="roundTitle" styleClass="cell_small_label_title" text="\$title">
+               <HBox.margin>
+                  <Insets right="3.0" />
+               </HBox.margin></Label>
+        <Label fx:id="round" styleClass="cell_small_label_round" text="\$round" />
+      </HBox>
     </VBox>
       <rowConstraints>
          <RowConstraints />
