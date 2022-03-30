@@ -94,7 +94,6 @@
 }
 
 .list-cell {
-    -fx-label-padding: 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 10;
     -fx-border-radius: 10;
@@ -103,16 +102,17 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: derive(white, -3%);
+    -fx-background-color: #1d1d1d;
 }
 
 /* odd and even cell style is now the same */
 .list-cell:filled:odd {
-    -fx-background-color: derive(white, -3%); /* less bright */
+    -fx-background-color: #1d1d1d; /* less bright */
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: derive(white, -25%);
+    -fx-background-color: #000000;
+    -fx-opacity: 0.8;
 }
 
 .list-cell:filled:selected #cardPane {
@@ -122,7 +122,8 @@
 }
 
 .list-cell .label {
-    -fx-text-fill: black;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
     -fx-padding: 2 0 2 0
 }
 
@@ -142,10 +143,11 @@
     -fx-font-size: 13px;
     -fx-background-radius: 20;
     -fx-border-radius: 20;
-    -fx-background-color: white;
+    -fx-background-color: #ffffff;
+    -fx-opacity: 0.87;
     -fx-font-family: "Segoe UI Bold";
     -fx-border-width: 2;
-    -fx-border-color: derive(grey, 50%);
+    -fx-border-color: #018786;
 }
 
 .list-cell .cell_small_label_round {
@@ -365,8 +367,8 @@
 }
 
 #skills .label {
-    -fx-text-fill: derive(white, -10%);
-    -fx-background-color: #1d1d1d;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #018786;
     -fx-font-family: "Segoe UI Black";
     -fx-padding: 2 10 2 10;
     -fx-border-radius: 20;
