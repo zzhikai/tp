@@ -359,6 +359,8 @@ Round: Stock Pitch Assessment;
 Skills: [Accounting][Equities][Cryptocurrency]
 ```
 
+<br>
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Flag Command Interaction with Other Commands:**
