@@ -138,6 +138,14 @@
     -fx-text-fill: #010504;
 }
 
+.cell_small_label_title {
+    -fx-font-family: "Segoe UI Bold";
+    -fx-font-size: 13px;
+    -fx-text-fill: #010504;
+    -fx-font-weight: bold;
+}
+
+
 .cell_small_label_round {
     -fx-font-size: 13px;
     -fx-background-radius: 20;

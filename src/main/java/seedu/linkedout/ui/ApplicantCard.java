@@ -42,6 +42,16 @@ public class ApplicantCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label phoneTitle;
+    @FXML
+    private Label jobTitle;
+    @FXML
+    private Label skillsTitle;
+    @FXML
+    private Label emailTitle;
+    @FXML
+    private Label roundTitle;
+    @FXML
     private FlowPane skills;
     @FXML
     private ImageView flagIcon;
@@ -54,10 +64,16 @@ public class ApplicantCard extends UiPart<Region> {
         this.applicant = applicant;
         id.setText(displayedIndex + ". ");
         name.setText(applicant.getName().fullName);
+        phoneTitle.setText("Phone: ");
         phone.setText(applicant.getPhone().value);
+        jobTitle.setText("Job Applied: ");
         job.setText(applicant.getJob().value);
         round.setText(applicant.getRound().value);
         email.setText(applicant.getEmail().value);
+        skillsTitle.setText("Skills: ");
+        roundTitle.setText("Round: ");
+        emailTitle.setText("Email: ");
+
         if (applicant.getFlag().value) {
             flagIcon.setVisible(true);
         } else {
