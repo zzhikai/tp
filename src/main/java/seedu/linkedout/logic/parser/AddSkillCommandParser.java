@@ -6,7 +6,6 @@ import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_SKILL;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.Optional;
 import java.util.Set;
 
@@ -16,6 +15,8 @@ import seedu.linkedout.logic.parser.exceptions.ParseException;
 import seedu.linkedout.model.skill.Skill;
 
 public class AddSkillCommandParser implements Parser<AddSkillCommand> {
+
+    private static final int NO_ARGUMENTS_PRESENT = 0;
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddSkillCommand
@@ -36,15 +37,8 @@ public class AddSkillCommandParser implements Parser<AddSkillCommand> {
         }
 
         Set<Skill> skillsToAdd = parseSkillsForEdit(argMultimap.getAllValues(PREFIX_SKILL)).orElse(null);
-        if (skillsToAdd == null) {
+        if (skillsToAdd == null || skillsToAdd.size() == NO_ARGUMENTS_PRESENT) {
             throw new ParseException(AddSkillCommand.MESSAGE_NOT_EDITED);
-        }
-
-        Iterator<Skill> skillsIterator = skillsToAdd.iterator();
-        while (skillsIterator.hasNext()) {
-            if (skillsIterator.next().toString().equals("[]")) {
-                throw new ParseException(AddSkillCommand.MESSAGE_NOT_EDITED);
-            }
         }
 
         return new AddSkillCommand(index, skillsToAdd);
