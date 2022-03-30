@@ -71,23 +71,37 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* The command word and the item type for the command are case-sensitive. They have to be `lower_case`. <br>
+  e.g. in `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]...`, the command word `add` is valid as it is in
+  lower-case and `n/` has to be lower-case as well.<br>
+  That is, `Add n/John Doe...` will be an invalid command due to the command word `Add` not fully `lower_case`.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [s/SKILLS]` can be used as `n/John Doe s/Python` or as `n/John Doe`.
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
+  e.g. in `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]...`.<br> 
+  `NAME`, `PHONE_NUMBER`, `EMAIL`, `JOB`, `ROUND`, `SKILL` are parameters which can be used 
+  as<br>
+  `add n/John Doe p/99998888 e/johndoe@email.com j/Software Engineer r/Interview s/Python`. 
+
+* Items in square brackets are optional. These parameters are optional because they are additional information you may
+  not have yet.<br>
+  e.g `add n/John Doe p/99998888 e/johndoe@email.com j/Software Engineer r/Interview s/Python` can be used as<br>
+  `add n/John Doe p/99998888 e/johndoe@email.com j/Software Engineer r/Interview` without `s/Python`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[s/SKILLS]…​` can be used as (i.e. 0 times), `s/Python`, `s/Python s/Java` etc.
+  e.g. `[s/SKILL]…​` can be used as `s/Python`, `s/Python s/Java` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command but you specified it multiple times,
+  only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list` and `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  
+* `INDEX` refers to the index of the Applicant in the displayed list. `INDEX` must be a positive integer.<br>
+  e.g. `delete 1` is valid and `delete -1` is invalid.
 
 </div>
 
@@ -119,7 +133,7 @@ Allows you to add a new applicant to the LinkedOUT application :
 
 Format:
 ```
-add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILLS]...
+add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]...
 ```
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An applicant can have any number of skills (including none at all)
