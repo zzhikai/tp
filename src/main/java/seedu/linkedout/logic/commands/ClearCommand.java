@@ -14,7 +14,7 @@ public class ClearCommand extends Command {
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "LinkedOUT has been cleared!";
     public static final String MESSAGE_FAIL = "LinkedOUT is not cleared";
-    public static final String MESSAGE_CONFIRMTION = "Are you sure you want to clear LinkedOUT app?";
+    public static final String MESSAGE_CONFIRMATION = "Are you sure you want to clear LinkedOUT app?";
 
     private ClearAlertBox clearAlertBox = new ClearAlertBox();
 
@@ -36,6 +36,6 @@ public class ClearCommand extends Command {
      * @return True if user press yes
      */
     private boolean isConfirmClear() {
-        return clearAlertBox.showConfirmationAlert(MESSAGE_CONFIRMTION);
+        return clearAlertBox.showConfirmationAlert(MESSAGE_CONFIRMATION);
     }
 }

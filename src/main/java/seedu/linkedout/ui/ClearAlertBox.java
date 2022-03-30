@@ -31,7 +31,7 @@ public class ClearAlertBox {
         alert.getDialogPane().getStylesheets().add("view/DarkTheme.css");
         alert.setTitle("Clear");
         alert.setHeaderText("Confirmation");
-        alert.setContentText(ClearCommand.MESSAGE_CONFIRMTION);
+        alert.setContentText(ClearCommand.MESSAGE_CONFIRMATION);
         alert.showAndWait();
         return alert.getResult() == ButtonType.YES;
     }
