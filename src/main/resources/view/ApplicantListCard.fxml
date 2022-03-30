@@ -38,7 +38,7 @@
         <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
       </HBox>
       <HBox>
-        <Label fx:id="skillsTitle" styleClass="cell_small_label_title" text="\$title"/>
+        <Label fx:id="skillsTitle" styleClass="cell_small_label_title" text="\$title" minWidth="-Infinity"/>
         <FlowPane fx:id="skills" HBox.hgrow="ALWAYS"/>
       </HBox>
       <HBox>
