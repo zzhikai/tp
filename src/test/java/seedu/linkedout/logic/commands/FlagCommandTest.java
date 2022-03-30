@@ -29,7 +29,7 @@ public class FlagCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Applicant applicantToFlag = model.getFilteredApplicantList().get(INDEX_FIRST_APPLICANT.getZeroBased());
+        Applicant applicantToFlag = model.getDefaultApplicantList().get(INDEX_FIRST_APPLICANT.getZeroBased());
         Applicant flaggedApplicant = new ApplicantBuilder(applicantToFlag).withFlag(VALID_FLAG_VALUE_TRUE).build();
         FlagCommand flagCommand = new FlagCommand(INDEX_FIRST_APPLICANT);
 
@@ -43,7 +43,7 @@ public class FlagCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredApplicantList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getDefaultApplicantList().size() + 1);
         FlagCommand flagCommand = new FlagCommand(outOfBoundIndex);
 
         assertCommandFailure(flagCommand, model, Messages.MESSAGE_INVALID_APPLICANT_DISPLAYED_INDEX);
@@ -53,7 +53,7 @@ public class FlagCommandTest {
     public void execute_validIndexFilteredList_success() {
         showApplicantAtIndex(model, INDEX_FIRST_APPLICANT);
 
-        Applicant applicantToFlag = model.getFilteredApplicantList().get(INDEX_FIRST_APPLICANT.getZeroBased());
+        Applicant applicantToFlag = model.getDefaultApplicantList().get(INDEX_FIRST_APPLICANT.getZeroBased());
         Applicant flaggedApplicant = new ApplicantBuilder(applicantToFlag).withFlag(VALID_FLAG_VALUE_TRUE).build();
         FlagCommand flagCommand = new FlagCommand(INDEX_FIRST_APPLICANT);
 
@@ -61,7 +61,6 @@ public class FlagCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getLinkedout(), new UserPrefs());
         expectedModel.flagApplicant(applicantToFlag, flaggedApplicant);
-        showApplicantAtIndex(expectedModel, INDEX_FIRST_APPLICANT);
 
         assertCommandSuccess(flagCommand, model, expectedMessage, expectedModel);
     }
