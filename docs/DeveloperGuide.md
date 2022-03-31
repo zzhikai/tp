@@ -8,9 +8,42 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Who is this Developer Guide for?**
+
+This user guide is meant for developers who wish to learn about the design decisions and implementation of our application. 
+The target audience of our application are recruiters who are looking to incorporate this app into their daily workflows.
+
+If you would like to learn more about the target group and how the application addresses their concerns, skip ahead to the [Requirements](https://ay2122s2-cs2103t-t09-2.github.io/tp/DeveloperGuide.html#appendix-requirements).
+
+If you would like to learn how to use the application instead, you can do so by reading our [User Guide](https://ay2122s2-cs2103t-t09-2.github.io/tp/UserGuide.html).
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Legend for Boxes
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**
+Notes are placed in this guide to specify extra details on the command format and serves as a guide to assist you.
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Tips are placed in this guide to serve as suggestions that you can try out while using our application.
+</div>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Cautions are placed in this guide to serve as warnings for certain actions.
+</div>
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -30,6 +63,19 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S2-CS2103T-T09-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Legend for Diagrams**
+
+The following colour schemes are used in the diagrams. They each refer to a specific component.
+
+- ![#1D8900](https://via.placeholder.com/15/1D8900/000000?text=+) `Represents UI Component`
+- ![#3333C4](https://via.placeholder.com/15/3333C4/000000?text=+) `Represents Logic Component`
+- ![#9D0012](https://via.placeholder.com/15/9D0012/000000?text=+) `Represents Model Component`
+- ![#A38300](https://via.placeholder.com/15/A38300/000000?text=+) `Represents Storage Component`
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -141,12 +187,6 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Skill` list in `Linkedout`, which `Applicant` references. This allows `Linkedout` to only require one `Skill` object per unique skill, instead of each `Applicant` needing their own `Skill` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
@@ -235,6 +275,67 @@ should not exceed the destroy marker X. This is a known limitation of PlantUML.<
 _{more aspects and alternatives to be added}_
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+
+### Add Skill feature
+
+#### Rationale
+
+The addskill command allows users to add skills to a specific applicant. This command was designed to accommodate edit's functionality when editing skills. To remove skills from an applicant, one can choose to use edit instead.
+
+The reasoning for only including an addskill functionality is that most applicants would pick up new skills, but not lose knowledge of pre-existing ones.
+
+#### Implementation
+
+The addskill mechanism is facililated by `AddSkillCommandParser`. 
+`AddSkillCommandParser` parses the inputs using `AddSkillCommandParser#parseSkillsForEdit()` and returns a new set of skills to `AddSkillCommand`.
+
+`AddSkillCommand` then searches for the applicant within the applicant list, and appends the skills to the pre-existing set.
+
+As the skills being passed are checked in `AddSkillCommandParser` and `Skill` upon instantiation, skills parsed can contain a mix of symbols and alphanumeric. They must also be made up of 1 to 5 words.
+
+The following activity diagram shows the workflow for the addskill operation:
+
+![AddSkillActivityDiagram](images/AddSkillCommandActivityDiagram.png)
+
+Given below is an example usage scenario of how an applicant is edited.
+
+1. The user enters the addskill command with the specific index and skills to add, `addskill 1 s/C++ s/Vue`.
+
+
+2. `LinkedoutParser` is invoked to handle the command `addskill` through `LinkedoutParser#parseCommand()`.
+
+
+3. It then calls upon `AddSkillCommandParser#parse()` to check if the input is empty.
+
+
+4. If input is not empty, it passes the input to `AddSkillCommandParser#parseSkillsForEdit()` to create a new set, representing the skills to be added.
+
+
+5. The result is then used to instantiate `AddSkillCommand`. `AddSkillCommand` then finds the applicant at the specified index.
+
+
+6. With `AddSkillCommand#createEditedApplicant()`, the applicant's pre-existing skills are appended with the new set, and the applicant is added to the model.
+
+
+7. It then calls upon `CommandResult` to display the final result on the GUI.
+
+![AddSkillSequenceDiagram](images/AddSkillCommandSequenceDiagram.png)
+
+#### Design considerations
+
+**Aspect: How addskill executes:**
+
+* **Alternative 1 (current choice):** Creates a new applicant replace old information.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Change edit command functionality to allow it to add, delete, clear and replace skills.
+    * Pros: One lesser command needed.
+    * Cons: Adds extra complexity in code as well as for the user.
+
+_{more aspects and alternatives to be added}_
 
 ---
 
@@ -700,7 +801,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ---
 ### Glossary
 
-* **LO**: LinkedOUT
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **OOP**: Object Oriented Programming: A programming paradigm that models real life objects.
 * **API**: Application Programming Interface: Refers to a software acting as an intermediary allowing two applications

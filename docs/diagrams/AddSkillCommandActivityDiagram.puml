@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes addskill command;
+:Parse inputs;
+if () then ([valid index])
+    if () then ([valid arguments])
+    :Display to user new \n applicant's details;
+    else ([else])
+    :Display error message to user \nthat arguments are invalid;
+    endif
+else ([else])
+:Display error message to user \nthat no applicant found;
+endif
+
+stop
+
+@enduml
