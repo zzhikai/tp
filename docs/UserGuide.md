@@ -163,7 +163,7 @@ list
 ```
 Sample Output:
 ```
-List of applicants:
+Listed all applicants
 
 Name: Steve Jobs;
 Phone: 99999999;
@@ -310,6 +310,52 @@ Skills: [Accounting][Equities][Cryptocurrency]
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
+### Sorting applicants : `sort`
+
+Allows you to sort the list of applicants temporarily by name or by job. You can sort based on ascending or descending order.
+
+<br>
+
+Format:
+```
+sort f/FIELD o/ORDER
+```
+
+* You must provide either `NAME` or `JOB` as field to be sorted, both are case-insensitive <br>
+  e.g if the field is `NAME`, then the list will be sorted based on applicant's name in the order given.
+* You must provide either `ASC` or `DESC` for order, both are case-insensitive.
+`ASC` stands for ascending and `DESC` stands for descending <br>
+  e.g if the order is `ASC`, then the list will be sorted in ascending order based on the field given
+
+
+<br>
+
+Example:
+```
+sort f/NAME o/ASC
+```
+Sample Output:
+```
+List has been sorted in ascending order according to NAME
+
+Name: Elon Musk;
+Phone: 88888888;
+Email: elonmusk@tesla.com;
+Job: Software Engineer;
+Round: Technical Interview;
+Skills: Java JavaFX Gradle;
+
+Name: Steve Jobs;
+Phone: 99999999;
+Email: stevejobs@apple.mail;
+Job: iOS Developer;
+Round: Hired;
+Skills: Swift
+```
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Flagging an applicant : `flag`
 
 Allows you to flag an applicant identified by the index number. The index number used corresponds to the one in the displayed applicant list. Flagged applicants will appear at the top of the list and are identified with a flag symbol.
@@ -363,8 +409,6 @@ Round: Stock Pitch Assessment;
 Skills: [Accounting][Equities][Cryptocurrency]
 ```
 
-<br>
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Flag Command Interaction with Other Commands:**
@@ -416,6 +460,25 @@ Round: Instagram Check;
 Skills: [Video Editing][Social Media Marketing]
 ```
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If you delete a specific applicant, LinkedOUT will permanently discard the applicant's data 
+</div>
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+### Clearing the applicants : `clear`
+
+Clears the list of applicants
+
+<br>
+
+Format: `clear`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+LinkedOUT will discard all data and start with an empty data file once you select 'Yes' on the confirmation box.
+</div>
+
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
@@ -459,18 +522,38 @@ If your changes to the data file makes its format invalid, LinkedOUT will discar
 --------------------------------------------------------------------------------------------------------------------
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                            
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------
-| **Help**   | `help`                                                                                                                                                      
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]...` <br> e.g: `add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas` 
-| **List**   | `list`                                                                                                                                                      
-| **View**   | `view NAME` <br> e.g: `view Steve Jobs`                                                                                                                      
-| **Search** | `search [n/NAME]... [j/JOB]... [r/ROUND]... [s/SKILL]...` <br> e.g: `search n/Steve`                                                           
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]...` <br> e.g: `edit 1 n/Elon Musk` 
-| **Flag**   | `flag INDEX` <br> e.g:  `flag 1`
-| **Delete** | `delete INDEX` <br> e.g: `delete 1`                                                                                                                                                                                                                                   
-| **Exit**   | `exit`                                                                                                                                                      
+| Action     | Format, Examples                                                                                                                                      |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**   | `help`                                                                                                                                                |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]...` <br> e.g: `add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas` |
+| **List**   | `list`                                                                                                                                                |
+| **View**   | `view NAME` <br> e.g: `view Steve Jobs`                                                                                                               |
+| **Search** | `search [n/NAME]... [j/JOB]... [r/ROUND]... [s/SKILL]...` <br> e.g: `search n/Steve`                                                                  |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]...` <br> e.g: `edit 1 n/Elon Musk`                                               |
+| **Sort**   | `sort f/FIELD o/ORDER` <br/> e.g: `sort f/Name o/Asc`                                                                                                 |
+| **Flag**   | `flag INDEX` <br> e.g:  `flag 1`                                                                                                                      |
+| **Delete** | `delete INDEX` <br> e.g: `delete 1`                                                                                                                   |
+| **Clear**  | `clear`                                                                                                                                               |
+| **Exit**   | `exit`                                                                                                                                                |
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
----
+--------------------------------------------------------------------------------------------------------------------
+## Prefix Summary
+
+The table below illustrates the meaning of the prefixes
+
+| Prefix | Meaning               |
+|:-------|:----------------------|
+| **n/** | Name                  |
+| **p/** | Phone Number          |
+| **e/** | Email                 |
+| **j/** | Job                   |
+| **r/** | Application Round     |
+| **s/** | Skill of an applicant |
+| **f/** | Field to sort         |
+| **o/** | Order for sorting     |
+
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
