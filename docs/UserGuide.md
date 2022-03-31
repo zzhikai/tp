@@ -385,15 +385,15 @@ Skills: [Accounting][Equities][Cryptocurrency]
 
 **:information_source: Flag Command Interaction with Other Commands:**
 
-* Index of applicant to be flagged/unflagged always follows the index indicated on the user interface. <br>
+* `INDEX` of applicant to be flagged/unflagged always follows the index indicated on the user interface. <br>
 e.g After executing a search, sort or view command, `flag 1` still flags/unflags the applicant at the top of the list. 
 * A flagged applicant acts like a pinned email, and will always be located at the top of the applicant list,
 except after search and view commands. <br>
   In that case, flagged applicants will be displayed according to the command's sorting order,
   and will no longer be displayed at the top.
-  * E.g After a sort command, the no longer be displayed at the top of the list and will be displayed according to the order 
-  specified in the sort command. 
-  * E.g After a search command, flagged applicants will be displayed in order of which applicants most satisfy the search conditions.
+  * E.g After a sort command, flagged applicants are not displayed at the top of the list and will be displayed according to the order 
+  specified in command. 
+  * E.g After a search command, applicants will be displayed in order of which applicants most satisfy the search conditions.
 
 </div>
 
