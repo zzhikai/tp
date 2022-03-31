@@ -131,7 +131,7 @@ Allows you to add a new applicant to the LinkedOUT application :
 
 Format:
 ```
-add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]...
+add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]…​
 ```
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An applicant can have any number of skills (including none at all)
@@ -243,7 +243,7 @@ applicant's name, job, round or skills.
 
 Format:
 ```
-search [n/NAME]... [j/JOB]... [r/ROUND]... [s/SKILL]...
+search [n/NAME]…​ [j/JOB]…​ [r/ROUND]…​ [s/SKILL]…​
 ```
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -295,7 +295,7 @@ Existing values will be overwritten by the input values
 
 Format:
 ```
-edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]...
+edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​
 ```
 
 * Only valid indexes are edited. <br>
@@ -545,7 +545,7 @@ If your changes to the data file makes its format invalid, LinkedOUT will discar
 | **List**   | `list`                                                                                                                                                |
 | **View**   | `view NAME` <br> e.g: `view Steve Jobs`                                                                                                               |
 | **Search** | `search [n/NAME]... [j/JOB]... [r/ROUND]... [s/SKILL]...` <br> e.g: `search n/Steve`                                                                  |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]...` <br> e.g: `edit 1 n/Elon Musk`                                               |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​` <br> e.g: `edit 1 n/Elon Musk`                                               |
 | **Sort**   | `sort f/FIELD o/ORDER` <br/> e.g: `sort f/Name o/Asc`                                                                                                 |
 | **Flag**   | `flag INDEX` <br> e.g:  `flag 1`                                                                                                                      |
 | **Delete** | `delete INDEX` <br> e.g: `delete 1`                                                                                                                   |
