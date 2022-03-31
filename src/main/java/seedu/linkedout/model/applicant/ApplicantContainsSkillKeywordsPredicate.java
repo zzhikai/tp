@@ -1,5 +1,6 @@
 package seedu.linkedout.model.applicant;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -24,11 +25,14 @@ public class ApplicantContainsSkillKeywordsPredicate extends KeywordsPredicate i
         int numberMatches = numberOfKeywordMatches(applicant);
         boolean allMatch = false;
 
-        Set<String> currentApplicantSkills = applicant.getSkills()
-                .stream().map(skill -> skill.skillName.toLowerCase()).collect(Collectors.toSet());
+        Set<String[]> currentApplicantSkills = applicant.getSkills()
+                .stream().map(skill -> skill.skillName.toLowerCase().split(" ")).collect(Collectors.toSet());
+
+        ArrayList<String> currentApplicantKeywords = new ArrayList<>();
+        currentApplicantSkills.forEach(x -> currentApplicantKeywords.addAll(List.of(x)));
 
         for (int i = 0; i < keywords.size(); i++) {
-            if (currentApplicantSkills.contains(keywords.get(i).toLowerCase())) {
+            if (currentApplicantKeywords.contains(keywords.get(i).toLowerCase())) {
                 allMatch = true;
             }
         }
@@ -41,11 +45,14 @@ public class ApplicantContainsSkillKeywordsPredicate extends KeywordsPredicate i
     public int numberOfKeywordMatches(Applicant applicant) {
         int numberMatches = 0;
 
-        Set<String> currentApplicantSkills = applicant.getSkills()
-                .stream().map(skill -> skill.skillName.toLowerCase()).collect(Collectors.toSet());
+        Set<String[]> currentApplicantSkills = applicant.getSkills()
+                .stream().map(skill -> skill.skillName.toLowerCase().split(" ")).collect(Collectors.toSet());
+
+        ArrayList<String> currentApplicantKeywords = new ArrayList<>();
+        currentApplicantSkills.forEach(x -> currentApplicantKeywords.addAll(List.of(x)));
 
         for (int i = 0; i < keywords.size(); i++) {
-            if (currentApplicantSkills.contains(keywords.get(i).toLowerCase())) {
+            if (currentApplicantKeywords.contains(keywords.get(i).toLowerCase())) {
                 numberMatches++;
             }
         }
