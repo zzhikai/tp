@@ -18,6 +18,12 @@ public class SkillTest {
     }
 
     @Test
+    public void constructor_allSymbolsSkillName_throwsIllegalArgumentException() {
+        String invalidSkillName = "!#$";
+        assertThrows(IllegalArgumentException.class, () -> new Skill(invalidSkillName));
+    }
+
+    @Test
     public void isValidSkillName() {
         // null tag name
         assertThrows(NullPointerException.class, () -> Skill.isValidSkillName(null));
