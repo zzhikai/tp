@@ -163,7 +163,7 @@ list
 ```
 Sample Output:
 ```
-List of applicants:
+Listed all applicants
 
 Name: Steve Jobs;
 Phone: 99999999;
@@ -312,7 +312,7 @@ Skills: [Accounting][Equities][Cryptocurrency]
 ---
 ### Sorting applicants : `sort`
 
-Allows you to sort the applicant list temporarily using the parameter identified by the field. The order of sorting is based on the input order.
+Allows you to sort the list of applicants temporarily by name or by job. You can sort based on ascending or descending order.
 
 <br>
 
@@ -337,6 +337,20 @@ sort f/NAME o/ASC
 Sample Output:
 ```
 List has been sorted in ascending order according to NAME
+
+Name: Elon Musk;
+Phone: 88888888;
+Email: elonmusk@tesla.com;
+Job: Software Engineer;
+Round: Technical Interview;
+Skills: Java JavaFX Gradle;
+
+Name: Steve Jobs;
+Phone: 99999999;
+Email: stevejobs@apple.mail;
+Job: iOS Developer;
+Round: Hired;
+Skills: Swift
 ```
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -448,6 +462,10 @@ Round: Instagram Check;
 Skills: [Video Editing][Social Media Marketing]
 ```
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If you delete a specific applicant, LinkedOUT will permanently discard the applicant's data 
+</div>
+
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
@@ -514,8 +532,10 @@ If your changes to the data file makes its format invalid, LinkedOUT will discar
 | **View**   | `view NAME` <br> e.g: `view Steve Jobs`                                                                                                               |
 | **Search** | `search [n/NAME]... [j/JOB]... [r/ROUND]... [s/SKILL]...` <br> e.g: `search n/Steve`                                                                  |
 | **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]...` <br> e.g: `edit 1 n/Elon Musk`                                               |
+| **Sort**   | `sort f/FIELD o/ORDER` <br/> e.g: `sort f/Name o/Asc`                                                                                                 |
 | **Flag**   | `flag INDEX` <br> e.g:  `flag 1`                                                                                                                      |
 | **Delete** | `delete INDEX` <br> e.g: `delete 1`                                                                                                                   |
+| **Clear**  | `clear`                                                                                                                                               |
 | **Exit**   | `exit`                                                                                                                                                |
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -525,16 +545,16 @@ If your changes to the data file makes its format invalid, LinkedOUT will discar
 
 The table below illustrates the meaning of the prefixes
 
-| Prefix | Meaning                    |
-|:-------|:---------------------------|
-| **n/**| Name                       |
-| **p/**| Phone Number               |
-| **e/** | Email                      |
-| **j/** | Job                        |
-| **r/** | Application Round          |
-| **s/** | Skill(s) of an applicant   |
-| **f/**  | Field to sort              |
-| **o/**  | Order for sorting          |
+| Prefix | Meaning               |
+|:-------|:----------------------|
+| **n/** | Name                  |
+| **p/** | Phone Number          |
+| **e/** | Email                 |
+| **j/** | Job                   |
+| **r/** | Application Round     |
+| **s/** | Skill of an applicant |
+| **f/** | Field to sort         |
+| **o/** | Order for sorting     |
 
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
