@@ -45,9 +45,14 @@ public class ApplicantTest {
         Applicant editedBob = new ApplicantBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
         assertFalse(BOB.isSameApplicant(editedBob));
 
+        // name has extra whitespace at end, all other attributes same -> returns true
+        String nameWithSpaceAtEnd = VALID_NAME_BOB + " ";
+        editedBob = new ApplicantBuilder(BOB).withName(nameWithSpaceAtEnd).build();
+        assertTrue(BOB.isSameApplicant(editedBob));
+
         // name has multiple whitespaces, all other attributes same -> returns true
-        String nameWithMultipleSpaces = VALID_NAME_BOB + " ";
-        editedBob = new ApplicantBuilder(BOB).withName(nameWithMultipleSpaces).build();
+        String nameWithMultipleWhitespace = VALID_NAME_BOB.replaceAll(" ", "  ");
+        editedBob = new ApplicantBuilder(BOB).withName(nameWithMultipleWhitespace).build();
         assertTrue(BOB.isSameApplicant(editedBob));
     }
 
