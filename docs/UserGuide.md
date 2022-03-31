@@ -71,33 +71,31 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 
 **:information_source: Notes about the command format:**<br>
 
-* The command word and the item type for the command are case-sensitive. They have to be `lower_case`. <br>
-  e.g. in `edit 1 n/NAME`, the command word `add` is valid as it is in
-  `lower_case` and `n/` has to be `lower_case` as well.<br>
+* The command word and prefixes for the command have to be `lower_case` (case-sensitive).<br> 
+  Command words include `list`, `add`, `edit` etc.<br>
+  Prefixes are used by commands to recognise different parts of your inputs, these include `n/`, `j/`, `r/` etc.<br>
+  e.g. `edit 1 n/NAME`, this command is valid as `edit` and `n/` is `lower_case`.<br>
   That is, `Add n/John Doe...` will be an invalid command because the command word `Add` is not `lower_case`.
 
-* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
-  e.g. in `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]...`.<br> 
-  `NAME`, `PHONE_NUMBER`, `EMAIL`, `JOB`, `ROUND`, `SKILL` are parameters which can be used 
-  as<br>
-  `add n/John Doe p/99998888 e/johndoe@email.com j/Software Engineer r/Interview s/Python`. 
-
-* Items in square brackets are optional. These parameters are optional because they are additional information you may
+* Words in `UPPER_CASE` are the inputs to be supplied by you.<br>
+  Items in square brackets are optional. These inputs are optional because they are additional information you may
   not have yet.<br>
-  e.g `add n/John Doe p/99998888 e/johndoe@email.com j/Software Engineer r/Interview s/Python` can be used as<br>
-  `add n/John Doe p/99998888 e/johndoe@email.com j/Software Engineer r/Interview` without `s/Python`.
+  e.g. in `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]…​`.<br> 
+  `NAME`, `PHONE_NUMBER`, `EMAIL`, `JOB`, `ROUND`, `SKILL` are inputs which can be used 
+  as<br>
+  `add n/John Doe p/99998888 e/johndoe@email.com j/Software Engineer r/Interview s/Python` with `s/Python` being optional.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[s/SKILL]…​` can be used as `s/Python`, `s/Python s/Java` etc.
 
-* Parameters can be in any order.<br>
+* Prefixes can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times,
-  only the last occurrence of the parameter will be taken.<br>
+* If an input is expected only once in the command but you specified it multiple times,
+  only the last occurrence of the input will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list` and `exit`) will be ignored.<br>
+* Extraneous inputs for commands that do not take in inputs (such as `help`, `list` and `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
   
 * `INDEX` refers to the index of the Applicant in the displayed list. `INDEX` must be a positive integer.<br>
@@ -304,8 +302,7 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]...
   e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
 * Only positive indexes are edited. <br>
   e.g As we label our applicants starting from `1...`, an index of `-1` will not be tagged to an applicant.
-* You can remove all of an applicant's skills by simply typing `edit INDEX s/` without adding anything behind `s/` to 
-  replace existing skills.
+* You can remove all of an applicant's skills by simply typing `edit INDEX s/` without adding anything behind `s/`.
   <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
   This will clear all skills previously added for an applicant and cannot be undone.
   </div>
