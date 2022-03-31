@@ -103,15 +103,15 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 
 </div>
 
-[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
-
----
+<br>
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about sample output:**
 The sample output used in this guide are text representations of the result displayed on our display panel.<br>
 Hence, they are not actual representations of what you may see on the application.
 </div>
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
 ### Viewing help : `help`
@@ -348,7 +348,7 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]...
   e.g As we label our applicants starting from `1...`, an index of `-1` will not be tagged to an applicant.
 * You may remove skills by re-typing all the pre-existing skills while leaving out the one you wish to remove. <br>
   e.g An applicant has skills `Excel` and `Word`. To remove the skill `Excel`, you may type the following command. `edit INDEX s/Word`
-  While you are able to add skills using `edit`, a simpler way would be to use our alternative command [`addskill`](https://ay2122s2-cs2103t-t09-2.github.io/tp/UserGuide.html#adding-skills-to-an-applicant--addskill).
+  While you are able to add skills using `edit`, a simpler way would be to use our alternative command [`addskill`](https://ay2122s2-cs2103t-t09-2.github.io/tp/UserGuide.html#adding-skills-to-an-applicant-addskill).
 * You can remove all of an applicant's skills by simply typing `edit INDEX s/` without adding anything behind `s/`.
   <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
   This will clear all skills previously added for an applicant and cannot be undone.
