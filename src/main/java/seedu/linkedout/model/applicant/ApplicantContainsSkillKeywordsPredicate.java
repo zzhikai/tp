@@ -22,7 +22,6 @@ public class ApplicantContainsSkillKeywordsPredicate extends KeywordsPredicate i
 
     @Override
     public boolean test(Applicant applicant) {
-        
         boolean allMatch = false;
 
         Set<String[]> currentApplicantSkills = applicant.getSkills()
