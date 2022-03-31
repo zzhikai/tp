@@ -392,7 +392,7 @@ except after search and view commands. <br>
   In that case, flagged applicants will be displayed according to the command's sorting order,
   and will no longer be displayed at the top.
   * E.g After a sort command, flagged applicants are not displayed at the top of the list and will be displayed according to the order 
-  specified in command. 
+  specified in the command. 
   * E.g After a search command, applicants will be displayed in order of which applicants most satisfy the search conditions.
 
 </div>
