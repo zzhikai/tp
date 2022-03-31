@@ -139,7 +139,7 @@ Allows you to add a new applicant to the LinkedOUT application :
 
 Format:
 ```
-add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]...
+add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]…​
 ```
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Adding skills is an optional feature
@@ -251,7 +251,7 @@ applicant's name, job, round or skills.
 
 Format:
 ```
-search [n/NAME]... [j/JOB]... [r/ROUND]... [s/SKILL]...
+search [n/NAME]…​ [j/JOB]…​ [r/ROUND]…​ [s/SKILL]…​
 ```
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -339,7 +339,7 @@ Existing values will be overwritten by the input values.
 
 Format:
 ```
-edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]...
+edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​
 ```
 
 * Only valid indexes are edited. <br>
@@ -476,15 +476,15 @@ Skills: Accounting, Cryptocurrency, Options;
 
 **:information_source: Flag Command Interaction with Other Commands:**
 
-* Index of applicant to be flagged/unflagged always follows the index indicated on the user interface. <br>
+* `INDEX` of applicant to be flagged/unflagged always follows the index indicated on the user interface. <br>
 e.g After executing a search, sort or view command, `flag 1` still flags/unflags the applicant at the top of the list. 
 * A flagged applicant acts like a pinned email, and will always be located at the top of the applicant list,
 except after search and view commands. <br>
   In that case, flagged applicants will be displayed according to the command's sorting order,
   and will no longer be displayed at the top.
-  * E.g After a sort command, the no longer be displayed at the top of the list and will be displayed according to the order 
-  specified in the sort command. 
-  * E.g After a search command, flagged applicants will be displayed in order of which applicants most satisfy the search conditions.
+  * E.g After a sort command, flagged applicants are not displayed at the top of the list and will be displayed according to the order 
+  specified in the command. 
+  * E.g After a search command, applicants will be displayed in order of which applicants most satisfy the search conditions.
 
 </div>
 
@@ -520,7 +520,7 @@ Phone: 99272758;
 Email: berniceyu@example.com; 
 Job: Social Media Marketer; 
 Round: Instagram Check; 
-Skills: [Video Editing][Social Media Marketing]
+Skills: Video Editing, Social Media Marketing;
 ```
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -588,11 +588,11 @@ If your changes to the data file makes its format invalid, LinkedOUT will discar
 | Action     | Format, Examples                                                                                                                                      |
 |------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Help**   | `help`                                                                                                                                                |
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]...` <br> e.g: `add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas` |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]…​` <br> e.g: `add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas` |
 | **List**   | `list`                                                                                                                                                |
 | **View**   | `view NAME` <br> e.g: `view Steve Jobs`                                                                                                               |
-| **Search** | `search [n/NAME]... [j/JOB]... [r/ROUND]... [s/SKILL]...` <br> e.g: `search n/Steve`   
-| **AddSkill** | `addskill INDEX [s/SKILL]....` <br> e.g `addskill 1 s/MySQL s/PostgreSQL`
+| **Search** | `search [n/NAME]... [j/JOB]... [r/ROUND]... [s/SKILL]...` <br> e.g: `search n/Steve`   |
+| **AddSkill** | `addskill INDEX [s/SKILL]....` <br> e.g `addskill 1 s/MySQL s/PostgreSQL`|
 | **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]...` <br> e.g: `edit 1 n/Elon Musk`                                               |
 | **Sort**   | `sort f/FIELD o/ORDER` <br/> e.g: `sort f/Name o/Asc`                                                                                                 |
 | **Flag**   | `flag INDEX` <br> e.g:  `flag 1`                                                                                                                      |
@@ -617,7 +617,6 @@ The table below illustrates the meaning of the prefixes
 | **s/** | Skill of an applicant |
 | **f/** | Field to sort         |
 | **o/** | Order for sorting     |
-
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
