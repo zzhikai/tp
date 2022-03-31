@@ -42,13 +42,13 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `linkedout.jar` from [here](https://github.com/AY2122S2-CS2103T-T09-2/tp/releases/tag/v1.3(trial)).
+2. Download the latest `linkedout.jar` from [here](https://github.com/AY2122S2-CS2103T-T09-2/tp/releases/tag/v1.3(trial)).
 
-1. Copy the file to the folder you want to use as the _home folder_ for LinkedOUT.
+3. Copy the file to the folder you want to use as the _home folder_ for LinkedOUT.
 
-1. Double-click the file to start the app.
+4. Double-click the file to start the app.
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
   * **`list`** : Lists all job applicants, along with an overview of each applicant.
@@ -59,7 +59,7 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 
   * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -83,7 +83,7 @@ Cautions are placed in this guide to serve as warnings for certain actions.
   e.g. in `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]…​`.<br> 
   `NAME`, `PHONE_NUMBER`, `EMAIL`, `JOB`, `ROUND`, `SKILL` are inputs which can be used 
   as<br>
-  `add n/John Doe p/99998888 e/johndoe@email.com j/Software Engineer r/Interview s/Python` with `s/Python` being optional.
+  `add n/John p/999 e/john@e.com j/Engineer r/Interview s/Python` with `s/Python` being optional.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[s/SKILL]…​` can be used as `s/Python`, `s/Python s/Java` etc.
@@ -101,6 +101,14 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 * `INDEX` refers to the index of the Applicant in the displayed list. `INDEX` must be a positive integer.<br>
   e.g. `delete 1` is valid and `delete -1` is invalid.
 
+</div>
+
+<br>
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes about sample output:**
+The sample output used in this guide are text representations of the result displayed on our display panel.<br>
+Hence, they are not actual representations of what you may see on the application.
 </div>
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -134,7 +142,7 @@ Format:
 add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]…​
 ```
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An applicant can have any number of skills (including none at all)
+Adding skills is an optional feature
 </div>
 
 <br>
@@ -150,7 +158,7 @@ Phone: 99999999;
 Email: bob@example.com; 
 Job: Data Analyst;
 Round: Interview; 
-Skills: [Pandas][Python]
+Skills: Pandas, Python;
 ```
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -182,14 +190,14 @@ Phone: 99999999;
 Email: stevejobs@apple.mail;
 Job: iOS Developer;
 Round: Hired;
-Skills: Swift
+Skills: Swift;
 
 Name: Elon Musk;
 Phone: 88888888;
 Email: elonmusk@tesla.com;
 Job: Software Engineer;
 Round: Technical Interview;
-Skills: Java JavaFX Gradle;
+Skills: Java, JavaFX, Gradle;
 ```
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -228,7 +236,7 @@ Phone: 99999999;
 Email: stevejobs@apple.mail;
 Job: iOS Developer;
 Round: Hired;
-Skills: Swift
+Skills: Swift;
 ```
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -266,21 +274,57 @@ Phone: 99999999;
 Email: stevejobs@apple.mail;
 Job: iOS Developer;
 Round: Hired;
-Skills: Swift
+Skills: Swift;
 
 Name: Steve Carroll;
 Phone: 99999111;
 Email: stevecarroll@g.mail;
 Job: Actor;
 Round: Audition;
-Skills: Acting
+Skills: Acting;
 
 Name: Charles Leclerc;
 Phone: 10101010;
 Email: charles@g.mail;
 Job: Software Developer;
 Round: Onboarding;
-Skills: Java
+Skills: Java;
+```
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+### Adding skills to an applicant: `addskill`
+
+Allows you to add skills to a specific applicant. The index number used corresponds to the one in the displayed applicant list. This command does not replace any pre-existing skills.
+
+<br>
+
+Format:
+```
+addskill INDEX [s/SKILL]...
+```
+
+* Only valid indexes are edited. <br>
+  e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
+* Only positive indexes are edited. <br>
+  e.g As we label our applicants starting from `1...`, an index of `-1` will not be tagged to an applicant.
+* If you would like to replace or remove certain skills instead, consider using [`edit`](https://ay2122s2-cs2103t-t09-2.github.io/tp/UserGuide.html#editing-an-applicant--edit).
+
+<br>
+
+Example:
+```
+addskill 1 s/Vue s/Angular
+```
+Sample Output:
+```
+Added skills to Applicant: Ben Wad; 
+Phone: 11111111; 
+Email: benwad@example.com; 
+Job: Software Engineer; 
+Round: Technical Interview; 
+Skills: React, Vue, Angular;
 ```
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -289,7 +333,7 @@ Skills: Java
 ### Editing an applicant : `edit`
 
 Allows you to edit specific details of the applicant identified by the index number. The index number used corresponds to the one in the displayed applicant list. 
-Existing values will be overwritten by the input values
+Existing values will be overwritten by the input values.
 
 <br>
 
@@ -302,6 +346,9 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​
   e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
 * Only positive indexes are edited. <br>
   e.g As we label our applicants starting from `1...`, an index of `-1` will not be tagged to an applicant.
+* You may remove skills by re-typing all the pre-existing skills while leaving out the one you wish to remove. <br>
+  e.g An applicant has skills `Excel` and `Word`. To remove the skill `Excel`, you may type the following command. `edit INDEX s/Word`
+  While you are able to add skills using `edit`, a simpler way would be to use our alternative command [`addskill`](https://ay2122s2-cs2103t-t09-2.github.io/tp/UserGuide.html#adding-skills-to-an-applicant-addskill).
 * You can remove all of an applicant's skills by simply typing `edit INDEX s/` without adding anything behind `s/`.
   <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
   This will clear all skills previously added for an applicant and cannot be undone.
@@ -320,7 +367,7 @@ Phone: 91234567;
 Email: johndoe@example.com; 
 Job: Risk Assessment Associate; 
 Round: Stock Pitch Assessment; 
-Skills: [Accounting][Equities][Cryptocurrency]
+Skills: Accounting, Cryptocurrency, Options;
 ```
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -366,7 +413,7 @@ Phone: 99999999;
 Email: stevejobs@apple.mail;
 Job: iOS Developer;
 Round: Hired;
-Skills: Swift
+Skills: Swift;
 ```
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -406,7 +453,7 @@ Phone: 91234567;
 Email: johndoe@example.com; 
 Job: Risk Assessment Associate; 
 Round: Stock Pitch Assessment; 
-Skills: [Accounting][Equities][Cryptocurrency]
+Skills: Accounting, Cryptocurrency, Options;
 ```
 <br>
 
@@ -422,7 +469,7 @@ Phone: 91234567;
 Email: johndoe@example.com; 
 Job: Risk Assessment Associate; 
 Round: Stock Pitch Assessment; 
-Skills: [Accounting][Equities][Cryptocurrency]
+Skills: Accounting, Cryptocurrency, Options;
 ```
 
 <div markdown="block" class="alert alert-info">
@@ -473,7 +520,7 @@ Phone: 99272758;
 Email: berniceyu@example.com; 
 Job: Social Media Marketer; 
 Round: Instagram Check; 
-Skills: [Video Editing][Social Media Marketing]
+Skills: Video Editing, Social Media Marketing;
 ```
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -544,8 +591,9 @@ If your changes to the data file makes its format invalid, LinkedOUT will discar
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]…​` <br> e.g: `add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas` |
 | **List**   | `list`                                                                                                                                                |
 | **View**   | `view NAME` <br> e.g: `view Steve Jobs`                                                                                                               |
-| **Search** | `search [n/NAME]…​ [j/JOB]…​ [r/ROUND]…​ [s/SKILL]…​` <br> e.g: `search n/Steve`                                                                  |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​` <br> e.g: `edit 1 n/Elon Musk`                                               |
+| **Search** | `search [n/NAME]... [j/JOB]... [r/ROUND]... [s/SKILL]...` <br> e.g: `search n/Steve`   |
+| **AddSkill** | `addskill INDEX [s/SKILL]....` <br> e.g `addskill 1 s/MySQL s/PostgreSQL`|
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]...` <br> e.g: `edit 1 n/Elon Musk`                                               |
 | **Sort**   | `sort f/FIELD o/ORDER` <br/> e.g: `sort f/Name o/Asc`                                                                                                 |
 | **Flag**   | `flag INDEX` <br> e.g:  `flag 1`                                                                                                                      |
 | **Delete** | `delete INDEX` <br> e.g: `delete 1`                                                                                                                   |
