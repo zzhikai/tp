@@ -13,6 +13,8 @@ title: Developer Guide
 This user guide is meant for developers who wish to learn about the design decisions and implementation of our application. 
 The target audience of our application are recruiters who are looking to incorporate this app into their daily workflows.
 
+Certain technical terms are specified in *italics*. If you need to reference what they mean, you can do so by referring to our [Glossary](https://ay2122s2-cs2103t-t09-2.github.io/tp/DeveloperGuide.html#glossary).
+
 If you would like to learn more about the target group and how the application addresses their concerns, skip ahead to the [Requirements](https://ay2122s2-cs2103t-t09-2.github.io/tp/DeveloperGuide.html#appendix-requirements).
 
 If you would like to learn how to use the application instead, you can do so by reading our [User Guide](https://ay2122s2-cs2103t-t09-2.github.io/tp/UserGuide.html).
@@ -21,7 +23,7 @@ If you would like to learn how to use the application instead, you can do so by 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Legend for Boxes
+## **Legend for Boxes**
 
 <div markdown="block" class="alert alert-info">
 
@@ -116,7 +118,7 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its *API* in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
@@ -131,7 +133,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ApplicantListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ApplicantListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible *GUI*.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/linkedout-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/linkedout-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -156,7 +158,7 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add an applicant).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` *API* call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -319,7 +321,7 @@ Given below is an example usage scenario of how an applicant is edited.
 6. With `AddSkillCommand#createEditedApplicant()`, the applicant's pre-existing skills are appended with the new set, and the applicant is added to the model.
 
 
-7. It then calls upon `CommandResult` to display the final result on the GUI.
+7. It then calls upon `CommandResult` to display the final result on the *GUI*.
 
 ![AddSkillSequenceDiagram](images/AddSkillCommandSequenceDiagram.png)
 
@@ -420,7 +422,7 @@ Given below is an example usage scenario of how to view a specific applicant.
 5. The result is then initialized as a predicate in `ViewCommand`. `ViewCommand#execute()` then tries to find a match.
    
 
-6. It then calls upon `CommandResult` to display the final result on the GUI.
+6. It then calls upon `CommandResult` to display the final result on the *GUI*.
 
 The following sequence diagram shows how the view operation works:
 
@@ -630,7 +632,7 @@ _{more aspects and alternatives to be added}_
 **Target user profile**:
 
 * is a recruiter looking to hire for multiple jobs in a tech firm
-* is reasonably comfortable using CLI apps
+* is reasonably comfortable using *CLI* apps
 * Work pattern : works alone and does not share his/her computer
 * Job scope : Many applications to sieve through on a daily basis
 * Interaction level : Interacts with the applicants
@@ -802,7 +804,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **OOP**: Object Oriented Programming: A programming paradigm that models real life objects.
 * **API**: Application Programming Interface: Refers to a software acting as an intermediary allowing two applications
   to communicate with each other.
 * **JSON**: JavaScript Object Notation: An open standard file format which we use to read and write data from.
@@ -830,7 +831,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the *GUI* with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
