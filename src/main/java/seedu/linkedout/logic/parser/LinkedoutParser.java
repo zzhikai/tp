@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.linkedout.logic.commands.AddCommand;
+import seedu.linkedout.logic.commands.AddSkillCommand;
 import seedu.linkedout.logic.commands.ClearCommand;
 import seedu.linkedout.logic.commands.Command;
 import seedu.linkedout.logic.commands.DeleteCommand;
@@ -49,6 +50,9 @@ public class LinkedoutParser {
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
+
+        case AddSkillCommand.COMMAND_WORD:
+            return new AddSkillCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);

@@ -9,7 +9,8 @@ import static seedu.linkedout.commons.util.AppUtil.checkArgument;
  */
 public class Skill {
 
-    public static final String MESSAGE_CONSTRAINTS = "Skill should be between 1 to 5 words";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Skill should not be completely made up of symbols and be between 1 to 5 words.";
     public static final String VALIDATION_REGEX = "^\\W*(?:\\w+\\b\\W*){1,5}$";
 
     public final String skillName;
