@@ -478,7 +478,7 @@ Clears the list of applicants
 Format: `clear`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-LinkedOUT will discard all data and start with an empty data file on the next run once you select 'Yes' on the confirmation box.
+LinkedOUT will discard all data and start with an empty data file once you select 'Yes' on the confirmation box.
 </div>
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
