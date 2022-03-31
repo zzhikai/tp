@@ -13,7 +13,7 @@ public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "LinkedOUT has been cleared!";
-    public static final String MESSAGE_FAIL = "LinkedOUT is not cleared";
+    public static final String MESSAGE_ABORT = "Clear command aborted by user, LinkedOUT was not cleared.";
     public static final String MESSAGE_CONFIRMATION = "Are you sure you want to clear LinkedOUT app?";
 
     private ClearAlertBox clearAlertBox = new ClearAlertBox();
@@ -27,7 +27,7 @@ public class ClearCommand extends Command {
             model.setLinkedout(new Linkedout());
             return new CommandResult(MESSAGE_SUCCESS);
         } else { //if user press no on the confirmation box
-            return new CommandResult(MESSAGE_FAIL);
+            return new CommandResult(MESSAGE_ABORT);
         }
     }
 
