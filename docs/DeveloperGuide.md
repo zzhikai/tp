@@ -2,6 +2,15 @@
 layout: page
 title: Developer Guide
 ---
+
+LinkedOUT is the only application that any experienced recruiter needs. LinkedOUT allows recruiters to keep track of many applicants, and the job they applied for. You can store their contact details, skills and the round of their application, all in one place.
+
+LinkedOUT helps recruiters manage the multiple job applications they may receive on a daily basis. With many applications, it may be difficult to keep track of each applicant and which round they are currently at.
+
+Thus, LinkedOUT aims to improve a recruiter's experience. LinkedOUT presents recruiters with the ability to flag important applicants, edit applicants easily and search for them with ease.
+
+LinkedOUT comes with a Command Line Interface (*CLI*) as well as a Graphical User Interface (*GUI*) in order to provide recruiters a more streamlined experience.
+
 ## **Table of Contents**
 * Table of Contents
 {:toc}
@@ -72,12 +81,14 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Legend for Diagrams**
 
-The following colour schemes are used in the diagrams. They each refer to a specific component.
+The following colour schemes are used in the diagrams. They each refer to a specific component. 
+The colour used in the diagrams may vary in shade, but still belong to one of the component categories as listed below:
 
 - ![#1D8900](https://via.placeholder.com/15/1D8900/000000?text=+) `Represents UI Component`
 - ![#3333C4](https://via.placeholder.com/15/3333C4/000000?text=+) `Represents Logic Component`
 - ![#9D0012](https://via.placeholder.com/15/9D0012/000000?text=+) `Represents Model Component`
 - ![#A38300](https://via.placeholder.com/15/A38300/000000?text=+) `Represents Storage Component`
+- ![#808080](https://via.placeholder.com/15/808080/000000?text=+) `Represents Main Component`
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -842,9 +853,32 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a applicant
+### Add skills to an applicant
 
-1. Deleting a applicant while all applicants are being shown
+1. Adding a skill to an applicant while all applicants are being shown in the *GUI*.
+    
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+       Current State: The first applicant has pre-existing skills of `JavaScript` and `TypeScript`.
+
+    1. Test case: `addskill 1 s/Python s/Java`<br>
+      Expected: New skills `Python` and `Java` are added to the first applicant's skill list.
+       
+    1. Test case: `addskill 1 s/JavaScript`<br>
+      Expected: No new skill will be added to first applicant's skill list as it already exists. No error is thrown.
+       
+    1. Test case: `addskill 1 s/Javascript`<br>
+      Expected: New skill `Javascript` will be added to first applicant's skill list. This is because the skills are case-insensetive, 
+       hence `Javascript` and `JavaScript` will be treated as two different skills.
+
+    1. Test case: `addskill 0 s/Python s/Java`<br>
+      Expected: No skill is added to any applicant. Error details shown in the status message. 
+
+    1. Other incorrect delete commands to try: `addskill s/Python`, `addskill 1`, `addskill 1 Python`, `addskill x` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Deleting an applicant
+
+1. Deleting an applicant while all applicants are being shown in the *GUI*.
 
    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
 
