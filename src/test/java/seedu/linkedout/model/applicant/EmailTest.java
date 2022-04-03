@@ -46,8 +46,6 @@ public class EmailTest {
         // leading space
         assertFalse(seedu.linkedout.model.applicant.Email.isValidEmail("peterjack@example.com "));
         // trailing space
-        assertFalse(seedu.linkedout.model.applicant.Email.isValidEmail("peterjack@@example.com"));
-        // double '@' symbol
         assertFalse(seedu.linkedout.model.applicant.Email.isValidEmail("peter@jack@example.com"));
         // '@' symbol in local part
         assertFalse(seedu.linkedout.model.applicant.Email.isValidEmail("-peterjack@example.com"));
