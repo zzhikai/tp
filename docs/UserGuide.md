@@ -71,9 +71,8 @@ Cautions are placed in this guide to serve as warnings for certain actions.
   * **`delete`**`INDEX` : Deletes the applicant from the list of applicants.
 
   * **`exit`** : Exits the app.
-
-
-6. Refer to the [Features](#features) below for details of each command.
+    
+  * Refer to the [Features](#features) below for details of each command.
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
