@@ -9,7 +9,7 @@ LinkedOUT helps recruiters manage the multiple job applications they may receive
 
 Thus, LinkedOUT aims to improve a recruiter's experience. LinkedOUT presents recruiters with the ability to flag important applicants, edit applicants easily and search for them with ease.
 
-LinkedOUT comes with a Command Line Interface (CLI) as well as a Graphical User Interface (GUI) in order to provide recruiters a more streamlined experience.
+LinkedOUT comes with a Command Line Interface ([CLI](#glossary)) as well as a Graphical User Interface ([GUI](#glossary)) in order to provide recruiters a more streamlined experience.
 
 ## Table of Contents
 * Table of Contents
@@ -611,6 +611,14 @@ If your changes to the data file makes its format invalid, LinkedOUT will discar
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+* **GUI**: Graphical User Interface: Refers to the user interface that the user interacts with.
+* **CLI**: Command Line Interface: Refers to a computer program that accepts text inputs.
+
+---
+
 ## Command summary
 
 | Action     | Format, Examples                                                                                                                                      |
