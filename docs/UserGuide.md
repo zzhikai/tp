@@ -5,6 +5,12 @@ title: User Guide
 
 LinkedOUT is the only application that any experienced recruiter needs. LinkedOUT allows recruiters to keep track of many applicants, and the job they applied for. You can store their contact details, skills and the round of their application, all in one place.
 
+LinkedOUT helps recruiters manage the multiple job applications they may receive on a daily basis. With many applications, it may be difficult to keep track of each applicant and which round they are currently at.
+
+Thus, LinkedOUT aims to improve a recruiter's experience. LinkedOUT presents recruiters with the ability to flag important applicants, edit applicants easily and search for them with ease.
+
+LinkedOUT comes with a Command Line Interface (CLI) as well as a Graphical User Interface (GUI) in order to provide recruiters a more streamlined experience.
+
 ## Table of Contents
 * Table of Contents
 {:toc}
@@ -40,13 +46,20 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed on your Computer.
 
-2. Download the latest `linkedout.jar` from [here](https://github.com/AY2122S2-CS2103T-T09-2/tp/releases/tag/v1.3(trial)).
+
+2. Download the latest `LinkedOUT.jar` from [here](https://github.com/AY2122S2-CS2103T-T09-2/tp/releases/tag/v1.3(trial)).
+
 
 3. Copy the file to the folder you want to use as the _home folder_ for LinkedOUT.
 
-4. Double-click the file to start the app.
+
+4. **For Windows:** Double-click the file to start the app.<br>
+   **For Mac:** Open up a [terminal](#https://www.maketecheasier.com/launch-terminal-current-folder-mac/) in the current folder you have installed LinkedOUT. <br>
+   Then, run the following command: <br>
+   ```java -jar LinkedOUT.jar```
+
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -58,6 +71,7 @@ Cautions are placed in this guide to serve as warnings for certain actions.
   * **`delete`**`INDEX` : Deletes the applicant from the list of applicants.
 
   * **`exit`** : Exits the app.
+
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -109,6 +123,20 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 **:information_source: Notes about sample output:**
 The sample output used in this guide are text representations of the result displayed on our display panel.<br>
 Hence, they are not actual representations of what you may see on the application.
+</div>
+
+<br>
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes about the different attributes:**
+Listed below are the different attributes that an applicant has. Some attributes have requirements which are listed below.
+
+* Name: {fill in on how cannot have name}
+* Phone: {fill in constraint}
+* Email: {constraint}
+* Job: {alphanumeric constraint}
+* Round: {alphanumeric constraint}
+* Skill: A single skill can be made up of 1 to 5 words. The skill cannot contain any symbols but can be made up of alphanumeric characters.
 </div>
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -308,7 +336,7 @@ addskill INDEX [s/SKILL]...
 * Only valid indexes are edited. <br>
   e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
 * Only positive indexes are edited. <br>
-  e.g As we label our applicants starting from `1...`, an index of `-1` will not be tagged to an applicant.
+  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
 * If you would like to replace or remove certain skills instead, consider using [`edit`](https://ay2122s2-cs2103t-t09-2.github.io/tp/UserGuide.html#editing-an-applicant--edit).
 
 <br>
@@ -345,7 +373,7 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​
 * Only valid indexes are edited. <br>
   e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
 * Only positive indexes are edited. <br>
-  e.g As we label our applicants starting from `1...`, an index of `-1` will not be tagged to an applicant.
+  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
 * You may remove skills by re-typing all the pre-existing skills while leaving out the one you wish to remove. <br>
   e.g An applicant has skills `Excel` and `Word`. To remove the skill `Excel`, you may type the following command. `edit INDEX s/Word`
   While you are able to add skills using `edit`, a simpler way would be to use our alternative command [`addskill`](https://ay2122s2-cs2103t-t09-2.github.io/tp/UserGuide.html#adding-skills-to-an-applicant-addskill).
@@ -375,7 +403,8 @@ Skills: Accounting, Cryptocurrency, Options;
 ---
 ### Sorting applicants : `sort`
 
-Allows you to sort the list of applicants temporarily by name or by job. You can sort based on ascending or descending order.
+Allows you to sort the list of applicants **temporarily** by name or by job. That is to say, the list will not stay sorted if you were to use other commands following sort.
+You can sort based on ascending or descending order.
 
 <br>
 
@@ -433,7 +462,7 @@ flag INDEX
 * Only valid indexes are flagged. <br>
   e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
 * Only positive indexes are flagged. <br>
-  e.g As we label our applicants starting from `1...`, an index of `-1` will not be tagged to an applicant.
+  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
 * Flag acts like a toggle. To un-flag the applicant, you may simply re-type the same command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -505,7 +534,7 @@ delete INDEX
 * Only valid indexes are deleted. <br>
   e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
 * Only positive indexes are deleted. <br>
-  e.g As we label our applicants starting from `1...`, an index of `-1` will not be tagged to an applicant.
+  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
 
 <br>
 
