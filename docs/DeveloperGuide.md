@@ -867,7 +867,7 @@ testers are expected to do more *exploratory* testing.
       Expected: No new skill will be added to first applicant's skill list as it already exists. No error is thrown.
        
     1. Test case: `addskill 1 s/Javascript`<br>
-      Expected: New skill `Javascript` will be added to first applicant's skill list. This is because the skills are case-insensetive, 
+      Expected: New skill `Javascript` will be added to first applicant's skill list. This is because the skills are case-insensitive, 
        hence `Javascript` and `JavaScript` will be treated as two different skills.
 
     1. Test case: `addskill 0 s/Python s/Java`<br>
@@ -883,15 +883,13 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First applicant is deleted from the list. Details of the deleted applicant shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No applicant is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No applicant is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete 1 1`, `delete x`, (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
