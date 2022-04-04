@@ -5,11 +5,14 @@ start
 :User executes edit command;
 :Parse inputs;
 if () then ([valid index])
-:Display to user new \n applicant's details;
+    if () then ([valid arguments])
+    :Display to user new \n applicant's details;
+    else ([else])
+    :Display error message to user \nthat arguments are invalid;
+    endif
 else ([else])
-:Display error message to user \n that no applicant found;
+:Display error message to user \nthat no applicant found;
 endif
-
 
 stop
 
