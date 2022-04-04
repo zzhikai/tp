@@ -37,8 +37,10 @@ public class CommandTestUtil {
     public static final String VALID_JOB_BOB = "Data Analyst";
     public static final String VALID_ROUND_AMY = "Interview";
     public static final String VALID_ROUND_BOB = "Technical Interview";
+    public static final String VALID_SKILL_JAVA = "Java";
     public static final String VALID_SKILL_PYTHON = "Python";
     public static final String VALID_SKILL_MARKETING = "Marketing";
+    public static final String VALID_SKILL_WITH_SYMBOL = "C++";
     public static final Boolean VALID_FLAG_VALUE_TRUE = true;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
@@ -51,8 +53,10 @@ public class CommandTestUtil {
     public static final String JOB_DESC_BOB = " " + PREFIX_JOB + VALID_JOB_BOB;
     public static final String ROUND_DESC_AMY = " " + PREFIX_ROUND + VALID_ROUND_AMY;
     public static final String ROUND_DESC_BOB = " " + PREFIX_ROUND + VALID_ROUND_BOB;
+    public static final String SKILL_DESC_JAVA = " " + PREFIX_SKILL + VALID_SKILL_JAVA;
     public static final String SKILL_DESC_MARKETING = " " + PREFIX_SKILL + VALID_SKILL_MARKETING;
     public static final String SKILL_DESC_PYTHON = " " + PREFIX_SKILL + VALID_SKILL_PYTHON;
+    public static final String SKILL_DESC_WITH_SYMBOL = " " + PREFIX_SKILL + VALID_SKILL_WITH_SYMBOL;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -60,6 +64,7 @@ public class CommandTestUtil {
     public static final String INVALID_JOB_DESC = " " + PREFIX_JOB; // empty string not allowed for jobs
     public static final String INVALID_ROUND_DESC = " " + PREFIX_ROUND; // empty string not allowed for rounds
     public static final String INVALID_SKILL_DESC = " " + PREFIX_SKILL + "way too many words inside skill";
+    public static final String INVALID_SKILL_ALL_SYMBOLS = " " + PREFIX_SKILL + "!@#$%";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
