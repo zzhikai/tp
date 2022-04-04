@@ -3,12 +3,9 @@ package seedu.linkedout.logic.parser;
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_SKILL_ALL_SYMBOLS;
 import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_SKILL_DESC;
-import static seedu.linkedout.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.SKILL_DESC_JAVA;
 import static seedu.linkedout.logic.commands.CommandTestUtil.SKILL_DESC_WITH_SYMBOL;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_SKILL_JAVA;
-import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_SKILL_MARKETING;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_SKILL_PYTHON;
 import static seedu.linkedout.logic.commands.CommandTestUtil.VALID_SKILL_WITH_SYMBOL;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_SKILL;
@@ -18,9 +15,7 @@ import static seedu.linkedout.testutil.TypicalIndexes.INDEX_FIRST_APPLICANT;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.linkedout.commons.core.index.Index;
 import seedu.linkedout.logic.commands.AddSkillCommand;
-import seedu.linkedout.logic.commands.EditCommand;
 import seedu.linkedout.model.skill.Skill;
 import seedu.linkedout.testutil.ApplicantUtil;
 
@@ -46,12 +41,12 @@ public class AddSkillCommandParserTest {
     }
 
     @Test
-    public void parse_ValidArgs_returnsAddSkillCommand() {
+    public void parse_validArgs_returnsAddSkillCommand() {
         assertParseSuccess(parser, "1 s/Python", new AddSkillCommand(INDEX_FIRST_APPLICANT,
                 ApplicantUtil.getApplicantNewSkills(new String[]{VALID_SKILL_PYTHON})));
 
         assertParseSuccess(parser, "1 s/Python s/Java", new AddSkillCommand(INDEX_FIRST_APPLICANT,
-                ApplicantUtil.getApplicantNewSkills(new String[]{VALID_SKILL_PYTHON, VALID_SKILL_JAVA})));
+                ApplicantUtil.getApplicantNewSkills(new String[]{VALID_SKILL_JAVA, VALID_SKILL_PYTHON})));
     }
 
     @Test
@@ -87,9 +82,8 @@ public class AddSkillCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-    @Test void parse_MultipleSkillSpecified_success() {
+    @Test void parse_multipleSkillSpecified_success() {
         String userInput = INDEX_FIRST_APPLICANT.getOneBased() + SKILL_DESC_JAVA + SKILL_DESC_WITH_SYMBOL;
-
         AddSkillCommand expectedCommand = new AddSkillCommand(INDEX_FIRST_APPLICANT,
                 ApplicantUtil.getApplicantNewSkills(new String[]{VALID_SKILL_JAVA, VALID_SKILL_WITH_SYMBOL}));
 
