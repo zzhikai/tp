@@ -60,7 +60,7 @@ activate Model
 Model --> EditCommand
 deactivate Model
 
-EditCommand -> Model : updateFilteredApplicantList();
+EditCommand -> Model : updateFilteredApplicantList()
 activate Model
 
 Model --> EditCommand
