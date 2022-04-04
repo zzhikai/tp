@@ -470,6 +470,7 @@ The following activity diagram shows the workflow of the search command:
 
 Given below is an example usage scenario and how the search mechanism behaves at each step.
 
+Example 1
 1. The user enters search command with prefix and specified keyword , `search n/David`.
 
 
@@ -479,13 +480,14 @@ Given below is an example usage scenario and how the search mechanism behaves at
 3. The predicate is then passed into `Model#updateSearchApplicantList()` to filter and display applicants with partial name matching of "David" in LinkedOUT.
 
 
-4. The user enters `search j/Software Engineer` command to search for applicants in LinkedOUT.
+Example 2
+1. The user enters `search j/Software Engineer` command to search for applicants in LinkedOUT.
 
 
-5. The input keywords will be passed into `SearchCommandParser` and creates a `JobContainsKeywordsPredicate` if the keywords are not empty.
+2. The input keywords will be passed into `SearchCommandParser` and creates a `JobContainsKeywordsPredicate` if the keywords are not empty.
 
 
-6. The predicate is then passed into `Model#updateDefaultApplicantList()` to filter and display applicants with partial job name matching of "Software" or "Engineer"  in LinkedOUT.
+3. The predicate is then passed into `Model#updateSearchApplicantList()` to filter and display applicants with partial job name matching of "Software" or "Engineer"  in LinkedOUT.
 
 The following sequence diagram shows how the search operation works:
 
