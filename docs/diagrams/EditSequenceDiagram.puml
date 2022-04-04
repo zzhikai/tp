@@ -48,7 +48,7 @@ deactivate LinkedoutParser
 LogicManager -> EditCommand : execute()
 activate EditCommand
 
-EditCommand -> Model : getFilteredApplicantList()
+EditCommand -> Model : getDefaultApplicantList()
 activate Model
 
 Model --> EditCommand
