@@ -141,7 +141,7 @@ public class ArgumentTokenizer {
         if (slashIndex == -1) {
             return false; //only has one prefix input, and the first prefix will be detected (will not have problem)
         } else {
-            return checksForValidPrefix(slashIndex, argsString, argumentMultimap);
+            return checksForValidPrefix(argsString, argumentMultimap);
         }
     }
 
@@ -157,48 +157,56 @@ public class ArgumentTokenizer {
     }
 
     /**
-     * Checks if the string still has whitespace
-     * @param inputString
-     * @return True if string contains whitespace
-     */
-    private static boolean hasNextWhiteSpace(String inputString) {
-        int whitespaceIndex = inputString.indexOf(" "); // check if still has next
-        if (whitespaceIndex == -1 ) { // no more prefix
-            return false;
-        } else { // still has prefix
-            return true;
-        }
-    }
-
-    /**
      * Process for checking if input string contains any invalid prefix
-     * @param slashIndex
      * @param argsString
      * @param argumentMultimap
      * @return false if the input string contains invalid prefix
      */
-    private static boolean checksForValidPrefix(int slashIndex, String argsString, ArgumentMultimap argumentMultimap ) {
+    private static boolean checksForValidPrefix(String argsString, ArgumentMultimap argumentMultimap) {
         boolean hasNextWhiteSpace = true;
         boolean isInvalidPrefix = false;
+        int slashIndex = argsString.indexOf("/");
         while (slashIndex != -1 && hasNextWhiteSpace) {
-            String uncheckedPrefix = argsString.substring(0, slashIndex + 1);
-            boolean hasValidPrefix = isValidPrefixFormat(uncheckedPrefix, argumentMultimap);
-            if (hasValidPrefix) { //s/    baker/chef j/pastry chef
-                argsString = argsString.substring(slashIndex + 1).trim(); //baker/chef j/pastry chef
+            argsString = removeStringBeforePrefix(argsString , slashIndex); //"Dave s/"Java" ->"s/Java"
+            slashIndex = argsString.indexOf("/");
+            argsString = argsString.substring(0, slashIndex + 1); //"s/"
+            boolean hasValidPrefix = isValidPrefixFormat(argsString, argumentMultimap);
+            if (hasValidPrefix) {
+                argsString = argsString.substring(slashIndex + 1).trim(); //"s/    baker/chef" -> "baker/chef"
             } else {
                 isInvalidPrefix = true;
                 break;
             }
 
             // for next iteration
-            if (!hasNextWhiteSpace(argsString)) { // no more prefix
+            if (!hasNextWhiteSpace(argsString)) { // no more whitespace means no more prefix
                 hasNextWhiteSpace = false;
-            } else { // still has prefix
-                argsString = argsString.substring(argsString.indexOf(" ")).trim();
-                slashIndex = argsString.indexOf("/");
             }
         }
         return isInvalidPrefix;
+    }
+
+    private static String removeStringBeforePrefix(String str, int slashIndex) {
+        int whitespaceIndex = str.indexOf(" ");
+        String stringBeginWithPrefix = str;
+        if (hasNextWhiteSpace(str) && (whitespaceIndex < slashIndex)) {
+            stringBeginWithPrefix = stringBeginWithPrefix.substring(whitespaceIndex).trim();
+        }
+        return stringBeginWithPrefix;
+    }
+
+    /**
+     * Checks if the string still has whitespace
+     * @param inputString
+     * @return True if string contains whitespace
+     */
+    private static boolean hasNextWhiteSpace(String inputString) {
+        int whitespaceIndex = inputString.indexOf(" "); // check if still has next
+        if (whitespaceIndex == -1) { // no more prefix
+            return false;
+        } else { // still has prefix
+            return true;
+        }
     }
 
     /**

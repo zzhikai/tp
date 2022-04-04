@@ -29,13 +29,6 @@ public abstract class KeywordsPredicate implements Predicate<Applicant> {
                 || (other instanceof KeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((KeywordsPredicate) other).keywords)); // state check
     }
-
-    public void printing() {
-        for (int i = 0; i < keywords.size(); i++) {
-            System.out.println(keywords.get(i));
-        }
-    }
-
     /**
      * Checks for number of matched keywords with the same prefix an applicant has
      * @param applicant
