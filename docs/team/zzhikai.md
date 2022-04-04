@@ -36,11 +36,19 @@ Given below are my contributions to the project.
         * Added implementation details of the `delete` feature.
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-    * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
+    * PRs reviewed (with non-trivial review comments):
+      [\#79](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/79),
+      [\#117](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/117),
+      [\#138](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/138),
+      [\#140](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/140),
+      
+      
+    * Contributed to forum discussions 
+      (examples: [1](https://github.com/nus-cs2103-AY2122S2/forum/issues/79),
+      [2](https://github.com/nus-cs2103-AY2122S2/forum/issues/103),
+      [3](https://github.com/nus-cs2103-AY2122S2/forum/issues/153),
+      [4](https://github.com/nus-cs2103-AY2122S2/forum/issues/239))
     * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-    * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
 * **Tools**:
     * To be added.
 
