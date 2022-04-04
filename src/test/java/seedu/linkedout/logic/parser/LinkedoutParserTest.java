@@ -7,18 +7,21 @@ import static seedu.linkedout.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_FIELD;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ORDER;
+import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_SKILL;
 import static seedu.linkedout.testutil.Assert.assertThrows;
 import static seedu.linkedout.testutil.TypicalIndexes.INDEX_FIRST_APPLICANT;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.linkedout.logic.commands.AddCommand;
+import seedu.linkedout.logic.commands.AddSkillCommand;
 import seedu.linkedout.logic.commands.ClearCommand;
 import seedu.linkedout.logic.commands.DeleteCommand;
 import seedu.linkedout.logic.commands.EditCommand;
@@ -37,6 +40,7 @@ import seedu.linkedout.model.applicant.NameContainsKeywordsPredicate;
 import seedu.linkedout.model.applicant.util.sort.Field;
 import seedu.linkedout.model.applicant.util.sort.Order;
 import seedu.linkedout.model.applicant.util.sort.SortComparator;
+import seedu.linkedout.model.skill.Skill;
 import seedu.linkedout.testutil.ApplicantBuilder;
 import seedu.linkedout.testutil.ApplicantUtil;
 import seedu.linkedout.testutil.EditApplicantDescriptorBuilder;
@@ -50,6 +54,16 @@ public class LinkedoutParserTest {
         Applicant applicant = new ApplicantBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(ApplicantUtil.getAddCommand(applicant));
         assertEquals(new AddCommand(applicant), command);
+    }
+
+    @Test
+    public void parseCommand_addskill() throws Exception {
+        String keywords = "Python";
+        String[] keywordArray = new String[]{keywords};
+        AddSkillCommand command = (AddSkillCommand) parser.parseCommand(AddSkillCommand.COMMAND_WORD + " " +
+                INDEX_FIRST_APPLICANT.getOneBased() + " " + PREFIX_SKILL + keywords);
+        assertEquals(new AddSkillCommand(INDEX_FIRST_APPLICANT, ApplicantUtil.getApplicantNewSkills(keywordArray)),
+                command);
     }
 
     @Test
