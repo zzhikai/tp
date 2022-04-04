@@ -14,7 +14,6 @@ import static seedu.linkedout.testutil.TypicalIndexes.INDEX_FIRST_APPLICANT;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,7 +39,6 @@ import seedu.linkedout.model.applicant.NameContainsKeywordsPredicate;
 import seedu.linkedout.model.applicant.util.sort.Field;
 import seedu.linkedout.model.applicant.util.sort.Order;
 import seedu.linkedout.model.applicant.util.sort.SortComparator;
-import seedu.linkedout.model.skill.Skill;
 import seedu.linkedout.testutil.ApplicantBuilder;
 import seedu.linkedout.testutil.ApplicantUtil;
 import seedu.linkedout.testutil.EditApplicantDescriptorBuilder;
@@ -60,8 +58,8 @@ public class LinkedoutParserTest {
     public void parseCommand_addskill() throws Exception {
         String keywords = "Python";
         String[] keywordArray = new String[]{keywords};
-        AddSkillCommand command = (AddSkillCommand) parser.parseCommand(AddSkillCommand.COMMAND_WORD + " " +
-                INDEX_FIRST_APPLICANT.getOneBased() + " " + PREFIX_SKILL + keywords);
+        AddSkillCommand command = (AddSkillCommand) parser.parseCommand(AddSkillCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_APPLICANT.getOneBased() + " " + PREFIX_SKILL + keywords);
         assertEquals(new AddSkillCommand(INDEX_FIRST_APPLICANT, ApplicantUtil.getApplicantNewSkills(keywordArray)),
                 command);
     }
