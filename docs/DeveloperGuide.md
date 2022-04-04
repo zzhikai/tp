@@ -462,7 +462,7 @@ The proposed search mechanism is facilitated by `SearchCommandParser`. `SearchCo
 * `NameContainsKeywordsPredicate` — Predicate which returns true if an applicant's full name matches partially with the input keyword.
 * `JobContainsKeywordsPredicate` — Predicate which returns true if an applicant's job name matches partially with the input keyword.
 
-These predicates assist the filtering of applicant list in the `Model` interface, specifically for  `Model#updateFilteredApplicantList()` and `Model#getFilteredApplicantList()`.
+These predicates assist the filtering of applicant list in the `Model` interface, specifically for  `Model#updateSearchApplicantList()` and `Model#getDefaultApplicantList()`.
 
 The following activity diagram shows the workflow of the search command:
 
@@ -476,7 +476,7 @@ Given below is an example usage scenario and how the search mechanism behaves at
 2. The input keywords will be passed into `SearchCommandParser` and creates a `NameContainsKeywordsPredicate` if the keyword and prefix are not empty.
 
 
-3. The predicate is then passed into `Model#updateFilteredApplicantList()` to filter and display applicants with partial name matching of "David" in LinkedOUT.
+3. The predicate is then passed into `Model#updateSearchApplicantList()` to filter and display applicants with partial name matching of "David" in LinkedOUT.
 
 
 4. The user enters `search j/Software Engineer` command to search for applicants in LinkedOUT.
@@ -485,7 +485,7 @@ Given below is an example usage scenario and how the search mechanism behaves at
 5. The input keywords will be passed into `SearchCommandParser` and creates a `JobContainsKeywordsPredicate` if the keywords are not empty.
 
 
-6. The predicate is then passed into `Model#updateFilteredApplicantList()` to filter and display applicants with partial job name matching of "Software" or "Engineer"  in LinkedOUT.
+6. The predicate is then passed into `Model#updateDefaultApplicantList()` to filter and display applicants with partial job name matching of "Software" or "Engineer"  in LinkedOUT.
 
 The following sequence diagram shows how the search operation works:
 
