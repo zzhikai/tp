@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Tokenizes arguments string of the form: {@code preamble <prefix>value <prefix>value ...}<br>
@@ -75,6 +76,10 @@ public class ArgumentTokenizer {
                 : prefixIndex + 1; // +1 as offset for whitespace
     }
 
+    private static boolean hasAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
     /**
      * Extracts prefixes and their argument values, and returns an {@code ArgumentMultimap} object that maps the
      * extracted prefixes to their respective arguments. Prefixes are extracted based on their zero-based positions in
@@ -122,6 +127,78 @@ public class ArgumentTokenizer {
         String value = argsString.substring(valueStartPos, nextPrefixPosition.getStartPosition());
 
         return value.trim();
+    }
+
+    /**
+     * Checks if the input prefix(es) are valid
+     * @param argsString
+     * @param argumentMultimap
+     * @return false if any of the input prefix is invalid
+     */
+    public static boolean hasInvalidPrefix(String argsString, ArgumentMultimap argumentMultimap) {
+        argsString = argsString.trim();
+        int slashIndex = argsString.indexOf("/");
+        if (slashIndex == -1) {
+            return false; //only has one prefix input, and the first prefix will be detected (will not have problem)
+        } else {
+            return checksForValidPrefix(slashIndex, argsString, argumentMultimap);
+        }
+    }
+
+    /**
+     * Converts the input string into Prefix and checks the Prefix matches with any valid Prefix
+     * @param uncheckedPrefix
+     * @param argumentMultimap
+     * @return True if input prefix is a valid format
+     */
+    private static boolean isValidPrefixFormat(String uncheckedPrefix, ArgumentMultimap argumentMultimap) {
+        Prefix prefix = new Prefix(uncheckedPrefix);
+        return hasAnyPrefixesPresent(argumentMultimap, prefix);
+    }
+
+    /**
+     * Checks if the string still has whitespace
+     * @param inputString
+     * @return True if string contains whitespace
+     */
+    private static boolean hasNextWhiteSpace(String inputString) {
+        int whitespaceIndex = inputString.indexOf(" "); // check if still has next
+        if (whitespaceIndex == -1 ) { // no more prefix
+            return false;
+        } else { // still has prefix
+            return true;
+        }
+    }
+
+    /**
+     * Process for checking if input string contains any invalid prefix
+     * @param slashIndex
+     * @param argsString
+     * @param argumentMultimap
+     * @return false if the input string contains invalid prefix
+     */
+    private static boolean checksForValidPrefix(int slashIndex, String argsString, ArgumentMultimap argumentMultimap ) {
+        boolean hasNextWhiteSpace = true;
+        boolean isInvalidPrefix = false;
+        while (slashIndex != -1 && hasNextWhiteSpace) {
+            String uncheckedPrefix = argsString.substring(0, slashIndex + 1);
+            boolean hasValidPrefix = isValidPrefixFormat(uncheckedPrefix, argumentMultimap);
+            if (hasValidPrefix) { //s/    baker/chef j/pastry chef
+                argsString = argsString.substring(slashIndex + 1).trim(); //baker/chef j/pastry chef
+            } else {
+                isInvalidPrefix = true;
+                break;
+            }
+
+            // for next iteration
+            if (!hasNextWhiteSpace(argsString)) { // no more prefix
+                hasNextWhiteSpace = false;
+            } else { // still has prefix
+                argsString = argsString.substring(argsString.indexOf(" ")).trim();
+                slashIndex = argsString.indexOf("/");
+            }
+        }
+        return isInvalidPrefix;
     }
 
     /**
