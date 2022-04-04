@@ -29,22 +29,23 @@ Given below are my contributions to the project.
     It also allowed me to work on features with others. (Pull request [\#124](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/124))
   * Created dummy LinkedOUT classes to assist the process of refactoring codebase. This was to prevent the original AB3 from breaking while others were working on their changes. (Pull request [\#43](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/43))
   * Integrated new classes and files from LinkedOUT into AB3's codebase. Allowed me to have the chance to work directly with others as my teammates helped to push to my PR as well. (Pull request [\#57](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/57))
-  * Wrote additional tests for existing features to increase coverage from __% to __% (Pull requests [\#](), [\#]())
+  * Wrote additional tests for existing features to increase coverage from 69% to 72% (Pull request [\#222](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/222)).
   * Helped to improve test cases to maintain code quality, applying concepts learnt in class of test partitions. (Pull request [\#91](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/91)).
   
 <br>
 
 * **Project management**:
-    * Helped to refactor README. (Pull request [\#39](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/39)).
+    * Helped to handle the creation of milestone v 1.4 and creation of team issues. (Issues [\#112](https://github.com/AY2122S2-CS2103T-T09-2/tp/issues/112), [\#113](https://github.com/AY2122S2-CS2103T-T09-2/tp/issues/113)).
 
 <br>
 
 * **Documentation**:
     * User Guide:
         * Added documentation for the features `addskill`. (Pull request [\#164](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/164)).
-        * Helped to maintain formatting and quality. Assisted in adding comments based on reviews done in class. (Pull request [\#122](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/122)).
+        * Helped to maintain formatting and quality. Assisted in making changes based on reviews done in class. (Pull request [\#122](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/122)).
     * Developer Guide:
-        * Added implementation details of the `addskill` and `view` feature. (Pull requests [\#104](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/104), [\#159](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/159)). 
+        * Added implementation details of the `addskill` and `view` feature. (Pull requests [\#104](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/104), [\#159](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/159)).
+        * Added documentation for manual testing of `addskill` and `delete` command. (Pull request [\#221](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/221)).
         * Helped to refactor pre-existing AB3 PUML files and diagrams. (Pull request [#\96](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/96)).
 
 <br>
