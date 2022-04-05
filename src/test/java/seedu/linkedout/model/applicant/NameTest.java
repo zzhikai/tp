@@ -26,15 +26,15 @@ public class NameTest {
 
         // invalid name
         assertFalse(seedu.linkedout.model.applicant.Name.isValidName("")); // empty string
-        assertFalse(seedu.linkedout.model.applicant.Name.isValidName(" ")); // spaces only
         assertFalse(seedu.linkedout.model.applicant.Name.isValidName("^")); // only non-alphanumeric characters
         assertFalse(seedu.linkedout.model.applicant.Name.isValidName("peter*")); // contains non-alphanumeric characters
+        assertFalse(seedu.linkedout.model.applicant.Name.isValidName("Goel 12")); //contains numeric characters
 
         // valid name
         assertTrue(seedu.linkedout.model.applicant.Name.isValidName("peter jack")); // alphabets only
-        assertTrue(seedu.linkedout.model.applicant.Name.isValidName("12345")); // numbers only
-        assertTrue(seedu.linkedout.model.applicant.Name.isValidName("peter the 2nd")); // alphanumeric characters
         assertTrue(seedu.linkedout.model.applicant.Name.isValidName("Capital Tan")); // with capital letters
-        assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(Name.isValidName("David Roger Jackson Ray Jr IInd")); // long names
+        assertTrue(Name.isValidName("Patrick O'Brian")); // Name with '
+        assertTrue(Name.isValidName("François Hollande Koch-Mehrin")); // Name with special chars
     }
 }

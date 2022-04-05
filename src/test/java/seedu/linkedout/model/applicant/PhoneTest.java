@@ -31,7 +31,7 @@ public class PhoneTest {
         assertFalse(seedu.linkedout.model.applicant.Phone.isValidPhone("phone")); // non-numeric
         assertFalse(seedu.linkedout.model.applicant.Phone.isValidPhone("9011p041")); // alphabets within digits
         assertFalse(seedu.linkedout.model.applicant.Phone.isValidPhone("9312 1534")); // spaces within digits
-
+        assertFalse(seedu.linkedout.model.applicant.Phone.isValidPhone("9312153411111111")); // more than 15 digits
         // valid phone numbers
         assertTrue(seedu.linkedout.model.applicant.Phone.isValidPhone("911")); // exactly 3 numbers
         assertTrue(seedu.linkedout.model.applicant.Phone.isValidPhone("93121534"));
