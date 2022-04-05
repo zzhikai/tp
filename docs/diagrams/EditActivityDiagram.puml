@@ -3,8 +3,7 @@
 
 start
 :User executes edit command;
-:Parse inputs;
-if () then ([valid index])
+if () then ([No duplicate applicant])
     if () then ([valid arguments])
     :Display to user new \n applicant's details;
     else ([else])
