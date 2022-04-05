@@ -519,6 +519,50 @@ _{more aspects and alternatives to be added}_
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
+### Sort applicant feature
+
+#### Rationale
+
+The sort command shows the list of applicants **temporarily** sorted by either `NAME` or `JOB` and in ascending or descending order.
+
+#### Implementation
+
+The proposed sort mechanism is facilitated by `SortCommandParser`. 
+`SortCommandParser` will map the creation of `SortComparator` based on the input prefix and returns a `SortCommand` with
+the `SortComparator`.
+
+`SortCommand` extends `Command` and implements the `Command#execute()` method.
+
+Given below is an example usage scenario and how the search mechanism behaves at each step.
+
+1. The user enters the sort command with the specific field to sort by and sorting order,
+   `sort f/name o/asc`.
+   
+2. The input keywords will be passed into `SortCommandParser` and creates a `SortComparator` 
+   if the field and order are not empty.
+   
+3. The `SortComparator` is then passed into `Model#updateDefaultApplicantList()` to sort and display
+   the list of sorted applicants in LinkedOUT.
+
+The following sequence diagram shows how the sort operation works:
+
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How search executes:**
+
+* **Alternative 1 (current choice):** Displays a temporary sorted list
+    * Pros: Original order of list retained.
+    * Cons: Unable to sort list permanently.
+
+* **Alternative 2:** Sort list permanently.
+    * Pros: List can be permanently sorted.
+    * Cons: Original order in list is lost.
+  
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### \[Proposed\] Flag applicant feature
 
 The flagging feature flags an applicant as important, and will be displayed at the top of the applicant list.
