@@ -2,11 +2,13 @@ package seedu.linkedout.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_PREFIX;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_FIELD;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ORDER;
 
 import java.util.stream.Stream;
 
+import seedu.linkedout.logic.commands.SearchCommand;
 import seedu.linkedout.logic.commands.SortCommand;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
 import seedu.linkedout.model.applicant.util.sort.Field;
@@ -27,7 +29,10 @@ public class SortCommandParser implements Parser<SortCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_FIELD, PREFIX_ORDER);
-
+        boolean hasInvalidPrefix = ArgumentTokenizer.hasInvalidPrefix(args, argMultimap);
+        if (hasInvalidPrefix) {
+            throw new ParseException(String.format(MESSAGE_INVALID_PREFIX, SortCommand.MESSAGE_USAGE));
+        }
         // either prefix not present will throw ParseException
         if (!arePrefixesPresent(argMultimap, PREFIX_ORDER, PREFIX_FIELD)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
