@@ -16,10 +16,10 @@ participant ":Model" as Model MODEL_COLOR
 participant "applicant:Applicant" as Applicant MODEL_COLOR
 end box
 
-[-> LogicManager : execute(add n/Bob \n p/99999999 \n e/bob@email.com \n j/Data Analyst \n r/Interview \n s/Java s/Python)
+[-> LogicManager : execute(add n/Bob \n p/99999999 \n e/bob@example.com \n j/Data Analyst r/Interview \n s/Java s/Python)
 activate LogicManager
 
-LogicManager -> LinkedoutParser : parseCommand(add n/Bob \n p/99999999 \n e/bob@email.com \n j/Data Analyst \n r/Interview \n s/Java s/Python)
+LogicManager -> LinkedoutParser : parseCommand(args)
 activate LinkedoutParser
 
 create AddCommandParser
@@ -32,7 +32,7 @@ deactivate AddCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 AddCommandParser -[hidden]-> LinkedoutParser: BUFFER_MESSAGE
 
-LinkedoutParser -> AddCommandParser : parse(add n/Bob \n p/99999999 \n e/bob@email.com \n j/Data Analyst \n r/Interview \n s/Java s/Python)
+LinkedoutParser -> AddCommandParser : parse(n/Bob \n p/99999999 \n e/bob@example.com \n j/Data Analyst r/Interview \n s/Java s/Python)
 activate AddCommandParser
 
 
