@@ -191,7 +191,7 @@ public class ArgumentTokenizer {
         int whitespaceIndex = str.indexOf(" ");
         int keywordSlashIndex = str.indexOf("/");
 
-        //Extra check for parameter with "/" e.g.baker/chef j/engineer -> j/engineer
+        //Extra check for keyword with "/" e.g.baker/chef j/engineer -> j/engineer
         if (hasNextWhiteSpace(keyword) && whitespaceIndex > keywordSlashIndex) {
             keyword = removesStringBeforeWhiteSpace(keyword, whitespaceIndex);
         }
@@ -212,7 +212,7 @@ public class ArgumentTokenizer {
      * @return True if string contains whitespace
      */
     private static boolean hasNextWhiteSpace(String inputString) {
-        int whitespaceIndex = inputString.indexOf(" "); // check if still has next
+        int whitespaceIndex = inputString.indexOf(" "); // check if still has next whitespace
         if (whitespaceIndex == -1) { // no more prefix
             return false;
         } else { // still has prefix
@@ -226,7 +226,7 @@ public class ArgumentTokenizer {
      * @return True if string contains slash
      */
     private static boolean hasNextSlash(String inputString) {
-        int slashIndex = slashIndex(inputString); // check if still has next
+        int slashIndex = slashIndex(inputString); // check if still has next slash
         if (slashIndex == -1) { // no more prefix
             return false;
         } else { // still has prefix
@@ -255,7 +255,7 @@ public class ArgumentTokenizer {
             String uncheckedPrefix = argsString.substring(0, slashIndex + 1);
             boolean hasValidPrefix = isValidPrefixFormat(uncheckedPrefix, argumentMultimap);
             if (hasValidPrefix) {
-                //Removes the prefix and leading space,e.g."s/ baker/chef j/engineer" -> "j/engineer"
+                //Removes the previously checked prefix and keyword,e.g."s/ baker/chef j/engineer" -> "j/engineer"
                 argsString = argsString.substring(slashIndex + 1).trim();
                 argsString = removeLeadingKeywordWithSlash(argsString);
                 argsString = removeLeadingKeyword(argsString);
