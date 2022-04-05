@@ -523,7 +523,7 @@ _{more aspects and alternatives to be added}_
 
 #### Rationale
 
-The sort command shows the list of applicants sorted by either `NAME` or `JOB` and in ascending or descending order.
+The sort command shows the list of applicants temporarily sorted by either `NAME` or `JOB` and in ascending or descending order.
 
 #### Implementation
 
