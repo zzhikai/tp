@@ -43,7 +43,8 @@ public class AddSkillCommandTest {
         String expectedMessage = String.format(AddSkillCommand.MESSAGE_SUCCESS, editedApplicant);
 
         Model expectedModel = new ModelManager(new Linkedout(model.getLinkedout()), new UserPrefs());
-        expectedModel.setApplicant(model.getDefaultApplicantList().get(0), editedApplicant);
+        expectedModel.setApplicant(model.getDefaultApplicantList().get(INDEX_FIRST_APPLICANT.getZeroBased()),
+                editedApplicant);
 
         assertCommandSuccess(addSkillCommand, model, expectedMessage, expectedModel);
     }
@@ -61,7 +62,8 @@ public class AddSkillCommandTest {
         String expectedMessage = String.format(AddSkillCommand.MESSAGE_SUCCESS, editedApplicant);
 
         Model expectedModel = new ModelManager(new Linkedout(model.getLinkedout()), new UserPrefs());
-        expectedModel.setApplicant(model.getDefaultApplicantList().get(0), editedApplicant);
+        expectedModel.setApplicant(model.getDefaultApplicantList().get(INDEX_FIRST_APPLICANT.getZeroBased()),
+                editedApplicant);
 
         assertCommandSuccess(addSkillCommand, model, expectedMessage, expectedModel);
     }
