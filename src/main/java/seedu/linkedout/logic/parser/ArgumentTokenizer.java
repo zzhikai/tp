@@ -255,7 +255,7 @@ public class ArgumentTokenizer {
             String uncheckedPrefix = argsString.substring(0, slashIndex + 1);
             boolean hasValidPrefix = isValidPrefixFormat(uncheckedPrefix, argumentMultimap);
             if (hasValidPrefix) {
-                //Removes the previously checked prefix and keyword,e.g."s/ baker/chef j/engineer" -> "j/engineer"
+                //Removes the previously checked prefix and keyword,e.g."s/baker/chef j/engineer" -> "j/engineer"
                 argsString = argsString.substring(slashIndex + 1).trim();
                 argsString = removeLeadingKeywordWithSlash(argsString);
                 argsString = removeLeadingKeyword(argsString);
