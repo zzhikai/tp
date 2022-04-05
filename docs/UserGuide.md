@@ -337,7 +337,7 @@ Format:
 addskill INDEX [s/SKILL]...
 ```
 
-* Only valid indexes are edited. <br>
+* Only valid index with an applicant is edited. <br>
   e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
 * Only positive indexes are edited. <br>
   e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
@@ -374,7 +374,7 @@ Format:
 edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​
 ```
 
-* Only valid indexes are edited. <br>
+* Only valid index with an applicant is edited. <br>
   e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
 * Only positive indexes are edited. <br>
   e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
@@ -463,7 +463,7 @@ Format:
 flag INDEX
 ```
 
-* Only valid indexes are flagged. <br>
+* Only valid index with an applicant is flagged. <br>
   e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
 * Only positive indexes are flagged. <br>
   e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
@@ -535,7 +535,7 @@ Format:
 delete INDEX
 ```
 
-* Only valid indexes are deleted. <br>
+* Only valid index with an applicant is deleted. <br>
   e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
 * Only positive indexes are deleted. <br>
   e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
