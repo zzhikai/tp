@@ -33,7 +33,7 @@ public class AddSkillCommandTest {
 
     @Test
     public void execute_addExistingSkills_success() {
-        Applicant firstApplicant = model.getDefaultApplicantList().get(0);
+        Applicant firstApplicant = model.getDefaultApplicantList().get(INDEX_FIRST_APPLICANT.getZeroBased());
         ApplicantBuilder applicantInList = new ApplicantBuilder(firstApplicant);
         Applicant editedApplicant = applicantInList.withSkills(VALID_SKILL_JAVA, VALID_SKILL_PYTHON).build();
 
@@ -51,7 +51,7 @@ public class AddSkillCommandTest {
 
     @Test
     public void execute_addNewSkills_success() {
-        Applicant firstApplicant = model.getDefaultApplicantList().get(0);
+        Applicant firstApplicant = model.getDefaultApplicantList().get(INDEX_FIRST_APPLICANT.getZeroBased());
         ApplicantBuilder applicantInList = new ApplicantBuilder(firstApplicant);
         Applicant editedApplicant = applicantInList.withSkills(VALID_SKILL_JAVA, VALID_SKILL_PYTHON,
                 VALID_SKILL_MARKETING).build();
