@@ -8,7 +8,6 @@ import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ORDER;
 
 import java.util.stream.Stream;
 
-import seedu.linkedout.logic.commands.SearchCommand;
 import seedu.linkedout.logic.commands.SortCommand;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
 import seedu.linkedout.model.applicant.util.sort.Field;

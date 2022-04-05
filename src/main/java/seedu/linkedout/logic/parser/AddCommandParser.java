@@ -13,7 +13,6 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.linkedout.logic.commands.AddCommand;
-import seedu.linkedout.logic.commands.SortCommand;
 import seedu.linkedout.logic.parser.exceptions.ParseException;
 import seedu.linkedout.model.applicant.Applicant;
 import seedu.linkedout.model.applicant.Email;
