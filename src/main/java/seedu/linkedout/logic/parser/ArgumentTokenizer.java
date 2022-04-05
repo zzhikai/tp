@@ -76,8 +76,8 @@ public class ArgumentTokenizer {
                 : prefixIndex + 1; // +1 as offset for whitespace
     }
 
-    private static boolean hasAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    private static boolean hasAnyPrefixesPresent(ArgumentMultimap argMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argMultimap.getValue(prefix).isPresent());
     }
 
     /**
@@ -137,10 +137,14 @@ public class ArgumentTokenizer {
      */
     public static boolean hasInvalidPrefix(String argsString, ArgumentMultimap argumentMultimap) {
         argsString = argsString.trim();
-        int slashIndex = argsString.indexOf("/");
-        if (slashIndex == -1) {
+        int slashIndex = slashIndex(argsString);
+        if (!hasNextSlash(argsString)) {
             return false; //only has one prefix input, and the first prefix will be detected (will not have problem)
         } else {
+            int whitespaceIndex = argsString.indexOf(" ");
+            if (whitespaceIndex < slashIndex) { // to ensure string starts with prefix
+                argsString = removeLeadingKeyword(argsString); //Dave s/java -> s/java
+            }
             return checksForValidPrefix(argsString, argumentMultimap);
         }
     }
@@ -157,44 +161,53 @@ public class ArgumentTokenizer {
     }
 
     /**
-     * Process for checking if input string contains any invalid prefix
-     * @param argsString
-     * @param argumentMultimap
-     * @return false if the input string contains invalid prefix
+     * Removes any leading string before the next prefix
+     * @param str
+     * @return string starting with the prefix
      */
-    private static boolean checksForValidPrefix(String argsString, ArgumentMultimap argumentMultimap) {
-        boolean hasNextWhiteSpace = true;
-        boolean isInvalidPrefix = false;
-        int slashIndex = argsString.indexOf("/");
-        while (slashIndex != -1 && hasNextWhiteSpace) {
-            argsString = removeStringBeforePrefix(argsString , slashIndex); //"Dave s/"Java" ->"s/Java"
-            slashIndex = argsString.indexOf("/");
-            argsString = argsString.substring(0, slashIndex + 1); //"s/"
-            boolean hasValidPrefix = isValidPrefixFormat(argsString, argumentMultimap);
-            if (hasValidPrefix) {
-                argsString = argsString.substring(slashIndex + 1).trim(); //"s/    baker/chef" -> "baker/chef"
-            } else {
-                isInvalidPrefix = true;
-                break;
-            }
+    private static String removeLeadingKeyword(String str) {
+        String stringBeginWithPrefix = str.trim();
+        int whitespaceIndex = stringBeginWithPrefix.indexOf(" ");
+        int nextSlashPrefix = slashIndex(stringBeginWithPrefix);
 
-            // for next iteration
-            if (!hasNextWhiteSpace(argsString)) { // no more whitespace means no more prefix
-                hasNextWhiteSpace = false;
-            }
+        System.out.println("before" + stringBeginWithPrefix);
+        //remove any string before the prefix e.g."Alice Dave s/java" -> "s/java"
+        while (hasNextWhiteSpace(stringBeginWithPrefix) && nextSlashPrefix > whitespaceIndex) {
+            stringBeginWithPrefix = removesStringBeforeWhiteSpace(stringBeginWithPrefix, whitespaceIndex);
+            whitespaceIndex = stringBeginWithPrefix.indexOf(" "); //update white space index
+            nextSlashPrefix = slashIndex(stringBeginWithPrefix); //update slash index
         }
-        return isInvalidPrefix;
-    }
 
-    private static String removeStringBeforePrefix(String str, int slashIndex) {
-        int whitespaceIndex = str.indexOf(" ");
-        String stringBeginWithPrefix = str;
-        if (hasNextWhiteSpace(str) && (whitespaceIndex < slashIndex)) {
-            stringBeginWithPrefix = stringBeginWithPrefix.substring(whitespaceIndex).trim();
-        }
+        System.out.println("after:" + stringBeginWithPrefix);
         return stringBeginWithPrefix;
     }
 
+    /**
+     * removes keyword with slash
+     * require additional checking on keyword with slash e.g. java/python
+     * @param str
+     * @return string after the keyword
+     */
+    private static String removeLeadingKeywordWithSlash(String str) {
+        String keyword = str.trim();
+        int whitespaceIndex = str.indexOf(" ");
+        int keywordSlashIndex = str.indexOf("/");
+
+        //Extra check for parameter with "/" e.g.baker/chef j/engineer -> j/engineer
+        if (hasNextWhiteSpace(keyword) && whitespaceIndex > keywordSlashIndex) {
+            keyword = removesStringBeforeWhiteSpace(keyword, whitespaceIndex);
+        }
+        return keyword;
+    }
+
+    /**
+     * Removes string before whitespace
+     * @param str
+     * @param whiteSpaceIndex
+     */
+    private static String removesStringBeforeWhiteSpace(String str, int whiteSpaceIndex) {
+        return str.substring(whiteSpaceIndex).trim();
+    }
     /**
      * Checks if the string still has whitespace
      * @param inputString
@@ -207,6 +220,57 @@ public class ArgumentTokenizer {
         } else { // still has prefix
             return true;
         }
+    }
+
+    /**
+     * Checks if the string still has slash
+     * @param inputString
+     * @return True if string contains slash
+     */
+    private static boolean hasNextSlash(String inputString) {
+        int slashIndex = slashIndex(inputString); // check if still has next
+        if (slashIndex == -1) { // no more prefix
+            return false;
+        } else { // still has prefix
+            return true;
+        }
+    }
+
+    private static int slashIndex(String str) {
+        return str.indexOf("/");
+    }
+
+    /**
+     * Process for checking if input string contains any invalid prefix
+     * @param argsString
+     * @param argumentMultimap
+     * @return false if the input string contains invalid prefix
+     */
+    private static boolean checksForValidPrefix(String argsString, ArgumentMultimap argumentMultimap) {
+        boolean hasNextWhiteSpace = hasNextWhiteSpace(argsString);
+        boolean hasSlashInString = hasNextSlash(argsString);
+        boolean isInvalidPrefix = false;
+        int slashIndex;
+
+        while (hasSlashInString && hasNextWhiteSpace) {
+            slashIndex = slashIndex(argsString); //update slash index on each iteration
+            String uncheckedPrefix = argsString.substring(0, slashIndex + 1);
+            boolean hasValidPrefix = isValidPrefixFormat(uncheckedPrefix, argumentMultimap);
+            if (hasValidPrefix) {
+                //Removes the prefix and leading space,e.g."s/ baker/chef j/engineer" -> "j/engineer"
+                argsString = argsString.substring(slashIndex + 1).trim();
+                argsString = removeLeadingKeywordWithSlash(argsString);
+                argsString = removeLeadingKeyword(argsString);
+            } else {
+                isInvalidPrefix = true;
+                break;
+            }
+            // for next iteration
+            if (!hasNextSlash(argsString)) { // checks if there is still slash (next prefix)
+                break;
+            }
+        }
+        return isInvalidPrefix;
     }
 
     /**
