@@ -10,6 +10,8 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 ## What is LinkedOUT and who is this User Guide for?
 
+**What?**
+
 LinkedOUT is the only application that any experienced recruiter needs. LinkedOUT allows recruiters to keep track of many applicants, and the job they applied for. You can store their contact details, skills and the round of their application, all in one place.
 
 LinkedOUT helps recruiters manage the multiple job applications they may receive on a daily basis. With many applications, it may be difficult to keep track of each applicant and which application round they are currently at.
@@ -18,7 +20,7 @@ Thus, LinkedOUT aims to improve a recruiter's experience. LinkedOUT presents rec
 
 LinkedOUT comes with a Command Line Interface ([CLI](#glossary)) as well as a Graphical User Interface ([GUI](#glossary)) in order to provide recruiters a more streamlined experience.
 
-<br>
+**Who?**
 
 This user guide is meant for users who wish to learn how to use our application. It is best suited for recruiters who are looking to incorporate this app into their daily workflows.
 
