@@ -8,7 +8,7 @@ title: User Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-## Who is this User Guide for?
+## What is LinkedOUT and who is this User Guide for?
 
 LinkedOUT is the only application that any experienced recruiter needs. LinkedOUT allows recruiters to keep track of many applicants, and the job they applied for. You can store their contact details, skills and the round of their application, all in one place.
 
@@ -17,6 +17,8 @@ LinkedOUT helps recruiters manage the multiple job applications they may receive
 Thus, LinkedOUT aims to improve a recruiter's experience. LinkedOUT presents recruiters with the ability to flag important applicants, edit applicants easily and search for them with ease.
 
 LinkedOUT comes with a Command Line Interface ([CLI](#glossary)) as well as a Graphical User Interface ([GUI](#glossary)) in order to provide recruiters a more streamlined experience.
+
+<br>
 
 This user guide is meant for users who wish to learn how to use our application. It is best suited for recruiters who are looking to incorporate this app into their daily workflows.
 
@@ -130,12 +132,12 @@ Hence, they are not actual representations of what you may see on the applicatio
 **:information_source: Notes about the different attributes:**
 Listed below are the different attributes that an applicant has. Some attributes have requirements which are listed below.
 
-* Name: {fill in on how cannot have name}
-* Phone: {fill in constraint}
-* Email: {constraint}
-* Job: {alphanumeric constraint}
-* Round: {alphanumeric constraint}
-* Skill: A single skill can be made up of 1 to 5 words. The skill cannot be completely made up of symbols. However, a mix of alphanumeric and symbols are allowed. 
+* **Name**: {fill in on how cannot have name}
+* **Phone**: {fill in constraint}
+* **Email**: {constraint}
+* **Job**: {alphanumeric constraint}
+* **Round**: {alphanumeric constraint}
+* **Skill**: A single skill can be made up of 1 to 5 words. The skill cannot be completely made up of symbols. However, a mix of alphanumeric and symbols are allowed. 
   eg. `!@#` is not allowed but `C#` is allowed.
 </div>
 
