@@ -6,8 +6,9 @@ title: User Guide
 ## Table of Contents
 * Table of Contents
 {:toc}
-
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
+
 ## Introduction
 
 **What is LinkedOUT?**
@@ -159,13 +160,13 @@ Format: `help`
 ---
 ### Adding an applicant: `add`
 
-Allows you to add a new applicant to the LinkedOUT application :
-* Name
-* Phone Number
-* Email
-* The job they've applied for
-* Round of job application
-* Particular skills they may have
+Allows you to add a new applicant to the LinkedOUT application with the following information:
+* `NAME`: Applicant's name
+* `PHONE_NUMBER`: Applicant's phone number
+* `EMAIL`: Applicant's email
+* `JOB`: The job the applicant applied for
+* `ROUND`: The round of job application that the applicant is at
+* `SKILL`: Particular skills the applicant may have
 
 <br>
 
