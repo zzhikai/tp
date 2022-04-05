@@ -1,6 +1,7 @@
 package seedu.linkedout.logic.parser;
 
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_PREFIX;
 import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_SKILL_ALL_SYMBOLS;
 import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_SKILL_DESC;
 import static seedu.linkedout.logic.commands.CommandTestUtil.SKILL_DESC_JAVA;
@@ -61,7 +62,7 @@ public class AddSkillCommandParserTest {
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ Vue", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 i/ Vue", String.format(MESSAGE_INVALID_PREFIX, AddSkillCommand.MESSAGE_USAGE));
     }
 
     @Test
