@@ -170,7 +170,6 @@ public class ArgumentTokenizer {
         int whitespaceIndex = stringBeginWithPrefix.indexOf(" ");
         int nextSlashPrefix = slashIndex(stringBeginWithPrefix);
 
-        System.out.println("before" + stringBeginWithPrefix);
         //remove any string before the prefix e.g."Alice Dave s/java" -> "s/java"
         while (hasNextWhiteSpace(stringBeginWithPrefix) && nextSlashPrefix > whitespaceIndex) {
             stringBeginWithPrefix = removesStringBeforeWhiteSpace(stringBeginWithPrefix, whitespaceIndex);
@@ -178,7 +177,6 @@ public class ArgumentTokenizer {
             nextSlashPrefix = slashIndex(stringBeginWithPrefix); //update slash index
         }
 
-        System.out.println("after:" + stringBeginWithPrefix);
         return stringBeginWithPrefix;
     }
 
