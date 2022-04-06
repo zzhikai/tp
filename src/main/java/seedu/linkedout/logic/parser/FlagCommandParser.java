@@ -22,8 +22,9 @@ public class FlagCommandParser implements Parser<FlagCommand> {
             Index index = ParserUtil.parseIndex(args);
             return new FlagCommand(index);
         } catch (ParseException pe) {
+            StringBuilder sb = new StringBuilder(pe.getMessage()).append("\n");
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FlagCommand.MESSAGE_USAGE), pe);
+                    sb.append(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FlagCommand.MESSAGE_USAGE)).toString(), pe);
         }
     }
 }
