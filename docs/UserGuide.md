@@ -66,9 +66,7 @@ Cautions are placed in this guide to serve as warnings for certain actions.
    
     <br>
    
-    LinkedOUT comes with sample data for you to experiment on. Upon starting the application, you should see the following screen: 
-   
-    <br>
+    LinkedOUT comes with sample data for you to experiment on. Upon starting the application, you should see the following screen:
     
     ![ui](images/ug/defaultui.png)
 
@@ -105,7 +103,7 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 * Words in `UPPER_CASE` are the inputs to be supplied by you.<br>
   Items in square brackets are optional. These inputs are optional because they are additional information you may
   not have yet.<br>
-  e.g. in `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]…​`.<br> 
+  e.g. `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]…​`.<br> 
   `NAME`, `PHONE_NUMBER`, `EMAIL`, `JOB`, `ROUND`, `SKILL` are inputs which can be used 
   as<br>
   `add n/John p/999 e/john@e.com j/Engineer r/Interview s/Python` with `s/Python` being optional.
@@ -114,14 +112,14 @@ Cautions are placed in this guide to serve as warnings for certain actions.
   e.g. `[s/SKILL]…​` can be used as `s/Python`, `s/Python s/Java` etc.
 
 * Prefixes can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. If the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If an input is expected only once in the command but you specified it multiple times,
   only the last occurrence of the input will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. If you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous inputs for commands that do not take in inputs (such as `help`, `list` and `exit`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  e.g. If the command specifies `help 123`, it will be interpreted as `help`.
   
 * `INDEX` refers to the index of the Applicant in the displayed list. `INDEX` must be a positive integer.<br>
   e.g. `delete 1` is valid and `delete -1` is invalid.
@@ -230,8 +228,8 @@ Format:
 view NAME
 ```
 * You must provide an exact match of an applicant's full name in order to view their details.<br>
-  e.g. if an applicant's full name is `Steve Jobs`, and the command provided is `view Steve` then LinkedOUT will not
-  display `Steve Jobs`' details. <br>
+  e.g. If an applicant's full name is `Steve Jobs`, and the command provided is `view Steve` then LinkedOUT will not
+  display `Steve Jobs`'s details. <br>
 * The view command is case-insensitive. <br>
   e.g `hans` will match `Hans`.
 * Only full name will be matched. <br>
@@ -334,7 +332,6 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​
   <br> To add skills with `edit`, you may do so as illustrated by the following example: <br>
   e.g An applicant has skill `Excel`. To add the skills `Word` and `Docs`, you may type the following command. `edit INDEX s/Excel s/Word s/Docs`.
 * You can remove all of an applicant's skills by simply typing `edit INDEX s/` without adding anything behind `s/`. <br>
-  If you would 
   <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
   This will clear all skills previously added for an applicant and cannot be undone.
   </div>
