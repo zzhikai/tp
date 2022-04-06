@@ -58,7 +58,15 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 4. **For Windows:** Double-click the file to start the app.<br>
    **For Mac:** Open up a [terminal](#https://www.maketecheasier.com/launch-terminal-current-folder-mac/) in the current folder you have installed LinkedOUT. <br>
    Then, run the following command: <br>
-   ```java -jar LinkedOUT.jar```
+   ```java -jar LinkedOUT.jar``` 
+   
+    <br>
+   
+    LinkedOUT comes with sample data for you to experiment on. Upon starting the application, you should see the following screen: 
+   
+    <br>
+    
+    ![ui](images/ug/defaultui.png)
 
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -68,7 +76,7 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 
   * **`add`**`n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas` : Adds an applicant named `Bob` to the list of applicants.
 
-  * **`delete`**`INDEX` : Deletes the applicant from the list of applicants.
+  * **`delete`**`1` : Deletes the first applicant from the list of applicants.
 
   * **`exit`** : Exits the app.
     
@@ -179,14 +187,8 @@ Example:
 add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas s/Python
 ```
 Sample Output:
-```
-New applicant added: Bob; 
-Phone: 99999999; 
-Email: bob@example.com; 
-Job: Data Analyst;
-Round: Interview; 
-Skills: Pandas, Python;
-```
+
+![addcommand](images/ug/addcommand.png)
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -209,23 +211,8 @@ Example:
 list
 ```
 Sample Output:
-```
-Listed all applicants
 
-Name: Steve Jobs;
-Phone: 99999999;
-Email: stevejobs@apple.mail;
-Job: iOS Developer;
-Round: Hired;
-Skills: Swift;
-
-Name: Elon Musk;
-Phone: 88888888;
-Email: elonmusk@tesla.com;
-Job: Software Engineer;
-Round: Technical Interview;
-Skills: Java, JavaFX, Gradle;
-```
+![listcommand](images/ug/listcommand.png)
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -254,17 +241,11 @@ view NAME
 
 Example:
 ```
-view Steve Jobs
+view Bernice Yu
 ```
 Sample Output:
-```
-Name: Steve Jobs;
-Phone: 99999999;
-Email: stevejobs@apple.mail;
-Job: iOS Developer;
-Round: Hired;
-Skills: Swift;
-```
+
+![viewcommand](images/ug/viewcommand.png)
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -290,33 +271,11 @@ the name `Alex` or skill `Java`!
 
 Example:
 ```
-search n/Steve j/Software
+search n/Roy s/Java
 ```
 Sample Output:
-```
-3 applicants listed!
 
-Name: Steve Jobs;
-Phone: 99999999;
-Email: stevejobs@apple.mail;
-Job: iOS Developer;
-Round: Hired;
-Skills: Swift;
-
-Name: Steve Carroll;
-Phone: 99999111;
-Email: stevecarroll@g.mail;
-Job: Actor;
-Round: Audition;
-Skills: Acting;
-
-Name: Charles Leclerc;
-Phone: 10101010;
-Email: charles@g.mail;
-Job: Software Developer;
-Round: Onboarding;
-Skills: Java;
-```
+![searchcommand](images/ug/searchcommand.png)
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -342,17 +301,11 @@ addskill INDEX [s/SKILL]...
 
 Example:
 ```
-addskill 1 s/Vue s/Angular
+addskill 1 s/React s/Vue
 ```
 Sample Output:
-```
-Added skills to Applicant: Ben Wad; 
-Phone: 11111111; 
-Email: benwad@example.com; 
-Job: Software Engineer; 
-Round: Technical Interview; 
-Skills: React, Vue, Angular;
-```
+
+![addskillcommand](images/ug/addskillcommand.png)
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -385,17 +338,11 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​
 
 Example:
 ```
-edit 1 p/91234567 e/johndoe@example.com
+edit 1 p/91234567 e/yeoh.99@example.com
 ```
 Sample Output:
-```
-Edited Applicant: David Lee; 
-Phone: 91234567; 
-Email: johndoe@example.com; 
-Job: Risk Assessment Associate; 
-Round: Stock Pitch Assessment; 
-Skills: Accounting, Cryptocurrency, Options;
-```
+
+![editcommand](images/ug/editcommand.png)
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -423,26 +370,11 @@ sort f/FIELD o/ORDER
 
 Example:
 ```
-sort f/NAME o/ASC
+sort f/job o/asc
 ```
 Sample Output:
-```
-List has been sorted in ascending order according to NAME
 
-Name: Elon Musk;
-Phone: 88888888;
-Email: elonmusk@tesla.com;
-Job: Software Engineer;
-Round: Technical Interview;
-Skills: Java JavaFX Gradle;
-
-Name: Steve Jobs;
-Phone: 99999999;
-Email: stevejobs@apple.mail;
-Job: iOS Developer;
-Round: Hired;
-Skills: Swift;
-```
+![sortcommand](images/ug/sortcommand.png)
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -475,14 +407,9 @@ Example:
 flag 1
 ```
 Sample Output:
-```
-Flagged Applicant: David Lee; 
-Phone: 91234567; 
-Email: johndoe@example.com; 
-Job: Risk Assessment Associate; 
-Round: Stock Pitch Assessment; 
-Skills: Accounting, Cryptocurrency, Options;
-```
+
+![flagcommand](images/ug/flagcommand.png)
+
 <br>
 
 Extended Example for unflagging:
@@ -491,14 +418,10 @@ flag 1
 ```
 
 Extended Sample Output for unflagging:
-```
-Unflagged Applicant: David Lee; 
-Phone: 91234567; 
-Email: johndoe@example.com; 
-Job: Risk Assessment Associate; 
-Round: Stock Pitch Assessment; 
-Skills: Accounting, Cryptocurrency, Options;
-```
+
+![unflagcommand](images/ug/unflaggedcommand.png)
+
+<br>
 
 <div markdown="block" class="alert alert-info">
 
@@ -542,14 +465,8 @@ Example:
 delete 1
 ```
 Sample Output:
-```
-Deleted Applicant: Bernice Yu; 
-Phone: 99272758; 
-Email: berniceyu@example.com; 
-Job: Social Media Marketer; 
-Round: Instagram Check; 
-Skills: Video Editing, Social Media Marketing;
-```
+
+![deletecommand](images/ug/deletecommand.png)
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If you delete a specific applicant, LinkedOUT will permanently discard the applicant's data 
@@ -566,8 +483,21 @@ Clears the list of applicants
 
 Format: `clear`
 
+<br>
+
+Example:
+```
+clear 
+```
+
+Sample Output:
+
+![clearcommand](images/ug/clearcommand.png)
+
+
+
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-LinkedOUT will discard all data and start with an empty data file once you select 'Yes' on the confirmation box.
+LinkedOUT will discard all data and start with an empty data file once you select 'Yes' on the confirmation box. Selecting 'No' will cancel the action.
 </div>
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -580,6 +510,11 @@ Exits the program.
 <br>
 
 Format: `exit`
+
+Example:
+```
+exit
+```
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
