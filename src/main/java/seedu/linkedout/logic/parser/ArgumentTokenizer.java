@@ -250,7 +250,7 @@ public class ArgumentTokenizer {
         boolean isInvalidPrefix = false;
         int slashIndex;
 
-        while (hasSlashInString && hasNextWhiteSpace) {
+        while (hasSlashInString) {
             slashIndex = slashIndex(argsString); //update slash index on each iteration
             String uncheckedPrefix = argsString.substring(0, slashIndex + 1);
             boolean hasValidPrefix = isValidPrefixFormat(uncheckedPrefix, argumentMultimap);
