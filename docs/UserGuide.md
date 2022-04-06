@@ -181,9 +181,6 @@ Format:
 ```
 add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]…​
 ```
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Adding skills is an optional feature
-</div>
 
 <br>
 
@@ -236,11 +233,11 @@ view NAME
   e.g. if an applicant's full name is `Steve Jobs`, and the command provided is `view Steve` then LinkedOUT will not
   display `Steve Jobs`' details. <br>
 * The view command is case-insensitive. <br>
-  e.g `hans` will match `Hans`
-* Only full name will be matched <br>
-  e.g. `Han Lee` will not match `Han`
-* Only exact full name with correct spacing will be matched <br>
-  e.g. `HanLee` will not match `Han Lee`
+  e.g `hans` will match `Hans`.
+* Only full name will be matched. <br>
+  e.g. `Han Lee` will not match `Han`.
+* Only exact full name with correct spacing will be matched. <br>
+  e.g. `HanLee` will not match `Han Lee`.
 
 <br>
 
@@ -331,10 +328,13 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​
   e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
 * Only positive indexes are edited. <br>
   e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
-* You may remove skills by re-typing all the pre-existing skills while leaving out the one you wish to remove. <br>
-  e.g An applicant has skills `Excel` and `Word`. To remove the skill `Excel`, you may type the following command. `edit INDEX s/Word`
-  While you are able to add skills using `edit`, a simpler way would be to use our alternative command [`addskill`](https://ay2122s2-cs2103t-t09-2.github.io/tp/UserGuide.html#adding-skills-to-an-applicant-addskill).
-* You can remove all of an applicant's skills by simply typing `edit INDEX s/` without adding anything behind `s/`.
+* As an applicant can have more than 1 skill, you may remove skills using `edit` as illustrated by the following example: <br>
+  e.g An applicant has skills `Excel`, `Word`, `Docs`. To remove the skill `Excel`, you may type the following command. `edit INDEX s/Word s/Docs`.
+* You may also add skills using `edit`. However, a simpler way of doing so would be to use our alternative command [`addskill`](https://ay2122s2-cs2103t-t09-2.github.io/tp/UserGuide.html#adding-skills-to-an-applicant-addskill).
+  <br> To add skills with `edit`, you may do so as illustrated by the following example: <br>
+  e.g An applicant has skill `Excel`. To add the skills `Word` and `Docs`, you may type the following command. `edit INDEX s/Excel s/Word s/Docs`.
+* You can remove all of an applicant's skills by simply typing `edit INDEX s/` without adding anything behind `s/`. <br>
+  If you would 
   <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
   This will clear all skills previously added for an applicant and cannot be undone.
   </div>
@@ -438,9 +438,9 @@ e.g After executing a search, sort or view command, `flag 1` still flags/unflags
 except after search and view commands. <br>
   In that case, flagged applicants will be displayed according to the command's sorting order,
   and will no longer be displayed at the top.
-  * E.g After a sort command, flagged applicants are not displayed at the top of the list and will be displayed according to the order 
+  * e.g After a sort command, flagged applicants are not displayed at the top of the list and will be displayed according to the order 
   specified in the command. 
-  * E.g After a search command, applicants will be displayed in order of which applicants most satisfy the search conditions.
+  * e.g After a search command, applicants will be displayed in order of which applicants most satisfy the search conditions.
 
 </div>
 
