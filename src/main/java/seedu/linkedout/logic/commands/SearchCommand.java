@@ -27,7 +27,8 @@ public class SearchCommand extends Command {
             + "Parameters: must contain at least one prefix "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_JOB + "JOB] "
-            + "[" + PREFIX_ROUND + "ROUND] \n"
+            + "[" + PREFIX_ROUND + "ROUND] "
+            + "[" + PREFIX_SKILL + "SKILL]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " Steve" + " " + PREFIX_JOB + " Software Engineer"
             + " " + PREFIX_ROUND + " Interview" + " " + PREFIX_SKILL + "Java" + " " + PREFIX_SKILL + "Python";
 
