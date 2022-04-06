@@ -16,6 +16,7 @@ import java.util.stream.Stream;
  */
 public class ArgumentTokenizer {
 
+    private static final int NOT_PRESENT = -1;
     /**
      * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
      * respective argument values. Only the given prefixes will be recognized in the arguments string.
@@ -49,7 +50,7 @@ public class ArgumentTokenizer {
         List<PrefixPosition> positions = new ArrayList<>();
 
         int prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), 0);
-        while (prefixPosition != -1) {
+        while (prefixPosition != NOT_PRESENT) {
             PrefixPosition extendedPrefix = new PrefixPosition(prefix, prefixPosition);
             positions.add(extendedPrefix);
             prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), prefixPosition);
@@ -61,18 +62,18 @@ public class ArgumentTokenizer {
     /**
      * Returns the index of the first occurrence of {@code prefix} in
      * {@code argsString} starting from index {@code fromIndex}. An occurrence
-     * is valid if there is a whitespace before {@code prefix}. Returns -1 if no
+     * is valid if there is a whitespace before {@code prefix}. Returns NOT_PRESENT if no
      * such occurrence can be found.
      *
      * E.g if {@code argsString} = "e/hip/900", {@code prefix} = "p/" and
-     * {@code fromIndex} = 0, this method returns -1 as there are no valid
+     * {@code fromIndex} = 0, this method returns NOT_PRESENT as there are no valid
      * occurrences of "p/" with whitespace before it. However, if
      * {@code argsString} = "e/hi p/900", {@code prefix} = "p/" and
      * {@code fromIndex} = 0, this method returns 5.
      */
     private static int findPrefixPosition(String argsString, String prefix, int fromIndex) {
         int prefixIndex = argsString.indexOf(" " + prefix, fromIndex);
-        return prefixIndex == -1 ? -1
+        return prefixIndex == NOT_PRESENT ? NOT_PRESENT
                 : prefixIndex + 1; // +1 as offset for whitespace
     }
 
@@ -213,7 +214,7 @@ public class ArgumentTokenizer {
      */
     private static boolean hasNextWhiteSpace(String inputString) {
         int whitespaceIndex = inputString.indexOf(" "); // check if still has next whitespace
-        if (whitespaceIndex == -1) { // no more prefix
+        if (whitespaceIndex == NOT_PRESENT) { // no more prefix
             return false;
         } else { // still has prefix
             return true;
@@ -227,7 +228,7 @@ public class ArgumentTokenizer {
      */
     private static boolean hasNextSlash(String inputString) {
         int slashIndex = slashIndex(inputString); // check if still has next slash
-        if (slashIndex == -1) { // no more prefix
+        if (slashIndex == NOT_PRESENT) { // no more prefix
             return false;
         } else { // still has prefix
             return true;
