@@ -3,6 +3,15 @@ layout: page
 title: User Guide
 ---
 
+## Table of Contents
+* Table of Contents
+{:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+## Introduction
+
+**What is LinkedOUT?**
+
 LinkedOUT is the only application that any experienced recruiter needs. LinkedOUT allows recruiters to keep track of many applicants, and the job they applied for. You can store their contact details, skills and the round of their application, all in one place.
 
 LinkedOUT helps recruiters manage the multiple job applications they may receive on a daily basis. With many applications, it may be difficult to keep track of each applicant and which application round they are currently at.
@@ -11,12 +20,7 @@ Thus, LinkedOUT aims to improve a recruiter's experience. LinkedOUT presents rec
 
 LinkedOUT comes with a Command Line Interface ([CLI](#glossary)) as well as a Graphical User Interface ([GUI](#glossary)) in order to provide recruiters a more streamlined experience.
 
-## Table of Contents
-* Table of Contents
-{:toc}
-
---------------------------------------------------------------------------------------------------------------------
-## Who is this User Guide for?
+**Who is this User Guide for?**
 
 This user guide is meant for users who wish to learn how to use our application. It is best suited for recruiters who are looking to incorporate this app into their daily workflows.
 
@@ -72,15 +76,15 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-  * **`list`** : Lists all job applicants, along with an overview of each applicant.
+    * **`list`** : Lists all job applicants, along with an overview of each applicant.
 
-  * **`add`**`n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas` : Adds an applicant named `Bob` to the list of applicants.
-
-  * **`delete`**`1` : Deletes the first applicant from the list of applicants.
-
-  * **`exit`** : Exits the app.
+    * **`add`**`n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas` : Adds an applicant named `Bob` to the list of applicants.
     
-  * Refer to the [Features](#features) below for details of each command.
+     * **`delete`**`1` : Deletes the first applicant from the list of applicants.
+    
+    * **`exit`** : Exits the app.
+    
+    * Refer to the [Features](#features) below for details of each command.
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -138,12 +142,13 @@ Hence, they are not actual representations of what you may see on the applicatio
 **:information_source: Notes about the different attributes:**
 Listed below are the different attributes that an applicant has. Some attributes have requirements which are listed below.
 
-* Name: {fill in on how cannot have name}
-* Phone: {fill in constraint}
-* Email: {constraint}
-* Job: {alphanumeric constraint}
-* Round: {alphanumeric constraint}
-* Skill: A single skill can be made up of 1 to 5 words. The skill cannot contain any symbols but can be made up of alphanumeric characters.
+* **Name**: {fill in on how cannot have name}
+* **Phone**: {fill in constraint}
+* **Email**: {constraint}
+* **Job**: {alphanumeric constraint}
+* **Round**: {alphanumeric constraint}
+* **Skill**: A single skill can be made up of 1 to 5 words. The skill cannot be completely made up of symbols. However, a mix of alphanumeric and symbols are allowed. 
+  eg. `!@#` is not allowed but `C#` is allowed.
 </div>
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -551,6 +556,8 @@ If your changes to the data file makes its format invalid, LinkedOUT will discar
 
 * **GUI**: Graphical User Interface: Refers to the user interface that the user interacts with.
 * **CLI**: Command Line Interface: Refers to a computer program that accepts text inputs.
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
 

@@ -97,6 +97,7 @@ public class AddSkillCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddSkillCommand // instanceof handles nulls
-                && skillsToAdd.equals(((AddSkillCommand) other).skillsToAdd));
+                && skillsToAdd.equals(((AddSkillCommand) other).skillsToAdd))
+                && index.equals(((AddSkillCommand) other).index);
     }
 }
