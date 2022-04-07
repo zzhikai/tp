@@ -238,13 +238,13 @@ in the Activity Diagram. This is a known limitation of PlantUML.</div>
 
 Given below is an example usage scenario of how an applicant is added, and how the operation is handled by LinkedOUT:
 
-1. The user enters a valid add command, for example: `add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Java s/Python`. For each command
+1. The user enters a valid add command, for example: `add n/Bob p/99991111 e/bob@mail.com j/Data Analyst r/Interview s/Python`. For each command
 `LogicManager#execute()` is invoked, which calls `LinkedoutParser#parseCommand()` to separate the command word `add` and the argument
-`n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Java s/Python`
+`n/Bob p/99991111 e/bob@mail.com j/Data Analyst r/Interview s/Python`
 
 
 2. Upon identifying the add command, `AddCommandParser` is instantiated and uses `AddCommandParser#parse()` to
-map the various prefixes to the attributes: (e.g `n/` to `Bob`, `p/` to `99999999`)
+map the various prefixes to the attributes: (e.g `n/` to `Bob`, `p/` to `99991111`)
 
 
 3. `AddCommandParser#arePrefixesPresent()` is called to ensure all the mandatory prefixes have been inputted by the user. After which
