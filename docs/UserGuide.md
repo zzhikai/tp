@@ -156,11 +156,19 @@ Listed below are the different attributes that an applicant has. Some attributes
 
 Shows you a message explaining how to access the help page.
 
-![helpcommand](images/ug/helpcommand.png)
-
 <br>
 
 Format: `help`
+
+<br>
+
+Example:
+```
+help
+```
+Sample Output:
+
+![helpcommand](images/ug/helpcommand.png)
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
