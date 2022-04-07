@@ -291,7 +291,7 @@ Format:
 addskill INDEX [s/SKILL]...
 ```
 
-* Index of applicant specified must be less than the total number of applicants in LinkedOUT. <br>
+* Index of applicant specified must not be more than the total number of applicants in LinkedOUT. <br>
   e.g If there are only `4` applicants in the app but `5` is specified, then the addition will not be carried out as it is invalid.
 * Index of applicant specified must be a positive integer. <br>
   e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant and the addition will not be carried out as it is invalid.
@@ -322,7 +322,7 @@ Format:
 edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​
 ```
 
-* Index of applicant specified must be less than the total number of applicants in LinkedOUT. <br>
+* Index of applicant specified must not be more than the total number of applicants in LinkedOUT. <br>
   e.g If there are only `4` applicants in the app but `5` is specified, then the edit will not be carried out as it is invalid.
 * Index of applicant specified must be a positive integer. <br>
   e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant and the edit will not be carried out as it is invalid.
@@ -455,7 +455,7 @@ Format:
 delete INDEX
 ```
 
-* Index of applicant specified must be less than the total number of applicants in LinkedOUT. <br>
+* Index of applicant specified must not be more than the total number of applicants in LinkedOUT. <br>
   e.g If there are only `4` applicants in the app but `5` is specified, then the deletion will not be carried out as it is invalid
 * Index of applicant specified must be a positive integer. <br>
   e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant and the deletion will not be carried out as it is invalid.
