@@ -7,6 +7,8 @@ import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ROUND;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_SKILL;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 
 import seedu.linkedout.logic.commands.AddCommand;
@@ -62,5 +64,16 @@ public class ApplicantUtil {
             }
         }
         return sb.toString();
+    }
+
+    /**
+     * Returns a new set of skills {@code keywords} to be added for a given applicant.
+     */
+    public static Set<Skill> getApplicantNewSkills(String[] keywords) {
+        Skill[] skillArray = new Skill[keywords.length];
+        for (int i = 0; i < keywords.length; i++) {
+            skillArray[i] = new Skill(keywords[i]);
+        }
+        return new HashSet<Skill>(Arrays.asList(skillArray));
     }
 }

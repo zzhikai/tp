@@ -3,14 +3,24 @@ layout: page
 title: User Guide
 ---
 
-LinkedOUT is the only application that any experienced recruiter needs. LinkedOUT allows recruiters to keep track of many applicants, and the job they applied for. You can store their contact details, skills and the round of their application, all in one place.
-
 ## Table of Contents
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-## Who is this User Guide for?
+## Introduction
+
+**What is LinkedOUT?**
+
+LinkedOUT is the only application that any experienced recruiter needs. LinkedOUT allows recruiters to keep track of many applicants, and the job they applied for. You can store their contact details, skills and the round of their application, all in one place.
+
+LinkedOUT helps recruiters manage the multiple job applications they may receive on a daily basis. With many applications, it may be difficult to keep track of each applicant and which application round they are currently at.
+
+Thus, LinkedOUT aims to improve a recruiter's experience. LinkedOUT presents recruiters with the ability to flag important applicants, edit applicants easily and search for them with ease.
+
+LinkedOUT comes with a Command Line Interface ([CLI](#glossary)) as well as a Graphical User Interface ([GUI](#glossary)) in order to provide recruiters a more streamlined experience.
+
+**Who is this User Guide for?**
 
 This user guide is meant for users who wish to learn how to use our application. It is best suited for recruiters who are looking to incorporate this app into their daily workflows.
 
@@ -40,26 +50,39 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed on your Computer.
 
-2. Download the latest `linkedout.jar` from [here](https://github.com/AY2122S2-CS2103T-T09-2/tp/releases/tag/v1.3(trial)).
+
+2. Download the latest `LinkedOUT.jar` from [here](https://github.com/AY2122S2-CS2103T-T09-2/tp/releases/tag/v1.3(trial)).
+
 
 3. Copy the file to the folder you want to use as the _home folder_ for LinkedOUT.
 
-4. Double-click the file to start the app.
+
+4. **For Windows:** Double-click the file to start the app.<br>
+   **For Mac:** Open up a [terminal](#https://www.maketecheasier.com/launch-terminal-current-folder-mac/) in the current folder you have installed LinkedOUT. <br>
+   Then, run the following command: <br>
+   ```java -jar LinkedOUT.jar``` 
+   
+    <br>
+   
+    LinkedOUT comes with sample data for you to experiment on. Upon starting the application, you should see the following screen:
+    
+    ![ui](images/ug/defaultui.png)
+
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-  * **`list`** : Lists all job applicants, along with an overview of each applicant.
+    * **`list`** : Lists all job applicants, along with an overview of each applicant.
 
-  * **`add`**`n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas` : Adds an applicant named `Bob` to the list of applicants.
-
-  * **`delete`**`INDEX` : Deletes the applicant from the list of applicants.
-
-  * **`exit`** : Exits the app.
-
-6. Refer to the [Features](#features) below for details of each command.
+    * **`add`**`n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas` : Adds an applicant named `Bob` to the list of applicants.
+    
+     * **`delete`**`1` : Deletes the first applicant from the list of applicants.
+    
+    * **`exit`** : Exits the app.
+    
+    * Refer to the [Features](#features) below for details of each command.
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -80,7 +103,7 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 * Words in `UPPER_CASE` are the inputs to be supplied by you.<br>
   Items in square brackets are optional. These inputs are optional because they are additional information you may
   not have yet.<br>
-  e.g. in `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]…​`.<br> 
+  e.g. `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]…​`.<br> 
   `NAME`, `PHONE_NUMBER`, `EMAIL`, `JOB`, `ROUND`, `SKILL` are inputs which can be used 
   as<br>
   `add n/John p/999 e/john@e.com j/Engineer r/Interview s/Python` with `s/Python` being optional.
@@ -89,14 +112,14 @@ Cautions are placed in this guide to serve as warnings for certain actions.
   e.g. `[s/SKILL]…​` can be used as `s/Python`, `s/Python s/Java` etc.
 
 * Prefixes can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. If the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If an input is expected only once in the command but you specified it multiple times,
   only the last occurrence of the input will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. If you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous inputs for commands that do not take in inputs (such as `help`, `list` and `exit`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  e.g. If the command specifies `help 123`, it will be interpreted as `help`.
   
 * `INDEX` refers to the index of the Applicant in the displayed list. `INDEX` must be a positive integer.<br>
   e.g. `delete 1` is valid and `delete -1` is invalid.
@@ -109,6 +132,21 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 **:information_source: Notes about sample output:**
 The sample output used in this guide are text representations of the result displayed on our display panel.<br>
 Hence, they are not actual representations of what you may see on the application.
+</div>
+
+<br>
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes about the different attributes:**
+Listed below are the different attributes that an applicant has. Some attributes have requirements which are listed below.
+
+* **Name**: {fill in on how cannot have name}
+* **Phone**: {fill in constraint}
+* **Email**: {constraint}
+* **Job**: {alphanumeric constraint}
+* **Round**: {alphanumeric constraint}
+* **Skill**: A single skill can be made up of 1 to 5 words. The skill cannot be completely made up of symbols. However, a mix of alphanumeric and symbols are allowed. 
+  eg. `!@#` is not allowed but `C#` is allowed.
 </div>
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -141,9 +179,6 @@ Format:
 ```
 add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]…​
 ```
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Adding skills is an optional feature
-</div>
 
 <br>
 
@@ -152,14 +187,8 @@ Example:
 add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas s/Python
 ```
 Sample Output:
-```
-New applicant added: Bob; 
-Phone: 99999999; 
-Email: bob@example.com; 
-Job: Data Analyst;
-Round: Interview; 
-Skills: Pandas, Python;
-```
+
+![addcommand](images/ug/addcommand.png)
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -182,23 +211,8 @@ Example:
 list
 ```
 Sample Output:
-```
-Listed all applicants
 
-Name: Steve Jobs;
-Phone: 99999999;
-Email: stevejobs@apple.mail;
-Job: iOS Developer;
-Round: Hired;
-Skills: Swift;
-
-Name: Elon Musk;
-Phone: 88888888;
-Email: elonmusk@tesla.com;
-Job: Software Engineer;
-Round: Technical Interview;
-Skills: Java, JavaFX, Gradle;
-```
+![listcommand](images/ug/listcommand.png)
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -214,30 +228,24 @@ Format:
 view NAME
 ```
 * You must provide an exact match of an applicant's full name in order to view their details.<br>
-  e.g. if an applicant's full name is `Steve Jobs`, and the command provided is `view Steve` then LinkedOUT will not
-  display `Steve Jobs`' details. <br>
+  e.g. If an applicant's full name is `Steve Jobs`, and the command provided is `view Steve` then LinkedOUT will not
+  display `Steve Jobs`'s details. <br>
 * The view command is case-insensitive. <br>
-  e.g `hans` will match `Hans`
-* Only full name will be matched <br>
-  e.g. `Han Lee` will not match `Han`
-* Only exact full name with correct spacing will be matched <br>
-  e.g. `HanLee` will not match `Han Lee`
+  e.g `hans` will match `Hans`.
+* Only full name will be matched. <br>
+  e.g. `Han Lee` will not match `Han`.
+* Only exact full name with correct spacing will be matched. <br>
+  e.g. `HanLee` will not match `Han Lee`.
 
 <br>
 
 Example:
 ```
-view Steve Jobs
+view Bernice Yu
 ```
 Sample Output:
-```
-Name: Steve Jobs;
-Phone: 99999999;
-Email: stevejobs@apple.mail;
-Job: iOS Developer;
-Round: Hired;
-Skills: Swift;
-```
+
+![viewcommand](images/ug/viewcommand.png)
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -263,33 +271,11 @@ the name `Alex` or skill `Java`!
 
 Example:
 ```
-search n/Steve j/Software
+search n/Roy s/Java
 ```
 Sample Output:
-```
-3 applicants listed!
 
-Name: Steve Jobs;
-Phone: 99999999;
-Email: stevejobs@apple.mail;
-Job: iOS Developer;
-Round: Hired;
-Skills: Swift;
-
-Name: Steve Carroll;
-Phone: 99999111;
-Email: stevecarroll@g.mail;
-Job: Actor;
-Round: Audition;
-Skills: Acting;
-
-Name: Charles Leclerc;
-Phone: 10101010;
-Email: charles@g.mail;
-Job: Software Developer;
-Round: Onboarding;
-Skills: Java;
-```
+![searchcommand](images/ug/searchcommand.png)
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -308,24 +294,18 @@ addskill INDEX [s/SKILL]...
 * Only valid indexes are edited. <br>
   e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
 * Only positive indexes are edited. <br>
-  e.g As we label our applicants starting from `1...`, an index of `-1` will not be tagged to an applicant.
+  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
 * If you would like to replace or remove certain skills instead, consider using [`edit`](https://ay2122s2-cs2103t-t09-2.github.io/tp/UserGuide.html#editing-an-applicant--edit).
 
 <br>
 
 Example:
 ```
-addskill 1 s/Vue s/Angular
+addskill 1 s/React s/Vue
 ```
 Sample Output:
-```
-Added skills to Applicant: Ben Wad; 
-Phone: 11111111; 
-Email: benwad@example.com; 
-Job: Software Engineer; 
-Round: Technical Interview; 
-Skills: React, Vue, Angular;
-```
+
+![addskillcommand](images/ug/addskillcommand.png)
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -345,11 +325,13 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​
 * Only valid indexes are edited. <br>
   e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
 * Only positive indexes are edited. <br>
-  e.g As we label our applicants starting from `1...`, an index of `-1` will not be tagged to an applicant.
-* You may remove skills by re-typing all the pre-existing skills while leaving out the one you wish to remove. <br>
-  e.g An applicant has skills `Excel` and `Word`. To remove the skill `Excel`, you may type the following command. `edit INDEX s/Word`
-  While you are able to add skills using `edit`, a simpler way would be to use our alternative command [`addskill`](https://ay2122s2-cs2103t-t09-2.github.io/tp/UserGuide.html#adding-skills-to-an-applicant-addskill).
-* You can remove all of an applicant's skills by simply typing `edit INDEX s/` without adding anything behind `s/`.
+  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
+* As an applicant can have more than 1 skill, you may remove skills using `edit` as illustrated by the following example: <br>
+  e.g An applicant has skills `Excel`, `Word`, `Docs`. To remove the skill `Excel`, you may type the following command. `edit INDEX s/Word s/Docs`.
+* You may also add skills using `edit`. However, a simpler way of doing so would be to use our alternative command [`addskill`](https://ay2122s2-cs2103t-t09-2.github.io/tp/UserGuide.html#adding-skills-to-an-applicant-addskill).
+  <br> To add skills with `edit`, you may do so as illustrated by the following example: <br>
+  e.g An applicant has skill `Excel`. To add the skills `Word` and `Docs`, you may type the following command. `edit INDEX s/Excel s/Word s/Docs`.
+* You can remove all of an applicant's skills by simply typing `edit INDEX s/` without adding anything behind `s/`. <br>
   <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
   This will clear all skills previously added for an applicant and cannot be undone.
   </div>
@@ -358,24 +340,19 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​
 
 Example:
 ```
-edit 1 p/91234567 e/johndoe@example.com
+edit 1 p/91234567 e/yeoh.99@example.com
 ```
 Sample Output:
-```
-Edited Applicant: David Lee; 
-Phone: 91234567; 
-Email: johndoe@example.com; 
-Job: Risk Assessment Associate; 
-Round: Stock Pitch Assessment; 
-Skills: Accounting, Cryptocurrency, Options;
-```
+
+![editcommand](images/ug/editcommand.png)
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
 ### Sorting applicants : `sort`
 
-Allows you to sort the list of applicants temporarily by name or by job. You can sort based on ascending or descending order.
+Allows you to sort the list of applicants **temporarily** by name or by job. That is to say, the list will not stay sorted if you were to use other commands following sort.
+You can sort based on ascending or descending order.
 
 <br>
 
@@ -395,26 +372,11 @@ sort f/FIELD o/ORDER
 
 Example:
 ```
-sort f/NAME o/ASC
+sort f/job o/asc
 ```
 Sample Output:
-```
-List has been sorted in ascending order according to NAME
 
-Name: Elon Musk;
-Phone: 88888888;
-Email: elonmusk@tesla.com;
-Job: Software Engineer;
-Round: Technical Interview;
-Skills: Java JavaFX Gradle;
-
-Name: Steve Jobs;
-Phone: 99999999;
-Email: stevejobs@apple.mail;
-Job: iOS Developer;
-Round: Hired;
-Skills: Swift;
-```
+![sortcommand](images/ug/sortcommand.png)
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -433,7 +395,7 @@ flag INDEX
 * Only valid indexes are flagged. <br>
   e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
 * Only positive indexes are flagged. <br>
-  e.g As we label our applicants starting from `1...`, an index of `-1` will not be tagged to an applicant.
+  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
 * Flag acts like a toggle. To un-flag the applicant, you may simply re-type the same command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -447,14 +409,9 @@ Example:
 flag 1
 ```
 Sample Output:
-```
-Flagged Applicant: David Lee; 
-Phone: 91234567; 
-Email: johndoe@example.com; 
-Job: Risk Assessment Associate; 
-Round: Stock Pitch Assessment; 
-Skills: Accounting, Cryptocurrency, Options;
-```
+
+![flagcommand](images/ug/flagcommand.png)
+
 <br>
 
 Extended Example for unflagging:
@@ -463,14 +420,10 @@ flag 1
 ```
 
 Extended Sample Output for unflagging:
-```
-Unflagged Applicant: David Lee; 
-Phone: 91234567; 
-Email: johndoe@example.com; 
-Job: Risk Assessment Associate; 
-Round: Stock Pitch Assessment; 
-Skills: Accounting, Cryptocurrency, Options;
-```
+
+![unflagcommand](images/ug/unflaggedcommand.png)
+
+<br>
 
 <div markdown="block" class="alert alert-info">
 
@@ -482,9 +435,9 @@ e.g After executing a search, sort or view command, `flag 1` still flags/unflags
 except after search and view commands. <br>
   In that case, flagged applicants will be displayed according to the command's sorting order,
   and will no longer be displayed at the top.
-  * E.g After a sort command, flagged applicants are not displayed at the top of the list and will be displayed according to the order 
+  * e.g After a sort command, flagged applicants are not displayed at the top of the list and will be displayed according to the order 
   specified in the command. 
-  * E.g After a search command, applicants will be displayed in order of which applicants most satisfy the search conditions.
+  * e.g After a search command, applicants will be displayed in order of which applicants most satisfy the search conditions.
 
 </div>
 
@@ -505,7 +458,7 @@ delete INDEX
 * Only valid indexes are deleted. <br>
   e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
 * Only positive indexes are deleted. <br>
-  e.g As we label our applicants starting from `1...`, an index of `-1` will not be tagged to an applicant.
+  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
 
 <br>
 
@@ -514,14 +467,8 @@ Example:
 delete 1
 ```
 Sample Output:
-```
-Deleted Applicant: Bernice Yu; 
-Phone: 99272758; 
-Email: berniceyu@example.com; 
-Job: Social Media Marketer; 
-Round: Instagram Check; 
-Skills: Video Editing, Social Media Marketing;
-```
+
+![deletecommand](images/ug/deletecommand.png)
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If you delete a specific applicant, LinkedOUT will permanently discard the applicant's data 
@@ -538,8 +485,21 @@ Clears the list of applicants
 
 Format: `clear`
 
+<br>
+
+Example:
+```
+clear 
+```
+
+Sample Output:
+
+![clearcommand](images/ug/clearcommand.png)
+
+
+
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-LinkedOUT will discard all data and start with an empty data file once you select 'Yes' on the confirmation box.
+LinkedOUT will discard all data and start with an empty data file once you select 'Yes' on the confirmation box. Selecting 'No' will cancel the action.
 </div>
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -552,6 +512,11 @@ Exits the program.
 <br>
 
 Format: `exit`
+
+Example:
+```
+exit
+```
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -583,6 +548,16 @@ If your changes to the data file makes its format invalid, LinkedOUT will discar
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+* **GUI**: Graphical User Interface: Refers to the user interface that the user interacts with.
+* **CLI**: Command Line Interface: Refers to a computer program that accepts text inputs.
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+
 ## Command summary
 
 | Action     | Format, Examples                                                                                                                                      |
