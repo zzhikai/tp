@@ -2,7 +2,9 @@ package seedu.linkedout.model.applicant;
 
 import static seedu.linkedout.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -147,21 +149,25 @@ public class Applicant implements Comparable<Applicant> {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("\tName: " + getName());
+        builder.append("\nName: " + getName());
 
         Set<Skill> skills = getSkills();
-        if (!skills.isEmpty()) {
-            builder.append("\n\t\t\t\t\tSkills: ");
-            skills.forEach(builder::append);
+        Skill[] skillArray = skills.stream().toArray(Skill[]::new);
+        Arrays.sort(skillArray, Comparator.comparing(Skill::toString));
+        if (skillArray.length != 0) {
+            builder.append("\nSkills: ");
+            for (int i = 0; i < skillArray.length; i++) {
+                builder.append(skillArray[i].toString());
+            }
         }
 
-        builder.append("\n\t\t\t\t\tPhone: ")
+        builder.append("\nPhone: ")
                 .append(getPhone())
-                .append("\n\t\t\t\t\tEmail: ")
+                .append("\nEmail: ")
                 .append(getEmail())
-                .append("\n\t\t\t\t\tJob Applied: ")
+                .append("\nJob Applied: ")
                 .append(getJob())
-                .append("\n\t\t\t\t\tRound: ")
+                .append("\nRound: ")
                 .append(getRound());
         return builder.toString();
     }

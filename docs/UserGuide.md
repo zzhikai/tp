@@ -156,6 +156,8 @@ Listed below are the different attributes that an applicant has. Some attributes
 
 Shows you a message explaining how to access the help page.
 
+![helpcommand](images/ug/helpcommand.png)
+
 <br>
 
 Format: `help`
@@ -340,7 +342,7 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​
 
 Example:
 ```
-edit 1 p/91234567 e/yeoh.99@example.com
+edit 1 p/91234567 e/yeoh.99@example.com s/Rust
 ```
 Sample Output:
 
