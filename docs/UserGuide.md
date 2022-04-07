@@ -122,6 +122,10 @@ Cautions are placed in this guide to serve as warnings for certain actions.
   only the last occurrence of the input will be taken.<br>
   e.g. If you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
+* If a valid prefix is given twice but you only specified input for the last occurrence of prefix, you will not receive errors.
+  However, if you left the input for the last prefix empty, you will receive error message.<br>
+  e.g. If you specify `p/ p/56785678`, `p/56785678` will be taken but if you specify `p/56785678 p/`, you will receive error message.
+
 * Extraneous inputs for commands that do not take in inputs (such as `help`, `list` and `exit`) will be ignored.<br>
   e.g. If the command specifies `help 123`, it will be interpreted as `help`.
   
