@@ -291,10 +291,10 @@ Format:
 addskill INDEX [s/SKILL]...
 ```
 
-* Only valid indexes are edited. <br>
-  e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
-* Only positive indexes are edited. <br>
-  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
+* Index specified must be less than the total number of applicants in LinkedOUT. <br>
+  e.g If there are only `4` applicants in the app but `5` is specified, then the addition will not be carried out as it is invalid.
+* Index specified must be a positive integer. <br>
+  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant and the addition will not be carried out as it is invalid.
 * If you would like to replace or remove certain skills instead, consider using [`edit`](https://ay2122s2-cs2103t-t09-2.github.io/tp/UserGuide.html#editing-an-applicant--edit).
 
 <br>
@@ -322,10 +322,10 @@ Format:
 edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​
 ```
 
-* Only valid indexes are edited. <br>
-  e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
-* Only positive indexes are edited. <br>
-  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
+* Index specified must be less than the total number of applicants in LinkedOUT. <br>
+  e.g If there are only `4` applicants in the app but `5` is specified, then the edit will not be carried out as it is invalid.
+* Index specified must be a positive integer. <br>
+  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant and the edit will not be carried out as it is invalid.
 * As an applicant can have more than 1 skill, you may remove skills using `edit` as illustrated by the following example: <br>
   e.g An applicant has skills `Excel`, `Word`, `Docs`. To remove the skill `Excel`, you may type the following command. `edit INDEX s/Word s/Docs`.
 * You may also add skills using `edit`. However, a simpler way of doing so would be to use our alternative command [`addskill`](https://ay2122s2-cs2103t-t09-2.github.io/tp/UserGuide.html#adding-skills-to-an-applicant-addskill).
@@ -392,10 +392,10 @@ Format:
 flag INDEX
 ```
 
-* Only valid indexes are flagged. <br>
-  e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
-* Only positive indexes are flagged. <br>
-  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
+* Index specified must be less than the total number of applicants in LinkedOUT. <br>
+  e.g If there are only `4` applicants in the app but `5` is specified, then the flagging will not be carried out as it is invalid.
+* Index specified must be a positive integer. <br>
+  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant and the flagging will not be carried out as it is invalid.
 * Flag acts like a toggle. To un-flag the applicant, you may simply re-type the same command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
