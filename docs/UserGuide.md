@@ -437,7 +437,7 @@ except after search and view commands. <br>
   and will no longer be displayed at the top.
   * e.g After a sort command, flagged applicants are not displayed at the top of the list and will be displayed according to the order 
   specified in the command. 
-  * e.g After a search command, applicants will be displayed in order of which applicants most satisfy the search conditions.
+  * e.g After a search command, applicants will be displayed in descending order of number of matches with the search conditions.
 
 </div>
 
@@ -455,10 +455,10 @@ Format:
 delete INDEX
 ```
 
-* Only valid indexes are deleted. <br>
-  e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
-* Only positive indexes are deleted. <br>
-  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
+* Index specified must be less than the total number of applicants in LinkedOUT. <br>
+  e.g If there are only `4` applicants in the app but `5` is specified, then the deletion will not be carried out as it is invalid
+* Index specified must be a positive integer. <br>
+  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant and the deletion will not be carried out as it is invalid.
 
 <br>
 
