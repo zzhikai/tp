@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("addskill 1 s/Java")
+[-> LogicManager : execute\n("addskill 1 s/C++ s/Vue")
 activate LogicManager
 
-LogicManager -> LinkedoutParser : parseCommand("addskill 1 s/Java")
+LogicManager -> LinkedoutParser : parseCommand\n("addskill 1 s/C++ s/Vue")
 activate LinkedoutParser
 
 create AddSkillCommandParser
@@ -26,7 +26,7 @@ activate AddSkillCommandParser
 AddSkillCommandParser --> LinkedoutParser
 deactivate AddSkillCommandParser
 
-LinkedoutParser -> AddSkillCommandParser : parse(" 1 s/Java")
+LinkedoutParser -> AddSkillCommandParser : parse\n(" 1 s/C++ s/Vue")
 activate AddSkillCommandParser
 
 create AddSkillCommand

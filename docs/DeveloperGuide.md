@@ -359,7 +359,7 @@ The following activity diagram shows the workflow for the edit operation:
 
 Given below is an example usage scenario of how an applicant is edited.
 
-1. The user enters the edit command with the specific fields to edit, `edit 1 r/HR Interview`.
+1. The user enters the edit command with the specific fields to edit, `edit 1 n/Alex Tan`.
 
 
 2. LinkedOUT updates the applicant with the edited information.
@@ -407,7 +407,7 @@ The following activity diagram shows the workflow for the view operation:
 
 Given below is an example usage scenario of how to view a specific applicant.
 
-1. The user enters the view command with the specific name, `view Alex Megos`.
+1. The user enters the view command with the specific name, `view Alex Tan`.
    
 
 2. `LinkedoutParser` is invoked to handle the command `view` through `LinkedoutParser#parseCommand()`. 
@@ -471,13 +471,15 @@ The following activity diagram shows the workflow of the search command:
 Given below is an example usage scenario and how the search mechanism behaves at each step.
 
 Example 1
-1. The user enters search command with prefix and specified keyword , `search n/David`.
+1. The user enters search command with prefix and specified keyword , `search n/David Lee`.
 
 
-2. The input keywords will be passed into `SearchCommandParser` and creates a `NameContainsKeywordsPredicate` if the keyword and prefix are not empty.
+2. The input keywords will be passed into `SearchCommandParser` and creates a `NameContainsKeywordsPredicate` if the keyword
+   and prefix are not empty.
 
 
-3. The predicate is then passed into `Model#updateSearchApplicantList()` to filter and display applicants with partial name matching of "David" in LinkedOUT.
+3. The predicate is then passed into `Model#updateSearchApplicantList()` to filter and display applicants with partial name
+   matching of "David" or "Lee" in LinkedOUT.
 
 
 Example 2
