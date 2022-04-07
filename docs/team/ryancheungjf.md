@@ -11,38 +11,47 @@ LinkedOUT allows recruiters to keep track of many applicants, and the job they a
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-    * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-    * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-    * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+**Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=ryancheungjf&breakdown=true)
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+<br>
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=ryancheungjf&breakdown=true)
+* **New Feature**: Added the ability to add skills to a particular applicant. (Pull request [\#156](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/156)).
+    * What it does: Allows the user to add skills to a particular applicant without using the edit command.
+    * Justification: This feature improves the product significantly because if a user was to use the edit command to add skills, he would have to retype all pre-existing skills.
+      Hence, this command provides an alternative by appending the new skills to the pre-existing list, thereby improving user experience.
+    * Highlights: Trying to figure out the best Implementation without sacrificing code quality as the command uses functions which are shared between other commands.
+    * Credits: Credits to Zhikai for assisting me in thinking of different implementations and weighing their effectiveness.
+
+<br>
+
+* **Enhancements implemented**:
+  * Added functionality to allow search to work with round, an attribute of an applicant. This allows users to work have a better user experience if they wanted to filter based on skills. 
+    It also allowed me to work on features with others. (Pull request [\#124](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/124))
+    <div style="page-break-after: always;"></div>
+  * Created dummy LinkedOUT classes to assist the process of refactoring codebase. This was to prevent the original AB3 from breaking while others were working on their changes. (Pull request [\#43](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/43))
+  * Integrated new classes and files from LinkedOUT into AB3's codebase. Allowed me to have the chance to work directly with others as my teammates helped to push to my PR as well. (Pull request [\#57](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/57))
+  * Wrote additional tests for existing features to increase coverage from 69% to 72% (Pull request [\#222](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/222)).
+  * Helped to improve test cases to maintain code quality, applying concepts learnt in class of test partitions. (Pull request [\#91](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/91)).
+  
+<br>
 
 * **Project management**:
-    * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+    * Helped to handle the creation of milestone v1.4 and creation of team issues. (Issues [\#112](https://github.com/AY2122S2-CS2103T-T09-2/tp/issues/112), [\#113](https://github.com/AY2122S2-CS2103T-T09-2/tp/issues/113)).
 
-* **Enhancements to existing features**:
-    * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-    * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+<br>
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `delete` and `find` [\#72]()
-        * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+        * Added documentation for the features `addskill`. (Pull request [\#164](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/164)).
+        * Helped to maintain formatting and quality. Assisted in making changes based on reviews done in class. (Pull request [\#122](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/122)).
     * Developer Guide:
-        * Added implementation details of the `delete` feature.
+        * Added implementation details of the `addskill` and `view` feature. (Pull requests [\#104](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/104), [\#159](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/159)).
+        * Added documentation for manual testing of `addskill` and `delete` command. (Pull request [\#221](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/221)).
+        * Helped to refactor pre-existing AB3 PUML files and diagrams. (Pull request [\#96](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/96)).
+
+<br>
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-    * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-    * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-    * Integrated a third party library (Natty) to the project ([\#42]())
-    * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+    * PRs reviewed (with non-trivial review comments): (Pull requests [\#90](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/90), [\#121](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/121), [\#157](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/157)).
+    * Contributed to forum discussions (Pull requests [#73](https://github.com/nus-cs2103-AY2122S2/forum/issues/73), [#127](https://github.com/nus-cs2103-AY2122S2/forum/issues/127#issuecomment-1033284269)).
+    * Reported non-trivial bugs and suggestions for other teams in the class (Pull requests [#190](https://github.com/AY2122S2-CS2103T-T17-2/tp/issues/190), [#194](https://github.com/AY2122S2-CS2103T-T17-2/tp/issues/194)).
