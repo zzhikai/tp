@@ -115,7 +115,8 @@ Cautions are placed in this guide to serve as warnings for certain actions.
   e.g. If the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If an input contains `"/"`, you cannot put spacing after its prefix.<br>
-  e.g. `s/Java/Python` will be interpreted as skills in `Java/Python` but if you specify `n/Bob s/  Java/Python`, `Java/` will be interpreted as a prefix.
+  e.g. `s/Java/Python` will be interpreted as skills in `Java/Python` but if you specify
+  `n/Bob s/  Java/Python`, `Java/` will be interpreted as a prefix.
 
 * If an input is expected only once in the command but you specified it multiple times,
   only the last occurrence of the input will be taken.<br>
