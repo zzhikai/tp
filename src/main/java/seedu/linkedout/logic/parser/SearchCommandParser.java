@@ -33,9 +33,9 @@ public class SearchCommandParser implements Parser<SearchCommand> {
      */
     public SearchCommand parse(String args) throws ParseException {
 
-
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_JOB,
                 PREFIX_ROUND, PREFIX_SKILL);
+
         boolean hasNoPrefixesPresent = !hasAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_JOB,
                 PREFIX_ROUND, PREFIX_SKILL);
         boolean hasNoEmptyPreamble = !argMultimap.getPreamble().isEmpty();
