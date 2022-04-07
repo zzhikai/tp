@@ -1,7 +1,6 @@
 package seedu.linkedout.logic.parser;
 
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_PREFIX;
 import static seedu.linkedout.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
@@ -83,8 +82,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", String.format(
-                MESSAGE_INVALID_PREFIX, EditCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
