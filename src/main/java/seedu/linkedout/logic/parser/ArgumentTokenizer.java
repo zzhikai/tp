@@ -188,13 +188,14 @@ public class ArgumentTokenizer {
      * @return string after the keyword
      */
     private static String removeLeadingKeywordWithSlash(String str) {
-        String keyword = str.trim();
+        String keyword = str;
         int whitespaceIndex = str.indexOf(" ");
         int keywordSlashIndex = str.indexOf("/");
-
         //Extra check for keyword with "/" e.g.baker/chef j/engineer -> j/engineer
         if (hasNextWhiteSpace(keyword) && whitespaceIndex > keywordSlashIndex) {
             keyword = removesStringBeforeWhiteSpace(keyword, whitespaceIndex);
+        } else if (!hasNextWhiteSpace(keyword) && hasNextSlash(keyword)) { //remove java/python (as a keyword)
+            keyword = "";
         }
         return keyword;
     }
@@ -239,6 +240,10 @@ public class ArgumentTokenizer {
         return str.indexOf("/");
     }
 
+    private static String getUncheckedPrefix(int slashIndex, String str) {
+        return str.substring(0, slashIndex + 1);
+    }
+
     /**
      * Process for checking if input string contains any invalid prefix
      * @param argsString
@@ -251,14 +256,14 @@ public class ArgumentTokenizer {
         boolean isInvalidPrefix = false;
         int slashIndex;
 
-        while (hasSlashInString) {
+        while (hasSlashInString && hasNextWhiteSpace) { //checking of whitespace is needed for keyword with slash
             slashIndex = slashIndex(argsString); //update slash index on each iteration
-            String uncheckedPrefix = argsString.substring(0, slashIndex + 1);
+            String uncheckedPrefix = getUncheckedPrefix(slashIndex, argsString);
             boolean hasValidPrefix = isValidPrefixFormat(uncheckedPrefix, argumentMultimap);
             if (hasValidPrefix) {
                 //Removes the previously checked prefix and keyword,e.g."s/baker/chef j/engineer" -> "j/engineer"
-                argsString = argsString.substring(slashIndex + 1).trim();
-                argsString = removeLeadingKeywordWithSlash(argsString);
+                argsString = argsString.substring(slashIndex + 1);
+                argsString = removeLeadingKeywordWithSlash(argsString).trim(); //extra check for input with slash
                 argsString = removeLeadingKeyword(argsString);
             } else {
                 isInvalidPrefix = true;
@@ -269,6 +274,16 @@ public class ArgumentTokenizer {
                 break;
             }
         }
+        // if still have slash after the checking, e.g. "w/"
+        if (hasSlashInString) {
+            slashIndex = slashIndex(argsString);
+            String uncheckedPrefix = getUncheckedPrefix(slashIndex, argsString);
+            boolean isValidPrefix = isValidPrefixFormat(uncheckedPrefix, argumentMultimap);
+            if (!isValidPrefix) {
+                isInvalidPrefix = true;
+            }
+        }
+
         return isInvalidPrefix;
     }
 
