@@ -1,7 +1,6 @@
 package seedu.linkedout.logic.parser;
 
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_PREFIX;
 import static seedu.linkedout.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.linkedout.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -49,29 +48,6 @@ public class SearchCommandParserTest {
         //missing one prefix
         assertParseFailure(parser, "Dave s/Javadocs", String.format(
                 MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
-    }
-
-    @Test
-    public void parse_invalidPrefix_throwsParseException() {
-        // wrong prefix
-        assertParseFailure(parser, "w/Alice Bob", String.format(
-                MESSAGE_INVALID_PREFIX, SearchCommand.MESSAGE_USAGE));
-
-        // first prefix correct but second prefix wrong
-        assertParseFailure(parser, "n/Alice Bob w/Software Engineer", String.format(
-                MESSAGE_INVALID_PREFIX, SearchCommand.MESSAGE_USAGE));
-
-        // wrong prefix between correct prefixes
-        assertParseFailure(parser, "n/Alice Bob w/Software Engineer s/Java", String.format(
-                MESSAGE_INVALID_PREFIX, SearchCommand.MESSAGE_USAGE));
-
-        // spaces between prefixes
-        assertParseFailure(parser, "n/   Alice Bob      w/  Software Engineer s/Java", String.format(
-                MESSAGE_INVALID_PREFIX, SearchCommand.MESSAGE_USAGE));
-
-        // slash between prefixes
-        assertParseFailure(parser, "n/   Alice Bob      w/  Software/Engineer s/Java", String.format(
-                MESSAGE_INVALID_PREFIX, SearchCommand.MESSAGE_USAGE));
     }
 
     @Test
