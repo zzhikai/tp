@@ -91,9 +91,6 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 
 ## Features
 
-### GUI Introduction
-![GUIintroduction](images/ug/ui-with-intro-annotation.png)
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -142,6 +139,10 @@ Hence, they are not actual representations of what you may see on the applicatio
 
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+### GUI Introduction
+![GUIintroduction](images/ug/ui-with-intro-annotation.png)
 
 ---
 ### Prefix and Input Summary
