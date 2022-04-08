@@ -285,8 +285,6 @@ should not exceed the destroy marker X. This is a known limitation of PlantUML.<
     * Pros: Avoid creation of unnecessary objects
     * Cons: May cause reduced performance
 
-_{more aspects and alternatives to be added}_
-
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
