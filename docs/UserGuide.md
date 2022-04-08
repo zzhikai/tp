@@ -355,7 +355,8 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​
   e.g An applicant has skill `Excel`. To add the skills `Word` and `Docs`, you may type the following command. `edit INDEX s/Excel s/Word s/Docs`.
 * You can remove all of an applicant's skills by simply typing `edit INDEX s/` without adding anything behind `s/`. <br>
   <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-  This will clear all skills previously added for an applicant and cannot be undone.
+  This will clear all skills previously added for an applicant and cannot be undone. 
+* At least one attribute must be provided to be edited. i.e. `edit INDEX` is an invalid command. 
   </div>
 
 <br>
