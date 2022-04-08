@@ -137,7 +137,7 @@ Hence, they are not actual representations of what you may see on the applicatio
 ---
 ### Prefix and Input Summary
 
-The table below illustrates the meaning of the prefixes
+The table below illustrates the meaning of the prefixes and their respective inputs
 
 | Prefix | Meaning                  | Input       | Constraints |
 |:-------|:-------------------------|:------------|:------------|
