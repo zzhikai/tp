@@ -470,10 +470,10 @@ It takes in prefix(es) with case-insensitive parameter, which can be applicant's
 #### Implementation
 
 The proposed search mechanism is facilitated by `SearchCommandParser`. `SearchCommandParser` will map the creation of `KeywordsPredicate` based on the input prefix. `KeywordsPredicate` supports the following implementation:
-* `NameContainsKeywordsPredicate` — Predicate which returns true if an applicant's full name matches partially with the exact input keyword.
-* `JobContainsKeywordsPredicate` — Predicate which returns true if an applicant's job name matches partially with the exact input keyword.
-* `RoundContainsKeywordsPredicate` — Predicate which returns true if an applicant's round matches partially with the exact input keyword.
-* `ApplicantContainsSkillKeywordsPredicate` — Predicate which returns true if an applicant's skill matches partially with the exact input keyword.
+* `NameContainsKeywordsPredicate` — Predicate which returns true if an applicant's full name matches partially with the exact input attribute.
+* `JobContainsKeywordsPredicate` — Predicate which returns true if an applicant's job name matches partially with the exact input attribute.
+* `RoundContainsKeywordsPredicate` — Predicate which returns true if an applicant's round matches partially with the exact input attribute.
+* `ApplicantContainsSkillKeywordsPredicate` — Predicate which returns true if an applicant's skill matches partially with the exact input attribute.
 
 These predicates assist the filtering of applicant list in the `Model` interface, specifically for  `Model#updateSearchApplicantList()` and `Model#getDefaultApplicantList()`.
 
@@ -484,10 +484,10 @@ The following activity diagram shows the workflow of the search command:
 Given below is an example usage scenario and how the search mechanism behaves at each step.
 
 Example 1
-1. The user enters search command with prefix and specified keyword , `search n/David Lee`.
+1. The user enters search command with prefix and specified attribute, `search n/David Lee`.
 
 
-2. The input keywords will be passed into `SearchCommandParser` and creates a `NameContainsKeywordsPredicate` if the keyword
+2. The input attributes will be passed into `SearchCommandParser` and creates a `NameContainsKeywordsPredicate` if the attribute
    and prefix are not empty.
 
 
@@ -499,10 +499,10 @@ Example 2
 1. The user enters `search j/Software n/David` command to search for applicants in LinkedOUT.
 
 
-2. The input keywords will be passed into `SearchCommandParser` and creates a `JobContainsKeywordsPredicate` and `NameContainsKeywordsPredicate` if the keywords are not empty.
+2. The input attributes will be passed into `SearchCommandParser` and creates a `JobContainsKeywordsPredicate` and `NameContainsKeywordsPredicate` if the attributes are not empty.
 
 
-3. The predicate is then passed into `Model#updateSearchApplicantList()` to filter and sort the applicants with partial job and name matching of `Software` or `David`. Applicant with the most matched keywords will be displayed on the top of LinkedOUT.
+3. The predicate is then passed into `Model#updateSearchApplicantList()` to filter and sort the applicants with partial job and name matching of `Software` or `David`. Applicant with the most matched attributes will be displayed on the top of LinkedOUT.
 
 The following sequence diagram shows how the search operation works:
 
@@ -512,7 +512,7 @@ The following sequence diagram shows how the search operation works:
 
 **Aspect: How search executes:**
 
-* **Alternative 1 (current choice):** Uses prefixes to search for applicants with combination of matching keywords.
+* **Alternative 1 (current choice):** Uses prefixes to search for applicants with combination of matching attributes.
     * Pros: Able to search an applicant using combination of different fields/prefixes. Provides a more precise and broader search.
     * Cons: Hard to implement.
 
@@ -542,7 +542,7 @@ Given below is an example usage scenario and how the search mechanism behaves at
 1. The user enters the sort command with the specific field to sort by and sorting order,
    `sort f/name o/asc`.
    
-2. The input keywords will be passed into `SortCommandParser` and creates a `SortComparator` 
+2. The input fields will be passed into `SortCommandParser` and creates a `SortComparator` 
    if the field and order are not empty.
    
 3. The `SortComparator` is then passed into `Model#updateDefaultApplicantList()` to sort and display
@@ -953,19 +953,19 @@ testers are expected to do more *exploratory* testing.
        Expected: Only applicant named `Bob Tan` is displayed in the list.
 
     4. Test case: `search n/bOb`<br>
-       Expected: Only applicant named `Bob Tan` is displayed in the list. This is because search keywords are case-insensitive.
+       Expected: Only applicant named `Bob Tan` is displayed in the list. This is because search attributes are case-insensitive.
 
     5. Test case: `search n/Jason`<br>
        Expected: No applicant is displayed in the list.
 
     6. Test case: `search n/Bo`<br>
-       Expected: No applicant is displayed in the list. This is because search keyword has to be an exact word (can be split by spacing).
+       Expected: No applicant is displayed in the list. This is because search attribute has to be an exact word (can be split by spacing).
 
     7. Test case: `search j/Bob`<br>
-       Expected: No applicant is displayed in the list. This is because the search keyword has to match with the correct prefix.
+       Expected: No applicant is displayed in the list. This is because the search attribute has to match with the correct prefix.
 
     8. Test case: `search n/Tan j/Engineer`<br>
-       Expected: Both applicants are displayed in the list but `Bob Tan` is shown on the top of the list. This is because applicant with the most matching keywords will be displayed first.
+       Expected: Both applicants are displayed in the list but `Bob Tan` is shown on the top of the list. This is because applicant with the most matching attributes will be displayed first.
 
     9. Test case: `search n/Amy j/Engineer`<br>
        Expected: Both applicants are displayed in the list and the order of applicant shown is based on the original list. In this case, `Bob Tan` is shown on top of `Amy Tan`.
