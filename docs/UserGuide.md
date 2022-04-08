@@ -47,24 +47,6 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
-## Prefix and Parameter Summary
-
-The table below illustrates the meaning of the prefixes
-
-| Prefix | Meaning                  | Parameter   | Constraints |
-|:-------|:-------------------------|:------------|:------------|
-|**none**|                          | INDEX       | Index of applicant specified must not be more than the total number of applicants in LinkedOUT. |
-| **n/** | Applicant's Name         | NAME        |
-| **p/** | Applicant's Phone Number | PHONE_NUMBER|
-| **e/** | Applicant's Email        | EMAIL       |
-| **j/** | Job Applied              | JOB         |
-| **r/** | Application Round        | ROUND       |
-| **s/** | Applicant's Skill        | SKILL       | A single skill can be made up of 1 to 5 words. The skill cannot be completely made up of symbols. However, a mix of alphanumeric and symbols are allowed. eg. `!@#` is not allowed but `C#` is allowed.
-| **f/** | Field to sort by         | FIELD       | Field to sort list of applicant by can only be either `NAME` or `JOB` (case-insensitive).
-| **o/** | Order for sorting        | ORDER       | Order to sort list by can only be either `ASC`, ascending order or `DESC`, descending order (case-insensitive).
-
-[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
@@ -151,15 +133,22 @@ Hence, they are not actual representations of what you may see on the applicatio
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about the different attributes:**
-Listed below are the different attributes that an applicant has. Some attributes have requirements which are listed below.
+## Prefix and Input Summary
 
-* **Name**: {fill in on how cannot have name}
-* **Phone**: {fill in constraint}
-* **Email**: {constraint}
-* **Job**: {alphanumeric constraint}
-* **Round**: {alphanumeric constraint}
-* **Skill**: A single skill can be made up of 1 to 5 words. The skill cannot be completely made up of symbols. However, a mix of alphanumeric and symbols are allowed. 
-  eg. `!@#` is not allowed but `C#` is allowed.
+The table below illustrates the meaning of the prefixes
+
+| Prefix | Meaning                  | Input       | Constraints |
+|:-------|:-------------------------|:------------|:------------|
+|**none**|                          | INDEX       | Index of applicant specified must not be more than the total number of applicants in LinkedOUT. |
+| **n/** | Applicant's Name         | NAME        |
+| **p/** | Applicant's Phone Number | PHONE_NUMBER|
+| **e/** | Applicant's Email        | EMAIL       |
+| **j/** | Job Applied              | JOB         |
+| **r/** | Application Round        | ROUND       |
+| **s/** | Applicant's Skill        | SKILL       | A single skill can be made up of 1 to 5 words. The skill cannot be completely made up of symbols. However, a mix of alphanumeric and symbols are allowed. eg. `!@#` is not allowed but `C#` is allowed.
+| **f/** | Field to sort by         | FIELD       | Field to sort list of applicant by can only be either `NAME` or `JOB` (case-insensitive).
+| **o/** | Order for sorting        | ORDER       | Order to sort list by can only be either `ASC`, ascending order or `DESC`, descending order (case-insensitive).
+
 </div>
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
