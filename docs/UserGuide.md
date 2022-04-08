@@ -91,6 +91,9 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 
 ## Features
 
+### GUI Introduction
+![GUIintroduction](images/ug/ui-with-intro-annotation.png)
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
