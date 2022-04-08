@@ -890,7 +890,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the *GUI* with a set of sample contacts. The window size may not be optimum.
+   2. **For Windows:** Double-click the file to start the app.<br>
+     
+      **For Mac:** Open up a [terminal](#https://www.maketecheasier.com/launch-terminal-current-folder-mac/) in the current folder which contains the LinkedOUT jar file<br>
+      Then, run the following command: 
+      ```java -jar LinkedOUT.jar```
+   
+      Expected: Shows the GUI with a set of sample applicants. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -899,7 +905,42 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+
+### Editing an applicant
+
+1. Editing an applicant while all applicants are being shown in the *GUI*.
+
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+       Current State: The first applicant is Bob, with the following attributes:
+       ```         
+       Name: Bob
+       Phone Number: 99991111
+       Email Address: bob@mail.com
+       Job Applied: Data Analyst
+       Round: Interview 
+       Skills: Python
+       ```
+    
+    2. Test case: `edit 1 n/Charles e/charles@mail.com` <br>
+       Expected: The first applicant's name is changed to `Charles` and the email address is changed
+       to `charles@mail.com`. All other attributes remain unchanged.
+
+    3. Test case: `edit 1 s/Javascript s/Java` <br>
+       Expected: The first applicant's existing skills are removed, and only `Javascript` and `Java` 
+       will be in their skill list. All other attributes remain unchanged.
+
+    4. Test case: `edit 1 s/` <br>
+       Expected: All skills are removed from the first applicant, their skill list will now be empty.
+       All other attributes remain unchanged.
+
+    5. Test case: `edit 0 n/Jamie` <br>
+       Expected: No changes occur, as 0 is an invalid index. Error details shown in status message
+
+    6. Other incorrect edit commands to try: `edit o/Jamie`, `edit p/Jamie`, `edit x n/Jamie` 
+       (where x is greater than list size). <br>
+       Expected: Similar to previous.
+       
+     
 
 ### Add skills to an applicant
 
@@ -930,14 +971,30 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First applicant is deleted from the list. Details of the deleted applicant shown in the status message.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No applicant is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete 1 1`, `delete x`, (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete 1 1`, `delete x`, (where x is larger than the list size)<br>
       Expected: Similar to previous.
+   
+### Clearing the application
+
+1. Clearing all applicants from LinkedOUT when multiple applicants are being shown in the *GUI*
+
+    1. Test case: `clear` followed by clicking `Yes` on the confirmation box. <br>
+       Expected: All applicants are deleted from the application, an empty list is seen.
+
+    2. Test case: `clear` followed by clicking `No` on the confirmation box. <br>
+       Expected: No changes occur in the application, list of applicants remain unchanged.
+
+    3. Test case: `clear` followed by closing the confirmation box. <br>
+       Expected: No changes occur in the application, list of applicants remain unchanged.
+
+    4. Test case: `clear x` (where x can be a Integer or a String). <br>
+       Expected: Confirmation box pops up, outcomes similar to test cases i, ii and iii.
 
 ### Saving data
 
