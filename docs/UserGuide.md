@@ -131,9 +131,12 @@ Hence, they are not actual representations of what you may see on the applicatio
 
 <br>
 
-<div markdown="block" class="alert alert-info">
-**:information_source: Notes about the different attributes:**
-## Prefix and Input Summary
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+
+### Prefix and Input Summary
 
 The table below illustrates the meaning of the prefixes
 
@@ -149,11 +152,8 @@ The table below illustrates the meaning of the prefixes
 | **f/** | Field to sort by         | FIELD       | Field to sort list of applicant by can only be either `NAME` or `JOB` (case-insensitive).
 | **o/** | Order for sorting        | ORDER       | Order to sort list by can only be either `ASC`, ascending order or `DESC`, descending order (case-insensitive).
 
-</div>
-
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
----
 ### Viewing help : `help`
 
 Shows you a message explaining how to access the help page.
