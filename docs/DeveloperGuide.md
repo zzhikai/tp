@@ -400,8 +400,8 @@ _{more aspects and alternatives to be added}_
 
 #### Rationale
 
-The view command searches a **single** applicant in LinkedOUT and returns the applicant's details. 
-It is used when users wish to find a specific user they have in mind.
+The view command searches a **single** applicant in LinkedOUT and returns the applicant's details.
+It is used when users wish to find a specific applicant they have in mind.
 It takes in a single case-insensitive parameter, which is the applicant's full name. No prefix is required.
 
 #### Implementation
@@ -419,19 +419,19 @@ The following activity diagram shows the workflow for the view operation:
 Given below is an example usage scenario of how to view a specific applicant.
 
 1. The user enters the view command with the specific name, `view Alex Tan`.
-   
 
-2. `LinkedoutParser` is invoked to handle the command `view` through `LinkedoutParser#parseCommand()`. 
-   
+
+2. `LinkedoutParser` is invoked to handle the command `view` through `LinkedoutParser#parseCommand()`.
+
 
 3. It then calls upon `ViewCommandParser#parse()` to check if the input is empty.
-   
+
 
 4. If input is not empty, it passes the input to `NameContainsAllKeywordsPredicate()`.
-   
+
 
 5. The result is then initialized as a predicate in `ViewCommand`. `ViewCommand#execute()` then tries to find a match.
-   
+
 
 6. It then calls upon `CommandResult` to display the final result on the *GUI*.
 
@@ -452,11 +452,9 @@ The following sequence diagram shows how the view operation works:
 * **Alternative 2:** Shows multiple applicants based on partial matches.
     * Pros: Less strict matching.
     * Cons: Users are unable to single out a certain applicant.
-    
+
 Weighing the pros and cons of these alternatives, we have decided to abstract alternative 2 as a different feature under `search`.
 This is to allow our target user to have greater flexibility, and we believe both are important features to be implemented.
-
-_{more aspects and alternatives to be added}_
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -465,13 +463,17 @@ _{more aspects and alternatives to be added}_
 
 #### Rationale
 
-The search command allows for a quick view of applicant's information in LinkedOUT.
+The search command searches for applicant(s) in LinkedOUT and returns the applicant(s)' details.
+It is used when users wish to search for applicant(s) they have in mind.
+It takes in prefix(es) with case-insensitive parameter, which can be applicant's name, job, round and skill.
 
 #### Implementation
 
 The proposed search mechanism is facilitated by `SearchCommandParser`. `SearchCommandParser` will map the creation of `KeywordsPredicate` based on the input prefix. `KeywordsPredicate` supports the following implementation:
-* `NameContainsKeywordsPredicate` — Predicate which returns true if an applicant's full name matches partially with the input keyword.
-* `JobContainsKeywordsPredicate` — Predicate which returns true if an applicant's job name matches partially with the input keyword.
+* `NameContainsKeywordsPredicate` — Predicate which returns true if an applicant's full name matches partially with the exact input keyword.
+* `JobContainsKeywordsPredicate` — Predicate which returns true if an applicant's job name matches partially with the exact input keyword.
+* `RoundContainsKeywordsPredicate` — Predicate which returns true if an applicant's round matches partially with the exact input keyword.
+* `ApplicantContainsSkillKeywordsPredicate` — Predicate which returns true if an applicant's skill matches partially with the exact input keyword.
 
 These predicates assist the filtering of applicant list in the `Model` interface, specifically for  `Model#updateSearchApplicantList()` and `Model#getDefaultApplicantList()`.
 
@@ -490,17 +492,17 @@ Example 1
 
 
 3. The predicate is then passed into `Model#updateSearchApplicantList()` to filter and display applicants with partial name
-   matching of "David" or "Lee" in LinkedOUT.
+   matching of `David` or `Lee` in LinkedOUT.
 
 
 Example 2
-1. The user enters `search j/Software Engineer` command to search for applicants in LinkedOUT.
+1. The user enters `search j/Software n/David` command to search for applicants in LinkedOUT.
 
 
-2. The input keywords will be passed into `SearchCommandParser` and creates a `JobContainsKeywordsPredicate` if the keywords are not empty.
+2. The input keywords will be passed into `SearchCommandParser` and creates a `JobContainsKeywordsPredicate` and `NameContainsKeywordsPredicate` if the keywords are not empty.
 
 
-3. The predicate is then passed into `Model#updateSearchApplicantList()` to filter and display applicants with partial job name matching of "Software" or "Engineer"  in LinkedOUT.
+3. The predicate is then passed into `Model#updateSearchApplicantList()` to filter and sort the applicants with partial job and name matching of `Software` or `David`. Applicant with the most matched keywords will be displayed on the top of LinkedOUT.
 
 The following sequence diagram shows how the search operation works:
 
@@ -510,15 +512,13 @@ The following sequence diagram shows how the search operation works:
 
 **Aspect: How search executes:**
 
-* **Alternative 1 (current choice):** Uses prefix to search for applicants with partial matching of keywords.
-    * Pros: Able to search an applicant using different fields/prefixes.
+* **Alternative 1 (current choice):** Uses prefixes to search for applicants with combination of matching keywords.
+    * Pros: Able to search an applicant using combination of different fields/prefixes. Provides a more precise and broader search.
     * Cons: Hard to implement.
 
 * **Alternative 2:** Only search for an applicant using partial matching name.
     * Pros: Easy to implement.
     * Cons: Inflexible use of search command.
-
-_{more aspects and alternatives to be added}_
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -554,7 +554,7 @@ The following sequence diagram shows how the sort operation works:
 
 #### Design considerations:
 
-**Aspect: How search executes:**
+**Aspect: How sort executes:**
 
 * **Alternative 1 (current choice):** Displays a temporary sorted list
     * Pros: Original order of list retained.
@@ -908,20 +908,20 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
        Current State: The first applicant has pre-existing skills of `JavaScript` and `TypeScript`.
 
-    1. Test case: `addskill 1 s/Python s/Java`<br>
-      Expected: New skills `Python` and `Java` are added to the first applicant's skill list.
+    2. Test case: `addskill 1 s/Python s/Java`<br>
+       Expected: New skills `Python` and `Java` are added to the first applicant's skill list.
        
-    1. Test case: `addskill 1 s/JavaScript`<br>
+    3. Test case: `addskill 1 s/JavaScript`<br>
       Expected: No new skill will be added to first applicant's skill list as it already exists. No error is thrown.
        
-    1. Test case: `addskill 1 s/Javascript`<br>
+    4. Test case: `addskill 1 s/Javascript`<br>
       Expected: New skill `Javascript` will be added to first applicant's skill list. This is because the skills are case-insensitive, 
        hence `Javascript` and `JavaScript` will be treated as two different skills.
 
-    1. Test case: `addskill 0 s/Python s/Java`<br>
+    5. Test case: `addskill 0 s/Python s/Java`<br>
       Expected: No skill is added to any applicant. Error details shown in the status message. 
 
-    1. Other incorrect delete commands to try: `addskill s/Python`, `addskill 1`, `addskill 1 Python`, `addskill x` (where x is larger than the list size)<br>
+    6. Other incorrect delete commands to try: `addskill s/Python`, `addskill 1`, `addskill 1 Python`, `addskill x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### Deleting an applicant
@@ -930,14 +930,72 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First applicant is deleted from the list. Details of the deleted applicant shown in the status message.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No applicant is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete 1 1`, `delete x`, (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete 1 1`, `delete x`, (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+### Searching for applicant(s)
+
+1. Searching for applicant(s) while all applicants are being shown in the *GUI*.
+
+    1. Current State: The list has pre-existing applicants. The first applicant has name of `Bob Tan` with job in `Software Engineer`.
+       The second applicant has name of `Amy Tan` with job in `Software Developer`.
+
+    2. Test case: `search n/Tan`<br>
+       Expected: Both applicants are displayed in the list.
+
+    3. Test case: `search n/Bob`<br>
+       Expected: Only applicant named `Bob Tan` is displayed in the list.
+
+    4. Test case: `search n/bOb`<br>
+       Expected: Only applicant named `Bob Tan` is displayed in the list. This is because search keywords are case-insensitive.
+
+    5. Test case: `search n/Jason`<br>
+       Expected: No applicant is displayed in the list.
+
+    6. Test case: `search n/Bo`<br>
+       Expected: No applicant is displayed in the list. This is because search keyword has to be an exact word (can be split by spacing).
+
+    7. Test case: `search j/Bob`<br>
+       Expected: No applicant is displayed in the list. This is because the search keyword has to match with the correct prefix.
+
+    8. Test case: `search n/Tan j/Engineer`<br>
+       Expected: Both applicants are displayed in the list but `Bob Tan` is shown on the top of the list. This is because applicant with the most matching keywords will be displayed first.
+
+    9. Test case: `search n/Amy j/Engineer`<br>
+       Expected: Both applicants are displayed in the list and the order of applicant shown is based on the original list. In this case, `Bob Tan` is shown on top of `Amy Tan`.
+
+    10. Other incorrect search commands to try: `search`, `Search`, `search Bob`, `search w/Bob`, `search n/`<br>
+        Expected: No applicant is displayed. Error details shown in the status message.
+
+### View on an applicant
+
+1. View on an applicant while all applicants are being shown in the *GUI*.
+
+    1. Current State: The list has pre-existing applicants. The first applicant has full name of `Bob Tan`.
+
+    2. Test case: `view Bob Tan`<br>
+       Expected: Only applicant named `Bob Tan` is displayed in the list.
+
+    3. Test case: `view Tan`<br>
+       Expected: No applicant is displayed in the list.
+
+    4. Test case: `view n/Bob Tan`<br>
+       Expected: No applicant is displayed in the list. This is because prefix is not needed in view.
+
+    5. Test case: `view BobTan`<br>
+       Expected: No applicant is displayed in the list. This is because exact full name with correct spacing is needed to view on an applicant.
+
+    6. Test case: `view bob tan`<br>
+       Expected: Only applicant named `Bob Tan` is displayed in the list. This is because full name are case-insensitive.
+
+    7. Other incorrect view commands to try: `view` and `View`<br>
+       Expected: No applicant is displayed. Error details shown in the status message.
 
 ### Saving data
 
