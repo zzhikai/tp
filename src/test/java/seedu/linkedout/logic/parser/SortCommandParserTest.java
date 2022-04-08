@@ -1,6 +1,7 @@
 package seedu.linkedout.logic.parser;
 
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_PREFIX;
 import static seedu.linkedout.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.linkedout.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -29,6 +30,29 @@ public class SortCommandParserTest {
         //missing order prefix
         assertParseFailure(parser, "ASC", String.format(
                 MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidPrefix_throwsParseException() {
+        // wrong prefix
+        assertParseFailure(parser, "q/Name", String.format(
+                MESSAGE_INVALID_PREFIX, SortCommand.MESSAGE_USAGE));
+
+        // first prefix correct but second prefix wrong
+        assertParseFailure(parser, "f/Name q/Asc", String.format(
+                MESSAGE_INVALID_PREFIX, SortCommand.MESSAGE_USAGE));
+
+        // wrong prefix between correct prefixes
+        assertParseFailure(parser, "f/Name d/Desc o/Asc", String.format(
+                MESSAGE_INVALID_PREFIX, SortCommand.MESSAGE_USAGE));
+
+        // spaces between prefixes
+        assertParseFailure(parser, "f/   Name      d/  Desc o/Asc", String.format(
+                MESSAGE_INVALID_PREFIX, SortCommand.MESSAGE_USAGE));
+
+        // wrong prefix of any length
+        assertParseFailure(parser, "f/   Name      ddddd/  Desc o/Asc", String.format(
+                MESSAGE_INVALID_PREFIX, SortCommand.MESSAGE_USAGE));
     }
 
     @Test
