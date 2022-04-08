@@ -242,7 +242,7 @@ view NAME
   e.g Viewing `hans` will match an applicant with name `Hans`.
 * Only full name will be matched. <br>
   e.g. Viewing `Han Lee` will not match an applicant with name `Han`.
-* Only applicant with exact full name with correct spacing will be matched. <br>
+* Only applicant with correct spacing in full name will be matched. <br>
   e.g. Viewing `HanLee` will not match an applicant with name `Han Lee`.
 
 <br>
