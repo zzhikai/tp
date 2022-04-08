@@ -152,7 +152,7 @@ The table below illustrates the meaning of the prefixes and their respective inp
 | Prefix | Meaning                  | Input       | Constraints |
 |:-------|:-------------------------|:------------|:------------|
 |   -    |                          | INDEX       | Index of applicant specified must not be more than the total number of applicants in the list. |
-| **n/** | Applicant's Name         | NAME        | Names can only contain Unicode characters, and cannot contain any numbers. Name's can contain the following special characters: `-` and`'`. **An applicant's name is unique** i.e. two applicants cannot have the same name.
+| **n/** | Applicant's Name         | NAME        | Names can only contain letters (including letters with accents), and cannot contain any numbers. Name's can contain the following special characters: `-` and`'`. **An applicant's name is unique** i.e. two applicants cannot have the same name.
 | **p/** | Applicant's Phone Number | PHONE_NUMBER| Phone numbers must only contain numbers, and must be between 3 and 15 characters long.
 | **e/** | Applicant's Email        | EMAIL       | Emails should be of the format `local-part@domain`.
 | **j/** | Job Applied              | JOB         | Jobs must only contain alphanumeric characters.
