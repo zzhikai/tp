@@ -141,7 +141,7 @@ The table below illustrates the meaning of the prefixes and their respective inp
 
 | Prefix | Meaning                  | Input       | Constraints |
 |:-------|:-------------------------|:------------|:------------|
-|   -    |                          | INDEX       | Index of applicant specified must not be more than the total number of applicants in LinkedOUT. |
+|   -    |                          | INDEX       | Index of applicant specified must not be more than the total number of applicants in the list. |
 | **n/** | Applicant's Name         | NAME        |
 | **p/** | Applicant's Phone Number | PHONE_NUMBER|
 | **e/** | Applicant's Email        | EMAIL       |
