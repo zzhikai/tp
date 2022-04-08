@@ -132,7 +132,7 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about sample output:**
 The sample output shown in this guide is for illustration purposes only.
-The actual GUI might differ slightly depending upon Operating System
+The actual GUI might differ slightly depending upon Operating System.
 </div>
 
 <br>
