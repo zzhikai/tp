@@ -239,11 +239,11 @@ view NAME
   e.g. If an applicant's full name is `Steve Jobs`, and the command provided is `view Steve` then LinkedOUT will not
   display `Steve Jobs`'s details. <br>
 * The view command is case-insensitive. <br>
-  e.g `hans` will match `Hans`.
+  e.g Viewing `hans` will match an applicant with name `Hans`.
 * Only full name will be matched. <br>
-  e.g. `Han Lee` will not match `Han`.
-* Only exact full name with correct spacing will be matched. <br>
-  e.g. `HanLee` will not match `Han Lee`.
+  e.g. Viewing `Han Lee` will not match an applicant with name `Han`.
+* Only applicant with exact full name with correct spacing will be matched. <br>
+  e.g. Viewing `HanLee` will not match an applicant with name `Han Lee`.
 
 <br>
 
@@ -261,7 +261,7 @@ Sample Output:
 ### Searching for an applicant : `search`
 
 Allows you to search for applicants containing the input keywords and the keyword has to be an exact word. You can search for the applicant based on 
-name, job, round or skills. You can also search for a combination of keywords and the applicant with the most matching keywords will be on the top of the list.
+name, job, round or skills. 
 
 <br>
 
@@ -270,9 +270,12 @@ Format:
 search [n/NAME]…​ [j/JOB]…​ [r/ROUND]…​ [s/SKILL]…​
 ```
 * You must provide a full match of keyword you want to search for.<br>
-  e.g. `Hans` will match `Hans Lee` but will not match `Han`. <br>
+  e.g. Searching `n/Hans` will match an applicant with name `Hans Lee` but will not match an applicant with name `Han`. <br>
 * The search command is case-insensitive. <br>
-  e.g `hans` will match `Hans`.
+  e.g Searching `n/hans` will match an applicant with name `Hans`.
+* You can search for a combination of keywords. 
+  After a search command, applicants will be displayed in descending order of matched keywords, with the most matched applicant on the top of the list.
+  e.g Searching `n/Hans j/Engineer` will match with applicants with either name `Hans` or job `Engineer`. Applicant with both name and job matched will be displayed on the top of the list.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can try searching for multiple attributes in the applicant list. Try `search n/Alex s/Java` to search for applicants with 
