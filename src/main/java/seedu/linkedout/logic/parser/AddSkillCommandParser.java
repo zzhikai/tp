@@ -29,6 +29,7 @@ public class AddSkillCommandParser implements Parser<AddSkillCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_SKILL);
 
         Index index;
+
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
