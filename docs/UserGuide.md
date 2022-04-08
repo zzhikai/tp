@@ -356,7 +356,7 @@ Format:
 addskill INDEX [s/SKILL]...
 ```
 
-* Only valid index with an applicant is edited. <br>
+* Only valid indexes with an applicant is edited. <br>
   e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
 * Only positive indexes are edited. <br>
   e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
