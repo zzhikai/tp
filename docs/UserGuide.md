@@ -135,7 +135,6 @@ Hence, they are not actual representations of what you may see on the applicatio
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
-
 ### Prefix and Input Summary
 
 The table below illustrates the meaning of the prefixes
@@ -154,6 +153,7 @@ The table below illustrates the meaning of the prefixes
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
+---
 ### Viewing help : `help`
 
 Shows you a message explaining how to access the help page.
