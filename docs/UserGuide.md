@@ -142,7 +142,7 @@ The table below illustrates the meaning of the prefixes
 
 | Prefix | Meaning                  | Input       | Constraints |
 |:-------|:-------------------------|:------------|:------------|
-|**none**|                          | INDEX       | Index of applicant specified must not be more than the total number of applicants in LinkedOUT. |
+|   -    |                          | INDEX       | Index of applicant specified must not be more than the total number of applicants in LinkedOUT. |
 | **n/** | Applicant's Name         | NAME        |
 | **p/** | Applicant's Phone Number | PHONE_NUMBER|
 | **e/** | Applicant's Email        | EMAIL       |
