@@ -1,6 +1,7 @@
 package seedu.linkedout.logic.parser;
 
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_PREFIX;
 import static seedu.linkedout.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.linkedout.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.linkedout.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
@@ -161,4 +162,36 @@ public class AddCommandParserTest {
                 + JOB_DESC_BOB + ROUND_DESC_BOB + SKILL_DESC_MARKETING + SKILL_DESC_PYTHON,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_invalidPrefix_throwsParseException() {
+        // wrong prefix
+        assertParseFailure(parser, "w/Alice Bob", String.format(
+                MESSAGE_INVALID_PREFIX, AddCommand.MESSAGE_USAGE));
+
+        // first prefix correct but second prefix wrong
+        assertParseFailure(parser, "n/Alice Bob w/Software Engineer", String.format(
+                MESSAGE_INVALID_PREFIX, AddCommand.MESSAGE_USAGE));
+
+        // wrong prefix between correct prefixes
+        assertParseFailure(parser, "n/Alice Bob w/Software Engineer s/Java", String.format(
+                MESSAGE_INVALID_PREFIX, AddCommand.MESSAGE_USAGE));
+
+        // spaces between prefixes
+        assertParseFailure(parser, "n/   Alice Bob      w/  Software Engineer s/Java", String.format(
+                MESSAGE_INVALID_PREFIX, AddCommand.MESSAGE_USAGE));
+
+        // wrong prefix of any length
+        assertParseFailure(parser, "n/   Alice Bob      www/  Software Engineer s/Java", String.format(
+                MESSAGE_INVALID_PREFIX, AddCommand.MESSAGE_USAGE));
+
+        // wrong prefix with slash in input parameter
+        assertParseFailure(parser, "n/   Alice Bob      www/  Software/Engineer s/Java", String.format(
+                MESSAGE_INVALID_PREFIX, AddCommand.MESSAGE_USAGE));
+
+        // correct prefix with whitespace between input parameter with slash
+        assertParseFailure(parser, "n/   Alice Bob      s/   Software/Engineer s/Java", String.format(
+                MESSAGE_INVALID_PREFIX, AddCommand.MESSAGE_USAGE));
+    }
+
 }

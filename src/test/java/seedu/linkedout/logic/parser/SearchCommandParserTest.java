@@ -1,6 +1,7 @@
 package seedu.linkedout.logic.parser;
 
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_PREFIX;
 import static seedu.linkedout.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.linkedout.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -51,6 +52,37 @@ public class SearchCommandParserTest {
     }
 
     @Test
+    public void parse_invalidPrefix_throwsParseException() {
+        // wrong prefix
+        assertParseFailure(parser, "w/Alice Bob", String.format(
+                MESSAGE_INVALID_PREFIX, SearchCommand.MESSAGE_USAGE));
+
+        // first prefix correct but second prefix wrong
+        assertParseFailure(parser, "n/Alice Bob w/Software Engineer", String.format(
+                MESSAGE_INVALID_PREFIX, SearchCommand.MESSAGE_USAGE));
+
+        // wrong prefix between correct prefixes
+        assertParseFailure(parser, "n/Alice Bob w/Software Engineer s/Java", String.format(
+                MESSAGE_INVALID_PREFIX, SearchCommand.MESSAGE_USAGE));
+
+        // spaces between prefixes
+        assertParseFailure(parser, "n/   Alice Bob      w/  Software Engineer s/Java", String.format(
+                MESSAGE_INVALID_PREFIX, SearchCommand.MESSAGE_USAGE));
+
+        // wrong prefix of any length
+        assertParseFailure(parser, "n/   Alice Bob      www/  Software Engineer s/Java", String.format(
+                MESSAGE_INVALID_PREFIX, SearchCommand.MESSAGE_USAGE));
+
+        // wrong prefix with slash in input parameter
+        assertParseFailure(parser, "n/   Alice Bob      www/  Software/Engineer s/Java", String.format(
+                MESSAGE_INVALID_PREFIX, SearchCommand.MESSAGE_USAGE));
+
+        // correct prefix with whitespace between input parameter with slash
+        assertParseFailure(parser, "n/   Alice Bob      s/   Software/Engineer s/Java", String.format(
+                MESSAGE_INVALID_PREFIX, SearchCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_keywordMissing_throwsParseException() {
         // missing name keyword
         assertParseFailure(parser, " n/", String.format(
@@ -79,7 +111,23 @@ public class SearchCommandParserTest {
     }
 
     @Test
-    public void parse_validSingleArgs_returnsSearchCommand() {
+    public void parse_validPrefix_returnSearchCommand() {
+        List<KeywordsPredicate> skillsKeywordPredicateList = new ArrayList<>();
+
+        ApplicantContainsSkillKeywordsPredicate skillsKeywordPredicate =
+                new ApplicantContainsSkillKeywordsPredicate(Arrays.asList("Java/Python"));
+
+        Collections.addAll(skillsKeywordPredicateList, skillsKeywordPredicate);
+
+        SearchCommand expectedSkillSearchCommand =
+                new SearchCommand(skillsKeywordPredicateList);
+
+        //one valid prefix with slash in input keyword
+        assertParseSuccess(parser, " s/Java/Python", expectedSkillSearchCommand);
+    }
+
+    @Test
+    public void parse_validArgs_returnsSearchCommand() {
         List<KeywordsPredicate> nameKeywordPredicateList = new ArrayList<>();
         List<KeywordsPredicate> jobKeywordPredicateList = new ArrayList<>();
         List<KeywordsPredicate> roundKeywordPredicateList = new ArrayList<>();

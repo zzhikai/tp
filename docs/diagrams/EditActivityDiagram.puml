@@ -3,13 +3,16 @@
 
 start
 :User executes edit command;
-:Parse inputs;
 if () then ([valid index])
-:Display to user new \n applicant's details;
+    if () then ([not duplicate applicant])
+    :Display to user new \n applicant's details;
+    :Update GUI to \ndisplay edited applicant \nin list of applicants ;
+    else ([else])
+    :Display error message to \nuser that arguments results \nin duplicated applicants;
+    endif
 else ([else])
-:Display error message to user \n that no applicant found;
+:Display error message to user \nthat no applicant found;
 endif
-
 
 stop
 

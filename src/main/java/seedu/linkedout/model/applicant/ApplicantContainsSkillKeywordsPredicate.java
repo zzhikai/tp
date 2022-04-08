@@ -22,7 +22,7 @@ public class ApplicantContainsSkillKeywordsPredicate extends KeywordsPredicate i
 
     @Override
     public boolean test(Applicant applicant) {
-        boolean allMatch = false;
+        boolean anyMatch = false;
 
         Set<String[]> currentApplicantSkills = applicant.getSkills()
                 .stream().map(skill -> skill.skillName.toLowerCase().split(" ")).collect(Collectors.toSet());
@@ -32,11 +32,11 @@ public class ApplicantContainsSkillKeywordsPredicate extends KeywordsPredicate i
 
         for (int i = 0; i < keywords.size(); i++) {
             if (currentApplicantKeywords.contains(keywords.get(i).toLowerCase())) {
-                allMatch = true;
+                anyMatch = true;
             }
         }
 
-        return allMatch;
+        return anyMatch;
     }
 
 

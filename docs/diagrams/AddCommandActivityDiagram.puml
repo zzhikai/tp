@@ -2,28 +2,17 @@
 start
 :User executes Add Command;
 
+:Create the new Applicant with the attributes provided;
 
-if () then ([User enters valid command])
-
-    :Create the new Applicant with the attributes provided;
-
-    if () then ([new Applicant already
-    exists in LinkedOUT])
-
-        :Error message displayed to User, showing
-        existing applicant;
-
-        stop
-
-    else ([else])
-    endif
+if () then ([else])
 
     :Add the new Applicant into LinkedOUT;
 
     :Update GUI to display new applicant in list of applicants;
-else ([else])
+else ([new Applicant already exists in LInkedOUT])
 
-:Invalid command error message displayed to User;
+        :Error message displayed to User, showing
+        existing applicant;
 
 endif
 stop

@@ -17,7 +17,7 @@ end box
 [-> LogicManager : execute("search n/David Lee")
 activate LogicManager
 
-LogicManager -> LinkedoutParser : parseCommand("search n/David Lee")
+LogicManager -> LinkedoutParser : parseCommand\n("search n/David Lee")
 activate LinkedoutParser
 
 create SearchCommandParser
@@ -56,17 +56,12 @@ deactivate LinkedoutParser
 LogicManager -> SearchCommand : execute()
 activate SearchCommand
 
-SearchCommand -> Model : updateFilteredApplicantList(p);
+SearchCommand -> Model : updateSearchApplicantList(p)
 activate Model
-
+|||
 Model --> SearchCommand
 deactivate Model
-
-SearchCommand -> Model : getFilteredApplicantList()
-activate Model
-Model --> SearchCommand
-deactivate Model
-
+|||
 create CommandResult
 SearchCommand -> CommandResult
 activate CommandResult

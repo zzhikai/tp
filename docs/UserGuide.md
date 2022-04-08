@@ -6,8 +6,8 @@ title: User Guide
 ## Table of Contents
 * Table of Contents
 {:toc}
-
 --------------------------------------------------------------------------------------------------------------------
+
 ## Introduction
 
 **What is LinkedOUT?**
@@ -47,6 +47,7 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
+
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
@@ -60,7 +61,7 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 
 
 4. **For Windows:** Double-click the file to start the app.<br>
-   **For Mac:** Open up a [terminal](#https://www.maketecheasier.com/launch-terminal-current-folder-mac/) in the current folder you have installed LinkedOUT. <br>
+   **For Mac:** Open up a [terminal](#https://www.maketecheasier.com/launch-terminal-current-folder-mac/) in the current folder which contains the LinkedOUT jar file <br>
    Then, run the following command: <br>
    ```java -jar LinkedOUT.jar``` 
    
@@ -136,18 +137,29 @@ Hence, they are not actual representations of what you may see on the applicatio
 
 <br>
 
-<div markdown="block" class="alert alert-info">
-**:information_source: Notes about the different attributes:**
-Listed below are the different attributes that an applicant has. Some attributes have requirements which are listed below.
 
-* **Name**: {fill in on how cannot have name}
-* **Phone**: {fill in constraint}
-* **Email**: {constraint}
-* **Job**: {alphanumeric constraint}
-* **Round**: {alphanumeric constraint}
-* **Skill**: A single skill can be made up of 1 to 5 words. The skill cannot be completely made up of symbols. However, a mix of alphanumeric and symbols are allowed. 
-  eg. `!@#` is not allowed but `C#` is allowed.
-</div>
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+### GUI Introduction
+![GUIintroduction](images/ug/ui-with-intro-annotation.png)
+
+---
+### Prefix and Input Summary
+
+The table below illustrates the meaning of the prefixes and their respective inputs
+
+| Prefix | Meaning                  | Input       | Constraints |
+|:-------|:-------------------------|:------------|:------------|
+|   -    |                          | INDEX       | Index of applicant specified must not be more than the total number of applicants in the list. |
+| **n/** | Applicant's Name         | NAME        |
+| **p/** | Applicant's Phone Number | PHONE_NUMBER|
+| **e/** | Applicant's Email        | EMAIL       |
+| **j/** | Job Applied              | JOB         |
+| **r/** | Application Round        | ROUND       |
+| **s/** | Applicant's Skill        | SKILL       | A single skill can be made up of 1 to 5 words. The skill cannot be completely made up of symbols. However, a mix of alphanumeric and symbols are allowed. eg. `!@#` is not allowed but `C#` is allowed.
+| **f/** | Field to sort by         | FIELD       | Field to sort list of applicant by can only be either `NAME` or `JOB` (case-insensitive).
+| **o/** | Order for sorting        | ORDER       | Order to sort list by can only be either `ASC`, ascending order or `DESC`, descending order (case-insensitive).
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -160,18 +172,28 @@ Shows you a message explaining how to access the help page.
 
 Format: `help`
 
+<br>
+
+Example:
+```
+help
+```
+Sample Output:
+
+![helpcommand](images/ug/helpcommand.png)
+
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
 ### Adding an applicant: `add`
 
-Allows you to add a new applicant to the LinkedOUT application :
-* Name
-* Phone Number
-* Email
-* The job they've applied for
-* Round of job application
-* Particular skills they may have
+Allows you to add a new applicant to the LinkedOUT application with the following information:
+* `NAME`: Applicant's name
+* `PHONE_NUMBER`: Applicant's phone number
+* `EMAIL`: Applicant's email
+* `JOB`: The job the applicant applied for
+* `ROUND`: The round of job application that the applicant is at
+* `SKILL`: Particular skills the applicant may have
 
 <br>
 
@@ -291,6 +313,7 @@ Format:
 addskill INDEX [s/SKILL]...
 ```
 
+
 * Index of applicant specified must not be more than the total number of applicants in LinkedOUT. <br>
   e.g If there are only `4` applicants in the app but `5` is specified, then the addition will not be carried out as it is invalid.
 * Index of applicant specified must be a positive number. <br>
@@ -322,6 +345,7 @@ Format:
 edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​
 ```
 
+
 * Index of applicant specified must not be more than the total number of applicants in LinkedOUT. <br>
   e.g If there are only `4` applicants in the app but `5` is specified, then the edit will not be carried out as it is invalid.
 * Index of applicant specified must be a positive number. <br>
@@ -340,7 +364,7 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​
 
 Example:
 ```
-edit 1 p/91234567 e/yeoh.99@example.com
+edit 1 p/91234567 e/yeoh.99@example.com s/Rust
 ```
 Sample Output:
 
@@ -577,21 +601,5 @@ If your changes to the data file makes its format invalid, LinkedOUT will discar
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
-## Prefix Summary
 
-The table below illustrates the meaning of the prefixes
-
-| Prefix | Meaning               |
-|:-------|:----------------------|
-| **n/** | Name                  |
-| **p/** | Phone Number          |
-| **e/** | Email                 |
-| **j/** | Job                   |
-| **r/** | Application Round     |
-| **s/** | Skill of an applicant |
-| **f/** | Field to sort         |
-| **o/** | Order for sorting     |
-
-[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
