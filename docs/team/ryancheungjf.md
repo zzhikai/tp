@@ -54,4 +54,4 @@ Given below are my contributions to the project.
 * **Community**:
     * PRs reviewed (with non-trivial review comments): (Pull requests [\#90](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/90), [\#121](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/121), [\#157](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/157)).
     * Contributed to forum discussions (Pull requests [#73](https://github.com/nus-cs2103-AY2122S2/forum/issues/73), [#127](https://github.com/nus-cs2103-AY2122S2/forum/issues/127#issuecomment-1033284269)).
-    * Reported non-trivial bugs and suggestions for other teams in the class (Pull requests [#190](https://github.com/AY2122S2-CS2103T-T17-2/tp/issues/190), [#194](https://github.com/AY2122S2-CS2103T-T17-2/tp/issues/194)).
+    * Reported non-trivial bugs and suggestions for other teams in the class (Issues [#190](https://github.com/AY2122S2-CS2103T-T17-2/tp/issues/190), [#194](https://github.com/AY2122S2-CS2103T-T17-2/tp/issues/194), [#214](https://github.com/AY2122S2-CS2103T-T17-2/tp/issues/214)).

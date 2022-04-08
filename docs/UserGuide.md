@@ -168,6 +168,16 @@ Shows you a message explaining how to access the help page.
 
 Format: `help`
 
+<br>
+
+Example:
+```
+help
+```
+Sample Output:
+
+![helpcommand](images/ug/helpcommand.png)
+
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
@@ -348,7 +358,7 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​
 
 Example:
 ```
-edit 1 p/91234567 e/yeoh.99@example.com
+edit 1 p/91234567 e/yeoh.99@example.com s/Rust
 ```
 Sample Output:
 
