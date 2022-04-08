@@ -119,15 +119,12 @@ public class ModelManager implements Model {
     public void flagApplicant(Applicant applicant, Applicant flaggedApplicant) {
         requireAllNonNull(applicant, flaggedApplicant);
         linkedout.flagApplicant(applicant, flaggedApplicant);
-        // flag applicant not pin to top on first flag, only after using it moves up
         updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
-        // updateDefaultApplicantList((a1, a2) -> 0);
     }
 
     @Override
     public void setApplicant(Applicant target, Applicant editedApplicant) {
         requireAllNonNull(target, editedApplicant);
-
         linkedout.setApplicant(target, editedApplicant);
     }
 
@@ -184,9 +181,6 @@ public class ModelManager implements Model {
                 && filteredApplicants.equals(other.filteredApplicants)
                 && defaultApplicants.equals(other.defaultApplicants);
     }
-
-    //=========== Sorted Applicant List Accessors =============================================================
-
 
     //=========== Search Applicant List Accessors =============================================================
 

@@ -147,21 +147,22 @@ public class Applicant implements Comparable<Applicant> {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Job: ")
-                .append(getJob())
-                .append("; Round: ")
-                .append(getRound());
+        builder.append("\tName: " + getName());
 
         Set<Skill> skills = getSkills();
         if (!skills.isEmpty()) {
-            builder.append("; Skills: ");
+            builder.append("\n\t\t\t\t\tSkills: ");
             skills.forEach(builder::append);
         }
+
+        builder.append("\n\t\t\t\t\tPhone: ")
+                .append(getPhone())
+                .append("\n\t\t\t\t\tEmail: ")
+                .append(getEmail())
+                .append("\n\t\t\t\t\tJob Applied: ")
+                .append(getJob())
+                .append("\n\t\t\t\t\tRound: ")
+                .append(getRound());
         return builder.toString();
     }
 }

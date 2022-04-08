@@ -249,13 +249,13 @@ in the Activity Diagram. This is a known limitation of PlantUML.</div>
 
 Given below is an example usage scenario of how an applicant is added, and how the operation is handled by LinkedOUT:
 
-1. The user enters a valid add command, for example: `add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas s/Python s/Java`. For each command
+1. The user enters a valid add command, for example: `add n/Bob p/99991111 e/bob@mail.com j/Data Analyst r/Interview s/Python`. For each command
 `LogicManager#execute()` is invoked, which calls `LinkedoutParser#parseCommand()` to separate the command word `add` and the argument
-`n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas s/Python s/Java`
+`n/Bob p/99991111 e/bob@mail.com j/Data Analyst r/Interview s/Python`
 
 
 2. Upon identifying the add command, `AddCommandParser` is instantiated and uses `AddCommandParser#parse()` to
-map the various prefixes to the attributes: (e.g `n/` to `Bob`, `p/` to `99999999`)
+map the various prefixes to the attributes: (e.g `n/` to `Bob`, `p/` to `99991111`)
 
 
 3. `AddCommandParser#arePrefixesPresent()` is called to ensure all the mandatory prefixes have been inputted by the user. After which
@@ -370,7 +370,7 @@ The following activity diagram shows the workflow for the edit operation:
 
 Given below is an example usage scenario of how an applicant is edited.
 
-1. The user enters the edit command with the specific fields to edit, `edit 1 r/HR Interview`.
+1. The user enters the edit command with the specific fields to edit, `edit 1 n/Alex Tan`.
 
 
 2. LinkedOUT updates the applicant with the edited information.
@@ -418,7 +418,7 @@ The following activity diagram shows the workflow for the view operation:
 
 Given below is an example usage scenario of how to view a specific applicant.
 
-1. The user enters the view command with the specific name, `view Alex Megos`.
+1. The user enters the view command with the specific name, `view Alex Tan`.
    
 
 2. `LinkedoutParser` is invoked to handle the command `view` through `LinkedoutParser#parseCommand()`. 
@@ -473,7 +473,7 @@ The proposed search mechanism is facilitated by `SearchCommandParser`. `SearchCo
 * `NameContainsKeywordsPredicate` — Predicate which returns true if an applicant's full name matches partially with the input keyword.
 * `JobContainsKeywordsPredicate` — Predicate which returns true if an applicant's job name matches partially with the input keyword.
 
-These predicates assist the filtering of applicant list in the `Model` interface, specifically for  `Model#updateFilteredApplicantList()` and `Model#getFilteredApplicantList()`.
+These predicates assist the filtering of applicant list in the `Model` interface, specifically for  `Model#updateSearchApplicantList()` and `Model#getDefaultApplicantList()`.
 
 The following activity diagram shows the workflow of the search command:
 
@@ -481,22 +481,26 @@ The following activity diagram shows the workflow of the search command:
 
 Given below is an example usage scenario and how the search mechanism behaves at each step.
 
-1. The user enters search command with prefix and specified keyword , `search n/David`.
+Example 1
+1. The user enters search command with prefix and specified keyword , `search n/David Lee`.
 
 
-2. The input keywords will be passed into `SearchCommandParser` and creates a `NameContainsKeywordsPredicate` if the keyword and prefix are not empty.
+2. The input keywords will be passed into `SearchCommandParser` and creates a `NameContainsKeywordsPredicate` if the keyword
+   and prefix are not empty.
 
 
-3. The predicate is then passed into `Model#updateFilteredApplicantList()` to filter and display applicants with partial name matching of "David" in LinkedOUT.
+3. The predicate is then passed into `Model#updateSearchApplicantList()` to filter and display applicants with partial name
+   matching of "David" or "Lee" in LinkedOUT.
 
 
-4. The user enters `search j/Software Engineer` command to search for applicants in LinkedOUT.
+Example 2
+1. The user enters `search j/Software Engineer` command to search for applicants in LinkedOUT.
 
 
-5. The input keywords will be passed into `SearchCommandParser` and creates a `JobContainsKeywordsPredicate` if the keywords are not empty.
+2. The input keywords will be passed into `SearchCommandParser` and creates a `JobContainsKeywordsPredicate` if the keywords are not empty.
 
 
-6. The predicate is then passed into `Model#updateFilteredApplicantList()` to filter and display applicants with partial job name matching of "Software" or "Engineer"  in LinkedOUT.
+3. The predicate is then passed into `Model#updateSearchApplicantList()` to filter and display applicants with partial job name matching of "Software" or "Engineer"  in LinkedOUT.
 
 The following sequence diagram shows how the search operation works:
 
