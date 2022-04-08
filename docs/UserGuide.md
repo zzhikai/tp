@@ -48,6 +48,25 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+## Prefix and Parameter Summary
+
+The table below illustrates the meaning of the prefixes
+
+| Prefix | Meaning                  | Parameter   | Constraints |
+|:-------|:-------------------------|:------------|:------------|
+|**none**|                          | INDEX       | Index of applicant specified must not be more than the total number of applicants in LinkedOUT. |
+| **n/** | Applicant's Name         | NAME        |
+| **p/** | Applicant's Phone Number | PHONE_NUMBER|
+| **e/** | Applicant's Email        | EMAIL       |
+| **j/** | Job Applied              | JOB         |
+| **r/** | Application Round        | ROUND       |
+| **s/** | Applicant's Skill        | SKILL       | A single skill can be made up of 1 to 5 words. The skill cannot be completely made up of symbols. However, a mix of alphanumeric and symbols are allowed. eg. `!@#` is not allowed but `C#` is allowed.
+| **f/** | Field to sort by         | FIELD       | Field to sort list of applicant by can only be either `NAME` or `JOB` (case-insensitive).
+| **o/** | Order for sorting        | ORDER       | Order to sort list by can only be either `ASC`, ascending order or `DESC`, descending order (case-insensitive).
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
 1. Ensure you have Java `11` or above installed on your Computer.
@@ -645,21 +664,5 @@ If your changes to the data file makes its format invalid, LinkedOUT will discar
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
-## Prefix Summary
 
-The table below illustrates the meaning of the prefixes
-
-| Prefix | Meaning               |
-|:-------|:----------------------|
-| **n/** | Name                  |
-| **p/** | Phone Number          |
-| **e/** | Email                 |
-| **j/** | Job                   |
-| **r/** | Application Round     |
-| **s/** | Skill of an applicant |
-| **f/** | Field to sort         |
-| **o/** | Order for sorting     |
-
-[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
