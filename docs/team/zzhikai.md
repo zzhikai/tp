@@ -57,7 +57,8 @@ Given below are my contributions to the project.
         * Added implementation details of the `edit` and `sort` feature. [\#101](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/101),
           [\#224](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/224)
         * Updated existing sequence and activity diagrams to be consistent. [\#223](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/223)
-        * Add documentation for manual testing of `sort` feature and saving data. [\#253](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/253)
+        * Add documentation for manual testing of `sort` feature and saving data. [\#253](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/253),
+          [\#258](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/258)
         * Update documentation for use cases for `add`, `sort` and `edit` feature. [\#255](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/255)
     
 * **Community**:
@@ -73,13 +74,14 @@ Given below are my contributions to the project.
       [3](https://github.com/nus-cs2103-AY2122S2/forum/issues/153),
       [4](https://github.com/nus-cs2103-AY2122S2/forum/issues/239)
       
-    * Reported non-trivial bugs and suggestions for other teams in the class(which were fixed):
-      [1](https://github.com/AY2122S2-CS2103-W16-1/tp/issues/141),
-      [2](https://github.com/AY2122S2-CS2103-W16-1/tp/issues/137),
-      [3](https://github.com/AY2122S2-CS2103-W16-1/tp/issues/135),
-      [4](https://github.com/AY2122S2-CS2103-W16-1/tp/issues/133),
-      [5](https://github.com/AY2122S2-CS2103-W16-1/tp/issues/130),
-      [6](https://github.com/AY2122S2-CS2103-W16-1/tp/issues/124),
-      [7](https://github.com/AY2122S2-CS2103-W16-1/tp/issues/119)
+    * Reported non-trivial bugs and suggestions for other teams in the class(which were fixed)(Issues:
+      [\#119](https://github.com/AY2122S2-CS2103-W16-1/tp/issues/119),
+      [\#124](https://github.com/AY2122S2-CS2103-W16-1/tp/issues/124).
+      [\#130](https://github.com/AY2122S2-CS2103-W16-1/tp/issues/130),
+      [\#133](https://github.com/AY2122S2-CS2103-W16-1/tp/issues/133),
+      [\#135](https://github.com/AY2122S2-CS2103-W16-1/tp/issues/135),
+      [\#137](https://github.com/AY2122S2-CS2103-W16-1/tp/issues/137),
+      [\#141](https://github.com/AY2122S2-CS2103-W16-1/tp/issues/141)
+      )
       
 
