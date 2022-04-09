@@ -797,9 +797,9 @@ does not have any formatting issues.**
         
       Use case resumes at step 1.
     
-* 1b. User adds a duplicate Applicant.
+* 1b. User adds a duplicate applicant.
 
-    * 1b1. LinkedOUT does not add the applicant and shows error message to the user.
+    * 1b1. LinkedOUT does not add the applicant and shows an error message to the user.
       
       Use case resumes at step 1.
 
@@ -825,11 +825,11 @@ does not have any formatting issues.**
 
 * 1a. Applicant does not exist.
   
-    * 1a1. LinkedOUT shows an error message.
+    * 1a1. LinkedOUT shows 0 applicant listed.
       
       Use case resumes at step 1.
     
-* 1b. User provides an invalid input to view Applicant.
+* 1b. User provides an invalid input to view applicant.
 
     * 1b1. LinkedOUT shows an error message.
         
