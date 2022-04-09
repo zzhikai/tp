@@ -506,7 +506,10 @@ Clears the list of applicants
 
 <br>
 
-Format: `clear`
+Format: 
+```
+clear
+```
 
 <br>
 
