@@ -122,7 +122,7 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 * Extraneous inputs for commands that do not take in inputs (such as `help`, `list` and `exit`) will be ignored.<br>
   e.g. If the command specifies `help 123`, it will be interpreted as `help`.
   
-* `INDEX` refers to the index of the Applicant in the displayed list. `INDEX` must be a positive integer.<br>
+* `INDEX` refers to the index of the Applicant in the displayed list. `INDEX` must be a positive number.<br>
   e.g. `delete 1` is valid and `delete -1` is invalid.
 
 </div>
@@ -313,10 +313,11 @@ Format:
 addskill INDEX [s/SKILL]...
 ```
 
-* Only valid indexes with an applicant is edited. <br>
-  e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
-* Only positive indexes are edited. <br>
-  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
+
+* Index of applicant specified must not be more than the total number of applicants in LinkedOUT. <br>
+  e.g If there are only `4` applicants in the app but `5` is specified, then the addition will not be carried out as it is invalid.
+* Index of applicant specified must be a positive number. <br>
+  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant and the addition will not be carried out as it is invalid.
 * If you would like to replace or remove certain skills instead, consider using [`edit`](https://ay2122s2-cs2103t-t09-2.github.io/tp/UserGuide.html#editing-an-applicant--edit).
 
 <br>
@@ -344,10 +345,11 @@ Format:
 edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​
 ```
 
-* Only valid index with an applicant is edited. <br>
-  e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
-* Only positive indexes are edited. <br>
-  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
+
+* Index of applicant specified must not be more than the total number of applicants in LinkedOUT. <br>
+  e.g If there are only `4` applicants in the app but `5` is specified, then the edit will not be carried out as it is invalid.
+* Index of applicant specified must be a positive number. <br>
+  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant and the edit will not be carried out as it is invalid.
 * As an applicant can have more than 1 skill, you may remove skills using `edit` as illustrated by the following example: <br>
   e.g An applicant has skills `Excel`, `Word`, `Docs`. To remove the skill `Excel`, you may type the following command. `edit INDEX s/Word s/Docs`.
 * You may also add skills using `edit`. However, a simpler way of doing so would be to use our alternative command [`addskill`](https://ay2122s2-cs2103t-t09-2.github.io/tp/UserGuide.html#adding-skills-to-an-applicant-addskill).
@@ -414,10 +416,10 @@ Format:
 flag INDEX
 ```
 
-* Only valid index with an applicant is flagged. <br>
-  e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
-* Only positive indexes are flagged. <br>
-  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
+* Index of applicant specified must not be more than the total number of applicants in LinkedOUT. <br>
+  e.g If there are only `4` applicants in the app but `5` is specified, then the flagging will not be carried out as it is invalid.
+* Index of applicant specified must be a positive number. <br>
+  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant and the flagging will not be carried out as it is invalid.
 * Flag acts like a toggle. To un-flag the applicant, you may simply re-type the same command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -459,7 +461,7 @@ except after search and view commands. <br>
   and will no longer be displayed at the top.
   * e.g After a sort command, flagged applicants are not displayed at the top of the list and will be displayed according to the order 
   specified in the command. 
-  * e.g After a search command, applicants will be displayed in order of which applicants most satisfy the search conditions.
+  * e.g After a search command, applicants will be displayed in descending order of number of matches with the search conditions. For more information about this behavior, please refer to the search command.
 
 </div>
 
@@ -477,10 +479,10 @@ Format:
 delete INDEX
 ```
 
-* Only valid index with an applicant is deleted. <br>
-  e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
-* Only positive indexes are deleted. <br>
-  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
+* Index of applicant specified must not be more than the total number of applicants in LinkedOUT. <br>
+  e.g If there are only `4` applicants in the app but `5` is specified, then the deletion will not be carried out as it is invalid
+* Index of applicant specified must be a positive number. <br>
+  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant and the deletion will not be carried out as it is invalid.
 
 <br>
 
