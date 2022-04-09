@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Tokenizes arguments string of the form: {@code preamble <prefix>value <prefix>value ...}<br>
@@ -74,6 +75,10 @@ public class ArgumentTokenizer {
         int prefixIndex = argsString.indexOf(" " + prefix, fromIndex);
         return prefixIndex == NOT_PRESENT ? NOT_PRESENT
                 : prefixIndex + 1; // +1 as offset for whitespace
+    }
+
+    private static boolean hasAnyPrefixesPresent(ArgumentMultimap argMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argMultimap.getValue(prefix).isPresent());
     }
 
     /**
