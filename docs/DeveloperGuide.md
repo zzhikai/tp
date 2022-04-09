@@ -574,22 +574,9 @@ The following sequence diagram shows how the sort operation works:
 The flag feature and it's associated `flag` command allows the user to flag an existing applicant in the LinkedOUT list, pinning them to the top for easy reference.
 
 #### Implementation
-The flag mechanism is facilitated by creating a `FlagCommand`. `FlagCommand` extends `Command` and implements the Command#execute() method.
+The flag mechanism is facilitated by the `FlagCommandParser`. `FlagCommandParser` parses the user inputs using `FlagCommandParser#parse()` to obtain the index of the applicant to be flagged.
 
-The following activity diagram shows the workflow for the flag operation:
-
-
-Given below is an example usage scenario of how an applicant is flagged, and how the operation is handled by LinkedOUT:
-
-1. The user enters a valid flag command, for example: `flag 1`. For each command LogicManager#execute() is invoked, which calls LinkedoutParser#parseCommand() to separate the command word `flag` and the argument `1`.
-
-2. Upon identifying the flag command, `FlagCommandParser` is instantiated and uses `FlagCommandParser#parse()` to obtain the index of the applicant to be flagged.
-
-3. `ParserUtil#parseIndex(args)` is then called by `FlagCommandParser#parse()` to obtain the index of the applicant to be flagged as an argument to be passed around internal components, as well as to check the validity of the index provided.
-
-4. `FlagCommandParser#parse()` then initializes a `FlagCommand` with the obtained index as the argument. `FlagCommand
-
-`FlagCommand` then searches for the applicant in within the applicant list, and toggles it's flagged status.
+`FlagCommand` then searches for the applicant in the applicant list, and toggles it's flagged status.
 
 The following activity diagram shows the workflow for the flag operation:
 
