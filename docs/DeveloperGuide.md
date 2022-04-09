@@ -171,6 +171,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+This limitation extends to the rest of our diagrams which are of the same type.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -242,7 +243,8 @@ The following activity diagram shows the workflow for the add operation:
 
 <div markdown="span" class="alert alert-info">:information_source:
  **Note:** There should only be one arrowhead at the end of every line
-in the Activity Diagram. This is a known limitation of PlantUML.</div>
+in the Activity Diagram. This is a known limitation of PlantUML. This limitation extends to the rest of our diagrams which are of the same type.
+</div>
 
 Given below is an example usage scenario of how an applicant is added, and how the operation is handled by LinkedOUT:
 
@@ -270,9 +272,6 @@ the user.
 The following sequence diagram shows how the add operation works:
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser`
-should not exceed the destroy marker X. This is a known limitation of PlantUML.</div>
 
 #### Design considerations
 
@@ -902,5 +901,3 @@ testers are expected to do more *exploratory* testing.
 1. _{ more test cases …​ }_
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
-
----
