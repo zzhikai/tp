@@ -882,6 +882,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
+---
 ### Launch and shutdown
 
 1. Initial launch
@@ -903,6 +904,9 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 
 ### Editing an applicant
 
@@ -937,8 +941,10 @@ testers are expected to do more *exploratory* testing.
     6. Other incorrect edit commands to try: `edit o/Jamie`, `edit p/Jamie`, `edit x n/Jamie` 
        (where x is greater than list size). <br>
        Expected: Similar to previous.
-       
-     
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---     
 
 ### Add skills to an applicant
 
@@ -962,7 +968,10 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect delete commands to try: `addskill s/Python`, `addskill 1`, `addskill 1 Python`, `addskill x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-       
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Deleting an applicant
 
 1. Deleting an applicant while all applicants are being shown in the *GUI*.
@@ -977,7 +986,10 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect delete commands to try: `delete`, `delete 1 1`, `delete x`, (where x is larger than the list size)<br>
       Expected: Similar to previous.
-      
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---      
 ### Sorting list of applicants
 
 1. Adding a skill to an applicant while all applicants are being shown in the *GUI*.
@@ -999,8 +1011,10 @@ testers are expected to do more *exploratory* testing.
        
     6. Other incorrect delete commands to try: `sort f/skill o/asc`, `sort f/job o/ascending`, `sort name asc`<br>
        Expected: Similar to previous.
-       
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Clearing the application
 
 1. Clearing all applicants from LinkedOUT when multiple applicants are being shown in the *GUI*
@@ -1017,6 +1031,9 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `clear x` (where x can be a Integer or a String). <br>
        Expected: Confirmation box pops up, outcomes similar to test cases i, ii and iii.
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Saving data
 
 1. Saving data
