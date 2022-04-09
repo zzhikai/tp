@@ -3,7 +3,6 @@
 
 start
 :User executes addskill command;
-:Parse inputs;
 if () then ([valid index])
     if () then ([valid arguments])
     :Display to user new \n applicant's details;
