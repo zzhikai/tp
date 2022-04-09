@@ -194,7 +194,7 @@ How the parsing works:
 The `Model` component,
 
 * stores the LinkedOUT application data i.e., all `Applicant` objects (which are contained in a `UniqueApplicantList` object).
-* stores the currently 'selected' `Applicant` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Applicant>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Applicant` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Applicant>`. This _filtered_ list is then wrapped around a `SortedList` to create a _filtered_, _sorted_ list that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes or is sorted.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -390,8 +390,8 @@ The following sequence diagram shows how the edit operation works:
 
 #### Rationale
 
-The view command searches a **single** applicant in LinkedOUT and returns the applicant's details. 
-It is used when users wish to find a specific user they have in mind.
+The view command searches a **single** applicant in LinkedOUT and returns the applicant's details.
+It is used when users wish to find a specific applicant they have in mind.
 It takes in a single case-insensitive parameter, which is the applicant's full name. No prefix is required.
 
 #### Implementation
@@ -409,19 +409,19 @@ The following activity diagram shows the workflow for the view operation:
 Given below is an example usage scenario of how to view a specific applicant.
 
 1. The user enters the view command with the specific name, `view Alex Tan`.
-   
 
-2. `LinkedoutParser` is invoked to handle the command `view` through `LinkedoutParser#parseCommand()`. 
-   
+
+2. `LinkedoutParser` is invoked to handle the command `view` through `LinkedoutParser#parseCommand()`.
+
 
 3. It then calls upon `ViewCommandParser#parse()` to check if the input is empty.
-   
+
 
 4. If input is not empty, it passes the input to `NameContainsAllKeywordsPredicate()`.
-   
+
 
 5. The result is then initialized as a predicate in `ViewCommand`. `ViewCommand#execute()` then tries to find a match.
-   
+
 
 6. It then calls upon `CommandResult` to display the final result on the *GUI*.
 
@@ -442,7 +442,7 @@ The following sequence diagram shows how the view operation works:
 * **Alternative 2:** Shows multiple applicants based on partial matches.
     * Pros: Less strict matching.
     * Cons: Users are unable to single out a certain applicant.
-    
+
 Weighing the pros and cons of these alternatives, we have decided to abstract alternative 2 as a different feature under `search`.
 This is to allow our target user to have greater flexibility, and we believe both are important features to be implemented.
 
@@ -453,13 +453,17 @@ This is to allow our target user to have greater flexibility, and we believe bot
 
 #### Rationale
 
-The search command allows for a quick view of applicant's information in LinkedOUT.
+The search command searches for applicant(s) in LinkedOUT and returns the applicant(s)' details.
+It is used when users wish to search for applicant(s) they have in mind.
+It takes in prefix(es) with case-insensitive parameter, which can be applicant's name, job, round and skill.
 
 #### Implementation
 
 The proposed search mechanism is facilitated by `SearchCommandParser`. `SearchCommandParser` will map the creation of `KeywordsPredicate` based on the input prefix. `KeywordsPredicate` supports the following implementation:
-* `NameContainsKeywordsPredicate` — Predicate which returns true if an applicant's full name matches partially with the input keyword.
-* `JobContainsKeywordsPredicate` — Predicate which returns true if an applicant's job name matches partially with the input keyword.
+* `NameContainsKeywordsPredicate` — Predicate which returns true if an applicant's full name matches partially with the exact input attribute.
+* `JobContainsKeywordsPredicate` — Predicate which returns true if an applicant's job name matches partially with the exact input attribute.
+* `RoundContainsKeywordsPredicate` — Predicate which returns true if an applicant's round matches partially with the exact input attribute.
+* `ApplicantContainsSkillKeywordsPredicate` — Predicate which returns true if an applicant's skill matches partially with the exact input attribute.
 
 These predicates assist the filtering of applicant list in the `Model` interface, specifically for  `Model#updateSearchApplicantList()` and `Model#getDefaultApplicantList()`.
 
@@ -470,25 +474,25 @@ The following activity diagram shows the workflow of the search command:
 Given below is an example usage scenario and how the search mechanism behaves at each step.
 
 Example 1
-1. The user enters search command with prefix and specified keyword , `search n/David Lee`.
+1. The user enters search command with prefix and specified attribute, `search n/David Lee`.
 
 
-2. The input keywords will be passed into `SearchCommandParser` and creates a `NameContainsKeywordsPredicate` if the keyword
+2. The input attributes will be passed into `SearchCommandParser` and creates a `NameContainsKeywordsPredicate` if the attribute
    and prefix are not empty.
 
 
 3. The predicate is then passed into `Model#updateSearchApplicantList()` to filter and display applicants with partial name
-   matching of "David" or "Lee" in LinkedOUT.
+   matching of `David` or `Lee` in LinkedOUT.
 
 
 Example 2
-1. The user enters `search j/Software Engineer` command to search for applicants in LinkedOUT.
+1. The user enters `search j/Software n/David` command to search for applicants in LinkedOUT.
 
 
-2. The input keywords will be passed into `SearchCommandParser` and creates a `JobContainsKeywordsPredicate` if the keywords are not empty.
+2. The input attributes will be passed into `SearchCommandParser` and creates a `JobContainsKeywordsPredicate` and `NameContainsKeywordsPredicate` if the attributes are not empty.
 
 
-3. The predicate is then passed into `Model#updateSearchApplicantList()` to filter and display applicants with partial job name matching of "Software" or "Engineer"  in LinkedOUT.
+3. The predicate is then passed into `Model#updateSearchApplicantList()` to filter and sort the applicants with partial job and name matching of `Software` or `David`. Applicant with the most matched attributes will be displayed on the top of LinkedOUT.
 
 The following sequence diagram shows how the search operation works:
 
@@ -498,8 +502,8 @@ The following sequence diagram shows how the search operation works:
 
 **Aspect: How search executes:**
 
-* **Alternative 1 (current choice):** Uses prefix to search for applicants with partial matching of keywords.
-    * Pros: Able to search an applicant using different fields/prefixes.
+* **Alternative 1 (current choice):** Uses prefixes to search for applicants with combination of matching attributes.
+    * Pros: Able to search an applicant using combination of different fields/prefixes. Provides a more precise and broader search.
     * Cons: Hard to implement.
 
 * **Alternative 2:** Only search for an applicant using partial matching name.
@@ -509,6 +513,7 @@ The following sequence diagram shows how the search operation works:
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
+
 ### Sort applicant feature
 
 #### Rationale
@@ -528,7 +533,7 @@ Given below is an example usage scenario and how the search mechanism behaves at
 1. The user enters the sort command with the specific field to sort by and sorting order,
    `sort f/name o/asc`.
    
-2. The input keywords will be passed into `SortCommandParser` and creates a `SortComparator` 
+2. The input fields will be passed into `SortCommandParser` and creates a `SortComparator` 
    if the field and order are not empty.
    
 3. The `SortComparator` is then passed into `Model#updateDefaultApplicantList()` to sort and display
@@ -540,7 +545,7 @@ The following sequence diagram shows how the sort operation works:
 
 #### Design considerations:
 
-**Aspect: How search executes:**
+**Aspect: How sort executes:**
 
 * **Alternative 1 (current choice):** Displays a temporary sorted list
     * Pros: Original order of list retained.
@@ -563,7 +568,7 @@ The flag feature and it's associated `flag` command allows the user to flag an e
 #### Implementation
 The flag mechanism is facilitated by the `FlagCommandParser`. `FlagCommandParser` parses the user inputs using `FlagCommandParser#parse()` to obtain the index of the applicant to be flagged.
 
-`FlagCommand` then searches for the applicant in within the applicant list, and toggles it's flagged status.
+`FlagCommand` then searches for the applicant in the applicant list, and toggles it's flagged status.
 
 The following activity diagram shows the workflow for the flag operation:
 
@@ -949,7 +954,73 @@ The commands in code blocks for this section are meant to be inputted in one lin
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
----      
+---
+
+### View an applicant
+
+1. View an applicant while all applicants are being shown in the *GUI*.
+
+    1. Current State: The list has pre-existing applicants. The first applicant has full name of `Bob Tan`.
+
+    2. Test case: `view Bob Tan`<br>
+       Expected: Only applicant named `Bob Tan` is displayed in the list.
+
+    3. Test case: `view Tan`<br>
+       Expected: No applicant is displayed in the list.
+
+    4. Test case: `view n/Bob Tan`<br>
+       Expected: No applicant is displayed in the list. This is because prefix is not needed in view.
+
+    5. Test case: `view BobTan`<br>
+       Expected: No applicant is displayed in the list. This is because exact full name with correct spacing is needed to view on an applicant.
+
+    6. Test case: `view bob tan`<br>
+       Expected: Only applicant named `Bob Tan` is displayed in the list. This is because full name are case-insensitive.
+
+    7. Other incorrect view commands to try: `view` and `View`<br>
+       Expected: No applicant is displayed. Error details shown in the status message.
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+
+### Searching for applicant(s)
+
+1. Searching for applicant(s) while all applicants are being shown in the *GUI*.
+
+    1. Current State: The list has pre-existing applicants. The first applicant has name of `Bob Tan` with job in `Software Engineer`.
+       The second applicant has name of `Amy Tan` with job in `Software Developer`.
+
+    2. Test case: `search n/Tan`<br>
+       Expected: Both applicants are displayed in the list.
+
+    3. Test case: `search n/Bob`<br>
+       Expected: Only applicant named `Bob Tan` is displayed in the list.
+
+    4. Test case: `search n/bOb`<br>
+       Expected: Only applicant named `Bob Tan` is displayed in the list. This is because search attributes are case-insensitive.
+
+    5. Test case: `search n/Jason`<br>
+       Expected: No applicant is displayed in the list.
+
+    6. Test case: `search n/Bo`<br>
+       Expected: No applicant is displayed in the list. This is because search attribute has to be an exact word (can be split by spacing).
+
+    7. Test case: `search j/Bob`<br>
+       Expected: No applicant is displayed in the list. This is because the search attribute has to match with the correct prefix.
+
+    8. Test case: `search n/Tan j/Engineer`<br>
+       Expected: Both applicants are displayed in the list but `Bob Tan` is shown on the top of the list. This is because applicant with the most matching attributes will be displayed first.
+
+    9. Test case: `search n/Amy j/Engineer`<br>
+       Expected: Both applicants are displayed in the list and the order of applicant shown is based on the original list. In this case, `Bob Tan` is shown above `Amy Tan`.
+
+    10. Other incorrect search commands to try: `search`, `Search`, `search Bob`, `search w/Bob`, `search n/`<br>
+        Expected: No applicant is displayed. Error details shown in the status message.
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 
 ### Sorting list of applicants
 
