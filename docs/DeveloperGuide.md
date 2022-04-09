@@ -565,23 +565,51 @@ The following sequence diagram shows how the sort operation works:
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
-### \[Proposed\] Flag applicant feature
 
-The flagging feature flags an applicant as important, and will be displayed at the top of the applicant list.
-The current display of applicant relies on the ordering of the applicants in the `UniqueApplicantList`. The
-`Applicant` in the `UniqueApplicantList` are ordered in the order they are added in. This makes it difficult
-to have a custom ordering for the flagging feature.
+### Flag applicant feature
 
-As such, the flag feature alters the `UniqueApplicantList` by changing its internal implementation from an
-`ObservableArrayList` to an `ObservablePriorityQueue`. Since an `ObservablePriorityQueue` does not exist in
-the Java library, the flag feature comes with the team's own design for an `ObservablePriorityQueue`.
+#### Rationale
 
-The `ObservablePriorityQueue` implements the Java Collections, Iterable, PriorityQueue and Observable interfaces,
-and exposes all related functionality from these relevant interfaces. 
+The flag feature and it's associated `flag` command allows the user to flag an existing applicant in the LinkedOUT list, pinning them to the top for easy reference.
 
-`Applicant` will also be edited to contain a boolean `flagged` for use as a comparator in the `ObservablePriorityQueue`
+#### Implementation
+The flag mechanism is facilitated by the `FlagCommandParser`. `FlagCommandParser` parses the user inputs using `FlagCommandParser#parse()` to obtain the index of the applicant to be flagged.
 
-_{more aspects and alternatives to be added}_
+`FlagCommand` then searches for the applicant in within the applicant list, and toggles it's flagged status.
+
+The following activity diagram shows the workflow for the flag operation:
+
+![FlagCommandActivityDiagram](images/FlagCommandActivityDiagram.png)
+
+Given below is an example usage scenario of how an applicant is flagged, and how the operation is handled by LinkedOUT:
+
+1. The user enters a valid flag command, for example: `flag 1`. For each command `LogicManager#execute()` is invoked, which calls `LinkedoutParser#parseCommand()` to separate the command word `flag` and the argument `1`.
+
+2. Upon identifying the flag command, `FlagCommandParser` is instantiated and uses `FlagCommandParser#parse()` to obtain the index of the applicant to be flagged.
+
+3. `ParserUtil#parseIndex(args)` is then called by `FlagCommandParser#parse()` to obtain the index of the applicant to be flagged as an argument to be passed around internal components, as well as to check the validity of the index provided.   
+
+4. `FlagCommandParser#parse()` then initializes a `FlagCommand` with the obtained index as the argument.
+   
+5. The logic manager calls `FlagCommand#execute()` which obtains the applicant at the specified index.
+    
+6. With `FlagCommand#createFlaggedApplicant()`, the applicant obtained is cloned, but it's flagged status is toggled, and the initial applicant obtained is replaced by its cloned version.
+
+7. A call to `CommandResult` then displays the final result on the GUI.
+
+The following sequence diagram shows how the flag operation works:
+
+![FlagSequenceDiagram](images/FlagSequenceDiagram.png)
+
+#### Design considerations
+
+Aspect: How flag executes :
+* Alternative 1 (current choice): Create a new applicant with toggled flag status to replace the specified applicant.
+  * Pros: Immutability, easier to debug, and less side effects.
+  * Cons: More memory usage, more verbose to implement.
+* Alternative 2: Change the state of the applicant directly, by making the flag status mutable.
+  * Pros: Less verbose to implement.
+  * Cons: Change of applicant state makes debugging the application harder, and contains possibility of introducing side effects.
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -903,7 +931,59 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+       
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
+---
+
+### Adding an applicant
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Code blocks for the *Adding an applicant* section:**
+The commands in code blocks for this section are meant to be input in one line.
+</div>
+
+
+1. Adding an applicant while all applicants are being shown in the *GUI*.
+
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list. No other applicant named Alice in the list.
+       Bob is an applicant in the list.
+
+    2. Test case: 
+       ```
+       add 
+       n/Alice 
+       p/99990000 
+       e/alice@mail.com 
+       j/Software Engineer
+       r/Technical Interview
+       s/Java
+       ```
+       Expected: An applicant named Alice with the above attributes will be added to the applicant list and displayed on the *GUI*.
+
+    3. Test case:
+       ```
+       add
+       n/Bob
+       p/99990000
+       e/bob@mail.com
+       j/Site Reliability Engineer
+       r/Technical Interview
+       s/Jira 
+       s/SonarQube
+       ```
+       Expected: No changes occur as an applicant named Bob is already in the list, and duplicate applicants with the same names are not allowed.
+
+    4. Test case:
+       ```
+       add 
+       n/Charles 
+       s/Haskell
+       ```
+       Expected: No changes occur as the phone number, email, job applied to and round of interview are all mandatory attributes
+       that are not included in the above add command. These must be specified with the `p/`, `e/`, `j/` and `r/` prefixes respectively.
+       
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
@@ -972,6 +1052,7 @@ testers are expected to do more *exploratory* testing.
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
+
 ### Deleting an applicant
 
 1. Deleting an applicant while all applicants are being shown in the *GUI*.
@@ -986,10 +1067,34 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect delete commands to try: `delete`, `delete 1 1`, `delete x`, (where x is larger than the list size)<br>
       Expected: Similar to previous.
+      
+### Flagging an applicant
+
+1. Flagging an applicant while all applicants are being shown in the *GUI*.
+   
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+    Current state: The first applicant is presumed to be unflagged.
+    
+    2. Test case: `flag 1` <br> 
+       Expected: First applicant is flagged, a flag icon appears to the right of applicant details and flagged applicant is now at the top of the list.
+       
+    3. Test case: `flag 1` <br>
+       Assumption: Test case above is completed, and the first applicant is now flagged. <br>
+       Expected: First applicant is now unflagged, flag icon disappears, and applicant is no longer at the top of the list.
+
+    4. Test case: `flag -1` <br>
+       Expected: No applicant is flagged as index is invalid. Error details shown in the status message.
+       
+    5. Test case: `flag 999999999999` <br>
+       Expected: No applicant is flagged as index is too large to be parsed. Error details shown in the status message.
+       
+    6. Other incorrect flag commands to try: `flag`, `flag 1 1`, `flag x`, (where x is larger than the list size) <br>
+       Expected: Similar to test case 4.
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---      
+
 ### Sorting list of applicants
 
 1. Adding a skill to an applicant while all applicants are being shown in the *GUI*.
@@ -1015,6 +1120,7 @@ testers are expected to do more *exploratory* testing.
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
+
 ### Clearing the application
 
 1. Clearing all applicants from LinkedOUT when multiple applicants are being shown in the *GUI*
@@ -1034,6 +1140,7 @@ testers are expected to do more *exploratory* testing.
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
+
 ### Saving data
 
 1. Saving data
