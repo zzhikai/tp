@@ -585,7 +585,7 @@ The flag mechanism is facilitated by the `FlagCommandParser`. `FlagCommandParser
 
 The following activity diagram shows the workflow for the flag operation:
 
-![AddSkillActivityDiagram](images/AddSkillCommandActivityDiagram.png)
+![FlagCommandActivityDiagram](images/FlagCommandActivityDiagram.png)
 
 Given below is an example usage scenario of how an applicant is flagged, and how the operation is handled by LinkedOUT:
 
@@ -603,7 +603,7 @@ Given below is an example usage scenario of how an applicant is flagged, and how
 
 7. A call to `CommandReslt` then displays the final result on the GUI.
 
-![AddSkillSequenceDiagram](images/AddSkillCommandSequenceDiagram.png)
+![FlagSequenceDiagram](images/FlagSequenceDiagram.png)
 
 #### Design considerations
 
