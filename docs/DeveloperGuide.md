@@ -196,7 +196,7 @@ How the parsing works:
 The `Model` component,
 
 * stores the LinkedOUT application data i.e., all `Applicant` objects (which are contained in a `UniqueApplicantList` object).
-* stores the currently 'selected' `Applicant` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Applicant>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Applicant` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Applicant>`. This _filtered_ list is then wrapped around a `SortedList` to create a _filtered_, _sorted_ list that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes or is sorted.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -521,6 +521,7 @@ _{more aspects and alternatives to be added}_
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
+
 ### Sort applicant feature
 
 #### Rationale
@@ -565,21 +566,28 @@ The following sequence diagram shows how the sort operation works:
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
-### \[Proposed\] Flag applicant feature
 
-The flagging feature flags an applicant as important, and will be displayed at the top of the applicant list.
-The current display of applicant relies on the ordering of the applicants in the `UniqueApplicantList`. The
-`Applicant` in the `UniqueApplicantList` are ordered in the order they are added in. This makes it difficult
-to have a custom ordering for the flagging feature.
+### Flag applicant feature
 
-As such, the flag feature alters the `UniqueApplicantList` by changing its internal implementation from an
-`ObservableArrayList` to an `ObservablePriorityQueue`. Since an `ObservablePriorityQueue` does not exist in
-the Java library, the flag feature comes with the team's own design for an `ObservablePriorityQueue`.
+#### Rationale
 
-The `ObservablePriorityQueue` implements the Java Collections, Iterable, PriorityQueue and Observable interfaces,
-and exposes all related functionality from these relevant interfaces. 
+The flag feature and it's associated `flag` command allows the user to flag an existing applicant in the LinkedOUT list, pinning them to the top for easy reference.
 
-`Applicant` will also be edited to contain a boolean `flagged` for use as a comparator in the `ObservablePriorityQueue`
+#### Implementation
+The flag mechanism is facilitated by creating a `FlagCommand`. `FlagCommand` extends `Command` and implements the Command#execute() method.
+
+The following activity diagram shows the workflow for the flag operation:
+
+
+Given below is an example usage scenario of how an applicant is flagged, and how the operation is handled by LinkedOUT:
+
+1. The user enters a valid flag command, for example: `flag 1`. For each command LogicManager#execute() is invoked, which calls LinkedoutParser#parseCommand() to separate the command word `flag` and the argument `1`.
+
+2. Upon identifying the flag command, `FlagCommandParser` is instantiated and uses `FlagCommandParser#parse()` to obtain the index of the applicant to be flagged.
+
+3. `ParserUtil#parseIndex(args)` is then called by `FlagCommandParser#parse()` to obtain the index of the applicant to be flagged as an argument to be passed around internal components, as well as to check the validity of the index provided.
+
+4. `FlagCommandParser#parse()` then initializes a `FlagCommand` with the obtained index as the argument. `FlagCommand
 
 _{more aspects and alternatives to be added}_
 
