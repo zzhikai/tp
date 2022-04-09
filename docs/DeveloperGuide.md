@@ -572,16 +572,48 @@ The current display of applicant relies on the ordering of the applicants in the
 `Applicant` in the `UniqueApplicantList` are ordered in the order they are added in. This makes it difficult
 to have a custom ordering for the flagging feature.
 
-As such, the flag feature alters the `UniqueApplicantList` by changing its internal implementation from an
-`ObservableArrayList` to an `ObservablePriorityQueue`. Since an `ObservablePriorityQueue` does not exist in
-the Java library, the flag feature comes with the team's own design for an `ObservablePriorityQueue`.
+### Flag applicant feature
 
-The `ObservablePriorityQueue` implements the Java Collections, Iterable, PriorityQueue and Observable interfaces,
-and exposes all related functionality from these relevant interfaces. 
+#### Rationale
 
-`Applicant` will also be edited to contain a boolean `flagged` for use as a comparator in the `ObservablePriorityQueue`
+The flag feature and it's associated `flag` command allows the user to flag an existing applicant in the LinkedOUT list, pinning them to the top for easy reference.
 
-_{more aspects and alternatives to be added}_
+#### Implementation
+The flag mechanism is facilitated by the `FlagCommandParser`. `FlagCommandParser` parses the user inputs using `FlagCommandParser#parse()` to obtain the index of the applicant to be flagged.
+
+`FlagCommand` then searches for the applicant in within the applicant list, and toggles it's flagged status.
+
+The following activity diagram shows the workflow for the flag operation:
+
+![AddSkillActivityDiagram](images/AddSkillCommandActivityDiagram.png)
+
+Given below is an example usage scenario of how an applicant is flagged, and how the operation is handled by LinkedOUT:
+
+1. The user enters a valid flag command, for example: `flag 1`. For each command LogicManager#execute() is invoked, which calls LinkedoutParser#parseCommand() to separate the command word `flag` and the argument `1`.
+
+2. Upon identifying the flag command, `FlagCommandParser` is instantiated and uses `FlagCommandParser#parse()` to obtain the index of the applicant to be flagged.
+
+3. `ParserUtil#parseIndex(args)` is then called by `FlagCommandParser#parse()` to obtain the index of the applicant to be flagged as an argument to be passed around internal components, as well as to check the validity of the index provided.   
+
+4. `FlagCommandParser#parse()` then initializes a `FlagCommand` with the obtained index as the argument.
+   
+5. The logic manager calls `FlagCommand#execute()` which obtains the applicant at the specified index.
+    
+6. With `FlagCommand#createFlaggedApplicant()`, the applicant obtained is cloned, but it's flagged status is toggled, and the initial applicant obtained is replaced by its cloned version.
+
+7. A call to `CommandReslt` then displays the final result on the GUI.
+
+![AddSkillSequenceDiagram](images/AddSkillCommandSequenceDiagram.png)
+
+#### Design considerations
+
+Aspect: How flag executes :
+* Alternative 1 (current choice): Create a new applicant with toggled flag status to replace the specified applicant.
+  * Pros: Immutability, easier to debug, and less side effects.
+  * Cons: More memory usage, more verbose to implement.
+* Alternative 2: Change the state of the applicant directly, by making the flag status mutable.
+  * Pros: Less verbose to implement.
+  * Cons: Change of applicant state makes debugging the application harder, and contains possibility of introducing side effects.
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 

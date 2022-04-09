@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes flag command;
+if () then ([valid index])
+    if () then ([already flagged])
+    :Unflag applicant specified by index;
+    :Update GUI to \ndisplay unflagged applicant \nin list of applicants;
+    else ([not flagged])
+    :Flag applicant specified by index;
+    :Update GUI to \ndisplay flagged applicant \nin list of applicants ;
+    endif
+else ([else])
+:Display error message to user \nthat no applicant found or index \nis invalid;
+endif
+
+stop
+
+@enduml
