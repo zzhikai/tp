@@ -36,6 +36,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_JOB,
                         PREFIX_ROUND, PREFIX_SKILL);
+
         boolean hasInvalidPrefix = ArgumentTokenizer.hasInvalidPrefix(args, argMultimap);
         if (hasInvalidPrefix) {
             throw new ParseException(String.format(MESSAGE_INVALID_PREFIX, AddCommand.MESSAGE_USAGE));

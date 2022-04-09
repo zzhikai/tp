@@ -30,6 +30,7 @@ public class AddSkillCommandParser implements Parser<AddSkillCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_SKILL);
 
         Index index;
+
         boolean hasInvalidPrefix = ArgumentTokenizer.hasInvalidPrefix(args, argMultimap);
         if (hasInvalidPrefix) {
             throw new ParseException(String.format(MESSAGE_INVALID_PREFIX, AddSkillCommand.MESSAGE_USAGE));

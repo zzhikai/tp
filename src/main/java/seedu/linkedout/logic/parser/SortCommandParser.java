@@ -28,6 +28,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_FIELD, PREFIX_ORDER);
+
         boolean hasInvalidPrefix = ArgumentTokenizer.hasInvalidPrefix(args, argMultimap);
         if (hasInvalidPrefix) {
             throw new ParseException(String.format(MESSAGE_INVALID_PREFIX, SortCommand.MESSAGE_USAGE));
