@@ -699,7 +699,7 @@ does not have any formatting issues.**
 
 **Extensions**
 
-* 1a. User inputs applicant details with invalid formatting. 
+* 1a. User provides an invalid input to add an applicant. 
 
     * 1a1. LinkedOUT shows an error message. 
         
@@ -828,8 +828,7 @@ does not have any formatting issues.**
     * 3a1. LinkedOUT shows an error message.
 
       Use case resumes at step 2.
-
-<<<<<<< HEAD
+    
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
@@ -856,7 +855,7 @@ only if the user input does not have any formatting issues.**
 
   Use case ends.
 
-* 3a. User input has invalid formatting.
+* 3a. User provides an invalid input to sort the list of applicants.
 
     * 3a1. LinkedOUT shows an error message.
 
@@ -868,8 +867,6 @@ only if the user input does not have any formatting issues.**
 
 *{More to be added}*
 
-=======
->>>>>>> master
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
