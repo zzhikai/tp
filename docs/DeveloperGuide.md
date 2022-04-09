@@ -3,24 +3,27 @@ layout: page
 title: Developer Guide
 ---
 
-LinkedOUT is the only application that any experienced recruiter needs. LinkedOUT allows recruiters to keep track of many applicants, and the job they applied for. You can store their contact details, skills and the round of their application, all in one place.
-
-LinkedOUT helps recruiters manage the multiple job applications they may receive on a daily basis. With many applications, it may be difficult to keep track of each applicant and which application round they are currently at.
-
-Thus, LinkedOUT aims to improve a recruiter's experience. LinkedOUT presents recruiters with the ability to flag important applicants, edit applicants easily and search for them with ease.
-
-LinkedOUT comes with a Command Line Interface (*CLI*) as well as a Graphical User Interface (*GUI*) in order to provide recruiters a more streamlined experience.
-
 ## **Table of Contents**
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Who is this Developer Guide for?**
+## **Introduction**
 
-This user guide is meant for developers who wish to learn about the design decisions and implementation of our application. 
-The target audience of our application are recruiters who are looking to incorporate this app into their daily workflows.
+**What is LinkedOUT?**
+
+LinkedOUT is the only application that any experienced recruiter needs. LinkedOUT allows recruiters to keep track of many applicants, and the job they applied for. You can store their contact details, skills and the round of their application, all in one place.
+
+LinkedOUT helps recruiters manage the multiple job applications they may receive on a daily basis. With many applications, it may be difficult to keep track of each applicant and which application round they are currently at.
+
+Thus, LinkedOUT aims to improve a recruiter's experience. LinkedOUT presents recruiters with the ability to flag important applicants, edit applicants easily and search for them with ease.
+
+LinkedOUT comes with a Command Line Interface *CLI* as well as a Graphical User Interface *GUI* in order to provide recruiters a more streamlined experience.
+
+**Who is this Developer Guide for?**
+
+This developer guide is meant for those who wish to understand the architecture and design considerations of LinkedOUT.
 
 Certain technical terms are specified in *italics*. If you need to reference what they mean, you can do so by referring to our [Glossary](https://ay2122s2-cs2103t-t09-2.github.io/tp/DeveloperGuide.html#glossary).
 
@@ -37,15 +40,7 @@ If you would like to learn how to use the application instead, you can do so by 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**
-Notes are placed in this guide to specify extra details on the command format and serves as a guide to assist you.
-</div>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Tips are placed in this guide to serve as suggestions that you can try out while using our application.
-</div>
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Cautions are placed in this guide to serve as warnings for certain actions.
+Notes are placed in this guide to specify extra details and elaboration.
 </div>
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -55,6 +50,8 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 ## **Acknowledgements**
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
+Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5).
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -70,9 +67,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S2-CS2103T-T09-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+**:information_source: Notes:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S2-CS2103T-T09-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -346,8 +343,6 @@ Given below is an example usage scenario of how an applicant is edited.
     * Pros: One lesser command needed.
     * Cons: Adds extra complexity in code as well as for the user.
 
-_{more aspects and alternatives to be added}_
-
 ---
 
 ### Edit applicant feature
@@ -388,8 +383,6 @@ The following sequence diagram shows how the edit operation works:
 * **Alternative 2:** Replace individual fields inside original applicant.
     * Pros: Will use less memory (Do not have to create an extra applicant).
     * Cons: We must ensure that the implementation of each individual command to change an information is correct.
-
-_{more aspects and alternatives to be added}_
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -454,8 +447,6 @@ The following sequence diagram shows how the view operation works:
 Weighing the pros and cons of these alternatives, we have decided to abstract alternative 2 as a different feature under `search`.
 This is to allow our target user to have greater flexibility, and we believe both are important features to be implemented.
 
-_{more aspects and alternatives to be added}_
-
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
@@ -515,8 +506,6 @@ The following sequence diagram shows how the search operation works:
 * **Alternative 2:** Only search for an applicant using partial matching name.
     * Pros: Easy to implement.
     * Cons: Inflexible use of search command.
-
-_{more aspects and alternatives to be added}_
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -580,89 +569,6 @@ The `ObservablePriorityQueue` implements the Java Collections, Iterable, Priorit
 and exposes all related functionality from these relevant interfaces. 
 
 `Applicant` will also be edited to contain a boolean `flagged` for use as a comparator in the `ObservablePriorityQueue`
-
-_{more aspects and alternatives to be added}_
-
-[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
-
----
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedLinkedout`. It extends `Linkedout` with an undo/redo history, stored internally as an `linkedoutStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedLinkedout#commit()` — Saves the current address book state in its history.
-* `VersionedLinkedout#undo()` — Restores the previous address book state from its history.
-* `VersionedLinkedout#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitLinkedout()`, `Model#undoLinkedout()` and `Model#redoLinkedout()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedLinkedout` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th applicant in the address book. The `delete` command calls `Model#commitLinkedout()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `linkedoutStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new applicant. The `add` command also calls `Model#commitLinkedout()`, causing another modified address book state to be saved into the `linkedoutStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitLinkedout()`, so the address book state will not be saved into the `linkedoutStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the applicant was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoLinkedout()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Linkedout state, then there are no previous Linkedout states to restore. The `undo` command uses `Model#canUndoLinkedout()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoLinkedout()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `linkedoutStateList.size() - 1`, pointing to the latest address book state, then there are no undone Linkedout states to restore. The `redo` command uses `Model#canRedoLinkedout()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitLinkedout()`, `Model#undoLinkedout()` or `Model#redoLinkedout()`. Thus, the `linkedoutStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitLinkedout()`. Since the `currentStatePointer` is not pointing at the end of the `linkedoutStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the applicant being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -833,8 +739,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
-
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
@@ -866,8 +770,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **JSON**: JavaScript Object Notation: An open standard file format which we use to read and write data from.
 * **GUI**: Graphical User Interface: Refers to the user interface that the user interacts with.
 * **CLI**: Command Line Interface: Refers to a computer program that accepts text inputs.
-
-*{More to be added}*
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -903,43 +805,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-
-### Editing an applicant
-
-1. Editing an applicant while all applicants are being shown in the *GUI*.
-
-    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
-       Current State: The first applicant is Bob, with the following attributes:
-       ```         
-       Name: Bob
-       Phone Number: 99991111
-       Email Address: bob@mail.com
-       Job Applied: Data Analyst
-       Round: Interview 
-       Skills: Python
-       ```
-    
-    2. Test case: `edit 1 n/Charles e/charles@mail.com` <br>
-       Expected: The first applicant's name is changed to `Charles` and the email address is changed
-       to `charles@mail.com`. All other attributes remain unchanged.
-
-    3. Test case: `edit 1 s/Javascript s/Java` <br>
-       Expected: The first applicant's existing skills are removed, and only `Javascript` and `Java` 
-       will be in their skill list. All other attributes remain unchanged.
-
-    4. Test case: `edit 1 s/` <br>
-       Expected: All skills are removed from the first applicant, their skill list will now be empty.
-       All other attributes remain unchanged.
-
-    5. Test case: `edit 0 n/Jamie` <br>
-       Expected: No changes occur, as 0 is an invalid index. Error details shown in status message
-
-    6. Other incorrect edit commands to try: `edit o/Jamie`, `edit p/Jamie`, `edit x n/Jamie` 
-       (where x is greater than list size). <br>
-       Expected: Similar to previous.
-       
-     
-
 ### Add skills to an applicant
 
 1. Adding a skill to an applicant while all applicants are being shown in the *GUI*.
@@ -962,6 +827,40 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect delete commands to try: `addskill s/Python`, `addskill 1`, `addskill 1 Python`, `addskill x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+### Editing an applicant
+
+1. Editing an applicant while all applicants are being shown in the *GUI*.
+
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+       Current State: The first applicant is Bob, with the following attributes:
+       ```         
+       Name: Bob
+       Phone Number: 99991111
+       Email Address: bob@mail.com
+       Job Applied: Data Analyst
+       Round: Interview 
+       Skills: Python
+       ```
+
+    2. Test case: `edit 1 n/Charles e/charles@mail.com` <br>
+       Expected: The first applicant's name is changed to `Charles` and the email address is changed
+       to `charles@mail.com`. All other attributes remain unchanged.
+
+    3. Test case: `edit 1 s/Javascript s/Java` <br>
+       Expected: The first applicant's existing skills are removed, and only `Javascript` and `Java`
+       will be in their skill list. All other attributes remain unchanged.
+
+    4. Test case: `edit 1 s/` <br>
+       Expected: All skills are removed from the first applicant, their skill list will now be empty.
+       All other attributes remain unchanged.
+
+    5. Test case: `edit 0 n/Jamie` <br>
+       Expected: No changes occur, as 0 is an invalid index. Error details shown in status message
+
+    6. Other incorrect edit commands to try: `edit o/Jamie`, `edit p/Jamie`, `edit x n/Jamie`
+       (where x is greater than list size). <br>
+       Expected: Similar to previous.
 
 ### Deleting an applicant
 
