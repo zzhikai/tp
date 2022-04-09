@@ -16,7 +16,7 @@ Given below are my contributions to the project.
 <br>
 
 * **Enchancements Implemented**
-    * Performed initial refactoring to change the tag attribute in the AB3 implementation to the skill attribute for applicants in LinkedOUT
+    * Performed initial refactoring to change the tag attribute in the AB3 implementation to the `skill` attribute for applicants in LinkedOUT
       (Pull request [\#62](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/62))
       
       These changes include:
@@ -26,10 +26,10 @@ Given below are my contributions to the project.
       * Updating UI to display skills
       * Changing all `tag`-related usages in code to `skill`.
 
-    * Allowed the search command to allow users to search for skills, and enhanced the search to return applicants that contain any keywords
+    * Allowed the search command to allow users to `search` for skills, and enhanced the `search` to return applicants that contain any keywords
       specified by the user. (Pull requests [\#138](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/138) & [\#143](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/143))
     * Made multiple changes to the UI, to make the GUI more appealing. (Pull requests [\#150](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/150) & [\#216](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/216))
-    * Implemented improved data validation for Applicant's name & phone number (Pull requests [\#219](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/219) & [\#218](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/218))
+    * Implemented improved data validation for Applicant's `Name` & `Phone` (Pull requests [\#219](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/219) & [\#218](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/218))
 
 <br>
 
@@ -39,7 +39,7 @@ Given below are my contributions to the project.
       * Add constraints that apply to each applicant's attributes. (Pull request [\#245](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/245))
   * **Contributions to the DG**
     * Added implementation details and diagrams related to the `add` command. (Pull request [\#105](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/105)
-    * Added manual testing instructions for application launch, the `edit` command and the `clear` command. (Pull request [\#243](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/243))
+    * Added manual testing instructions for application `launch`, the `edit` command and the `clear` command. (Pull request [\#243](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/243))
 
 <br>
 
