@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
  */
 public class ArgumentTokenizer {
 
+    private static final int NOT_PRESENT = -1;
     /**
      * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
      * respective argument values. Only the given prefixes will be recognized in the arguments string.
@@ -48,7 +49,7 @@ public class ArgumentTokenizer {
         List<PrefixPosition> positions = new ArrayList<>();
 
         int prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), 0);
-        while (prefixPosition != -1) {
+        while (prefixPosition != NOT_PRESENT) {
             PrefixPosition extendedPrefix = new PrefixPosition(prefix, prefixPosition);
             positions.add(extendedPrefix);
             prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), prefixPosition);
@@ -60,18 +61,18 @@ public class ArgumentTokenizer {
     /**
      * Returns the index of the first occurrence of {@code prefix} in
      * {@code argsString} starting from index {@code fromIndex}. An occurrence
-     * is valid if there is a whitespace before {@code prefix}. Returns -1 if no
+     * is valid if there is a whitespace before {@code prefix}. Returns NOT_PRESENT if no
      * such occurrence can be found.
      *
      * E.g if {@code argsString} = "e/hip/900", {@code prefix} = "p/" and
-     * {@code fromIndex} = 0, this method returns -1 as there are no valid
+     * {@code fromIndex} = 0, this method returns NOT_PRESENT as there are no valid
      * occurrences of "p/" with whitespace before it. However, if
      * {@code argsString} = "e/hi p/900", {@code prefix} = "p/" and
      * {@code fromIndex} = 0, this method returns 5.
      */
     private static int findPrefixPosition(String argsString, String prefix, int fromIndex) {
         int prefixIndex = argsString.indexOf(" " + prefix, fromIndex);
-        return prefixIndex == -1 ? -1
+        return prefixIndex == NOT_PRESENT ? NOT_PRESENT
                 : prefixIndex + 1; // +1 as offset for whitespace
     }
 
@@ -122,6 +123,163 @@ public class ArgumentTokenizer {
         String value = argsString.substring(valueStartPos, nextPrefixPosition.getStartPosition());
 
         return value.trim();
+    }
+
+    /**
+     * Checks if the input prefix(es) are valid
+     * @param argsString
+     * @param argumentMultimap
+     * @return false if any of the input prefix is invalid
+     */
+    public static boolean hasInvalidPrefix(String argsString, ArgumentMultimap argumentMultimap) {
+        argsString = argsString.trim();
+        int slashIndex = slashIndex(argsString);
+        if (!hasNextSlash(argsString)) {
+            return false; //only has one prefix input, and the first prefix will be detected (will not have problem)
+        } else {
+            int whitespaceIndex = argsString.indexOf(" ");
+            if (whitespaceIndex < slashIndex) { // to ensure string starts with prefix
+                argsString = removeLeadingKeyword(argsString); //Dave s/java -> s/java
+            }
+            return checksForValidPrefix(argsString, argumentMultimap);
+        }
+    }
+
+    /**
+     * Converts the input string into Prefix and checks the Prefix matches with any valid Prefix
+     * @param uncheckedPrefix
+     * @param argumentMultimap
+     * @return True if input prefix is a valid format
+     */
+    private static boolean isValidPrefixFormat(String uncheckedPrefix, ArgumentMultimap argumentMultimap) {
+        Prefix prefix = new Prefix(uncheckedPrefix);
+        return hasAnyPrefixesPresent(argumentMultimap, prefix);
+    }
+
+    /**
+     * Removes any leading string before the next prefix
+     * @param str
+     * @return string starting with the prefix
+     */
+    private static String removeLeadingKeyword(String str) {
+        String stringBeginWithPrefix = str.trim();
+        int whitespaceIndex = stringBeginWithPrefix.indexOf(" ");
+        int nextSlashPrefix = slashIndex(stringBeginWithPrefix);
+
+        //remove any string before the prefix e.g."Alice Dave s/java" -> "s/java"
+        while (hasNextWhiteSpace(stringBeginWithPrefix) && nextSlashPrefix > whitespaceIndex) {
+            stringBeginWithPrefix = removesStringBeforeWhiteSpace(stringBeginWithPrefix, whitespaceIndex);
+            whitespaceIndex = stringBeginWithPrefix.indexOf(" "); //update white space index
+            nextSlashPrefix = slashIndex(stringBeginWithPrefix); //update slash index
+        }
+
+        return stringBeginWithPrefix;
+    }
+
+    /**
+     * removes keyword with slash
+     * require additional checking on keyword with slash e.g. java/python
+     * @param str
+     * @return string after the keyword
+     */
+    private static String removeLeadingKeywordWithSlash(String str) {
+        String keyword = str;
+        int whitespaceIndex = str.indexOf(" ");
+        int keywordSlashIndex = str.indexOf("/");
+        //Extra check for keyword with "/" e.g.baker/chef j/engineer -> j/engineer
+        if (hasNextWhiteSpace(keyword) && whitespaceIndex > keywordSlashIndex) {
+            keyword = removesStringBeforeWhiteSpace(keyword, whitespaceIndex);
+        } else if (!hasNextWhiteSpace(keyword) && hasNextSlash(keyword)) { //remove java/python (as a keyword)
+            keyword = "";
+        }
+        return keyword;
+    }
+
+    /**
+     * Removes string before whitespace
+     * @param str
+     * @param whiteSpaceIndex
+     */
+    private static String removesStringBeforeWhiteSpace(String str, int whiteSpaceIndex) {
+        return str.substring(whiteSpaceIndex).trim();
+    }
+    /**
+     * Checks if the string still has whitespace
+     * @param inputString
+     * @return True if string contains whitespace
+     */
+    private static boolean hasNextWhiteSpace(String inputString) {
+        int whitespaceIndex = inputString.indexOf(" "); // check if still has next whitespace
+        if (whitespaceIndex == NOT_PRESENT) { // no more prefix
+            return false;
+        } else { // still has prefix
+            return true;
+        }
+    }
+
+    /**
+     * Checks if the string still has slash
+     * @param inputString
+     * @return True if string contains slash
+     */
+    private static boolean hasNextSlash(String inputString) {
+        int slashIndex = slashIndex(inputString); // check if still has next slash
+        if (slashIndex == NOT_PRESENT) { // no more prefix
+            return false;
+        } else { // still has prefix
+            return true;
+        }
+    }
+
+    private static int slashIndex(String str) {
+        return str.indexOf("/");
+    }
+
+    private static String getUncheckedPrefix(int slashIndex, String str) {
+        return str.substring(0, slashIndex + 1);
+    }
+
+    /**
+     * Process for checking if input string contains any invalid prefix
+     * @param argsString
+     * @param argumentMultimap
+     * @return false if the input string contains invalid prefix
+     */
+    private static boolean checksForValidPrefix(String argsString, ArgumentMultimap argumentMultimap) {
+        boolean hasNextWhiteSpace = hasNextWhiteSpace(argsString);
+        boolean hasSlashInString = hasNextSlash(argsString);
+        boolean isInvalidPrefix = false;
+        int slashIndex;
+
+        while (hasSlashInString && hasNextWhiteSpace) { //checking of whitespace is needed for keyword with slash
+            slashIndex = slashIndex(argsString); //update slash index on each iteration
+            String uncheckedPrefix = getUncheckedPrefix(slashIndex, argsString);
+            boolean hasValidPrefix = isValidPrefixFormat(uncheckedPrefix, argumentMultimap);
+            if (hasValidPrefix) {
+                //Removes the previously checked prefix and keyword,e.g."s/baker/chef j/engineer" -> "j/engineer"
+                argsString = argsString.substring(slashIndex + 1);
+                argsString = removeLeadingKeywordWithSlash(argsString).trim(); //extra check for input with slash
+                argsString = removeLeadingKeyword(argsString);
+            } else {
+                isInvalidPrefix = true;
+                break;
+            }
+            // for next iteration
+            if (!hasNextSlash(argsString)) { // checks if there is still slash (next prefix)
+                break;
+            }
+        }
+        // if still have slash after the checking, e.g. "w/"
+        if (hasSlashInString) {
+            slashIndex = slashIndex(argsString);
+            String uncheckedPrefix = getUncheckedPrefix(slashIndex, argsString);
+            boolean isValidPrefix = isValidPrefixFormat(uncheckedPrefix, argumentMultimap);
+            if (!isValidPrefix) {
+                isInvalidPrefix = true;
+            }
+        }
+
+        return isInvalidPrefix;
     }
 
     /**

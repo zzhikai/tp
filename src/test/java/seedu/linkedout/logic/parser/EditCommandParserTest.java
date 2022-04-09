@@ -225,4 +225,35 @@ public class EditCommandParserTest {
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
+
+    @Test
+    public void parse_invalidPrefix_throwsParseException() {
+        // wrong prefix
+        assertParseFailure(parser, "1 w/Java", String.format(
+                MESSAGE_INVALID_PREFIX, EditCommand.MESSAGE_USAGE));
+
+        // first prefix correct but second prefix wrong
+        assertParseFailure(parser, "1 s/Java w/Python", String.format(
+                MESSAGE_INVALID_PREFIX, EditCommand.MESSAGE_USAGE));
+
+        // wrong prefix between correct prefixes
+        assertParseFailure(parser, "1 s/Java w/Python s/CSS", String.format(
+                MESSAGE_INVALID_PREFIX, EditCommand.MESSAGE_USAGE));
+
+        // spaces between prefixes
+        assertParseFailure(parser, "1 s/   Java      w/  Python s/CSS", String.format(
+                MESSAGE_INVALID_PREFIX, EditCommand.MESSAGE_USAGE));
+
+        // wrong prefix of any length
+        assertParseFailure(parser, "1 s/   Java      www/  Python s/CSS", String.format(
+                MESSAGE_INVALID_PREFIX, EditCommand.MESSAGE_USAGE));
+
+        // wrong prefix with slash in input parameter
+        assertParseFailure(parser, "1 s/   Java      www/  Python/C++ s/CSS", String.format(
+                MESSAGE_INVALID_PREFIX, EditCommand.MESSAGE_USAGE));
+
+        // correct prefix with whitespace between input parameter with slash
+        assertParseFailure(parser, "1 s/   Java      s/   Python/C++ s/CSS", String.format(
+                MESSAGE_INVALID_PREFIX, EditCommand.MESSAGE_USAGE));
+    }
 }
