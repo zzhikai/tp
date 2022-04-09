@@ -146,7 +146,6 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredApplicants.setPredicate(predicate);
         defaultApplicants.setComparator(null);
-        // so that list will not become permanently sorted
     }
 
     //=========== Default Applicant List Accessors =============================================================
@@ -157,7 +156,6 @@ public class ModelManager implements Model {
     @Override
     public void updateDefaultApplicantList(Comparator<Applicant> comparator) {
         requireNonNull(comparator);
-        // filteredApplicants.setPredicate(PREDICATE_SHOW_ALL_APPLICANTS);
         defaultApplicants.setComparator(comparator);
     }
 

@@ -1,0 +1,78 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":LinkedoutParser" as LinkedoutParser LOGIC_COLOR
+participant ":FlagCommandParser" as FlagCommandParser LOGIC_COLOR
+participant "d:FlagCommand" as FlagCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("flag 1")
+activate LogicManager
+
+LogicManager -> LinkedoutParser : parseCommand("flag 1)
+activate LinkedoutParser
+
+create FlagCommandParser
+LinkedoutParser -> FlagCommandParser
+activate FlagCommandParser
+
+FlagCommandParser --> LinkedoutParser
+deactivate FlagCommandParser
+
+LinkedoutParser -> FlagCommandParser : parse("1")
+activate FlagCommandParser
+
+create FlagCommand
+FlagCommandParser -> FlagCommand
+activate FlagCommand
+
+FlagCommand --> FlagCommandParser : d
+deactivate FlagCommand
+
+FlagCommandParser --> LinkedoutParser : d
+deactivate FlagCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FlagCommandParser -[hidden]-> LinkedoutParser
+destroy FlagCommandParser
+
+LinkedoutParser --> LogicManager : d
+deactivate LinkedoutParser
+
+LogicManager -> FlagCommand : execute()
+activate FlagCommand
+
+FlagCommand -> Model : getDefaultApplicantList()
+activate Model
+
+Model --> FlagCommand
+deactivate Model
+
+FlagCommand -> Model : flagApplicant(applicantToFlag, \n flaggedApplicant)
+activate Model
+Model -> Model: updateFilteredApplicantList()
+activate Model
+deactivate Model
+
+Model --> FlagCommand
+deactivate Model
+
+create CommandResult
+FlagCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FlagCommand
+deactivate CommandResult
+
+FlagCommand --> LogicManager : result
+deactivate FlagCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
