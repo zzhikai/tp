@@ -119,18 +119,18 @@ Cautions are placed in this guide to serve as warnings for certain actions.
   e.g. `s/Java/Python` will be interpreted as a single skill of `Java/Python` but if you specify
   `n/Bob s/  Java/Python`, `Java/` will be interpreted as a prefix.
 
-* If an input is expected only once in the command, but you specified it multiple times,
+* If an input is expected only once in the command but you specified it multiple times,
   only the last occurrence of the input will be taken.<br>
   e.g. If you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* * If a valid prefix is given twice, but you only specified the input for the last occurrence of said prefix, then the input will be accepted.
+* If a valid prefix is given twice, but you only specified the input for the last occurrence of said prefix, then the input will be accepted.
   However, if you left the input for the last prefix empty, you will receive an error message.<br>
   e.g. If you specify `p/ p/56785678`, `p/56785678` will be taken but if you specify `p/56785678 p/`, you will receive an error message.
 
 * Extraneous inputs for commands that do not take in inputs (such as `help`, `list` and `exit`) will be ignored.<br>
   e.g. If the command specifies `help 123`, it will be interpreted as `help`.
   
-* `INDEX` refers to the index of the Applicant in the displayed list. `INDEX` must be a positive integer.<br>
+* `INDEX` refers to the index of the Applicant in the displayed list. `INDEX` must be a positive number.<br>
   e.g. `delete 1` is valid and `delete -1` is invalid.
 
 </div>
@@ -249,8 +249,7 @@ Sample Output:
 ---
 ### Viewing a specific applicant : `view`
 
-Allows you to view a specific applicant, by inputting the applicant's **full name**. 
-
+Allows you to view a specific applicant, by inputting the applicant's **full name**.
 <br>
 
 Format:
@@ -282,8 +281,8 @@ Sample Output:
 ---
 ### Searching for an applicant : `search`
 
-Allows you to search for applicants containing the input attributes and the attribute has to be an exact word. You can search for the applicant based on 
-name, job, round or skills. 
+Allows you to search for applicants containing the input attributes and the attribute has to be an exact word. You can search for the applicant based on
+name, job, round or skills.
 
 <br>
 
@@ -295,7 +294,7 @@ search [n/NAME]…​ [j/JOB]…​ [r/ROUND]…​ [s/SKILL]…​
   e.g. Searching `n/Hans` will match an applicant with name `Hans Lee` but will not match an applicant with name `Han`. <br>
 * The search command is case-insensitive. <br>
   e.g Searching `n/hans` will match an applicant with name `Hans`.
-* You can search for a combination of attributes. 
+* You can search for a combination of attributes.
   After a search command, applicants will be displayed in descending order of matched attribute and the applicant with the most number of matches is shown at the top of the list.
   e.g Searching `n/Hans j/Engineer` will match with applicants with either name `Hans` or job `Engineer`. Applicant with both name and job matched will be displayed on the top of the list.
 
@@ -328,10 +327,11 @@ Format:
 addskill INDEX [s/SKILL]...
 ```
 
-* Only valid indexes with an applicant is edited. <br>
-  e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
-* Only positive indexes are edited. <br>
-  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
+
+* Index of applicant specified must not be more than the total number of applicants in LinkedOUT. <br>
+  e.g If there are only `4` applicants in the app but `5` is specified, then the addition will not be carried out as it is invalid.
+* Index of applicant specified must be a positive number. <br>
+  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant and the addition will not be carried out as it is invalid.
 * If you would like to replace or remove certain skills instead, consider using [`edit`](https://ay2122s2-cs2103t-t09-2.github.io/tp/UserGuide.html#editing-an-applicant--edit).
 
 <br>
@@ -359,10 +359,11 @@ Format:
 edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​
 ```
 
-* Only valid index with an applicant is edited. <br>
-  e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
-* Only positive indexes are edited. <br>
-  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
+
+* Index of applicant specified must not be more than the total number of applicants in LinkedOUT. <br>
+  e.g If there are only `4` applicants in the app but `5` is specified, then the edit will not be carried out as it is invalid.
+* Index of applicant specified must be a positive number. <br>
+  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant and the edit will not be carried out as it is invalid.
 * As an applicant can have more than 1 skill, you may remove skills using `edit` as illustrated by the following example: <br>
   e.g An applicant has skills `Excel`, `Word`, `Docs`. To remove the skill `Excel`, you may type the following command. `edit INDEX s/Word s/Docs`.
 * You may also add skills using `edit`. However, a simpler way of doing so would be to use our alternative command [`addskill`](https://ay2122s2-cs2103t-t09-2.github.io/tp/UserGuide.html#adding-skills-to-an-applicant-addskill).
@@ -429,10 +430,10 @@ Format:
 flag INDEX
 ```
 
-* Only valid index with an applicant is flagged. <br>
-  e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
-* Only positive indexes are flagged. <br>
-  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
+* Index of applicant specified must not be more than the total number of applicants in LinkedOUT. <br>
+  e.g If there are only `4` applicants in the app but `5` is specified, then the flagging will not be carried out as it is invalid.
+* Index of applicant specified must be a positive number. <br>
+  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant and the flagging will not be carried out as it is invalid.
 * Flag acts like a toggle. To un-flag the applicant, you may simply re-type the same command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -474,7 +475,7 @@ except after search and view commands. <br>
   and will no longer be displayed at the top.
   * e.g After a sort command, flagged applicants are not displayed at the top of the list and will be displayed according to the order 
   specified in the command. 
-  * e.g After a search command, applicants will be displayed in order of which applicants most satisfy the search conditions.
+  * e.g After a search command, applicants will be displayed in descending order of number of matches with the search conditions. For more information about this behavior, please refer to the search command.
 
 </div>
 
@@ -492,10 +493,10 @@ Format:
 delete INDEX
 ```
 
-* Only valid index with an applicant is deleted. <br>
-  e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
-* Only positive indexes are deleted. <br>
-  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
+* Index of applicant specified must not be more than the total number of applicants in LinkedOUT. <br>
+  e.g If there are only `4` applicants in the app but `5` is specified, then the deletion will not be carried out as it is invalid
+* Index of applicant specified must be a positive number. <br>
+  e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant and the deletion will not be carried out as it is invalid.
 
 <br>
 
