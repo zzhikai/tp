@@ -792,8 +792,7 @@ does not have any formatting issues.**
 
 * 1a. User inputs applicant details with invalid formatting. 
 
-    * 1a1. LinkedOUT shows an error message, indicating formatting issues
-      as well as an example of correct input format. 
+    * 1a1. LinkedOUT shows an error message. 
         
       Use case resumes at step 1.
     
@@ -949,8 +948,7 @@ only if the user input does not have any formatting issues.**
 
 * 3a. User input has invalid formatting.
 
-    * 3a1. LinkedOUT shows an error message, indicating formatting issues
-      as well as an example of correct input format.
+    * 3a1. LinkedOUT shows an error message.
 
       Use case resumes at step 3.
 
