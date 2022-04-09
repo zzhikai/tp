@@ -772,62 +772,82 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is LinkedOUT and the **Actor** is the user, unless specified otherwise)
 
+---
 **Use case: Add an applicant**
+
+**Preconditions: LinkedOUT application is launched**
+
+**Guarantees: Applicant will be added only if the user input
+does not have any formatting issues.**
 
 **MSS**
 
-1. User requests to add a new applicant
-2. LinkedOUT confirms the applicant details with user
-3. LinkedOUT shows the updated list of applicants
+1. User requests to add a new applicant.
+2. LinkedOUT shows the updated list of applicants.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. User inputs invalid applicant details 
+* 1a. User inputs applicant details with invalid formatting. 
 
-    * 1a1. LinkedOUT shows an error message
+    * 1a1. LinkedOUT shows an error message, indicating formatting issues
+      as well as an example of correct input format. 
         
       Use case resumes at step 1.
     
-* 2a. User rejects applicant details
+* 1b. User adds a duplicate Applicant.
 
-    * 2a1. LinkedOUT does not add the applicant
-    * 2a2. LinkedOUT shows original list of applicants
-        
+    * 1b1. LinkedOUT does not add the applicant and shows error message to the user.
+      
       Use case resumes at step 1.
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
     
 **Use case: View an individual applicant**
 
+**Preconditions: LinkedOUT application is launched**
+
+**Guarantees: Applicant will be displayed only if the user input
+does not have any formatting issues.**
+
 **MSS**
 
-1. User requests to view an individual applicant
-2. LinkedOUT shows the individual applicant
+1. User requests to view an individual applicant.
+2. LinkedOUT shows the individual applicant.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. Applicant does not exist
+* 1a. Applicant does not exist.
   
-    * 1a1. LinkedOUT shows an error message
+    * 1a1. LinkedOUT shows an error message.
       
       Use case resumes at step 1.
     
-* 1b. User provides an invalid input to view Applicant
+* 1b. User provides an invalid input to view Applicant.
 
-    * 1b1. LinkedOUT shows an error message
+    * 1b1. LinkedOUT shows an error message.
         
       Use case resumes at step 1.
-      
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 
 **Use case: View list of all applicants**
 
+**Preconditions: LinkedOUT application is launched**
+
+**Guarantees: List of applicants will be displayed.**
+
 **MSS**
 
-1.  User requests to list applicants
-2.  LinkedOUT shows a list of applicants
+1.  User requests to list applicants.
+2.  LinkedOUT shows a list of applicants.
 
     Use case ends.
 
@@ -837,15 +857,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
+---
 **Use case: Delete an applicant**
 
+**Preconditions: LinkedOUT application is launched**
+
+**Guarantees: Applicant will be deleted only if the user input
+does not have any formatting issues.**
+
 **MSS**
 
-1.  User requests to list applicants
-2.  LinkedOUT shows a list of applicants
-3.  User requests to delete a specific applicant in the list
-4.  LinkedOUT deletes the applicant
+1.  User requests to list applicants.
+2.  LinkedOUT shows a list of applicants.
+3.  User requests to delete a specific applicant in the list.
+4.  LinkedOUT deletes the applicant.
 
     Use case ends.
 
@@ -855,11 +882,80 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given name is invalid.
+* 3a. The given index is invalid.
 
     * 3a1. LinkedOUT shows an error message.
 
       Use case resumes at step 2.
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+
+**Use case: Edit an applicant**
+
+**Preconditions: LinkedOUT application is launched**
+
+**Guarantees: Applicant will be edited only if the user input
+does not have any formatting issues.**
+
+**MSS**
+
+1.  User requests to list applicants.
+2.  LinkedOUT shows a list of applicants.
+3.  User requests to edit a specific applicant in the list.
+4.  LinkedOUT edits the applicant.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. LinkedOUT shows an error message.
+
+      Use case resumes at step 2.
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+
+**Use case: Sort the list of applicants**
+
+**Preconditions: LinkedOUT application is launched**
+
+**Guarantees: A temporarily sorted list of applicants will be displayed
+only if the user input does not have any formatting issues.**
+
+**MSS**
+
+1.  User requests to list applicants.
+2.  LinkedOUT shows a list of applicants.
+3.  User requests to sort the list of applicants.
+4.  LinkedOUT shows the list of applicants in a sorted order.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. User input has invalid formatting.
+
+    * 3a1. LinkedOUT shows an error message, indicating formatting issues
+      as well as an example of correct input format.
+
+      Use case resumes at step 3.
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 
 *{More to be added}*
 
@@ -1067,7 +1163,10 @@ The commands in code blocks for this section are meant to be input in one line.
 
    4. Other incorrect delete commands to try: `delete`, `delete 1 1`, `delete x`, (where x is larger than the list size)<br>
       Expected: Similar to previous.
-      
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Flagging an applicant
 
 1. Flagging an applicant while all applicants are being shown in the *GUI*.
