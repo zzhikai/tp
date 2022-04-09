@@ -3,24 +3,27 @@ layout: page
 title: Developer Guide
 ---
 
-LinkedOUT is the only application that any experienced recruiter needs. LinkedOUT allows recruiters to keep track of many applicants, and the job they applied for. You can store their contact details, skills and the round of their application, all in one place.
-
-LinkedOUT helps recruiters manage the multiple job applications they may receive on a daily basis. With many applications, it may be difficult to keep track of each applicant and which application round they are currently at.
-
-Thus, LinkedOUT aims to improve a recruiter's experience. LinkedOUT presents recruiters with the ability to flag important applicants, edit applicants easily and search for them with ease.
-
-LinkedOUT comes with a Command Line Interface (*CLI*) as well as a Graphical User Interface (*GUI*) in order to provide recruiters a more streamlined experience.
-
 ## **Table of Contents**
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Who is this Developer Guide for?**
+## **Introduction**
 
-This user guide is meant for developers who wish to learn about the design decisions and implementation of our application. 
-The target audience of our application are recruiters who are looking to incorporate this app into their daily workflows.
+**What is LinkedOUT?**
+
+LinkedOUT is the only application that any experienced recruiter needs. LinkedOUT allows recruiters to keep track of many applicants, and the job they applied for. You can store their contact details, skills and the round of their application, all in one place.
+
+LinkedOUT helps recruiters manage the multiple job applications they may receive on a daily basis. With many applications, it may be difficult to keep track of each applicant and which application round they are currently at.
+
+Thus, LinkedOUT aims to improve a recruiter's experience. LinkedOUT presents recruiters with the ability to flag important applicants, edit applicants easily and search for them with ease.
+
+LinkedOUT comes with a Command Line Interface *CLI* as well as a Graphical User Interface *GUI* in order to provide recruiters a more streamlined experience.
+
+**Who is this Developer Guide for?**
+
+This developer guide is meant for those who wish to understand the architecture and design considerations of LinkedOUT.
 
 Certain technical terms are specified in *italics*. If you need to reference what they mean, you can do so by referring to our [Glossary](https://ay2122s2-cs2103t-t09-2.github.io/tp/DeveloperGuide.html#glossary).
 
@@ -37,15 +40,7 @@ If you would like to learn how to use the application instead, you can do so by 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**
-Notes are placed in this guide to specify extra details on the command format and serves as a guide to assist you.
-</div>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Tips are placed in this guide to serve as suggestions that you can try out while using our application.
-</div>
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Cautions are placed in this guide to serve as warnings for certain actions.
+Notes are placed in this guide to specify extra details and elaboration.
 </div>
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -55,6 +50,8 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 ## **Acknowledgements**
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
+Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5).
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -70,9 +67,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S2-CS2103T-T09-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+**:information_source: Notes:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S2-CS2103T-T09-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -174,6 +171,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+This limitation extends to the rest of our diagrams which are of the same type.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -245,7 +243,8 @@ The following activity diagram shows the workflow for the add operation:
 
 <div markdown="span" class="alert alert-info">:information_source:
  **Note:** There should only be one arrowhead at the end of every line
-in the Activity Diagram. This is a known limitation of PlantUML.</div>
+in the Activity Diagram. This is a known limitation of PlantUML. This limitation extends to the rest of our diagrams which are of the same type.
+</div>
 
 Given below is an example usage scenario of how an applicant is added, and how the operation is handled by LinkedOUT:
 
@@ -273,9 +272,6 @@ the user.
 The following sequence diagram shows how the add operation works:
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser`
-should not exceed the destroy marker X. This is a known limitation of PlantUML.</div>
 
 #### Design considerations
 
@@ -346,8 +342,6 @@ Given below is an example usage scenario of how an applicant is edited.
     * Pros: One lesser command needed.
     * Cons: Adds extra complexity in code as well as for the user.
 
-_{more aspects and alternatives to be added}_
-
 ---
 
 ### Edit applicant feature
@@ -388,8 +382,6 @@ The following sequence diagram shows how the edit operation works:
 * **Alternative 2:** Replace individual fields inside original applicant.
     * Pros: Will use less memory (Do not have to create an extra applicant).
     * Cons: We must ensure that the implementation of each individual command to change an information is correct.
-
-_{more aspects and alternatives to be added}_
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -614,89 +606,6 @@ Aspect: How flag executes :
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
----
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedLinkedout`. It extends `Linkedout` with an undo/redo history, stored internally as an `linkedoutStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedLinkedout#commit()` — Saves the current address book state in its history.
-* `VersionedLinkedout#undo()` — Restores the previous address book state from its history.
-* `VersionedLinkedout#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitLinkedout()`, `Model#undoLinkedout()` and `Model#redoLinkedout()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedLinkedout` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th applicant in the address book. The `delete` command calls `Model#commitLinkedout()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `linkedoutStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new applicant. The `add` command also calls `Model#commitLinkedout()`, causing another modified address book state to be saved into the `linkedoutStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitLinkedout()`, so the address book state will not be saved into the `linkedoutStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the applicant was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoLinkedout()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Linkedout state, then there are no previous Linkedout states to restore. The `undo` command uses `Model#canUndoLinkedout()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoLinkedout()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `linkedoutStateList.size() - 1`, pointing to the latest address book state, then there are no undone Linkedout states to restore. The `redo` command uses `Model#canRedoLinkedout()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitLinkedout()`, `Model#undoLinkedout()` or `Model#redoLinkedout()`. Thus, the `linkedoutStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitLinkedout()`. Since the `currentStatePointer` is not pointing at the end of the `linkedoutStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the applicant being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -862,8 +771,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
-
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
@@ -896,8 +803,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **GUI**: Graphical User Interface: Refers to the user interface that the user interacts with.
 * **CLI**: Command Line Interface: Refers to a computer program that accepts text inputs.
 
-*{More to be added}*
-
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -914,9 +819,9 @@ testers are expected to do more *exploratory* testing.
 ---
 ### Launch and shutdown
 
-1. Initial launch
+1. Initial launch.
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
    2. **For Windows:** Double-click the file to start the app.<br>
      
@@ -926,7 +831,7 @@ testers are expected to do more *exploratory* testing.
    
       Expected: Shows the GUI with a set of sample applicants. The window size may not be optimum.
 
-1. Saving window preferences
+1. Saving window preferences.
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
@@ -942,9 +847,8 @@ testers are expected to do more *exploratory* testing.
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Code blocks for the *Adding an applicant* section:**
-The commands in code blocks for this section are meant to be input in one line.
+The commands in code blocks for this section are meant to be inputted in one line.
 </div>
-
 
 1. Adding an applicant while all applicants are being shown in the *GUI*.
 
@@ -989,6 +893,31 @@ The commands in code blocks for this section are meant to be input in one line.
 
 ---
 
+### Add skills to an applicant
+
+1. Adding a skill to an applicant while all applicants are being shown in the *GUI*.
+
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+       Current State: The first applicant has pre-existing skills of `JavaScript` and `TypeScript`.
+
+    1. Test case: `addskill 1 s/Python s/Java`<br>
+       Expected: New skills `Python` and `Java` are added to the first applicant's skill list.
+
+    1. Test case: `addskill 1 s/JavaScript`<br>
+       Expected: No new skill will be added to first applicant's skill list as it already exists. No error is thrown.
+
+    1. Test case: `addskill 1 s/Javascript`<br>
+       Expected: New skill `Javascript` will be added to first applicant's skill list. This is because the skills are case-insensitive,
+       hence `Javascript` and `JavaScript` will be treated as two different skills.
+
+    1. Test case: `addskill 0 s/Python s/Java`<br>
+       Expected: No skill is added to any applicant. Error details shown in the status message.
+
+    1. Other incorrect delete commands to try: `addskill s/Python`, `addskill 1`, `addskill 1 Python`, `addskill x` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+---
+
 ### Editing an applicant
 
 1. Editing an applicant while all applicants are being shown in the *GUI*.
@@ -1003,13 +932,13 @@ The commands in code blocks for this section are meant to be input in one line.
        Round: Interview 
        Skills: Python
        ```
-    
+
     2. Test case: `edit 1 n/Charles e/charles@mail.com` <br>
        Expected: The first applicant's name is changed to `Charles` and the email address is changed
        to `charles@mail.com`. All other attributes remain unchanged.
 
     3. Test case: `edit 1 s/Javascript s/Java` <br>
-       Expected: The first applicant's existing skills are removed, and only `Javascript` and `Java` 
+       Expected: The first applicant's existing skills are removed, and only `Javascript` and `Java`
        will be in their skill list. All other attributes remain unchanged.
 
     4. Test case: `edit 1 s/` <br>
@@ -1019,128 +948,37 @@ The commands in code blocks for this section are meant to be input in one line.
     5. Test case: `edit 0 n/Jamie` <br>
        Expected: No changes occur, as 0 is an invalid index. Error details shown in status message
 
-    6. Other incorrect edit commands to try: `edit o/Jamie`, `edit p/Jamie`, `edit x n/Jamie` 
+    6. Other incorrect edit commands to try: `edit o/Jamie`, `edit p/Jamie`, `edit x n/Jamie`
        (where x is greater than list size). <br>
        Expected: Similar to previous.
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
----     
-
-### Add skills to an applicant
-
-1. Adding a skill to an applicant while all applicants are being shown in the *GUI*.
-    
-    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
-       Current State: The first applicant has pre-existing skills of `JavaScript` and `TypeScript`.
-
-    2. Test case: `addskill 1 s/Python s/Java`<br>
-       Expected: New skills `Python` and `Java` are added to the first applicant's skill list.
-       
-    3. Test case: `addskill 1 s/JavaScript`<br>
-      Expected: No new skill will be added to first applicant's skill list as it already exists. No error is thrown.
-       
-    4. Test case: `addskill 1 s/Javascript`<br>
-      Expected: New skill `Javascript` will be added to first applicant's skill list. This is because the skills are case-insensitive, 
-       hence `Javascript` and `JavaScript` will be treated as two different skills.
-
-    5. Test case: `addskill 0 s/Python s/Java`<br>
-      Expected: No skill is added to any applicant. Error details shown in the status message. 
-
-    6. Other incorrect delete commands to try: `addskill s/Python`, `addskill 1`, `addskill 1 Python`, `addskill x` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
-
 ---
 
-### Deleting an applicant
+### View an applicant
 
-1. Deleting an applicant while all applicants are being shown in the *GUI*.
+1. View an applicant while all applicants are being shown in the *GUI*.
 
-   1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+    1. Current State: The list has pre-existing applicants. The first applicant has full name of `Bob Tan`.
 
-   2. Test case: `delete 1`<br>
-      Expected: First applicant is deleted from the list. Details of the deleted applicant shown in the status message.
+    2. Test case: `view Bob Tan`<br>
+       Expected: Only applicant named `Bob Tan` is displayed in the list.
 
-   3. Test case: `delete 0`<br>
-      Expected: No applicant is deleted. Error details shown in the status message.
+    3. Test case: `view Tan`<br>
+       Expected: No applicant is displayed in the list.
 
-   4. Other incorrect delete commands to try: `delete`, `delete 1 1`, `delete x`, (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    4. Test case: `view n/Bob Tan`<br>
+       Expected: No applicant is displayed in the list. This is because prefix is not needed in view.
 
-[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+    5. Test case: `view BobTan`<br>
+       Expected: No applicant is displayed in the list. This is because exact full name with correct spacing is needed to view on an applicant.
 
----
-      
-### Flagging an applicant
+    6. Test case: `view bob tan`<br>
+       Expected: Only applicant named `Bob Tan` is displayed in the list. This is because full name are case-insensitive.
 
-1. Flagging an applicant while all applicants are being shown in the *GUI*.
-   
-    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
-    Current state: The first applicant is presumed to be unflagged.
-    
-    2. Test case: `flag 1` <br> 
-       Expected: First applicant is flagged, a flag icon appears to the right of applicant details and flagged applicant is now at the top of the list.
-       
-    3. Test case: `flag 1` <br>
-       Assumption: Test case above is completed, and the first applicant is now flagged. <br>
-       Expected: First applicant is now unflagged, flag icon disappears, and applicant is no longer at the top of the list.
-
-    4. Test case: `flag -1` <br>
-       Expected: No applicant is flagged as index is invalid. Error details shown in the status message.
-       
-    5. Test case: `flag 999999999999` <br>
-       Expected: No applicant is flagged as index is too large to be parsed. Error details shown in the status message.
-       
-    6. Other incorrect flag commands to try: `flag`, `flag 1 1`, `flag x`, (where x is larger than the list size) <br>
-       Expected: Similar to test case 4.
-
-[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
-
----      
-
-### Sorting list of applicants
-
-1. Adding a skill to an applicant while all applicants are being shown in the *GUI*.
-
-    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
-       If list is empty, sorting will have no result but sorting is still available. 
-
-    2. Test case: `sort f/name o/asc`<br>
-       Expected: A temporary sorted list of applicants will show with applicants sorted in ascending alphabetical order with their names.
-
-    3. Test case: `sort f/name o/desc`<br>
-       Expected: A temporary sorted list of applicants will show with applicants sorted in descending alphabetical order with their names.
-        
-    4. Test case: `sort f/job o/asc`<br>
-       Expected: A temporary sorted list of applicants will show with applicants sorted in ascending alphabetical order with the job they applied to.
-    
-    5. Test case: `sort f/email o/asc`<br>
-       Expected: A temporary sorted list will not be shown. Error details shown in the status message.
-       
-    6. Other incorrect delete commands to try: `sort f/skill o/asc`, `sort f/job o/ascending`, `sort name asc`<br>
-       Expected: Similar to previous.
-
-[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
-
----
-
-### Clearing the application
-
-1. Clearing all applicants from LinkedOUT when multiple applicants are being shown in the *GUI*
-
-    1. Test case: `clear` followed by clicking `Yes` on the confirmation box. <br>
-       Expected: All applicants are deleted from the application, an empty list is seen.
-
-    2. Test case: `clear` followed by clicking `No` on the confirmation box. <br>
-       Expected: No changes occur in the application, list of applicants remain unchanged.
-
-    3. Test case: `clear` followed by closing the confirmation box. <br>
-       Expected: No changes occur in the application, list of applicants remain unchanged.
-
-    4. Test case: `clear x` (where x can be a Integer or a String). <br>
-       Expected: Confirmation box pops up, outcomes similar to test cases i, ii and iii.
+    7. Other incorrect view commands to try: `view` and `View`<br>
+       Expected: No applicant is displayed. Error details shown in the status message.
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -1184,29 +1022,91 @@ The commands in code blocks for this section are meant to be input in one line.
 
 ---
 
-### View an applicant
+### Sorting list of applicants
 
-1. View an applicant while all applicants are being shown in the *GUI*.
+1. Sorting the list of applicants temporarily while all applicants are being shown.
 
-    1. Current State: The list has pre-existing applicants. The first applicant has full name of `Bob Tan`.
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+       If list is empty, sorting will have no result but sorting is still available. 
 
-    2. Test case: `view Bob Tan`<br>
-       Expected: Only applicant named `Bob Tan` is displayed in the list.
+    2. Test case: `sort f/name o/asc`<br>
+       Expected: A temporary sorted list of applicants will show with applicants sorted in ascending alphabetical order with their names.
 
-    3. Test case: `view Tan`<br>
-       Expected: No applicant is displayed in the list.
+    3. Test case: `sort f/name o/desc`<br>
+       Expected: A temporary sorted list of applicants will show with applicants sorted in descending alphabetical order with their names.
+        
+    4. Test case: `sort f/job o/asc`<br>
+       Expected: A temporary sorted list of applicants will show with applicants sorted in ascending alphabetical order with the job they applied to.
+    
+    5. Test case: `sort f/email o/asc`<br>
+       Expected: A temporary sorted list will not be shown. Error details shown in the status message.
+       
+    6. Other incorrect delete commands to try: `sort f/skill o/asc`, `sort f/job o/ascending`, `sort name asc`<br>
+       Expected: Similar to previous.
 
-    4. Test case: `view n/Bob Tan`<br>
-       Expected: No applicant is displayed in the list. This is because prefix is not needed in view.
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
-    5. Test case: `view BobTan`<br>
-       Expected: No applicant is displayed in the list. This is because exact full name with correct spacing is needed to view on an applicant.
+---
 
-    6. Test case: `view bob tan`<br>
-       Expected: Only applicant named `Bob Tan` is displayed in the list. This is because full name are case-insensitive.
+### Flagging an applicant
 
-    7. Other incorrect view commands to try: `view` and `View`<br>
-       Expected: No applicant is displayed. Error details shown in the status message.
+1. Flagging an applicant while all applicants are being shown in the *GUI*.
+
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+       Current state: The first applicant is presumed to be unflagged.
+
+    2. Test case: `flag 1` <br>
+       Expected: First applicant is flagged, a flag icon appears to the right of applicant details and flagged applicant is now at the top of the list.
+
+    3. Test case: `flag 1` <br>
+       Assumption: Test case above is completed, and the first applicant is now flagged. <br>
+       Expected: First applicant is now unflagged, flag icon disappears, and applicant is no longer at the top of the list.
+
+    4. Test case: `flag -1` <br>
+       Expected: No applicant is flagged as index is invalid. Error details shown in the status message.
+
+    5. Test case: `flag 999999999999` <br>
+       Expected: No applicant is flagged as index is too large to be parsed. Error details shown in the status message.
+
+    6. Other incorrect flag commands to try: `flag`, `flag 1 1`, `flag x`, (where x is larger than the list size) <br>
+       Expected: Similar to test case 4.
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+
+### Deleting an applicant
+
+1. Deleting an applicant while all applicants are being shown in the *GUI*.
+
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+
+    2. Test case: `delete 1`<br>
+       Expected: First applicant is deleted from the list. Details of the deleted applicant shown in the status message.
+
+    3. Test case: `delete 0`<br>
+       Expected: No applicant is deleted. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `delete`, `delete 1 1`, `delete x`, (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+---
+
+### Clearing the application
+
+1. Clearing all applicants from LinkedOUT when multiple applicants are being shown in the *GUI*.
+
+    1. Test case: `clear` followed by clicking `Yes` on the confirmation box. <br>
+       Expected: All applicants are deleted from the application, an empty list is seen.
+
+    2. Test case: `clear` followed by clicking `No` on the confirmation box. <br>
+       Expected: No changes occur in the application, list of applicants remain unchanged.
+
+    3. Test case: `clear` followed by closing the confirmation box. <br>
+       Expected: No changes occur in the application, list of applicants remain unchanged.
+
+    4. Test case: `clear x` (where x can be a Integer or a String). <br>
+       Expected: Confirmation box pops up, outcomes similar to test cases i, ii and iii.
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -1215,7 +1115,7 @@ The commands in code blocks for this section are meant to be input in one line.
 ### Saving data
 
 1. Saving data
-   1. Prerequisites: Permanently modify list of applicants using any commands
+   1. Prerequisites: Permanently modify list of applicants using any commands.
    2. Test case: `delete 1` follow by `exit` command and relaunch the app. <br>
       Expected: First applicant before `delete` command will not be in the list of applicants upon relaunch.
 2. Dealing with missing files
@@ -1229,5 +1129,3 @@ The commands in code blocks for this section are meant to be input in one line.
       Expected: The app starts with an empty list of applicants.
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
-
----
