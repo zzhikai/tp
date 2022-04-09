@@ -882,6 +882,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
+---
 ### Launch and shutdown
 
 1. Initial launch
@@ -903,6 +904,9 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 
 ### Editing an applicant
 
@@ -937,8 +941,10 @@ testers are expected to do more *exploratory* testing.
     6. Other incorrect edit commands to try: `edit o/Jamie`, `edit p/Jamie`, `edit x n/Jamie` 
        (where x is greater than list size). <br>
        Expected: Similar to previous.
-       
-     
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---     
 
 ### Add skills to an applicant
 
@@ -963,6 +969,9 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `addskill s/Python`, `addskill 1`, `addskill 1 Python`, `addskill x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Deleting an applicant
 
 1. Deleting an applicant while all applicants are being shown in the *GUI*.
@@ -977,7 +986,35 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect delete commands to try: `delete`, `delete 1 1`, `delete x`, (where x is larger than the list size)<br>
       Expected: Similar to previous.
-   
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---      
+### Sorting list of applicants
+
+1. Adding a skill to an applicant while all applicants are being shown in the *GUI*.
+
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+       If list is empty, sorting will have no result but sorting is still available. 
+
+    2. Test case: `sort f/name o/asc`<br>
+       Expected: A temporary sorted list of applicants will show with applicants sorted in ascending alphabetical order with their names.
+
+    3. Test case: `sort f/name o/desc`<br>
+       Expected: A temporary sorted list of applicants will show with applicants sorted in descending alphabetical order with their names.
+        
+    4. Test case: `sort f/job o/asc`<br>
+       Expected: A temporary sorted list of applicants will show with applicants sorted in ascending alphabetical order with the job they applied to.
+    
+    5. Test case: `sort f/email o/asc`<br>
+       Expected: A temporary sorted list will not be shown. Error details shown in the status message.
+       
+    6. Other incorrect delete commands to try: `sort f/skill o/asc`, `sort f/job o/ascending`, `sort name asc`<br>
+       Expected: Similar to previous.
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Clearing the application
 
 1. Clearing all applicants from LinkedOUT when multiple applicants are being shown in the *GUI*
@@ -994,13 +1031,24 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `clear x` (where x can be a Integer or a String). <br>
        Expected: Confirmation box pops up, outcomes similar to test cases i, ii and iii.
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
 ### Saving data
 
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+1. Saving data
+   1. Prerequisites: Permanently modify list of applicants using any commands
+   2. Test case: `delete 1` follow by `exit` command and relaunch the app. <br>
+      Expected: First applicant before `delete` command will not be in the list of applicants upon relaunch.
+2. Dealing with missing files
+   1. Prerequisites: *JSON* file is missing, delete `data/linkedout.json` file to simulate the missing file.
+   2. Launch the app. <br>
+      Expected: The app starts with a default list of applicants.
+3. Dealing with corrupted data files
+   1. Prerequisites: *JSON* file is corrupted, modify `data/linkedout.json` file with any software
+      that can edit the file and save. 
+   2. Launch the app. <br>
+      Expected: The app starts with an empty list of applicants.
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
