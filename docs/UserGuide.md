@@ -154,7 +154,7 @@ The table below illustrates the meaning of the prefixes and their respective inp
 |   -    |                          | INDEX       | Index of applicant specified must not be more than the total number of applicants in the list. |
 | **n/** | Applicant's Name         | NAME        | Names can only contain letters (including letters with accents), and cannot contain any numbers. Name's can contain the following special characters: `-` and`'`. **An applicant's name is unique** i.e. two applicants cannot have the same name.
 | **p/** | Applicant's Phone Number | PHONE_NUMBER| Phone numbers must only contain numbers, and must be between 3 and 15 characters long.
-| **e/** | Applicant's Email        | EMAIL       | Emails should be of the format `local-part@domain`.
+| **e/** | Applicant's Email        | EMAIL       | Emails should be of the format `local-part@domain`. Examples of valid emails include: `bob@email` & `bob@email.com.sg`, examples of invalid emails include `bobmail` & `-bob@email.com`.
 | **j/** | Job Applied              | JOB         | Jobs must only contain alphanumeric characters.
 | **r/** | Application Round        | ROUND       | Rounds must only contain alphanumeric characters.
 | **s/** | Applicant's Skill        | SKILL       | A single skill can be made up of 1 to 5 words. The skill cannot be completely made up of symbols. However, a mix of alphanumeric and symbols are allowed. eg. `!@#` is not allowed but `C#` is allowed.
