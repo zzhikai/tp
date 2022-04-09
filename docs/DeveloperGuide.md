@@ -1037,15 +1037,15 @@ testers are expected to do more *exploratory* testing.
 ### Saving data
 
 1. Saving data
-   1. Prerequisites: Permanently modify list of applicant using any commands
+   1. Prerequisites: Permanently modify list of applicants using any commands
    2. Test case: `delete 1` follow by `exit` command and relaunch the app. <br>
       Expected: First applicant before `delete` command will not be in the list of applicants upon relaunch.
 2. Dealing with missing files
-   1. Prerequisites: JSON file is missing, delete `data/linkedout.json` file to simulate the missing file.
+   1. Prerequisites: *JSON* file is missing, delete `data/linkedout.json` file to simulate the missing file.
    2. Launch the app. <br>
       Expected: The app starts with a default list of applicants.
 3. Dealing with corrupted data files
-   1. Prerequisites: JSON file is corrupted, modify `data/linkedout.json` file with any software
+   1. Prerequisites: *JSON* file is corrupted, modify `data/linkedout.json` file with any software
       that can edit the file and save. 
    2. Launch the app. <br>
       Expected: The app starts with an empty list of applicants.
