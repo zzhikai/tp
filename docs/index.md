@@ -11,7 +11,7 @@ title: LinkedOUT
 It allows recruiters to **keep track of many applicants, and the job they applied for.** \
 You can **store** their contact details, skills and the round of their application, **all in one place**.
 
-* If you are interested in using LinkedOUT, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+* If you are interested in using LinkedOUT, the [**User Guide**](UserGuide.html) is a good place to start.
 * If you are interested about developing LinkedOUT, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 
