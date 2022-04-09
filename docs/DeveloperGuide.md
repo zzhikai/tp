@@ -565,12 +565,6 @@ The following sequence diagram shows how the sort operation works:
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
-### \[Proposed\] Flag applicant feature
-
-The flagging feature flags an applicant as important, and will be displayed at the top of the applicant list.
-The current display of applicant relies on the ordering of the applicants in the `UniqueApplicantList`. The
-`Applicant` in the `UniqueApplicantList` are ordered in the order they are added in. This makes it difficult
-to have a custom ordering for the flagging feature.
 
 ### Flag applicant feature
 
