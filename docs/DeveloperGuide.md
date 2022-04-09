@@ -935,6 +935,49 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+### Adding an applicant
+
+1. Adding an applicant while all applicants are being shown in the *GUI*.
+
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list. No other applicant named Alice in the list.
+       Bob is an applicant in the list.
+
+    2. Test case: 
+       ```
+       add 
+       n/Alice 
+       p/99990000 
+       e/alice@mail.com 
+       j/Software Engineer
+       r/Technical Interview
+       s/Java
+       ```
+       Note: The above code block is meant to be input into one line.<br>
+       Expected: An applicant named Alice with the above attributes will be added to the applicant list and displayed on the *GUI*.
+
+    3. Test case:
+       ```
+       add
+       n/Bob
+       p/99990000
+       e/bob@mail.com
+       j/Site Reliability Engineer
+       r/Technical Interview
+       s/Jira 
+       s/SonarQube
+       ```
+       Note: The above code block is meant to be input into one line.<br>
+       Expected: No changes occur as an applicant named Bob is already in the list, and duplicate applicants with the same names are not allowed.
+
+    4. Test case:
+       ```
+       add 
+       n/Charles 
+       s/Haskell
+       ```
+       Note: The above code block is meant to be input into one line.<br>
+       Expected: No changes occur as the phone number, email, job applied to and round of interview are all mandatory attributes
+       that are not included in the above add command. These must be specified with the `p/`, `e/`, `j/` and `r/` prefixes respectively.
 
 ### Editing an applicant
 
@@ -1009,6 +1052,21 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect delete commands to try: `delete`, `delete 1 1`, `delete x`, (where x is larger than the list size)<br>
       Expected: Similar to previous.
+      
+### Flagging an applicant
+
+1. Flagging an applicant while all applicants are being shown in the *GUI*.
+   
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+    Current state: The first applicant is presumed to be unflagged.
+    
+    2. Test case: `flag 1` <br> 
+       Expected: First applicant is flagged, a flag icon appears to the right of applicant details and flagged applicant is now at the top of the list.
+       
+    3. Test case: `flag 1` <br>
+       Assumption: Test case above is completed, and the first applicant is now flagged.
+       Expected: First applicant is now unflagged, flag icon disappears, and applicant is no longer at the top of the list.
+
    
 ### Clearing the application
 
