@@ -1061,6 +1061,14 @@ testers are expected to do more *exploratory* testing.
        Assumption: Test case above is completed, and the first applicant is now flagged.
        Expected: First applicant is now unflagged, flag icon disappears, and applicant is no longer at the top of the list.
 
+    4. Test case: `flag -1` <br>
+       Expected: No applicant is flagged as index is invalid. Error details shown in the status message.
+       
+    5. Test case: `flag 999999999999` <br>
+       Expected: No applicant is flagged as index is too large to be parsed. Error details shown in the status message.
+       
+    6. Other incorrect flag commands to try: `flag`, `flag 1 1`, `flag x`, (where x is larger than the list size) <br>
+       Expected: Similar to test case 4.
    
 ### Clearing the application
 
