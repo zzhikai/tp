@@ -796,15 +796,6 @@ does not have any formatting issues.**
     * 3a1. LinkedOUT shows an error message.
 
       Use case resumes at step 2.
-    
-**Use case: Exit LinkedOUT**
-
-**MSS**
-
-1.  User requests to exit LinkedOUT.
-2.  LinkedOUT is exit.
-
-    Use case ends.
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
