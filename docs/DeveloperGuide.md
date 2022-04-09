@@ -729,9 +729,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. LinkedOUT shows an error message
         
       Use case resumes at step 1.
-      
 
+**Use case: Search for applicant(s)**
 
+**Preconditions: LinkedOUT application is launched**
+
+**Guarantees: Applicant(s) will be displayed only if the user input
+does not have any formatting issues.**
+
+**MSS**
+
+1. User requests to search for applicant(s) with a specific skill and job.
+2. LinkedOUT shows the list of applicant(s) with the skill or job, in descending order of matched attribute.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Applicant does not exist
+
+    * 1a1. LinkedOUT shows 0 applicant listed.
+
+      Use case resumes at step 1.
+
+* 1b. User provides an invalid input to search for applicant(s).
+
+    * 1b1. LinkedOUT shows an error message
+
+      Use case resumes at step 1.
+    
 **Use case: View list of all applicants**
 
 **MSS**
