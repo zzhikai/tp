@@ -1,7 +1,6 @@
 package seedu.linkedout.logic.parser;
 
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_PREFIX;
 import static seedu.linkedout.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.linkedout.logic.parser.CommandParserTestUtil.assertParseSuccess;
 

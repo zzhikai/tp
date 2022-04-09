@@ -2,7 +2,6 @@ package seedu.linkedout.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_PREFIX;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_FIELD;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ORDER;
 

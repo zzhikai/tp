@@ -29,6 +29,7 @@ public abstract class KeywordsPredicate implements Predicate<Applicant> {
                 || (other instanceof KeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((KeywordsPredicate) other).keywords)); // state check
     }
+
     /**
      * Checks for number of matched keywords with the same prefix an applicant has
      * @param applicant

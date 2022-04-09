@@ -1,7 +1,6 @@
 package seedu.linkedout.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_PREFIX;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.linkedout.logic.parser.CliSyntax.PREFIX_ROUND;
@@ -34,22 +33,17 @@ public class SearchCommandParser implements Parser<SearchCommand> {
      */
     public SearchCommand parse(String args) throws ParseException {
 
-
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_JOB,
                 PREFIX_ROUND, PREFIX_SKILL);
+
         boolean hasNoPrefixesPresent = !hasAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_JOB,
                 PREFIX_ROUND, PREFIX_SKILL);
         boolean hasNoEmptyPreamble = !argMultimap.getPreamble().isEmpty();
         boolean hasEmptyArguments = args.isEmpty();
-        boolean hasInvalidPrefix = ArgumentTokenizer.hasInvalidPrefix(args, argMultimap);
-        if (hasInvalidPrefix) {
-            throw new ParseException(String.format(MESSAGE_INVALID_PREFIX, SearchCommand.MESSAGE_USAGE));
-        }
         if (hasNoPrefixesPresent || hasNoEmptyPreamble || hasEmptyArguments) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
         }
-
         List<KeywordsPredicate> keywordsPredicateList = new ArrayList<>();
         return parseKeyword(argMultimap, keywordsPredicateList);
     }
@@ -136,4 +130,3 @@ public class SearchCommandParser implements Parser<SearchCommand> {
     }
 
 }
-
