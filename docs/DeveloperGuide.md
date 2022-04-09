@@ -583,7 +583,7 @@ The following activity diagram shows the workflow for the flag operation:
 
 Given below is an example usage scenario of how an applicant is flagged, and how the operation is handled by LinkedOUT:
 
-1. The user enters a valid flag command, for example: `flag 1`. For each command LogicManager#execute() is invoked, which calls LinkedoutParser#parseCommand() to separate the command word `flag` and the argument `1`.
+1. The user enters a valid flag command, for example: `flag 1`. For each command `LogicManager#execute()` is invoked, which calls `LinkedoutParser#parseCommand()` to separate the command word `flag` and the argument `1`.
 
 2. Upon identifying the flag command, `FlagCommandParser` is instantiated and uses `FlagCommandParser#parse()` to obtain the index of the applicant to be flagged.
 
@@ -595,7 +595,9 @@ Given below is an example usage scenario of how an applicant is flagged, and how
     
 6. With `FlagCommand#createFlaggedApplicant()`, the applicant obtained is cloned, but it's flagged status is toggled, and the initial applicant obtained is replaced by its cloned version.
 
-7. A call to `CommandReslt` then displays the final result on the GUI.
+7. A call to `CommandResult` then displays the final result on the GUI.
+
+The following sequence diagram shows how the flag operation works:
 
 ![FlagSequenceDiagram](images/FlagSequenceDiagram.png)
 
@@ -931,6 +933,13 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding an applicant
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Code blocks for the *Adding an applicant* section:**
+The commands in code blocks for this section are meant to be input in one line.
+</div>
+
+
 1. Adding an applicant while all applicants are being shown in the *GUI*.
 
     1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list. No other applicant named Alice in the list.
@@ -946,7 +955,6 @@ testers are expected to do more *exploratory* testing.
        r/Technical Interview
        s/Java
        ```
-       Note: The above code block is meant to be input into one line.<br>
        Expected: An applicant named Alice with the above attributes will be added to the applicant list and displayed on the *GUI*.
 
     3. Test case:
@@ -960,7 +968,6 @@ testers are expected to do more *exploratory* testing.
        s/Jira 
        s/SonarQube
        ```
-       Note: The above code block is meant to be input into one line.<br>
        Expected: No changes occur as an applicant named Bob is already in the list, and duplicate applicants with the same names are not allowed.
 
     4. Test case:
@@ -969,7 +976,6 @@ testers are expected to do more *exploratory* testing.
        n/Charles 
        s/Haskell
        ```
-       Note: The above code block is meant to be input into one line.<br>
        Expected: No changes occur as the phone number, email, job applied to and round of interview are all mandatory attributes
        that are not included in the above add command. These must be specified with the `p/`, `e/`, `j/` and `r/` prefixes respectively.
 
@@ -1058,7 +1064,7 @@ testers are expected to do more *exploratory* testing.
        Expected: First applicant is flagged, a flag icon appears to the right of applicant details and flagged applicant is now at the top of the list.
        
     3. Test case: `flag 1` <br>
-       Assumption: Test case above is completed, and the first applicant is now flagged.
+       Assumption: Test case above is completed, and the first applicant is now flagged. <br>
        Expected: First applicant is now unflagged, flag icon disappears, and applicant is no longer at the top of the list.
 
     4. Test case: `flag -1` <br>
