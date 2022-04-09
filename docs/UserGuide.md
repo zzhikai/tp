@@ -115,9 +115,17 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 * Prefixes can be in any order.<br>
   e.g. If the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
+* If an input contains `"/"`, you may wish to avoid putting spaces after `"/"`. This is to prevent the symbol from being recognized as a prefix.<br>
+  e.g. `s/Java/Python` will be interpreted as a single skill of `Java/Python` but if you specify
+  `n/Bob s/  Java/Python`, `Java/` will be interpreted as a prefix.
+
 * If an input is expected only once in the command but you specified it multiple times,
   only the last occurrence of the input will be taken.<br>
   e.g. If you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+
+* If a valid prefix is given twice, but you only specified the input for the last occurrence of said prefix, then the input will be accepted.
+  However, if you left the input for the last prefix empty, you will receive an error message.<br>
+  e.g. If you specify `p/ p/56785678`, `p/56785678` will be taken but if you specify `p/56785678 p/`, you will receive an error message.
 
 * Extraneous inputs for commands that do not take in inputs (such as `help`, `list` and `exit`) will be ignored.<br>
   e.g. If the command specifies `help 123`, it will be interpreted as `help`.
@@ -241,8 +249,7 @@ Sample Output:
 ---
 ### Viewing a specific applicant : `view`
 
-Allows you to view an overview of a specific applicant, specified by an applicant's full name.
-
+Allows you to view a specific applicant, by inputting the applicant's **full name**.
 <br>
 
 Format:
@@ -253,11 +260,11 @@ view NAME
   e.g. If an applicant's full name is `Steve Jobs`, and the command provided is `view Steve` then LinkedOUT will not
   display `Steve Jobs`'s details. <br>
 * The view command is case-insensitive. <br>
-  e.g `hans` will match `Hans`.
+  e.g Viewing `hans` will match an applicant with name `Hans`.
 * Only full name will be matched. <br>
-  e.g. `Han Lee` will not match `Han`.
-* Only exact full name with correct spacing will be matched. <br>
-  e.g. `HanLee` will not match `Han Lee`.
+  e.g. Viewing `Han Lee` will not match an applicant with name `Han`.
+* Only applicant with the right amount of spacing in their full name will be matched. <br>
+  e.g. Viewing `HanLee` will not match an applicant with name `Han Lee`.
 
 <br>
 
@@ -274,8 +281,8 @@ Sample Output:
 ---
 ### Searching for an applicant : `search`
 
-Allows you to search for applicants containing specified keywords, these keywords could be in **any** of the 
-applicant's name, job, round or skills.
+Allows you to search for applicants containing the input attributes and the attribute has to be an exact word. You can search for the applicant based on
+name, job, round or skills.
 
 <br>
 
@@ -283,6 +290,13 @@ Format:
 ```
 search [n/NAME]…​ [j/JOB]…​ [r/ROUND]…​ [s/SKILL]…​
 ```
+* You must provide a full match of attribute you want to search for.<br>
+  e.g. Searching `n/Hans` will match an applicant with name `Hans Lee` but will not match an applicant with name `Han`. <br>
+* The search command is case-insensitive. <br>
+  e.g Searching `n/hans` will match an applicant with name `Hans`.
+* You can search for a combination of attributes.
+  After a search command, applicants will be displayed in descending order of matched attribute and the applicant with the most number of matches is shown at the top of the list.
+  e.g Searching `n/Hans j/Engineer` will match with applicants with either name `Hans` or job `Engineer`. Applicant with both name and job matched will be displayed on the top of the list.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can try searching for multiple attributes in the applicant list. Try `search n/Alex s/Java` to search for applicants with 
