@@ -25,7 +25,7 @@ Given below are my contributions to the project.
       * Updating relevant tests for the new `Skill` class
       * Updating UI to display skills
       * Changing all `tag`-related usages in code to `skill`.
-
+    
     * Allowed the search command to allow users to `search` for skills, and enhanced the `search` to return applicants that contain any keywords
       specified by the user. (Pull requests [\#138](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/138) & [\#143](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/143))
     * Made multiple changes to the UI, to make the GUI more appealing. (Pull requests [\#150](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/150) & [\#216](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/216))
@@ -38,7 +38,7 @@ Given below are my contributions to the project.
       * Refactored UG to show LinkedOUT features, added documentation for the `add` command. (Pull request [\#34](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/34))
       * Add constraints that apply to each applicant's attributes. (Pull request [\#245](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/245))
   * **Contributions to the DG**
-    * Added implementation details and diagrams related to the `add` command. (Pull request [\#105](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/105)
+    * Added implementation details and diagrams related to the `add` command. (Pull request [\#105](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/105))
     * Added manual testing instructions for application `launch`, the `edit` command and the `clear` command. (Pull request [\#243](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/243))
 
 <br>
