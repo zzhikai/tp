@@ -968,7 +968,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Both applicants are displayed in the list but `Bob Tan` is shown on the top of the list. This is because applicant with the most matching attributes will be displayed first.
 
     9. Test case: `search n/Amy j/Engineer`<br>
-       Expected: Both applicants are displayed in the list and the order of applicant shown is based on the original list. In this case, `Bob Tan` is shown on top of `Amy Tan`.
+       Expected: Both applicants are displayed in the list and the order of applicant shown is based on the original list. In this case, `Bob Tan` is shown above `Amy Tan`.
 
     10. Other incorrect search commands to try: `search`, `Search`, `search Bob`, `search w/Bob`, `search n/`<br>
         Expected: No applicant is displayed. Error details shown in the status message.
