@@ -266,7 +266,7 @@ view NAME
   e.g Viewing `hans` will match an applicant with name `Hans`.
 * Only full name will be matched. <br>
   e.g. Viewing `Han Lee` will not match an applicant with name `Han`.
-* Only applicant with the right amount of spacing in their full name will be matched. <br>
+* Only applicants with the right amount of spacing in their full name will be matched. <br>
   e.g. Viewing `HanLee` will not match an applicant with name `Han Lee`.
 
 <br>
@@ -300,6 +300,7 @@ search [n/NAME]…​ [j/JOB]…​ [r/ROUND]…​ [s/SKILL]…​
 * You can search for a combination of attributes.
   After a search command, applicants will be displayed in descending order of matched attributes. The applicant with the most number of matches is shown at the top of the list. <br>
   e.g Searching `n/Hans j/Engineer` will match with applicants with either name `Hans` or job `Engineer`. Applicant with both name and job matched will be displayed on the top of the list.
+* At least one attribute must be provided to be searched. i.e. `search` is an invalid command.  
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can try searching for multiple attributes in the applicant list. Try `search n/Alex s/Java` to search for applicants with 
@@ -336,6 +337,7 @@ addskill INDEX [s/SKILL]…
 * Index of applicant specified must be a positive number. <br>
   e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant and the addition will not be carried out as it is invalid.
 * If you would like to replace or remove certain skills instead, consider using [`edit`](https://ay2122s2-cs2103t-t09-2.github.io/tp/UserGuide.html#editing-an-applicant--edit).
+* At least one skill must be provided to be added. i.e. `addskill INDEX` is an invalid command.
 
 <br>
 
@@ -407,7 +409,7 @@ sort f/FIELD o/ORDER
   e.g if the field is `NAME`, then the list will be sorted based on applicant's name in the order given.
 * You must provide either `ASC` or `DESC` for order, both are case-insensitive.
 `ASC` stands for ascending and `DESC` stands for descending <br>
-  e.g if the order is `ASC`, then the list will be sorted in ascending order based on the field given
+  e.g if the order is `ASC`, then the list will be sorted in ascending order based on the field given.
 
 
 <br>
@@ -490,6 +492,10 @@ except after search and view commands. <br>
 
 Allows you to delete a specific applicant, specified by index.
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If you delete a specific applicant, LinkedOUT will permanently discard the applicant's data. 
+</div>
+
 <br>
 
 Format:
@@ -512,16 +518,16 @@ Sample Output:
 
 ![deletecommand](images/ug/deletecommand.png)
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If you delete a specific applicant, LinkedOUT will permanently discard the applicant's data 
-</div>
-
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
 ### Clearing the applicants : `clear`
 
-Clears the list of applicants
+Clears the list of applicants.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+LinkedOUT will discard all data and start with an empty data file once you select 'Yes' on the confirmation box. Selecting 'No' will cancel the action.
+</div>
 
 <br>
 
@@ -542,11 +548,6 @@ Sample Output:
 ![clearcommand](images/ug/clearcommand.png)
 
 
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-LinkedOUT will discard all data and start with an empty data file once you select 'Yes' on the confirmation box. Selecting 'No' will cancel the action.
-</div>
-
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
@@ -560,6 +561,8 @@ Format:
 ```
 exit
 ```
+
+<br>
 
 Example:
 ```
