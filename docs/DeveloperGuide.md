@@ -362,10 +362,20 @@ The following activity diagram shows the workflow for the edit operation:
 
 Given below is an example usage scenario of how an applicant is edited.
 
-1. The user enters the edit command with the specific fields to edit, `edit 1 n/Alex Tan`.
+1. The user enters the edit command with the specific fields to edit, `edit 1 n/Alex Tan`. 
 
+2. `LinkedoutParser` is invoked to handle the command `edit` through `LinkedoutParser#parseCommand()`.
 
-2. LinkedOUT updates the applicant with the edited information.
+4. It then calls upon `EditCommandParser#parse()` to map the various prefixes to the attributes: (e.g `n/` to `Alex Tan`).
+
+5. If input is not empty, it passes the input to `EditCommandParser#parse()` to create a `EditApplicantDescriptor`,
+   representing the applicant's attributes after editing. `EditApplicantDescriptor` also checks to make sure there are changes made.
+   
+6. The result is then used to instantiate `EditCommand`. `EditCommand` then finds the applicant at the specified index.
+
+7. With `EditCommand#createEditedApplicant()`, the edited applicant is created with the new information and the applicant is added to the model.
+
+8. It then calls upon `CommandResult` to display the final result on the *GUI*.
 
 The following sequence diagram shows how the edit operation works:
 
