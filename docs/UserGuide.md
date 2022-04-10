@@ -99,7 +99,7 @@ Cautions are placed in this guide to serve as warnings for certain actions.
   Command words include `list`, `add`, `edit` etc.<br>
   Prefixes are used by commands to recognise different parts of your inputs, these include `n/`, `j/`, `r/` etc.<br>
   e.g. `edit 1 n/NAME`, this command is valid as `edit` and `n/` is `lower_case`.<br>
-  That is, `Add n/John Doe...` will be an invalid command because the command word `Add` is not `lower_case`.
+  That is, `Add n/John Doe…` will be an invalid command because the command word `Add` is not `lower_case`.
 
 * Words in `UPPER_CASE` are the inputs to be supplied by you.<br>
   Items in square brackets are optional. These inputs are optional because they are additional information you may
@@ -140,7 +140,7 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about sample output:**
 The sample output shown in this guide is for illustration purposes only.
-The actual GUI might differ slightly depending upon Operating System.
+The actual GUI might differ slightly depending on whether Windows/ Mac is used.
 </div>
 
 <br>
@@ -159,10 +159,10 @@ The table below illustrates the meaning of the prefixes and their respective inp
 
 | Prefix | Meaning                  | Input       | Constraints |
 |:-------|:-------------------------|:------------|:------------|
-|   -    |                          | INDEX       | Index of applicant specified must not be more than the total number of applicants in the list. |
-| **n/** | Applicant's Name         | NAME        | Names can only contain letters (including letters with accents), and cannot contain any numbers. Name's can contain the following special characters: `-` and`'`. **An applicant's name is unique** i.e. two applicants cannot have the same name.
+|   -    |          -               | INDEX       | Index of applicant specified must not be more than the total number of applicants in the list. |
+| **n/** | Applicant's Name         | NAME        | Names can only contain letters (including letters with accents), and cannot contain any numbers. Names can contain the following special characters: `-` and`'`. **An applicant's name is unique** i.e. two applicants cannot have the same name.
 | **p/** | Applicant's Phone Number | PHONE_NUMBER| Phone numbers must only contain numbers, and must be between 3 and 15 characters long.
-| **e/** | Applicant's Email        | EMAIL       | Emails should be of the format `local-part@domain`. Examples of valid emails include: `bob@email` & `bob@email.com.sg`, examples of invalid emails include `bobmail` & `-bob@email.com`.
+| **e/** | Applicant's Email        | EMAIL       | Emails should be of the format `local-part@domain`. Examples of valid emails include: `bob@email` and `bob@email.com.sg`, examples of invalid emails include `bobmail` and `-bob@email.com`.
 | **j/** | Job Applied              | JOB         | Jobs must only contain alphanumeric characters.
 | **r/** | Application Round        | ROUND       | Rounds must only contain alphanumeric characters.
 | **s/** | Applicant's Skill        | SKILL       | A single skill can be made up of 1 to 5 words. The skill cannot be completely made up of symbols. However, a mix of alphanumeric and symbols are allowed. eg. `!@#` is not allowed but `C#` is allowed.
@@ -178,7 +178,10 @@ Shows you a message explaining how to access the help page.
 
 <br>
 
-Format: `help`
+Format:
+```
+help
+```
 
 <br>
 
@@ -250,6 +253,7 @@ Sample Output:
 ### Viewing a specific applicant : `view`
 
 Allows you to view a specific applicant, by inputting the applicant's **full name**.
+
 <br>
 
 Format:
@@ -263,7 +267,7 @@ view NAME
   e.g Viewing `hans` will match an applicant with name `Hans`.
 * Only full name will be matched. <br>
   e.g. Viewing `Han Lee` will not match an applicant with name `Han`.
-* Only applicant with the right amount of spacing in their full name will be matched. <br>
+* Only applicants with the right amount of spacing in their full name will be matched. <br>
   e.g. Viewing `HanLee` will not match an applicant with name `Han Lee`.
 
 <br>
@@ -290,13 +294,14 @@ Format:
 ```
 search [n/NAME]…​ [j/JOB]…​ [r/ROUND]…​ [s/SKILL]…​
 ```
-* You must provide a full match of attribute you want to search for.<br>
+* You must provide a full match for attributes you want to search for.<br>
   e.g. Searching `n/Hans` will match an applicant with name `Hans Lee` but will not match an applicant with name `Han`. <br>
 * The search command is case-insensitive. <br>
   e.g Searching `n/hans` will match an applicant with name `Hans`.
 * You can search for a combination of attributes.
-  After a search command, applicants will be displayed in descending order of matched attribute and the applicant with the most number of matches is shown at the top of the list.
+  After a search command, applicants will be displayed in descending order of matched attributes. The applicant with the most number of matches is shown at the top of the list. <br>
   e.g Searching `n/Hans j/Engineer` will match with applicants with either name `Hans` or job `Engineer`. Applicant with both name and job matched will be displayed on the top of the list.
+* At least one attribute must be provided to be searched. i.e. `search` is an invalid command.  
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can try searching for multiple attributes in the applicant list. Try `search n/Alex s/Java` to search for applicants with 
@@ -324,7 +329,7 @@ Allows you to add skills to a specific applicant. The index number used correspo
 
 Format:
 ```
-addskill INDEX [s/SKILL]...
+addskill INDEX [s/SKILL]…
 ```
 
 
@@ -333,6 +338,7 @@ addskill INDEX [s/SKILL]...
 * Index of applicant specified must be a positive number. <br>
   e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant and the addition will not be carried out as it is invalid.
 * If you would like to replace or remove certain skills instead, consider using [`edit`](https://ay2122s2-cs2103t-t09-2.github.io/tp/UserGuide.html#editing-an-applicant--edit).
+* At least one skill must be provided to be added. i.e. `addskill INDEX` is an invalid command.
 
 <br>
 
@@ -404,7 +410,7 @@ sort f/FIELD o/ORDER
   e.g if the field is `NAME`, then the list will be sorted based on applicant's name in the order given.
 * You must provide either `ASC` or `DESC` for order, both are case-insensitive.
 `ASC` stands for ascending and `DESC` stands for descending <br>
-  e.g if the order is `ASC`, then the list will be sorted in ascending order based on the field given
+  e.g if the order is `ASC`, then the list will be sorted in ascending order based on the field given.
 
 
 <br>
@@ -487,6 +493,10 @@ except after search and view commands. <br>
 
 Allows you to delete a specific applicant, specified by index.
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If you delete a specific applicant, LinkedOUT will permanently discard the applicant's data. 
+</div>
+
 <br>
 
 Format:
@@ -495,7 +505,7 @@ delete INDEX
 ```
 
 * Index of applicant specified must not be more than the total number of applicants in LinkedOUT. <br>
-  e.g If there are only `4` applicants in the app but `5` is specified, then the deletion will not be carried out as it is invalid
+  e.g If there are only `4` applicants in the app but `5` is specified, then the deletion will not be carried out as it is invalid.
 * Index of applicant specified must be a positive number. <br>
   e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant and the deletion will not be carried out as it is invalid.
 
@@ -509,16 +519,16 @@ Sample Output:
 
 ![deletecommand](images/ug/deletecommand.png)
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If you delete a specific applicant, LinkedOUT will permanently discard the applicant's data 
-</div>
-
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
 ### Clearing the applicants : `clear`
 
-Clears the list of applicants
+Clears the list of applicants.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+LinkedOUT will discard all data and start with an empty data file once you select 'Yes' on the confirmation box. Selecting 'No' will cancel the action.
+</div>
 
 <br>
 
@@ -539,11 +549,6 @@ Sample Output:
 ![clearcommand](images/ug/clearcommand.png)
 
 
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-LinkedOUT will discard all data and start with an empty data file once you select 'Yes' on the confirmation box. Selecting 'No' will cancel the action.
-</div>
-
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
@@ -553,7 +558,12 @@ Exits the program.
 
 <br>
 
-Format: `exit`
+Format:
+```
+exit
+```
+
+<br>
 
 Example:
 ```
@@ -608,9 +618,9 @@ If your changes to the data file makes its format invalid, LinkedOUT will discar
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]…​` <br> e.g: `add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas` |
 | **List**   | `list`                                                                                                                                                |
 | **View**   | `view NAME` <br> e.g: `view Steve Jobs`                                                                                                               |
-| **Search** | `search [n/NAME]... [j/JOB]... [r/ROUND]... [s/SKILL]...` <br> e.g: `search n/Steve`   |
-| **AddSkill** | `addskill INDEX [s/SKILL]....` <br> e.g `addskill 1 s/MySQL s/PostgreSQL`|
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]...` <br> e.g: `edit 1 n/Elon Musk`                                               |
+| **Search** | `search [n/NAME]… [j/JOB]… [r/ROUND]… [s/SKILL]…` <br> e.g: `search n/Steve`   |
+| **AddSkill** | `addskill INDEX [s/SKILL]…` <br> e.g `addskill 1 s/MySQL s/PostgreSQL`|
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…` <br> e.g: `edit 1 n/Elon Musk`                                               |
 | **Sort**   | `sort f/FIELD o/ORDER` <br/> e.g: `sort f/Name o/Asc`                                                                                                 |
 | **Flag**   | `flag INDEX` <br> e.g:  `flag 1`                                                                                                                      |
 | **Delete** | `delete INDEX` <br> e.g: `delete 1`                                                                                                                   |
