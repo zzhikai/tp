@@ -862,7 +862,72 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Flag an applicant**
+
+**MSS**
+
+1. User requests to flag an applicant
+2. LinkedOUT shows the updated list of applicants
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User inputs invalid applicant index
+
+    * 1a1. LinkedOUT shows an error message
+
+      Use case resumes at step 1.
+
+**Use case: Unflag an applicant**
+
+**MSS**
+
+1. User requests to unflag an applicant
+2. LinkedOUT shows the updated list of applicants
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User inputs invalid applicant index
+
+    * 1a1. LinkedOUT shows an error message
+
+      Use case resumes at step 1.
+
+**Use case: Unflag an applicant**
+
+**MSS**
+
+1. User requests to unflag an applicant
+2. LinkedOUT shows the updated list of applicants
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User inputs invalid applicant index
+
+    * 1a1. LinkedOUT shows an error message
+
+      Use case resumes at step 1.
+
+**Use case: Clear all applicants**
+
+**MSS**
+
+1. User requests to clear all applicants from the list
+2. LinkedOUT clears the list of all applicants.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty
+  
+    Use case ends.
+
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -1068,6 +1133,10 @@ The commands in code blocks for this section are meant to be input in one line.
 
    4. Other incorrect delete commands to try: `delete`, `delete 1 1`, `delete x`, (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
       
 ### Flagging an applicant
 
