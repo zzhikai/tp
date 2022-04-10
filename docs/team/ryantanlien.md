@@ -45,9 +45,9 @@ Given below are my contributions to the project.
     * Aided in general formatting of the user guide to ensure ease-of-use and readability.
 
   * **Contributions to the DG**:
-    * Added implementation details for the flag feature.
+    * Added implementation details for the flag feature. (Pull requests [\#251](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/251), [\#254](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/254))
     * Added key use case of viewing an individual applicant. (Pull request [\#55](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/55))
-    * Helped to refactor pre-existing AB3 PUML files and diagrams.  (Pull request [\#36](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/97))
+    * Helped to refactor pre-existing AB3 PUML files and diagrams.  (Pull request [\#97](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/97))
 
 <br>
 

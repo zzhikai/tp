@@ -143,7 +143,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ApplicantListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible *GUI*.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/linkedout-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/linkedout-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/linkedout/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S2-CS2103T-T09-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -229,11 +229,11 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add applicant feature
 
-#### Rationale
+**Rationale**
 
 The add command allows the user to add a new applicant to the LinkedOUT list.
 
-#### Implementation
+**Implementation**
 
 The add command is facilitated by creating an `AddCommand`. `AddCommand` extends `Command` and implements the `Command#execute()` method.
 
@@ -273,7 +273,7 @@ The following sequence diagram shows how the add operation works:
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
-#### Design considerations
+**Design considerations**
 
 **Aspect: How add executes:**
 
@@ -287,13 +287,13 @@ The following sequence diagram shows how the add operation works:
 
 ### Add Skill feature
 
-#### Rationale
+**Rationale**
 
 The addskill command allows users to add skills to a specific applicant. This command was designed to accommodate edit's functionality when editing skills. To remove skills from an applicant, one can choose to use edit instead.
 
 The reasoning for only including an addskill functionality is that most applicants would pick up new skills, but not lose knowledge of pre-existing ones.
 
-#### Implementation
+**Implementation**
 
 The addskill mechanism is facililated by `AddSkillCommandParser`. 
 `AddSkillCommandParser` parses the inputs using `AddSkillCommandParser#parseSkillsForEdit()` and returns a new set of skills to `AddSkillCommand`.
@@ -330,7 +330,7 @@ Given below is an example usage scenario of how an applicant is edited.
 
 ![AddSkillSequenceDiagram](images/AddSkillCommandSequenceDiagram.png)
 
-#### Design considerations
+**Design considerations**
 
 **Aspect: How addskill executes:**
 
@@ -346,11 +346,11 @@ Given below is an example usage scenario of how an applicant is edited.
 
 ### Edit applicant feature
 
-#### Rationale
+**Rationale**
 
 The edit command allows users to change the applicant's details.
 
-#### Implementation
+**Implementation**
 
 The proposed edit mechanism is facilitated by `EditApplicantDescriptor`. `EditApplicantDescriptor` stores the details of the applicant to change.
 
@@ -362,16 +362,26 @@ The following activity diagram shows the workflow for the edit operation:
 
 Given below is an example usage scenario of how an applicant is edited.
 
-1. The user enters the edit command with the specific fields to edit, `edit 1 n/Alex Tan`.
+1. The user enters the edit command with the specific fields to edit, `edit 1 n/Alex Tan`. 
 
+2. `LinkedoutParser` is invoked to handle the command `edit` through `LinkedoutParser#parseCommand()`.
 
-2. LinkedOUT updates the applicant with the edited information.
+4. It then calls upon `EditCommandParser#parse()` to map the various prefixes to the attributes: (e.g `n/` to `Alex Tan`).
+
+5. If input is not empty, it passes the input to `EditCommandParser#parse()` to create a `EditApplicantDescriptor`,
+   representing the applicant's attributes after editing. `EditApplicantDescriptor` also checks to make sure there are changes made.
+   
+6. The result is then used to instantiate `EditCommand`. `EditCommand` then finds the applicant at the specified index.
+
+7. With `EditCommand#createEditedApplicant()`, the edited applicant is created with the new information and the applicant is added to the model.
+
+8. It then calls upon `CommandResult` to display the final result on the *GUI*.
 
 The following sequence diagram shows how the edit operation works:
 
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
-#### Design considerations
+**Design considerations**
 
 **Aspect: How edit executes:**
 
@@ -388,13 +398,13 @@ The following sequence diagram shows how the edit operation works:
 ---
 ### View applicant feature
 
-#### Rationale
+**Rationale**
 
 The view command searches a **single** applicant in LinkedOUT and returns the applicant's details.
 It is used when users wish to find a specific applicant they have in mind.
 It takes in a single case-insensitive parameter, which is the applicant's full name. No prefix is required.
 
-#### Implementation
+**Implementation**
 
 The view command is facilitated by `NameContainsAllKeywordsPredicate` which helps the parser match the input.
 
@@ -429,7 +439,7 @@ The following sequence diagram shows how the view operation works:
 
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
-#### Design Considerations
+**Design considerations**
 
 **Aspect: How view executes:**
 
@@ -451,13 +461,13 @@ This is to allow our target user to have greater flexibility, and we believe bot
 ---
 ### Search applicant feature
 
-#### Rationale
+**Rationale**
 
 The search command searches for applicant(s) in LinkedOUT and returns the applicant(s)' details.
 It is used when users wish to search for applicant(s) they have in mind.
 It takes in prefix(es) with case-insensitive parameter, which can be applicant's name, job, round and skill.
 
-#### Implementation
+**Implementation**
 
 The proposed search mechanism is facilitated by `SearchCommandParser`. `SearchCommandParser` will map the creation of `KeywordsPredicate` based on the input prefix. `KeywordsPredicate` supports the following implementation:
 * `NameContainsKeywordsPredicate` — Predicate which returns true if an applicant's full name matches partially with the exact input attribute.
@@ -498,7 +508,7 @@ The following sequence diagram shows how the search operation works:
 
 ![SearchSequenceDiagram](images/SearchSequenceDiagram.png)
 
-#### Design considerations:
+**Design considerations**:
 
 **Aspect: How search executes:**
 
@@ -516,11 +526,11 @@ The following sequence diagram shows how the search operation works:
 
 ### Sort applicant feature
 
-#### Rationale
+**Rationale**
 
 The sort command shows the list of applicants **temporarily** sorted by either `NAME` or `JOB` and in ascending or descending order.
 
-#### Implementation
+**Implementation**
 
 The proposed sort mechanism is facilitated by `SortCommandParser`. 
 `SortCommandParser` will map the creation of `SortComparator` based on the input prefix and returns a `SortCommand` with
@@ -547,7 +557,7 @@ The following sequence diagram shows how the sort operation works:
 
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
-#### Design considerations:
+**Design considerations**:
 
 **Aspect: How sort executes:**
 
@@ -565,11 +575,11 @@ The following sequence diagram shows how the sort operation works:
 
 ### Flag applicant feature
 
-#### Rationale
+**Rationale**
 
 The flag feature and it's associated `flag` command allows the user to flag an existing applicant in the LinkedOUT list, pinning them to the top for easy reference.
 
-#### Implementation
+**Implementation**
 The flag mechanism is facilitated by the `FlagCommandParser`. `FlagCommandParser` parses the user inputs using `FlagCommandParser#parse()` to obtain the index of the applicant to be flagged.
 
 `FlagCommand` then searches for the applicant in the applicant list, and toggles it's flagged status.
@@ -598,7 +608,7 @@ The following sequence diagram shows how the flag operation works:
 
 ![FlagSequenceDiagram](images/FlagSequenceDiagram.png)
 
-#### Design considerations
+**Design considerations**
 
 Aspect: How flag executes :
 * Alternative 1 (current choice): Create a new applicant with toggled flag status to replace the specified applicant.
@@ -684,12 +694,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ---
 ### Use cases
 
-(For all use cases below, the **System** is LinkedOUT and the **Actor** is the user, unless specified otherwise)
+(For all use cases below, the System is LinkedOUT, and the Actor is the user unless specified otherwise)
 
 ---
-**Use case: Add an applicant**
+**Use case 1: Add an applicant**
 
-**Preconditions: LinkedOUT application is launched**
+**Preconditions: LinkedOUT application is launched.**
 
 **Guarantees: Applicant will be added only if the user input
 does not have any formatting issues.**
@@ -719,9 +729,9 @@ does not have any formatting issues.**
 
 ---
     
-**Use case: View an individual applicant**
+**Use case 2: View an individual applicant**
 
-**Preconditions: LinkedOUT application is launched**
+**Preconditions: LinkedOUT application is launched.**
 
 **Guarantees: Applicant will be displayed only if the user input
 does not have any formatting issues.**
@@ -737,7 +747,7 @@ does not have any formatting issues.**
 
 * 1a. Applicant does not exist.
   
-    * 1a1. LinkedOUT shows 0 applicant listed.
+    * 1a1. LinkedOUT shows 0 applicants listed.
       
       Use case resumes at step 1.
     
@@ -750,9 +760,9 @@ does not have any formatting issues.**
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
-**Use case: Search for applicant(s)**
+**Use case 3: Search for applicant(s)**
 
-**Preconditions: LinkedOUT application is launched**
+**Preconditions: LinkedOUT application is launched.**
 
 **Guarantees: Applicant(s) will be displayed only if the user input
 does not have any formatting issues.**
@@ -782,9 +792,9 @@ does not have any formatting issues.**
 
 ---
     
-**Use case: View list of all applicants**
+**Use case 4: View list of all applicants**
 
-**Preconditions: LinkedOUT application is launched**
+**Preconditions: LinkedOUT application is launched.**
 
 **Guarantees: List of applicants will be displayed.**
 
@@ -804,9 +814,9 @@ does not have any formatting issues.**
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
-**Use case: Delete an applicant**
+**Use case 5: Delete an applicant**
 
-**Preconditions: LinkedOUT application is launched**
+**Preconditions: LinkedOUT application is launched.**
 
 **Guarantees: Applicant will be deleted only if the user input
 does not have any formatting issues.**
@@ -836,9 +846,9 @@ does not have any formatting issues.**
 
 ---
 
-**Use case: Edit an applicant**
+**Use case 6: Edit an applicant**
 
-**Preconditions: LinkedOUT application is launched**
+**Preconditions: LinkedOUT application is launched.**
 
 **Guarantees: Applicant will be edited only if the user input
 does not have any formatting issues.**
@@ -868,7 +878,7 @@ does not have any formatting issues.**
 
 ---
 
-**Use case: Sort the list of applicants**
+**Use case 7: Sort the list of applicants**
 
 **Preconditions: LinkedOUT application is launched**
 
@@ -900,7 +910,102 @@ only if the user input does not have any formatting issues.**
 
 ---
 
-*{More to be added}*
+
+**Use case 8: Add skills to an applicant**
+
+**Preconditions: LinkedOUT application is launched. There is at least one applicant in the list.**
+
+**Guarantees: Skills will be added to an applicant only if the user input
+does not have any formatting issues.**
+
+**MSS**
+
+1.  User requests to list applicants.
+2.  LinkedOUT shows a list of applicants.
+3.  User enters the skill(s) to be added to the applicant.
+4.  LinkedOUT shows the updated applicant.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    Use case ends.
+
+* 3a. User inputs invalid skill(s) or index.
+
+    * 3a1. LinkedOUT shows an error message
+
+      Use case resumes at step 3.
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+
+**Use case 9: Flag an applicant**
+
+**Preconditions: LinkedOUT application is launched. There is at least one applicant in the list.**
+
+**Guarantees: Applicant will be flagged only if the user input
+does not have any formatting issues.**
+
+**MSS**
+
+1. User requests to flag an applicant
+2. LinkedOUT shows the updated list of applicants
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User inputs invalid applicant index
+
+    * 1a1. LinkedOUT shows an error message
+
+      Use case resumes at step 1.
+      
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+
+**Use case 10: Unflag an applicant**
+
+**Preconditions: LinkedOUT application is launched. There is at least one applicant in the list**
+
+**Guarantees: Applicant will be unflagged only if the user input
+does not have any formatting issues.**
+
+**MSS**
+
+1. User requests to unflag an applicant
+2. LinkedOUT shows the updated list of applicants
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User inputs invalid applicant index
+
+    * 1a1. LinkedOUT shows an error message
+
+      Use case resumes at step 1.
+      
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+
+**Use case 11: Clear all applicants**
+
+**Preconditions: LinkedOUT application is launched.**
+
+**Guarantees: List will be cleared only if the user input
+does not have any formatting issues.**
+
+**MSS**
+
+1. User requests to clear all applicants from the list
+2. LinkedOUT clears the list of all applicants.
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -911,7 +1016,7 @@ only if the user input does not have any formatting issues.**
 2.  Performance: The application should be able to hold up to 1000 applicants without a noticeable sluggishness in performance for typical usage.
 3.  Performance: The system should take at most 2 seconds to return an output.
 4.  Disaster Recovery: In case of system failure, the application should still contain data saved up to the last command executed.
-5.  Persistency: The system should save after a command to ensure no data loss.
+5.  Persistency: The system should save after executing commands that modify the list to ensure no data loss.
 6.  Testing: There should be at least one test case for each major component.
 7.  Fault Tolerance: The system should not crash due to an invalid input but instead show an error message.
 8.  Portability: The application should run on an imported _JSON_ file as long as it adheres to the format used when saving to files.
@@ -919,8 +1024,6 @@ only if the user input does not have any formatting issues.**
 10. Usability: The user interface should be clean and intuitive for users who have basic IT knowledge.
 11. Process: The project is expected to adhere to a schedule based off our milestones from the different versions ranging from v1.1 to v1.4.
 12. Documentation: User Guide should be able to be understood by readers who have basic IT knowledge.
-
-*{More to be added}*
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -956,7 +1059,7 @@ testers are expected to do more *exploratory* testing.
 
    2. **For Windows:** Double-click the file to start the app.<br>
      
-      **For Mac:** Open up a [terminal](#https://www.maketecheasier.com/launch-terminal-current-folder-mac/) in the current folder which contains the LinkedOUT jar file<br>
+      **For Mac:** Open up a [terminal](https://www.maketecheasier.com/launch-terminal-current-folder-mac/) in the current folder which contains the LinkedOUT jar file<br>
       Then, run the following command: 
       ```java -jar LinkedOUT.jar```
    
@@ -1044,8 +1147,10 @@ The commands in code blocks for this section are meant to be inputted in one lin
     1. Test case: `addskill 0 s/Python s/Java`<br>
        Expected: No skill is added to any applicant. Error details shown in the status message.
 
-    1. Other incorrect delete commands to try: `addskill s/Python`, `addskill 1`, `addskill 1 Python`, `addskill x` (where x is larger than the list size)<br>
+    1. Other incorrect addskill commands to try: `addskill s/Python`, `addskill 1`, `addskill 1 Python`, `addskill x` (where x is larger than the list size)<br>
        Expected: Similar to previous.
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
 
@@ -1220,6 +1325,8 @@ The commands in code blocks for this section are meant to be inputted in one lin
 
     4. Other incorrect delete commands to try: `delete`, `delete 1 1`, `delete x`, (where x is larger than the list size)<br>
        Expected: Similar to previous.
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
 

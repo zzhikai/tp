@@ -61,7 +61,7 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 
 
 4. **For Windows:** Double-click the file to start the app.<br>
-   **For Mac:** Open up a [terminal](#https://www.maketecheasier.com/launch-terminal-current-folder-mac/) in the current folder which contains the LinkedOUT jar file <br>
+   **For Mac:** Open up a [terminal](https://www.maketecheasier.com/launch-terminal-current-folder-mac/) in the current folder which contains the LinkedOUT jar file <br>
    Then, run the following command: <br>
    ```java -jar LinkedOUT.jar``` 
    
