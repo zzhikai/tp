@@ -666,7 +666,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Recruiter (new user)                            | view the list of all applicants                                           | have an overview of all applicants                                |
 | `* * *`  | Recruiter (new user)                            | delete an applicant                                                       | remove an applicant when he is rejected/withdraws application     |
 | `* * *`  | Recruiter                                       | edit applicant's info                                                     | update their particulars                                          |
-| `* * *`  | Recruiter                                       | add the job that the applicant applied to                                 | know which applicant is interested in which job.                  |
 | `* * *`  | Recruiter that deals with large amounts of data | get rid of unwanted data                                                  | avoid getting confused by them.                                   |
 | `* * *`  | Busy recruiter                                  | search an applicant in the system by name.                                | have an overview of applicant's particulars                       |
 | `* * *`  | Busy recruiter                                  | search an applicant in the system by job, skill and round.                | find the applicant with desired job, skill and round quickly      |
@@ -676,11 +675,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | Busy recruiter                                  | see what round of the job application a particular applicant is at        | keep track of their progress                                      |
 | `* *`    | Recruiter                                       | add skills to existing skills that the applicant has                      | keep track of an applicant's updated skill set                    |
 | `* *`    | Experienced recruiter                           | flag an applicant                                                         | quickly refer to their info in the future                         |
-| `* *`    | Recruiter (New user)                            | get alert from risky actions such as clearing the entire data             | avoid clearing the data accidentally                              |
+| `* *`    | Recruiter (New user)                            | get alert from risky actions such as clearing the entire data             | avoid clearing applicant's data accidentally                      |
 | `* *`    | Recruiter                                       | view a summary of any applicants skill set                                | need not have to keep referencing their resume                    |
 | `* *`    | Recruiter(New user)                             | view a useful user guide                                                  | know how to use the application properly                          |
 | `* *`    | Recruiter(New user)                             | view on a summary of prefix and commands                                  | easily know how to use the application properly                   |
-| `* *`    | Recruiter(New user)                             | get help from the applicant                                               | know how to use the application                                   |
+| `* *`    | Recruiter(New user)                             | get help from the application                                             | know how to use the application                                   |
 | `* *`    | Frequent user                                   | avoid adding the same applicant                                           | ensure the total number of applicants I entered is accurate       |
 | `* *`    | Frequent user                                   | avoid adding invalid email for the applicants                             | ensure the emails for applicants are valid                        |
 | `* `     | Efficient recruiter                             | import from files                                                         | avoid needing to key in everything manually                       |
