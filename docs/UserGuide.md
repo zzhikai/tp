@@ -140,7 +140,7 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about sample output:**
 The sample output shown in this guide is for illustration purposes only.
-The actual GUI might differ slightly depending upon Operating System.
+The actual GUI might differ slightly depending on whether Windows/ Mac is used.
 </div>
 
 <br>
@@ -159,10 +159,10 @@ The table below illustrates the meaning of the prefixes and their respective inp
 
 | Prefix | Meaning                  | Input       | Constraints |
 |:-------|:-------------------------|:------------|:------------|
-|   -    |                          | INDEX       | Index of applicant specified must not be more than the total number of applicants in the list. |
-| **n/** | Applicant's Name         | NAME        | Names can only contain letters (including letters with accents), and cannot contain any numbers. Name's can contain the following special characters: `-` and`'`. **An applicant's name is unique** i.e. two applicants cannot have the same name.
+|   -    |          -               | INDEX       | Index of applicant specified must not be more than the total number of applicants in the list. |
+| **n/** | Applicant's Name         | NAME        | Names can only contain letters (including letters with accents), and cannot contain any numbers. Names can contain the following special characters: `-` and`'`. **An applicant's name is unique** i.e. two applicants cannot have the same name.
 | **p/** | Applicant's Phone Number | PHONE_NUMBER| Phone numbers must only contain numbers, and must be between 3 and 15 characters long.
-| **e/** | Applicant's Email        | EMAIL       | Emails should be of the format `local-part@domain`. Examples of valid emails include: `bob@email` & `bob@email.com.sg`, examples of invalid emails include `bobmail` & `-bob@email.com`.
+| **e/** | Applicant's Email        | EMAIL       | Emails should be of the format `local-part@domain`. Examples of valid emails include: `bob@email` and `bob@email.com.sg`, examples of invalid emails include `bobmail` and `-bob@email.com`.
 | **j/** | Job Applied              | JOB         | Jobs must only contain alphanumeric characters.
 | **r/** | Application Round        | ROUND       | Rounds must only contain alphanumeric characters.
 | **s/** | Applicant's Skill        | SKILL       | A single skill can be made up of 1 to 5 words. The skill cannot be completely made up of symbols. However, a mix of alphanumeric and symbols are allowed. eg. `!@#` is not allowed but `C#` is allowed.
@@ -178,7 +178,10 @@ Shows you a message explaining how to access the help page.
 
 <br>
 
-Format: `help`
+Format:
+```
+help
+```
 
 <br>
 
@@ -290,12 +293,12 @@ Format:
 ```
 search [n/NAME]…​ [j/JOB]…​ [r/ROUND]…​ [s/SKILL]…​
 ```
-* You must provide a full match of attribute you want to search for.<br>
+* You must provide a full match for attributes you want to search for.<br>
   e.g. Searching `n/Hans` will match an applicant with name `Hans Lee` but will not match an applicant with name `Han`. <br>
 * The search command is case-insensitive. <br>
   e.g Searching `n/hans` will match an applicant with name `Hans`.
 * You can search for a combination of attributes.
-  After a search command, applicants will be displayed in descending order of matched attribute and the applicant with the most number of matches is shown at the top of the list.
+  After a search command, applicants will be displayed in descending order of matched attributes. The applicant with the most number of matches is shown at the top of the list. <br>
   e.g Searching `n/Hans j/Engineer` will match with applicants with either name `Hans` or job `Engineer`. Applicant with both name and job matched will be displayed on the top of the list.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -372,8 +375,8 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​
 * You can remove all of an applicant's skills by simply typing `edit INDEX s/` without adding anything behind `s/`. <br>
   <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
   This will clear all skills previously added for an applicant and cannot be undone. 
-* At least one attribute must be provided to be edited. i.e. `edit INDEX` is an invalid command. 
   </div>
+* At least one attribute must be provided to be edited. i.e. `edit INDEX` is an invalid command.
 
 <br>
 
@@ -553,7 +556,10 @@ Exits the program.
 
 <br>
 
-Format: `exit`
+Format:
+```
+exit
+```
 
 Example:
 ```
