@@ -11,7 +11,7 @@ else ([else])
     if () then ([no applicant contains the attribute and prefix specified])
     :Display to user no applicant found;
     else ([else])
-    :Display to user applicant(s) that matches the attribute;
+    :Display to user applicant(s) that match the attribute;
 endif
 endif
 
