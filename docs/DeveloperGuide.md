@@ -3,24 +3,27 @@ layout: page
 title: Developer Guide
 ---
 
-LinkedOUT is the only application that any experienced recruiter needs. LinkedOUT allows recruiters to keep track of many applicants, and the job they applied for. You can store their contact details, skills and the round of their application, all in one place.
-
-LinkedOUT helps recruiters manage the multiple job applications they may receive on a daily basis. With many applications, it may be difficult to keep track of each applicant and which application round they are currently at.
-
-Thus, LinkedOUT aims to improve a recruiter's experience. LinkedOUT presents recruiters with the ability to flag important applicants, edit applicants easily and search for them with ease.
-
-LinkedOUT comes with a Command Line Interface (*CLI*) as well as a Graphical User Interface (*GUI*) in order to provide recruiters a more streamlined experience.
-
 ## **Table of Contents**
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Who is this Developer Guide for?**
+## **Introduction**
 
-This user guide is meant for developers who wish to learn about the design decisions and implementation of our application. 
-The target audience of our application are recruiters who are looking to incorporate this app into their daily workflows.
+**What is LinkedOUT?**
+
+LinkedOUT is the only application that any experienced recruiter needs. LinkedOUT allows recruiters to keep track of many applicants, and the job they applied for. You can store their contact details, skills and the round of their application, all in one place.
+
+LinkedOUT helps recruiters manage the multiple job applications they may receive on a daily basis. With many applications, it may be difficult to keep track of each applicant and which application round they are currently at.
+
+Thus, LinkedOUT aims to improve a recruiter's experience. LinkedOUT presents recruiters with the ability to flag important applicants, edit applicants easily and search for them with ease.
+
+LinkedOUT comes with a Command Line Interface *CLI* as well as a Graphical User Interface *GUI* in order to provide recruiters a more streamlined experience.
+
+**Who is this Developer Guide for?**
+
+This developer guide is meant for those who wish to understand the architecture and design considerations of LinkedOUT.
 
 Certain technical terms are specified in *italics*. If you need to reference what they mean, you can do so by referring to our [Glossary](https://ay2122s2-cs2103t-t09-2.github.io/tp/DeveloperGuide.html#glossary).
 
@@ -37,15 +40,7 @@ If you would like to learn how to use the application instead, you can do so by 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**
-Notes are placed in this guide to specify extra details on the command format and serves as a guide to assist you.
-</div>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Tips are placed in this guide to serve as suggestions that you can try out while using our application.
-</div>
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Cautions are placed in this guide to serve as warnings for certain actions.
+Notes are placed in this guide to specify extra details and elaboration.
 </div>
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -55,6 +50,8 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 ## **Acknowledgements**
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
+Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5).
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -70,9 +67,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S2-CS2103T-T09-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+**:information_source: Notes:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2122S2-CS2103T-T09-2/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -174,6 +171,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+This limitation extends to the rest of our diagrams which are of the same type.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -231,11 +229,11 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add applicant feature
 
-#### Rationale
+**Rationale**
 
 The add command allows the user to add a new applicant to the LinkedOUT list.
 
-#### Implementation
+**Implementation**
 
 The add command is facilitated by creating an `AddCommand`. `AddCommand` extends `Command` and implements the `Command#execute()` method.
 
@@ -245,7 +243,8 @@ The following activity diagram shows the workflow for the add operation:
 
 <div markdown="span" class="alert alert-info">:information_source:
  **Note:** There should only be one arrowhead at the end of every line
-in the Activity Diagram. This is a known limitation of PlantUML.</div>
+in the Activity Diagram. This is a known limitation of PlantUML. This limitation extends to the rest of our diagrams which are of the same type.
+</div>
 
 Given below is an example usage scenario of how an applicant is added, and how the operation is handled by LinkedOUT:
 
@@ -274,10 +273,7 @@ The following sequence diagram shows how the add operation works:
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser`
-should not exceed the destroy marker X. This is a known limitation of PlantUML.</div>
-
-#### Design considerations
+**Design considerations**
 
 **Aspect: How add executes:**
 
@@ -291,13 +287,13 @@ should not exceed the destroy marker X. This is a known limitation of PlantUML.<
 
 ### Add Skill feature
 
-#### Rationale
+**Rationale**
 
 The addskill command allows users to add skills to a specific applicant. This command was designed to accommodate edit's functionality when editing skills. To remove skills from an applicant, one can choose to use edit instead.
 
 The reasoning for only including an addskill functionality is that most applicants would pick up new skills, but not lose knowledge of pre-existing ones.
 
-#### Implementation
+**Implementation**
 
 The addskill mechanism is facililated by `AddSkillCommandParser`. 
 `AddSkillCommandParser` parses the inputs using `AddSkillCommandParser#parseSkillsForEdit()` and returns a new set of skills to `AddSkillCommand`.
@@ -334,7 +330,7 @@ Given below is an example usage scenario of how an applicant is edited.
 
 ![AddSkillSequenceDiagram](images/AddSkillCommandSequenceDiagram.png)
 
-#### Design considerations
+**Design considerations**
 
 **Aspect: How addskill executes:**
 
@@ -346,17 +342,15 @@ Given below is an example usage scenario of how an applicant is edited.
     * Pros: One lesser command needed.
     * Cons: Adds extra complexity in code as well as for the user.
 
-_{more aspects and alternatives to be added}_
-
 ---
 
 ### Edit applicant feature
 
-#### Rationale
+**Rationale**
 
 The edit command allows users to change the applicant's details.
 
-#### Implementation
+**Implementation**
 
 The proposed edit mechanism is facilitated by `EditApplicantDescriptor`. `EditApplicantDescriptor` stores the details of the applicant to change.
 
@@ -377,7 +371,7 @@ The following sequence diagram shows how the edit operation works:
 
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
-#### Design considerations
+**Design considerations**
 
 **Aspect: How edit executes:**
 
@@ -389,20 +383,18 @@ The following sequence diagram shows how the edit operation works:
     * Pros: Will use less memory (Do not have to create an extra applicant).
     * Cons: We must ensure that the implementation of each individual command to change an information is correct.
 
-_{more aspects and alternatives to be added}_
-
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
 ### View applicant feature
 
-#### Rationale
+**Rationale**
 
-The view command searches a **single** applicant in LinkedOUT and returns the applicant's details. 
-It is used when users wish to find a specific user they have in mind.
+The view command searches a **single** applicant in LinkedOUT and returns the applicant's details.
+It is used when users wish to find a specific applicant they have in mind.
 It takes in a single case-insensitive parameter, which is the applicant's full name. No prefix is required.
 
-#### Implementation
+**Implementation**
 
 The view command is facilitated by `NameContainsAllKeywordsPredicate` which helps the parser match the input.
 
@@ -417,19 +409,19 @@ The following activity diagram shows the workflow for the view operation:
 Given below is an example usage scenario of how to view a specific applicant.
 
 1. The user enters the view command with the specific name, `view Alex Tan`.
-   
 
-2. `LinkedoutParser` is invoked to handle the command `view` through `LinkedoutParser#parseCommand()`. 
-   
+
+2. `LinkedoutParser` is invoked to handle the command `view` through `LinkedoutParser#parseCommand()`.
+
 
 3. It then calls upon `ViewCommandParser#parse()` to check if the input is empty.
-   
+
 
 4. If input is not empty, it passes the input to `NameContainsAllKeywordsPredicate()`.
-   
+
 
 5. The result is then initialized as a predicate in `ViewCommand`. `ViewCommand#execute()` then tries to find a match.
-   
+
 
 6. It then calls upon `CommandResult` to display the final result on the *GUI*.
 
@@ -437,7 +429,7 @@ The following sequence diagram shows how the view operation works:
 
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
-#### Design Considerations
+**Design considerations**
 
 **Aspect: How view executes:**
 
@@ -450,26 +442,28 @@ The following sequence diagram shows how the view operation works:
 * **Alternative 2:** Shows multiple applicants based on partial matches.
     * Pros: Less strict matching.
     * Cons: Users are unable to single out a certain applicant.
-    
+
 Weighing the pros and cons of these alternatives, we have decided to abstract alternative 2 as a different feature under `search`.
 This is to allow our target user to have greater flexibility, and we believe both are important features to be implemented.
-
-_{more aspects and alternatives to be added}_
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
 ### Search applicant feature
 
-#### Rationale
+**Rationale**
 
-The search command allows for a quick view of applicant's information in LinkedOUT.
+The search command searches for applicant(s) in LinkedOUT and returns the applicant(s)' details.
+It is used when users wish to search for applicant(s) they have in mind.
+It takes in prefix(es) with case-insensitive parameter, which can be applicant's name, job, round and skill.
 
-#### Implementation
+**Implementation**
 
 The proposed search mechanism is facilitated by `SearchCommandParser`. `SearchCommandParser` will map the creation of `KeywordsPredicate` based on the input prefix. `KeywordsPredicate` supports the following implementation:
-* `NameContainsKeywordsPredicate` — Predicate which returns true if an applicant's full name matches partially with the input keyword.
-* `JobContainsKeywordsPredicate` — Predicate which returns true if an applicant's job name matches partially with the input keyword.
+* `NameContainsKeywordsPredicate` — Predicate which returns true if an applicant's full name matches partially with the exact input attribute.
+* `JobContainsKeywordsPredicate` — Predicate which returns true if an applicant's job name matches partially with the exact input attribute.
+* `RoundContainsKeywordsPredicate` — Predicate which returns true if an applicant's round matches partially with the exact input attribute.
+* `ApplicantContainsSkillKeywordsPredicate` — Predicate which returns true if an applicant's skill matches partially with the exact input attribute.
 
 These predicates assist the filtering of applicant list in the `Model` interface, specifically for  `Model#updateSearchApplicantList()` and `Model#getDefaultApplicantList()`.
 
@@ -480,43 +474,41 @@ The following activity diagram shows the workflow of the search command:
 Given below is an example usage scenario and how the search mechanism behaves at each step.
 
 Example 1
-1. The user enters search command with prefix and specified keyword , `search n/David Lee`.
+1. The user enters search command with prefix and specified attribute, `search n/David Lee`.
 
 
-2. The input keywords will be passed into `SearchCommandParser` and creates a `NameContainsKeywordsPredicate` if the keyword
+2. The input attributes will be passed into `SearchCommandParser` and creates a `NameContainsKeywordsPredicate` if the attribute
    and prefix are not empty.
 
 
 3. The predicate is then passed into `Model#updateSearchApplicantList()` to filter and display applicants with partial name
-   matching of "David" or "Lee" in LinkedOUT.
+   matching of `David` or `Lee` in LinkedOUT.
 
 
 Example 2
-1. The user enters `search j/Software Engineer` command to search for applicants in LinkedOUT.
+1. The user enters `search j/Software n/David` command to search for applicants in LinkedOUT.
 
 
-2. The input keywords will be passed into `SearchCommandParser` and creates a `JobContainsKeywordsPredicate` if the keywords are not empty.
+2. The input attributes will be passed into `SearchCommandParser` and creates a `JobContainsKeywordsPredicate` and `NameContainsKeywordsPredicate` if the attributes are not empty.
 
 
-3. The predicate is then passed into `Model#updateSearchApplicantList()` to filter and display applicants with partial job name matching of "Software" or "Engineer"  in LinkedOUT.
+3. The predicate is then passed into `Model#updateSearchApplicantList()` to filter and sort the applicants with partial job and name matching of `Software` or `David`. Applicant with the most matched attributes will be displayed on the top of LinkedOUT.
 
 The following sequence diagram shows how the search operation works:
 
 ![SearchSequenceDiagram](images/SearchSequenceDiagram.png)
 
-#### Design considerations:
+**Design considerations**:
 
 **Aspect: How search executes:**
 
-* **Alternative 1 (current choice):** Uses prefix to search for applicants with partial matching of keywords.
-    * Pros: Able to search an applicant using different fields/prefixes.
+* **Alternative 1 (current choice):** Uses prefixes to search for applicants with combination of matching attributes.
+    * Pros: Able to search an applicant using combination of different fields/prefixes. Provides a more precise and broader search.
     * Cons: Hard to implement.
 
 * **Alternative 2:** Only search for an applicant using partial matching name.
     * Pros: Easy to implement.
     * Cons: Inflexible use of search command.
-
-_{more aspects and alternatives to be added}_
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -524,11 +516,11 @@ _{more aspects and alternatives to be added}_
 
 ### Sort applicant feature
 
-#### Rationale
+**Rationale**
 
 The sort command shows the list of applicants **temporarily** sorted by either `NAME` or `JOB` and in ascending or descending order.
 
-#### Implementation
+**Implementation**
 
 The proposed sort mechanism is facilitated by `SortCommandParser`. 
 `SortCommandParser` will map the creation of `SortComparator` based on the input prefix and returns a `SortCommand` with
@@ -536,12 +528,16 @@ the `SortComparator`.
 
 `SortCommand` extends `Command` and implements the `Command#execute()` method.
 
+The following activity diagram shows the workflow of the search command:
+
+![SortActivityDiagram](images/SortCommandActivityDiagram.png)
+
 Given below is an example usage scenario and how the search mechanism behaves at each step.
 
 1. The user enters the sort command with the specific field to sort by and sorting order,
    `sort f/name o/asc`.
    
-2. The input keywords will be passed into `SortCommandParser` and creates a `SortComparator` 
+2. The input fields will be passed into `SortCommandParser` and creates a `SortComparator` 
    if the field and order are not empty.
    
 3. The `SortComparator` is then passed into `Model#updateDefaultApplicantList()` to sort and display
@@ -551,9 +547,9 @@ The following sequence diagram shows how the sort operation works:
 
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
-#### Design considerations:
+**Design considerations**:
 
-**Aspect: How search executes:**
+**Aspect: How sort executes:**
 
 * **Alternative 1 (current choice):** Displays a temporary sorted list
     * Pros: Original order of list retained.
@@ -569,11 +565,11 @@ The following sequence diagram shows how the sort operation works:
 
 ### Flag applicant feature
 
-#### Rationale
+**Rationale**
 
 The flag feature and it's associated `flag` command allows the user to flag an existing applicant in the LinkedOUT list, pinning them to the top for easy reference.
 
-#### Implementation
+**Implementation**
 The flag mechanism is facilitated by the `FlagCommandParser`. `FlagCommandParser` parses the user inputs using `FlagCommandParser#parse()` to obtain the index of the applicant to be flagged.
 
 `FlagCommand` then searches for the applicant in the applicant list, and toggles it's flagged status.
@@ -602,7 +598,7 @@ The following sequence diagram shows how the flag operation works:
 
 ![FlagSequenceDiagram](images/FlagSequenceDiagram.png)
 
-#### Design considerations
+**Design considerations**
 
 Aspect: How flag executes :
 * Alternative 1 (current choice): Create a new applicant with toggled flag status to replace the specified applicant.
@@ -611,89 +607,6 @@ Aspect: How flag executes :
 * Alternative 2: Change the state of the applicant directly, by making the flag status mutable.
   * Pros: Less verbose to implement.
   * Cons: Change of applicant state makes debugging the application harder, and contains possibility of introducing side effects.
-
-[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
-
----
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedLinkedout`. It extends `Linkedout` with an undo/redo history, stored internally as an `linkedoutStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedLinkedout#commit()` — Saves the current address book state in its history.
-* `VersionedLinkedout#undo()` — Restores the previous address book state from its history.
-* `VersionedLinkedout#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitLinkedout()`, `Model#undoLinkedout()` and `Model#redoLinkedout()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedLinkedout` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th applicant in the address book. The `delete` command calls `Model#commitLinkedout()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `linkedoutStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new applicant. The `add` command also calls `Model#commitLinkedout()`, causing another modified address book state to be saved into the `linkedoutStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitLinkedout()`, so the address book state will not be saved into the `linkedoutStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the applicant was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoLinkedout()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Linkedout state, then there are no previous Linkedout states to restore. The `undo` command uses `Model#canUndoLinkedout()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoLinkedout()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `linkedoutStateList.size() - 1`, pointing to the latest address book state, then there are no undone Linkedout states to restore. The `redo` command uses `Model#canRedoLinkedout()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitLinkedout()`, `Model#undoLinkedout()` or `Model#redoLinkedout()`. Thus, the `linkedoutStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitLinkedout()`. Since the `currentStatePointer` is not pointing at the end of the `linkedoutStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the applicant being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -771,64 +684,114 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ---
 ### Use cases
 
-(For all use cases below, the **System** is LinkedOUT and the **Actor** is the user, unless specified otherwise)
+(For all use cases below, the System is LinkedOUT, and the Actor is the user unless specified otherwise)
 
-**Use case: Add an applicant**
+---
+**Use case 1: Add an applicant**
+
+**Preconditions: LinkedOUT application is launched.**
+
+**Guarantees: Applicant will be added only if the user input
+does not have any formatting issues.**
 
 **MSS**
 
-1. User requests to add a new applicant
-2. LinkedOUT confirms the applicant details with user
-3. LinkedOUT shows the updated list of applicants
+1. User requests to add a new applicant.
+2. LinkedOUT shows the updated list of applicants.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. User inputs invalid applicant details 
+* 1a. User provides an invalid input to add an applicant. 
 
-    * 1a1. LinkedOUT shows an error message
+    * 1a1. LinkedOUT shows an error message. 
         
       Use case resumes at step 1.
     
-* 2a. User rejects applicant details
+* 1b. User adds a duplicate applicant.
 
-    * 2a1. LinkedOUT does not add the applicant
-    * 2a2. LinkedOUT shows original list of applicants
-        
+    * 1b1. LinkedOUT does not add the applicant and shows an error message to the user.
+      
       Use case resumes at step 1.
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
     
-**Use case: View an individual applicant**
+**Use case 2: View an individual applicant**
+
+**Preconditions: LinkedOUT application is launched.**
+
+**Guarantees: Applicant will be displayed only if the user input
+does not have any formatting issues.**
 
 **MSS**
 
-1. User requests to view an individual applicant
-2. LinkedOUT shows the individual applicant
+1. User requests to view an individual applicant.
+2. LinkedOUT shows the individual applicant.
 
     Use case ends.
+
+**Extensions**
+
+* 1a. Applicant does not exist.
+  
+    * 1a1. LinkedOUT shows 0 applicants listed.
+      
+      Use case resumes at step 1.
+    
+* 1b. User provides an invalid input to view applicant.
+
+    * 1b1. LinkedOUT shows an error message.
+        
+      Use case resumes at step 1.
+    
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+**Use case 3: Search for applicant(s)**
+
+**Preconditions: LinkedOUT application is launched.**
+
+**Guarantees: Applicant(s) will be displayed only if the user input
+does not have any formatting issues.**
+
+**MSS**
+
+1. User requests to search for applicant(s) with a specific skill and job.
+2. LinkedOUT shows the list of applicant(s) with the skill or job, in descending order of matched attribute.
+
+   Use case ends.
 
 **Extensions**
 
 * 1a. Applicant does not exist
-  
-    * 1a1. LinkedOUT shows an error message
-      
+
+    * 1a1. LinkedOUT shows 0 applicant listed.
+
       Use case resumes at step 1.
-    
-* 1b. User provides an invalid input to view Applicant
+
+* 1b. User provides an invalid input to search for applicant(s).
 
     * 1b1. LinkedOUT shows an error message
-        
+
       Use case resumes at step 1.
-      
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
-**Use case: View list of all applicants**
+---
+    
+**Use case 4: View list of all applicants**
+
+**Preconditions: LinkedOUT application is launched.**
+
+**Guarantees: List of applicants will be displayed.**
 
 **MSS**
 
-1.  User requests to list applicants
-2.  LinkedOUT shows a list of applicants
+1.  User requests to list applicants.
+2.  LinkedOUT shows a list of applicants.
 
     Use case ends.
 
@@ -838,15 +801,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
-**Use case: Delete an applicant**
+---
+**Use case 5: Delete an applicant**
+
+**Preconditions: LinkedOUT application is launched.**
+
+**Guarantees: Applicant will be deleted only if the user input
+does not have any formatting issues.**
 
 **MSS**
 
-1.  User requests to list applicants
-2.  LinkedOUT shows a list of applicants
-3.  User requests to delete a specific applicant in the list
-4.  LinkedOUT deletes the applicant
+1.  User requests to list applicants.
+2.  LinkedOUT shows a list of applicants.
+3.  User requests to delete a specific applicant in the list.
+4.  LinkedOUT deletes the applicant.
 
     Use case ends.
 
@@ -856,13 +826,114 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given name is invalid.
+* 3a. The given index is invalid.
 
     * 3a1. LinkedOUT shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: Flag an applicant**
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+
+**Use case 6: Edit an applicant**
+
+**Preconditions: LinkedOUT application is launched.**
+
+**Guarantees: Applicant will be edited only if the user input
+does not have any formatting issues.**
+
+**MSS**
+
+1.  User requests to list applicants.
+2.  LinkedOUT shows a list of applicants.
+3.  User requests to edit a specific applicant in the list.
+4.  LinkedOUT edits the applicant.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. LinkedOUT shows an error message.
+
+      Use case resumes at step 2.
+    
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+
+**Use case 7: Sort the list of applicants**
+
+**Preconditions: LinkedOUT application is launched**
+
+**Guarantees: A temporarily sorted list of applicants will be displayed
+only if the user input does not have any formatting issues.**
+
+**MSS**
+
+1.  User requests to list applicants.
+2.  LinkedOUT shows a list of applicants.
+3.  User requests to sort the list of applicants.
+4.  LinkedOUT shows the list of applicants in a sorted order.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. User provides an invalid input to sort the list of applicants.
+
+    * 3a1. LinkedOUT shows an error message.
+
+      Use case resumes at step 3.
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+
+
+**Use case 8: Add skills to an applicant**
+
+**Preconditions: LinkedOUT application is launched. There is at least one applicant in the list.**
+
+**Guarantees: Skills will be added to an applicant only if the user input
+does not have any formatting issues.**
+
+**MSS**
+
+1.  User requests to list applicants.
+2.  LinkedOUT shows a list of applicants.
+3.  User enters the skill(s) to be added to the applicant.
+4.  LinkedOUT shows the updated applicant.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    Use case ends.
+
+* 3a. User inputs invalid skill(s) or index.
+
+    * 3a1. LinkedOUT shows an error message
+
+      Use case resumes at step 3.
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+
+**Use case 9: Flag an applicant**
 
 **MSS**
 
@@ -878,8 +949,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. LinkedOUT shows an error message
 
       Use case resumes at step 1.
+      
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
-**Use case: Unflag an applicant**
+---
+
+**Use case 10: Unflag an applicant**
 
 **MSS**
 
@@ -895,24 +970,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. LinkedOUT shows an error message
 
       Use case resumes at step 1.
+      
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
-**Use case: Clear all applicants**
+---
+
+**Use case 11: Clear all applicants**
 
 **MSS**
 
 1. User requests to clear all applicants from the list
 2. LinkedOUT clears the list of all applicants.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty
-  
-    Use case ends.
-
-
-[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
 ### Non-Functional Requirements
@@ -944,8 +1012,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **GUI**: Graphical User Interface: Refers to the user interface that the user interacts with.
 * **CLI**: Command Line Interface: Refers to a computer program that accepts text inputs.
 
-*{More to be added}*
-
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -962,9 +1028,9 @@ testers are expected to do more *exploratory* testing.
 ---
 ### Launch and shutdown
 
-1. Initial launch
+1. Initial launch.
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
    2. **For Windows:** Double-click the file to start the app.<br>
      
@@ -974,7 +1040,7 @@ testers are expected to do more *exploratory* testing.
    
       Expected: Shows the GUI with a set of sample applicants. The window size may not be optimum.
 
-1. Saving window preferences
+1. Saving window preferences.
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
@@ -990,9 +1056,8 @@ testers are expected to do more *exploratory* testing.
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Code blocks for the *Adding an applicant* section:**
-The commands in code blocks for this section are meant to be input in one line.
+The commands in code blocks for this section are meant to be inputted in one line.
 </div>
-
 
 1. Adding an applicant while all applicants are being shown in the *GUI*.
 
@@ -1037,6 +1102,31 @@ The commands in code blocks for this section are meant to be input in one line.
 
 ---
 
+### Add skills to an applicant
+
+1. Adding a skill to an applicant while all applicants are being shown in the *GUI*.
+
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+       Current State: The first applicant has pre-existing skills of `JavaScript` and `TypeScript`.
+
+    1. Test case: `addskill 1 s/Python s/Java`<br>
+       Expected: New skills `Python` and `Java` are added to the first applicant's skill list.
+
+    1. Test case: `addskill 1 s/JavaScript`<br>
+       Expected: No new skill will be added to first applicant's skill list as it already exists. No error is thrown.
+
+    1. Test case: `addskill 1 s/Javascript`<br>
+       Expected: New skill `Javascript` will be added to first applicant's skill list. This is because the skills are case-insensitive,
+       hence `Javascript` and `JavaScript` will be treated as two different skills.
+
+    1. Test case: `addskill 0 s/Python s/Java`<br>
+       Expected: No skill is added to any applicant. Error details shown in the status message.
+
+    1. Other incorrect delete commands to try: `addskill s/Python`, `addskill 1`, `addskill 1 Python`, `addskill x` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+---
+
 ### Editing an applicant
 
 1. Editing an applicant while all applicants are being shown in the *GUI*.
@@ -1051,13 +1141,13 @@ The commands in code blocks for this section are meant to be input in one line.
        Round: Interview 
        Skills: Python
        ```
-    
+
     2. Test case: `edit 1 n/Charles e/charles@mail.com` <br>
        Expected: The first applicant's name is changed to `Charles` and the email address is changed
        to `charles@mail.com`. All other attributes remain unchanged.
 
     3. Test case: `edit 1 s/Javascript s/Java` <br>
-       Expected: The first applicant's existing skills are removed, and only `Javascript` and `Java` 
+       Expected: The first applicant's existing skills are removed, and only `Javascript` and `Java`
        will be in their skill list. All other attributes remain unchanged.
 
     4. Test case: `edit 1 s/` <br>
@@ -1067,90 +1157,83 @@ The commands in code blocks for this section are meant to be input in one line.
     5. Test case: `edit 0 n/Jamie` <br>
        Expected: No changes occur, as 0 is an invalid index. Error details shown in status message
 
-    6. Other incorrect edit commands to try: `edit o/Jamie`, `edit p/Jamie`, `edit x n/Jamie` 
+    6. Other incorrect edit commands to try: `edit o/Jamie`, `edit p/Jamie`, `edit x n/Jamie`
        (where x is greater than list size). <br>
        Expected: Similar to previous.
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
----     
+---
 
-### Add skills to an applicant
+### View an applicant
 
-1. Adding a skill to an applicant while all applicants are being shown in the *GUI*.
-    
-    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
-       Current State: The first applicant has pre-existing skills of `JavaScript` and `TypeScript`.
+1. View an applicant while all applicants are being shown in the *GUI*.
 
-    1. Test case: `addskill 1 s/Python s/Java`<br>
-      Expected: New skills `Python` and `Java` are added to the first applicant's skill list.
-       
-    1. Test case: `addskill 1 s/JavaScript`<br>
-      Expected: No new skill will be added to first applicant's skill list as it already exists. No error is thrown.
-       
-    1. Test case: `addskill 1 s/Javascript`<br>
-      Expected: New skill `Javascript` will be added to first applicant's skill list. This is because the skills are case-insensitive, 
-       hence `Javascript` and `JavaScript` will be treated as two different skills.
+    1. Current State: The list has pre-existing applicants. The first applicant has full name of `Bob Tan`.
 
-    1. Test case: `addskill 0 s/Python s/Java`<br>
-      Expected: No skill is added to any applicant. Error details shown in the status message. 
+    2. Test case: `view Bob Tan`<br>
+       Expected: Only applicant named `Bob Tan` is displayed in the list.
 
-    1. Other incorrect delete commands to try: `addskill s/Python`, `addskill 1`, `addskill 1 Python`, `addskill x` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    3. Test case: `view Tan`<br>
+       Expected: No applicant is displayed in the list.
+
+    4. Test case: `view n/Bob Tan`<br>
+       Expected: No applicant is displayed in the list. This is because prefix is not needed in view.
+
+    5. Test case: `view BobTan`<br>
+       Expected: No applicant is displayed in the list. This is because exact full name with correct spacing is needed to view on an applicant.
+
+    6. Test case: `view bob tan`<br>
+       Expected: Only applicant named `Bob Tan` is displayed in the list. This is because full name are case-insensitive.
+
+    7. Other incorrect view commands to try: `view` and `View`<br>
+       Expected: No applicant is displayed. Error details shown in the status message.
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
 
-### Deleting an applicant
+### Searching for applicant(s)
 
-1. Deleting an applicant while all applicants are being shown in the *GUI*.
+1. Searching for applicant(s) while all applicants are being shown in the *GUI*.
 
-   1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+    1. Current State: The list has pre-existing applicants. The first applicant has name of `Bob Tan` with job in `Software Engineer`.
+       The second applicant has name of `Amy Tan` with job in `Software Developer`.
 
-   2. Test case: `delete 1`<br>
-      Expected: First applicant is deleted from the list. Details of the deleted applicant shown in the status message.
+    2. Test case: `search n/Tan`<br>
+       Expected: Both applicants are displayed in the list.
 
-   3. Test case: `delete 0`<br>
-      Expected: No applicant is deleted. Error details shown in the status message.
+    3. Test case: `search n/Bob`<br>
+       Expected: Only applicant named `Bob Tan` is displayed in the list.
 
-   4. Other incorrect delete commands to try: `delete`, `delete 1 1`, `delete x`, (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    4. Test case: `search n/bOb`<br>
+       Expected: Only applicant named `Bob Tan` is displayed in the list. This is because search attributes are case-insensitive.
+
+    5. Test case: `search n/Jason`<br>
+       Expected: No applicant is displayed in the list.
+
+    6. Test case: `search n/Bo`<br>
+       Expected: No applicant is displayed in the list. This is because search attribute has to be an exact word (can be split by spacing).
+
+    7. Test case: `search j/Bob`<br>
+       Expected: No applicant is displayed in the list. This is because the search attribute has to match with the correct prefix.
+
+    8. Test case: `search n/Tan j/Engineer`<br>
+       Expected: Both applicants are displayed in the list but `Bob Tan` is shown on the top of the list. This is because applicant with the most matching attributes will be displayed first.
+
+    9. Test case: `search n/Amy j/Engineer`<br>
+       Expected: Both applicants are displayed in the list and the order of applicant shown is based on the original list. In this case, `Bob Tan` is shown above `Amy Tan`.
+
+    10. Other incorrect search commands to try: `search`, `Search`, `search Bob`, `search w/Bob`, `search n/`<br>
+        Expected: No applicant is displayed. Error details shown in the status message.
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
-      
-### Flagging an applicant
-
-1. Flagging an applicant while all applicants are being shown in the *GUI*.
-   
-    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
-    Current state: The first applicant is presumed to be unflagged.
-    
-    2. Test case: `flag 1` <br> 
-       Expected: First applicant is flagged, a flag icon appears to the right of applicant details and flagged applicant is now at the top of the list.
-       
-    3. Test case: `flag 1` <br>
-       Assumption: Test case above is completed, and the first applicant is now flagged. <br>
-       Expected: First applicant is now unflagged, flag icon disappears, and applicant is no longer at the top of the list.
-
-    4. Test case: `flag -1` <br>
-       Expected: No applicant is flagged as index is invalid. Error details shown in the status message.
-       
-    5. Test case: `flag 999999999999` <br>
-       Expected: No applicant is flagged as index is too large to be parsed. Error details shown in the status message.
-       
-    6. Other incorrect flag commands to try: `flag`, `flag 1 1`, `flag x`, (where x is larger than the list size) <br>
-       Expected: Similar to test case 4.
-
-[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
-
----      
 
 ### Sorting list of applicants
 
-1. Adding a skill to an applicant while all applicants are being shown in the *GUI*.
+1. Sorting the list of applicants temporarily while all applicants are being shown.
 
     1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
        If list is empty, sorting will have no result but sorting is still available. 
@@ -1174,9 +1257,53 @@ The commands in code blocks for this section are meant to be input in one line.
 
 ---
 
+### Flagging an applicant
+
+1. Flagging an applicant while all applicants are being shown in the *GUI*.
+
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+       Current state: The first applicant is presumed to be unflagged.
+
+    2. Test case: `flag 1` <br>
+       Expected: First applicant is flagged, a flag icon appears to the right of applicant details and flagged applicant is now at the top of the list.
+
+    3. Test case: `flag 1` <br>
+       Assumption: Test case above is completed, and the first applicant is now flagged. <br>
+       Expected: First applicant is now unflagged, flag icon disappears, and applicant is no longer at the top of the list.
+
+    4. Test case: `flag -1` <br>
+       Expected: No applicant is flagged as index is invalid. Error details shown in the status message.
+
+    5. Test case: `flag 999999999999` <br>
+       Expected: No applicant is flagged as index is too large to be parsed. Error details shown in the status message.
+
+    6. Other incorrect flag commands to try: `flag`, `flag 1 1`, `flag x`, (where x is larger than the list size) <br>
+       Expected: Similar to test case 4.
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+
+### Deleting an applicant
+
+1. Deleting an applicant while all applicants are being shown in the *GUI*.
+
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+
+    2. Test case: `delete 1`<br>
+       Expected: First applicant is deleted from the list. Details of the deleted applicant shown in the status message.
+
+    3. Test case: `delete 0`<br>
+       Expected: No applicant is deleted. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `delete`, `delete 1 1`, `delete x`, (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+---
+
 ### Clearing the application
 
-1. Clearing all applicants from LinkedOUT when multiple applicants are being shown in the *GUI*
+1. Clearing all applicants from LinkedOUT when multiple applicants are being shown in the *GUI*.
 
     1. Test case: `clear` followed by clicking `Yes` on the confirmation box. <br>
        Expected: All applicants are deleted from the application, an empty list is seen.
@@ -1197,7 +1324,7 @@ The commands in code blocks for this section are meant to be input in one line.
 ### Saving data
 
 1. Saving data
-   1. Prerequisites: Permanently modify list of applicants using any commands
+   1. Prerequisites: Permanently modify list of applicants using any commands.
    2. Test case: `delete 1` follow by `exit` command and relaunch the app. <br>
       Expected: First applicant before `delete` command will not be in the list of applicants upon relaunch.
 2. Dealing with missing files
@@ -1211,5 +1338,3 @@ The commands in code blocks for this section are meant to be input in one line.
       Expected: The app starts with an empty list of applicants.
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
-
----

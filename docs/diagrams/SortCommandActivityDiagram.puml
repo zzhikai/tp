@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes sort command;
+if () then ([valid inputs])
+    :Display to user \nthe sorted list of applicant;
+else ([else])
+:Error message to\n user signifying issue;
+endif
+
+stop
+
+@enduml
