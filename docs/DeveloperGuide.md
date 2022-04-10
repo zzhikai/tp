@@ -935,6 +935,11 @@ does not have any formatting issues.**
 
 **Use case 9: Flag an applicant**
 
+**Preconditions: LinkedOUT application is launched. There is at least one applicant in the list.**
+
+**Guarantees: Applicant will be flagged only if the user input
+does not have any formatting issues.**
+
 **MSS**
 
 1. User requests to flag an applicant
@@ -956,6 +961,11 @@ does not have any formatting issues.**
 
 **Use case 10: Unflag an applicant**
 
+**Preconditions: LinkedOUT application is launched. There is at least one applicant in the list**
+
+**Guarantees: Applicant will be unflagged only if the user input
+does not have any formatting issues.**
+
 **MSS**
 
 1. User requests to unflag an applicant
@@ -976,6 +986,11 @@ does not have any formatting issues.**
 ---
 
 **Use case 11: Clear all applicants**
+
+**Preconditions: LinkedOUT application is launched.**
+
+**Guarantees: List will be cleared only if the user input
+does not have any formatting issues.**
 
 **MSS**
 
