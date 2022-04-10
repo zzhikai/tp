@@ -2,8 +2,6 @@
 start
 :User executes Add Command;
 
-:Create the new Applicant with the attributes provided;
-
 if () then ([else])
 
     :Add the new Applicant into LinkedOUT;
