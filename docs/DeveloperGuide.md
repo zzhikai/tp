@@ -528,6 +528,10 @@ the `SortComparator`.
 
 `SortCommand` extends `Command` and implements the `Command#execute()` method.
 
+The following activity diagram shows the workflow of the search command:
+
+![SortActivityDiagram](images/SortCommandActivityDiagram.png)
+
 Given below is an example usage scenario and how the search mechanism behaves at each step.
 
 1. The user enters the sort command with the specific field to sort by and sorting order,
