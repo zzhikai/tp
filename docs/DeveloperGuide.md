@@ -896,23 +896,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: Unflag an applicant**
-
-**MSS**
-
-1. User requests to unflag an applicant
-2. LinkedOUT shows the updated list of applicants
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. User inputs invalid applicant index
-
-    * 1a1. LinkedOUT shows an error message
-
-      Use case resumes at step 1.
-
 **Use case: Clear all applicants**
 
 **MSS**
