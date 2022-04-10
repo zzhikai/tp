@@ -69,10 +69,10 @@ Given below are my contributions to the project.
       [\#140](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/140)
       
     * Contributed to forum discussions:
-      [1](https://github.com/nus-cs2103-AY2122S2/forum/issues/79),
-      [2](https://github.com/nus-cs2103-AY2122S2/forum/issues/103),
-      [3](https://github.com/nus-cs2103-AY2122S2/forum/issues/153),
-      [4](https://github.com/nus-cs2103-AY2122S2/forum/issues/239)
+      [\#79](https://github.com/nus-cs2103-AY2122S2/forum/issues/79),
+      [\#103](https://github.com/nus-cs2103-AY2122S2/forum/issues/103),
+      [\#153](https://github.com/nus-cs2103-AY2122S2/forum/issues/153),
+      [\#239](https://github.com/nus-cs2103-AY2122S2/forum/issues/239)
       
     * Reported non-trivial bugs and suggestions for other teams in the class(which were fixed)(Issues:
       [\#119](https://github.com/AY2122S2-CS2103-W16-1/tp/issues/119),
