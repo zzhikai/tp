@@ -253,6 +253,7 @@ Sample Output:
 ### Viewing a specific applicant : `view`
 
 Allows you to view a specific applicant, by inputting the applicant's **full name**.
+
 <br>
 
 Format:
