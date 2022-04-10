@@ -328,6 +328,8 @@ Given below is an example usage scenario of how an applicant is edited.
 
 7. It then calls upon `CommandResult` to display the final result on the *GUI*.
 
+The following sequence diagram shows how the addskill operation works:
+
 ![AddSkillSequenceDiagram](images/AddSkillCommandSequenceDiagram.png)
 
 **Design considerations**
@@ -600,11 +602,12 @@ The following sequence diagram shows how the flag operation works:
 
 **Design considerations**
 
-Aspect: How flag executes :
-* Alternative 1 (current choice): Create a new applicant with toggled flag status to replace the specified applicant.
+**Aspect: How flag executes:**
+
+* **Alternative 1 (current choice):** Create a new applicant with toggled flag status to replace the specified applicant.
   * Pros: Immutability, easier to debug, and less side effects.
   * Cons: More memory usage, more verbose to implement.
-* Alternative 2: Change the state of the applicant directly, by making the flag status mutable.
+* **Alternative 2:** Change the state of the applicant directly, by making the flag status mutable.
   * Pros: Less verbose to implement.
   * Cons: Change of applicant state makes debugging the application harder, and contains possibility of introducing side effects.
 
