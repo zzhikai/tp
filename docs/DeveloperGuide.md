@@ -982,6 +982,8 @@ does not have any formatting issues.**
 1. User requests to clear all applicants from the list
 2. LinkedOUT clears the list of all applicants.
 
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
 ---
 ### Non-Functional Requirements
 
