@@ -143,7 +143,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ApplicantListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible *GUI*.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/linkedout-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/linkedout-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2122S2-CS2103T-T09-2/tp/blob/master/src/main/java/seedu/linkedout/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2122S2-CS2103T-T09-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -1009,7 +1009,7 @@ does not have any formatting issues.**
 2.  Performance: The application should be able to hold up to 1000 applicants without a noticeable sluggishness in performance for typical usage.
 3.  Performance: The system should take at most 2 seconds to return an output.
 4.  Disaster Recovery: In case of system failure, the application should still contain data saved up to the last command executed.
-5.  Persistency: The system should save after a command to ensure no data loss.
+5.  Persistency: The system should save after executing commands that modify the list to ensure no data loss.
 6.  Testing: There should be at least one test case for each major component.
 7.  Fault Tolerance: The system should not crash due to an invalid input but instead show an error message.
 8.  Portability: The application should run on an imported _JSON_ file as long as it adheres to the format used when saving to files.
@@ -1017,8 +1017,6 @@ does not have any formatting issues.**
 10. Usability: The user interface should be clean and intuitive for users who have basic IT knowledge.
 11. Process: The project is expected to adhere to a schedule based off our milestones from the different versions ranging from v1.1 to v1.4.
 12. Documentation: User Guide should be able to be understood by readers who have basic IT knowledge.
-
-*{More to be added}*
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -1054,7 +1052,7 @@ testers are expected to do more *exploratory* testing.
 
    2. **For Windows:** Double-click the file to start the app.<br>
      
-      **For Mac:** Open up a [terminal](#https://www.maketecheasier.com/launch-terminal-current-folder-mac/) in the current folder which contains the LinkedOUT jar file<br>
+      **For Mac:** Open up a [terminal](https://www.maketecheasier.com/launch-terminal-current-folder-mac/) in the current folder which contains the LinkedOUT jar file<br>
       Then, run the following command: 
       ```java -jar LinkedOUT.jar```
    
