@@ -16,7 +16,7 @@ Given below are my contributions to the project.
     * What it does: allows the user to temporarily sort the list of applicants in ascending or descending alphabetical order based on either job applied or name of applicant.
     * Justification: This feature improves the product significantly because a user can view the applicants in a more organised manner when needed.
     * Highlights: The implementation require the use of comparators and comparables.
-    * Credits: Ryan Tan(@ryantanlien), Ryan Cheung(@RyanCheungJF) and Kai Yi Chen(kaiyichen) for reviewing
+    * Credits: Ryan Tan(@ryantanlien), Ryan Cheung(@RyanCheungJF) and Kai Yi Chen(@kaiyichen) for reviewing
       and assisting in fixing the bug where any command done on the sorted list was done on the default list
       instead which created huge inaccuracies.
       
