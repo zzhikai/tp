@@ -929,8 +929,58 @@ does not have any formatting issues.**
 
       Use case resumes at step 3.
 
-
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+
+**Use case 9: Flag an applicant**
+
+**MSS**
+
+1. User requests to flag an applicant
+2. LinkedOUT shows the updated list of applicants
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User inputs invalid applicant index
+
+    * 1a1. LinkedOUT shows an error message
+
+      Use case resumes at step 1.
+      
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+
+**Use case 10: Unflag an applicant**
+
+**MSS**
+
+1. User requests to unflag an applicant
+2. LinkedOUT shows the updated list of applicants
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User inputs invalid applicant index
+
+    * 1a1. LinkedOUT shows an error message
+
+      Use case resumes at step 1.
+      
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
+
+---
+
+**Use case 11: Clear all applicants**
+
+**MSS**
+
+1. User requests to clear all applicants from the list
+2. LinkedOUT clears the list of all applicants.
 
 ---
 ### Non-Functional Requirements
