@@ -684,12 +684,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ---
 ### Use cases
 
-(For all use cases below, the **System** is LinkedOUT and the **Actor** is the user, unless specified otherwise)
+(For all use cases below, the System is LinkedOUT, and the Actor is the user unless specified otherwise)
 
 ---
-**Use case: Add an applicant**
+**Use case 1: Add an applicant**
 
-**Preconditions: LinkedOUT application is launched**
+**Preconditions: LinkedOUT application is launched.**
 
 **Guarantees: Applicant will be added only if the user input
 does not have any formatting issues.**
@@ -719,9 +719,9 @@ does not have any formatting issues.**
 
 ---
     
-**Use case: View an individual applicant**
+**Use case 2: View an individual applicant**
 
-**Preconditions: LinkedOUT application is launched**
+**Preconditions: LinkedOUT application is launched.**
 
 **Guarantees: Applicant will be displayed only if the user input
 does not have any formatting issues.**
@@ -737,7 +737,7 @@ does not have any formatting issues.**
 
 * 1a. Applicant does not exist.
   
-    * 1a1. LinkedOUT shows 0 applicant listed.
+    * 1a1. LinkedOUT shows 0 applicants listed.
       
       Use case resumes at step 1.
     
@@ -750,9 +750,9 @@ does not have any formatting issues.**
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
-**Use case: Search for applicant(s)**
+**Use case 3: Search for applicant(s)**
 
-**Preconditions: LinkedOUT application is launched**
+**Preconditions: LinkedOUT application is launched.**
 
 **Guarantees: Applicant(s) will be displayed only if the user input
 does not have any formatting issues.**
@@ -782,9 +782,9 @@ does not have any formatting issues.**
 
 ---
     
-**Use case: View list of all applicants**
+**Use case 4: View list of all applicants**
 
-**Preconditions: LinkedOUT application is launched**
+**Preconditions: LinkedOUT application is launched.**
 
 **Guarantees: List of applicants will be displayed.**
 
@@ -804,9 +804,9 @@ does not have any formatting issues.**
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
-**Use case: Delete an applicant**
+**Use case 5: Delete an applicant**
 
-**Preconditions: LinkedOUT application is launched**
+**Preconditions: LinkedOUT application is launched.**
 
 **Guarantees: Applicant will be deleted only if the user input
 does not have any formatting issues.**
@@ -836,9 +836,9 @@ does not have any formatting issues.**
 
 ---
 
-**Use case: Edit an applicant**
+**Use case 6: Edit an applicant**
 
-**Preconditions: LinkedOUT application is launched**
+**Preconditions: LinkedOUT application is launched.**
 
 **Guarantees: Applicant will be edited only if the user input
 does not have any formatting issues.**
@@ -868,7 +868,7 @@ does not have any formatting issues.**
 
 ---
 
-**Use case: Sort the list of applicants**
+**Use case 7: Sort the list of applicants**
 
 **Preconditions: LinkedOUT application is launched**
 
@@ -900,7 +900,35 @@ only if the user input does not have any formatting issues.**
 
 ---
 
-*{More to be added}*
+
+**Use case 8: Add skills to an applicant**
+
+**Preconditions: LinkedOUT application is launched. There is at least one applicant in the list.**
+
+**Guarantees: Skills will be added to an applicant only if the user input
+does not have any formatting issues.**
+
+**MSS**
+
+1.  User requests to list applicants.
+2.  LinkedOUT shows a list of applicants.
+3.  User enters the skill(s) to be added to the applicant.
+4.  LinkedOUT shows the updated applicant.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+    Use case ends.
+
+* 3a. User inputs invalid skill(s) or index.
+
+    * 3a1. LinkedOUT shows an error message
+
+      Use case resumes at step 3.
+
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
