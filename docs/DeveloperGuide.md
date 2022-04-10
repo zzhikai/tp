@@ -229,11 +229,11 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add applicant feature
 
-#### Rationale
+**Rationale**
 
 The add command allows the user to add a new applicant to the LinkedOUT list.
 
-#### Implementation
+**Implementation**
 
 The add command is facilitated by creating an `AddCommand`. `AddCommand` extends `Command` and implements the `Command#execute()` method.
 
@@ -273,7 +273,7 @@ The following sequence diagram shows how the add operation works:
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
-#### Design considerations
+**Design considerations**
 
 **Aspect: How add executes:**
 
@@ -287,13 +287,13 @@ The following sequence diagram shows how the add operation works:
 
 ### Add Skill feature
 
-#### Rationale
+**Rationale**
 
 The addskill command allows users to add skills to a specific applicant. This command was designed to accommodate edit's functionality when editing skills. To remove skills from an applicant, one can choose to use edit instead.
 
 The reasoning for only including an addskill functionality is that most applicants would pick up new skills, but not lose knowledge of pre-existing ones.
 
-#### Implementation
+**Implementation**
 
 The addskill mechanism is facililated by `AddSkillCommandParser`. 
 `AddSkillCommandParser` parses the inputs using `AddSkillCommandParser#parseSkillsForEdit()` and returns a new set of skills to `AddSkillCommand`.
@@ -330,7 +330,7 @@ Given below is an example usage scenario of how an applicant is edited.
 
 ![AddSkillSequenceDiagram](images/AddSkillCommandSequenceDiagram.png)
 
-#### Design considerations
+**Design considerations**
 
 **Aspect: How addskill executes:**
 
@@ -346,11 +346,11 @@ Given below is an example usage scenario of how an applicant is edited.
 
 ### Edit applicant feature
 
-#### Rationale
+**Rationale**
 
 The edit command allows users to change the applicant's details.
 
-#### Implementation
+**Implementation**
 
 The proposed edit mechanism is facilitated by `EditApplicantDescriptor`. `EditApplicantDescriptor` stores the details of the applicant to change.
 
@@ -371,7 +371,7 @@ The following sequence diagram shows how the edit operation works:
 
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
-#### Design considerations
+**Design considerations**
 
 **Aspect: How edit executes:**
 
@@ -388,13 +388,13 @@ The following sequence diagram shows how the edit operation works:
 ---
 ### View applicant feature
 
-#### Rationale
+**Rationale**
 
 The view command searches a **single** applicant in LinkedOUT and returns the applicant's details.
 It is used when users wish to find a specific applicant they have in mind.
 It takes in a single case-insensitive parameter, which is the applicant's full name. No prefix is required.
 
-#### Implementation
+**Implementation**
 
 The view command is facilitated by `NameContainsAllKeywordsPredicate` which helps the parser match the input.
 
@@ -429,7 +429,7 @@ The following sequence diagram shows how the view operation works:
 
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
-#### Design Considerations
+**Design considerations**
 
 **Aspect: How view executes:**
 
@@ -451,13 +451,13 @@ This is to allow our target user to have greater flexibility, and we believe bot
 ---
 ### Search applicant feature
 
-#### Rationale
+**Rationale**
 
 The search command searches for applicant(s) in LinkedOUT and returns the applicant(s)' details.
 It is used when users wish to search for applicant(s) they have in mind.
 It takes in prefix(es) with case-insensitive parameter, which can be applicant's name, job, round and skill.
 
-#### Implementation
+**Implementation**
 
 The proposed search mechanism is facilitated by `SearchCommandParser`. `SearchCommandParser` will map the creation of `KeywordsPredicate` based on the input prefix. `KeywordsPredicate` supports the following implementation:
 * `NameContainsKeywordsPredicate` — Predicate which returns true if an applicant's full name matches partially with the exact input attribute.
@@ -498,7 +498,7 @@ The following sequence diagram shows how the search operation works:
 
 ![SearchSequenceDiagram](images/SearchSequenceDiagram.png)
 
-#### Design considerations:
+**Design considerations**:
 
 **Aspect: How search executes:**
 
@@ -516,11 +516,11 @@ The following sequence diagram shows how the search operation works:
 
 ### Sort applicant feature
 
-#### Rationale
+**Rationale**
 
 The sort command shows the list of applicants **temporarily** sorted by either `NAME` or `JOB` and in ascending or descending order.
 
-#### Implementation
+**Implementation**
 
 The proposed sort mechanism is facilitated by `SortCommandParser`. 
 `SortCommandParser` will map the creation of `SortComparator` based on the input prefix and returns a `SortCommand` with
@@ -547,7 +547,7 @@ The following sequence diagram shows how the sort operation works:
 
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
-#### Design considerations:
+**Design considerations**:
 
 **Aspect: How sort executes:**
 
@@ -565,11 +565,11 @@ The following sequence diagram shows how the sort operation works:
 
 ### Flag applicant feature
 
-#### Rationale
+**Rationale**
 
 The flag feature and it's associated `flag` command allows the user to flag an existing applicant in the LinkedOUT list, pinning them to the top for easy reference.
 
-#### Implementation
+**Implementation**
 The flag mechanism is facilitated by the `FlagCommandParser`. `FlagCommandParser` parses the user inputs using `FlagCommandParser#parse()` to obtain the index of the applicant to be flagged.
 
 `FlagCommand` then searches for the applicant in the applicant list, and toggles it's flagged status.
@@ -598,7 +598,7 @@ The following sequence diagram shows how the flag operation works:
 
 ![FlagSequenceDiagram](images/FlagSequenceDiagram.png)
 
-#### Design considerations
+**Design considerations**
 
 Aspect: How flag executes :
 * Alternative 1 (current choice): Create a new applicant with toggled flag status to replace the specified applicant.
