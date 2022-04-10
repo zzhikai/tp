@@ -55,7 +55,7 @@ Given below are my contributions to the project.
         * Added UI with annotation for introduction of GUI. [\#242](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/242)
     * Developer Guide:
         * Added implementation details of the `edit` and `sort` feature. [\#101](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/101),
-          [\#224](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/224)
+          [\#224](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/224), [\#269](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/269)
         * Updated existing sequence and activity diagrams to be consistent. [\#223](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/223)
         * Add documentation for manual testing of `sort` feature and saving data. [\#253](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/253),
           [\#258](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/258)
