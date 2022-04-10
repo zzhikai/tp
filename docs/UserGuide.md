@@ -99,7 +99,7 @@ Cautions are placed in this guide to serve as warnings for certain actions.
   Command words include `list`, `add`, `edit` etc.<br>
   Prefixes are used by commands to recognise different parts of your inputs, these include `n/`, `j/`, `r/` etc.<br>
   e.g. `edit 1 n/NAME`, this command is valid as `edit` and `n/` is `lower_case`.<br>
-  That is, `Add n/John Doe...` will be an invalid command because the command word `Add` is not `lower_case`.
+  That is, `Add n/John Doe…` will be an invalid command because the command word `Add` is not `lower_case`.
 
 * Words in `UPPER_CASE` are the inputs to be supplied by you.<br>
   Items in square brackets are optional. These inputs are optional because they are additional information you may
@@ -327,7 +327,7 @@ Allows you to add skills to a specific applicant. The index number used correspo
 
 Format:
 ```
-addskill INDEX [s/SKILL]...
+addskill INDEX [s/SKILL]…
 ```
 
 
@@ -498,7 +498,7 @@ delete INDEX
 ```
 
 * Index of applicant specified must not be more than the total number of applicants in LinkedOUT. <br>
-  e.g If there are only `4` applicants in the app but `5` is specified, then the deletion will not be carried out as it is invalid
+  e.g If there are only `4` applicants in the app but `5` is specified, then the deletion will not be carried out as it is invalid.
 * Index of applicant specified must be a positive number. <br>
   e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant and the deletion will not be carried out as it is invalid.
 
@@ -614,9 +614,9 @@ If your changes to the data file makes its format invalid, LinkedOUT will discar
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]…​` <br> e.g: `add n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas` |
 | **List**   | `list`                                                                                                                                                |
 | **View**   | `view NAME` <br> e.g: `view Steve Jobs`                                                                                                               |
-| **Search** | `search [n/NAME]... [j/JOB]... [r/ROUND]... [s/SKILL]...` <br> e.g: `search n/Steve`   |
-| **AddSkill** | `addskill INDEX [s/SKILL]....` <br> e.g `addskill 1 s/MySQL s/PostgreSQL`|
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]...` <br> e.g: `edit 1 n/Elon Musk`                                               |
+| **Search** | `search [n/NAME]… [j/JOB]… [r/ROUND]… [s/SKILL]…` <br> e.g: `search n/Steve`   |
+| **AddSkill** | `addskill INDEX [s/SKILL]…` <br> e.g `addskill 1 s/MySQL s/PostgreSQL`|
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…` <br> e.g: `edit 1 n/Elon Musk`                                               |
 | **Sort**   | `sort f/FIELD o/ORDER` <br/> e.g: `sort f/Name o/Asc`                                                                                                 |
 | **Flag**   | `flag INDEX` <br> e.g:  `flag 1`                                                                                                                      |
 | **Delete** | `delete INDEX` <br> e.g: `delete 1`                                                                                                                   |
