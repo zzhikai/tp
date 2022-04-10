@@ -42,7 +42,7 @@ Given below are my contributions to the project.
         * Added prefix table. (Pull request [\#154](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/154))
         * Added documentation for features `sort` and `clear`. (Pull request [\#154](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/154)).
     * Developer Guide:
-        * Updated target user profile, value proposition and user stories. (Pull request [\#30](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/30)).
+        * Updated target user profile, value proposition and user stories. (Pull request [\#30](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/30) [\#272](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/272)).
         * Added implementation details of `search`. (Pull request [\#108](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/108)).
         * Added documentation for manual testing of `search` and `view` command. (Pull request [\#241](https://github.com/AY2122S2-CS2103T-T09-2/tp/pull/241)).
 
