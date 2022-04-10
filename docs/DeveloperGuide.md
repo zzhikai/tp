@@ -1137,8 +1137,10 @@ The commands in code blocks for this section are meant to be inputted in one lin
     1. Test case: `addskill 0 s/Python s/Java`<br>
        Expected: No skill is added to any applicant. Error details shown in the status message.
 
-    1. Other incorrect delete commands to try: `addskill s/Python`, `addskill 1`, `addskill 1 Python`, `addskill x` (where x is larger than the list size)<br>
+    1. Other incorrect addskill commands to try: `addskill s/Python`, `addskill 1`, `addskill 1 Python`, `addskill x` (where x is larger than the list size)<br>
        Expected: Similar to previous.
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
 
@@ -1313,6 +1315,8 @@ The commands in code blocks for this section are meant to be inputted in one lin
 
     4. Other incorrect delete commands to try: `delete`, `delete 1 1`, `delete x`, (where x is larger than the list size)<br>
        Expected: Similar to previous.
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
 
